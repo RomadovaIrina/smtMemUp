@@ -20,7 +20,7 @@ for phase in $PHASES; do
     done
     echo "$(date '+%F %T') [$phase] start, free=${free} MiB" | tee -a "$LOG"
     nice -n 10 /mem/envs/smt-memup/bin/python smt_memup_stack.py --phase "$phase" --variants "$VARIANTS" \
-      --threads 4 --gpu-memory-fraction 0.35 >> "$LOG" 2>&1
+      --threads 4 --gpu-memory-fraction "${GPU_FRACTION:-0.35}" >> "$LOG" 2>&1
     status=$?
     echo "$(date '+%F %T') [$phase] finished, exit code ${status}" | tee -a "$LOG"
     [ "$status" -eq 0 ] && break
