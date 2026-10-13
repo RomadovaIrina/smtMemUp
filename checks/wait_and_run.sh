@@ -4,7 +4,9 @@
 # then runs that phase (all phases are resumable). Stops at the first failing phase.
 # Never runs the test report.
 set -u
-cd /mem/work
+cd "$(dirname "$0")/.."                       # repository root, wherever it is cloned
+PY=${PY:-/mem/envs/smt-memup/bin/python}; [ -x "$PY" ] || PY=envs/smt-memup/bin/python
+export PY
 PHASES=$1; VARIANTS=$2; LOG=${3:-runs/tune_final.log}
 NEED_MIB=${NEED_MIB:-12000}; STREAK=${STREAK:-3}; INTERVAL=${INTERVAL:-30}
 for phase in $PHASES; do
@@ -19,7 +21,7 @@ for phase in $PHASES; do
       [ "$s" -lt "$STREAK" ] && sleep "$INTERVAL"
     done
     echo "$(date '+%F %T') [$phase] start, free=${free} MiB" | tee -a "$LOG"
-    nice -n 10 /mem/envs/smt-memup/bin/python smt_memup_stack.py --phase "$phase" --variants "$VARIANTS" \
+    nice -n 10 "$PY" smt_memup_stack.py --phase "$phase" --variants "$VARIANTS" \
       --threads 4 --gpu-memory-fraction "${GPU_FRACTION:-0.35}" >> "$LOG" 2>&1
     status=$?
     echo "$(date '+%F %T') [$phase] finished, exit code ${status}" | tee -a "$LOG"

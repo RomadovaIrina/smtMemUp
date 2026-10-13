@@ -1,0 +1,10 @@
+{
+  "teacher_long_accuracy": 0.3832132259431963,
+  "rnn_dmt_long_accuracy": 0.4099194573972022,
+  "chance": 0.25,
+  "required_teacher": 0.35,
+  "required_rnn": 0.3,
+  "smt_best_step": 3000,
+  "dmt_best_step": 1500,
+  "passed": true
+}

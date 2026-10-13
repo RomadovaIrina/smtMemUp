@@ -1,0 +1,8 @@
+2026-10-13 18:44:43 [final] attempt 1: waiting for >= 11000 MiB free GPU memory
+2026-10-13 18:54:14 [final] start, free=13433 MiB
+18:54:22 run directory: /mem/work/runs/stack02_4c69a2819ab8
+18:55:16 seed7/surprise_ctx_k smt 250/3000 teacher long acc=0.306 rnn long acc=0.269 select=1.4418 0.214s/step
+18:56:03 seed7/surprise_ctx_k smt 500/3000 teacher long acc=0.292 rnn long acc=0.250 select=1.4138 0.202s/step
+18:56:51 seed7/surprise_ctx_k smt 750/3000 teacher long acc=0.306 rnn long acc=0.265 select=1.4031 0.197s/step
+18:57:37 seed7/surprise_ctx_k smt 1000/3000 teacher long acc=0.353 rnn long acc=0.262 select=1.3450 0.195s/step
+18:58:24 seed7/surprise_ctx_k smt 1250/3000 teacher long acc=0.415 rnn long acc=0.274 select=1.2834 0.193s/step

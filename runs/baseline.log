@@ -1,0 +1,32 @@
+2026-10-13 11:00:50 waiting for >= 12000 MiB free GPU memory
+2026-10-13 11:01:50 free=23890 MiB, starting baseline
+11:02:03 run directory: /mem/work/runs/stack02_4c69a2819ab8
+11:02:43 tuning/baseline smt 250/3000 teacher long acc=0.312 rnn long acc=0.284 select=1.5121 0.162s/step
+11:03:29 tuning/baseline smt 500/3000 teacher long acc=0.286 rnn long acc=0.240 select=1.4204 0.174s/step
+11:04:32 tuning/baseline smt 750/3000 teacher long acc=0.300 rnn long acc=0.236 select=1.4481 0.200s/step
+11:05:26 tuning/baseline smt 1000/3000 teacher long acc=0.296 rnn long acc=0.254 select=1.4520 0.203s/step
+11:06:12 tuning/baseline smt 1250/3000 teacher long acc=0.335 rnn long acc=0.282 select=1.3617 0.200s/step
+11:07:14 tuning/baseline smt 1500/3000 teacher long acc=0.323 rnn long acc=0.269 select=1.3636 0.208s/step
+11:08:15 tuning/baseline smt 1750/3000 teacher long acc=0.341 rnn long acc=0.285 select=1.3595 0.213s/step
+11:09:16 tuning/baseline smt 2000/3000 teacher long acc=0.360 rnn long acc=0.320 select=1.3172 0.217s/step
+11:10:07 tuning/baseline smt 2250/3000 teacher long acc=0.371 rnn long acc=0.331 select=1.3132 0.215s/step
+11:11:03 tuning/baseline smt 2500/3000 teacher long acc=0.375 rnn long acc=0.326 select=1.2884 0.216s/step
+11:12:04 tuning/baseline smt 2750/3000 teacher long acc=0.387 rnn long acc=0.343 select=1.2792 0.219s/step
+11:12:51 tuning/baseline smt 3000/3000 teacher long acc=0.396 rnn long acc=0.356 select=1.2742 0.216s/step
+11:15:21 tuning/baseline dmt 250/1500 teacher long acc=0.396 rnn long acc=0.371 select=1.3110 0.597s/step
+11:18:15 tuning/baseline dmt 500/1500 teacher long acc=0.396 rnn long acc=0.405 select=1.2756 0.647s/step
+11:21:24 tuning/baseline dmt 750/1500 teacher long acc=0.396 rnn long acc=0.412 select=1.2507 0.684s/step
+11:24:25 tuning/baseline dmt 1000/1500 teacher long acc=0.396 rnn long acc=0.401 select=1.2526 0.694s/step
+11:27:13 tuning/baseline dmt 1250/1500 teacher long acc=0.396 rnn long acc=0.434 select=1.2151 0.689s/step
+11:29:59 tuning/baseline dmt 1500/1500 teacher long acc=0.396 rnn long acc=0.436 select=1.2125 0.685s/step
+{
+  "teacher_long_accuracy": 0.3832132259431963,
+  "rnn_dmt_long_accuracy": 0.4099194573972022,
+  "chance": 0.25,
+  "required_teacher": 0.35,
+  "required_rnn": 0.3,
+  "smt_best_step": 3000,
+  "dmt_best_step": 1500,
+  "passed": true
+}
+2026-10-13 11:30:08 baseline finished with exit code 0

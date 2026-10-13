@@ -1,0 +1,6 @@
+2026-10-13 18:24:12 worker 1 [baseline,uniform] waiting for >= 28000 MiB free
+2026-10-13 18:25:13 worker 1 started, pid 156451
+2026-10-13 18:27:43 worker 2 [random_k,surprise_k] waiting for >= 11000 MiB free
+2026-10-13 18:28:43 worker 2 started, pid 158932
+2026-10-13 18:31:13 worker 3 [surprise_ctx_k,oracle_prefix_k] waiting for >= 11000 MiB free
+2026-10-13 18:44:43 worker 3 started, pid 165775

@@ -1,0 +1,25 @@
+2026-10-13 18:25:13 [final] attempt 1: waiting for >= 11000 MiB free GPU memory
+2026-10-13 18:26:13 [final] start, free=32110 MiB
+18:26:24 run directory: /mem/work/runs/stack02_4c69a2819ab8
+18:26:24 resume baseline smt at 3000/3000
+18:28:51 seed7/baseline dmt 250/1500 teacher long acc=0.460 rnn long acc=0.388 select=1.2747 0.585s/step
+18:31:18 seed7/baseline dmt 500/1500 teacher long acc=0.460 rnn long acc=0.418 select=1.2261 0.587s/step
+18:33:47 seed7/baseline dmt 750/1500 teacher long acc=0.460 rnn long acc=0.432 select=1.2038 0.591s/step
+18:36:16 seed7/baseline dmt 1000/1500 teacher long acc=0.460 rnn long acc=0.459 select=1.1761 0.592s/step
+18:38:38 seed7/baseline dmt 1250/1500 teacher long acc=0.460 rnn long acc=0.459 select=1.1600 0.587s/step
+18:41:09 seed7/baseline dmt 1500/1500 teacher long acc=0.460 rnn long acc=0.459 select=1.1597 0.590s/step
+18:41:52 seed7/uniform smt 250/3000 teacher long acc=0.320 rnn long acc=0.266 select=1.4670 0.171s/step
+18:42:30 seed7/uniform smt 500/3000 teacher long acc=0.310 rnn long acc=0.258 select=1.4434 0.161s/step
+18:43:09 seed7/uniform smt 750/3000 teacher long acc=0.313 rnn long acc=0.249 select=1.3944 0.159s/step
+18:43:51 seed7/uniform smt 1000/3000 teacher long acc=0.327 rnn long acc=0.256 select=1.4111 0.162s/step
+18:44:33 seed7/uniform smt 1250/3000 teacher long acc=0.322 rnn long acc=0.255 select=1.3540 0.162s/step
+18:45:19 seed7/uniform smt 1500/3000 teacher long acc=0.333 rnn long acc=0.276 select=1.3650 0.166s/step
+18:46:13 seed7/uniform smt 1750/3000 teacher long acc=0.379 rnn long acc=0.293 select=1.3005 0.173s/step
+18:47:07 seed7/uniform smt 2000/3000 teacher long acc=0.387 rnn long acc=0.277 select=1.2849 0.179s/step
+18:47:59 seed7/uniform smt 2250/3000 teacher long acc=0.410 rnn long acc=0.306 select=1.2539 0.182s/step
+18:48:52 seed7/uniform smt 2500/3000 teacher long acc=0.392 rnn long acc=0.314 select=1.2540 0.185s/step
+18:49:44 seed7/uniform smt 2750/3000 teacher long acc=0.419 rnn long acc=0.315 select=1.2278 0.187s/step
+18:50:40 seed7/uniform smt 3000/3000 teacher long acc=0.432 rnn long acc=0.321 select=1.2115 0.190s/step
+18:53:19 seed7/uniform dmt 250/1500 teacher long acc=0.432 rnn long acc=0.316 select=1.3680 0.634s/step
+18:55:51 seed7/uniform dmt 500/1500 teacher long acc=0.432 rnn long acc=0.398 select=1.2784 0.621s/step
+18:58:19 seed7/uniform dmt 750/1500 teacher long acc=0.432 rnn long acc=0.428 select=1.2277 0.612s/step

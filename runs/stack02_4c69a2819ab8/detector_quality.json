@@ -1,0 +1,16 @@
+{
+  "window": {
+    "ce": 0.21811558306217194,
+    "acc_inside_window": 1.0,
+    "acc_outside_window": 0.2513777024162781,
+    "auc_outside_window": 1.0,
+    "n": 15377
+  },
+  "context": {
+    "ce": 0.27907902002334595,
+    "mean_ce_future_source": 0.054685357958078384,
+    "mean_ce_prefix_source": 1.4122226238250732,
+    "auc_prefix_source": 0.9867160222382838,
+    "n": 521856
+  }
+}

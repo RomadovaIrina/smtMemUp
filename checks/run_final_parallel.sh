@@ -6,7 +6,9 @@
 # the memory already taken by the previous one. Each worker resumes after CUDA OOM (wait_and_run.sh).
 # The test report is never started here.
 set -u
-cd /mem/work
+cd "$(dirname "$0")/.."                       # repository root, wherever it is cloned
+PY=${PY:-/mem/envs/smt-memup/bin/python}; [ -x "$PY" ] || PY=envs/smt-memup/bin/python
+export PY
 FIRST_MIB=${FIRST_MIB:-28000}; NEXT_MIB=${NEXT_MIB:-11000}; STAGGER=${STAGGER:-150}
 WORKER_SETS=("baseline,uniform" "random_k,surprise_k" "surprise_ctx_k,oracle_prefix_k")
 LOG=runs/final_parallel.log
