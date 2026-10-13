@@ -1,9 +1,12 @@
-# SMT × MemUP: Stack без шума
+# SMT × MemUP: Stack Operations и MQAR без шума
 
 * `02_smt_memup_stack.ipynb` — актуальный ноутбук: аудит, протокол, фазы эксперимента, предрегистрация (раздел 8.0).
 * `smt_memup_stack.py` — весь код эксперимента; импорт ничего не обучает. Хэш файла входит в идентификатор запуска.
 * `checks/test_smt_memup_stack.py` — технические проверки (CPU): `python checks/test_smt_memup_stack.py`.
 * `checks/wait_and_run.sh` — запуск фаз на общем GPU: ждёт свободную память, resume при OOM, test не запускает.
+* `03_smt_memup_mqar.ipynb` + `smt_memup_mqar.py` — MQAR (Zoology): данные, аудит отбора, оценка стоимости; обучение ещё не запускалось. Общие части импортируются из `smt_memup_stack.py` без изменений.
+* `checks/test_smt_memup_mqar.py` — проверки MQAR-кода, включая совпадение SMT loss со Stack-модулем.
+* `outputs/`, `outputs_v2/` — графики и таблицы Stack (v2 — читаемые подписи); `outputs_mqar/` — подготовка MQAR.
 * `01_smt_memup_preparation_archive.ipynb` — архив версии 01 с её сохранёнными результатами (не результаты кода 02).
 
 ## Окружение
@@ -19,6 +22,7 @@ uv pip install --python envs/smt-memup/bin/python numpy==2.1.0 pandas==2.3.3 mat
 ```bash
 git clone https://github.com/akarshkumar0101/smt.git upstream/smt && git -C upstream/smt checkout cf0d0f04be606ab9d97b1a449a6846450d656ad0
 git clone https://github.com/griver/memup.git upstream/memup && git -C upstream/memup checkout d27657137f6e427e30fcd4ae885b20b071b2917d
+git clone https://github.com/HazyResearch/zoology.git upstream/zoology && git -C upstream/zoology checkout 1ad20d193b6113cae1e8f3c655c300d7b4b3f4bb
 ```
 
 ## Фазы
