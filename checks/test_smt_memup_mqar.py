@@ -254,4 +254,13 @@ def _():
     assert wc["answer_logits"] > 0 and wc["encoder_windows"] == 4 * cfg.seq_len
 
 
+
+@check("Window r of every candidate follows the pre-set rule (smallest grid r with the pair visible for >= half of answers)")
+def _():
+    for name in Q.CANDIDATES:
+        cfg = Q.candidate(name)
+        b = Q.sample_mqar(cfg, 256, S.derive_seed(512, 0))
+        assert Q.choose_window(b) == cfg.local_window == cfg.long_delay, (name, Q.choose_window(b), cfg.local_window)
+
+
 print(f"\n{len(results)} checks passed")

@@ -126,14 +126,18 @@ class MQARConfig:
 # Zoology references: basic example (examples/basic.py) and the noise-free sweep
 # (mqar_example_configs/mqar_configs_random_false.py, vocab 8192, train mix 64/4 ... 256/64).
 # K = num_kv_pairs / 4 (at least 1): with K >= num_kv_pairs every rule selects all future answers and
-# surprise-K, random-K and uniform coincide. This ratio is our choice, not an advisor requirement.
+# surprise-K, random-K and uniform coincide.
+# local_window r: the smallest r on WINDOW_GRID at which the queried pair lies inside the last r tokens for at
+# least half of the answers (a data property, fixed before any training; see choose_window). long_delay = r, as
+# in the Stack experiment where both were 8. All three are our choices, not advisor requirements.
+WINDOW_GRID = (4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256)
 CANDIDATES = {
-    "zoology_basic": dict(vocab=256, seq_len=64, num_kv_pairs=4, K=1),
-    "pilot01": dict(vocab=128, seq_len=64, num_kv_pairs=8, K=2),
-    "zoology_64": dict(vocab=8192, seq_len=64, num_kv_pairs=4, K=1),
-    "zoology_128": dict(vocab=8192, seq_len=128, num_kv_pairs=8, K=2),
-    "zoology_256": dict(vocab=8192, seq_len=256, num_kv_pairs=16, K=4),
-    "zoology_256_kv64": dict(vocab=8192, seq_len=256, num_kv_pairs=64, K=16),
+    "zoology_basic": dict(vocab=256, seq_len=64, num_kv_pairs=4, K=1, local_window=16, long_delay=16),
+    "pilot01": dict(vocab=128, seq_len=64, num_kv_pairs=8, K=2, local_window=24, long_delay=24),
+    "zoology_64": dict(vocab=8192, seq_len=64, num_kv_pairs=4, K=1, local_window=16, long_delay=16),
+    "zoology_128": dict(vocab=8192, seq_len=128, num_kv_pairs=8, K=2, local_window=32, long_delay=32),
+    "zoology_256": dict(vocab=8192, seq_len=256, num_kv_pairs=16, K=4, local_window=64, long_delay=64),
+    "zoology_256_kv64": dict(vocab=8192, seq_len=256, num_kv_pairs=64, K=16, local_window=128, long_delay=128),
 }
 
 
@@ -240,6 +244,40 @@ def data_audit(batch: dict, cfg: MQARConfig) -> dict:
                 mean_pool=float(pool[has].mean()), anchors_pool_gt_K=float((pool[has] > cfg.K).float().mean()),
                 chance_structured=cfg.chance_structured, chance_vocab=cfg.chance_vocab,
                 unique_sequences=len(set(S.fingerprints(batch))))
+
+
+def pair_visible_fraction(batch: dict, r: int) -> float:
+    """Share of answers whose (key, value) pair lies inside the last r tokens before the query."""
+    m = batch["target_mask"]
+    pos = torch.arange(batch["x"].shape[1]).expand_as(batch["x"])
+    return float((batch["key_pos"] >= pos - r + 1)[m].float().mean())
+
+
+def choose_window(batch: dict, grid=WINDOW_GRID) -> int:
+    """Smallest r on the grid with the pair visible for at least half of the answers (data property only)."""
+    for r in grid:
+        if r <= batch["x"].shape[1] and pair_visible_fraction(batch, r) >= 0.5:
+            return r
+    return grid[-1]
+
+
+def window_sweep(cfg: "MQARConfig", batch: dict, grid=WINDOW_GRID) -> pd.DataFrame:
+    """For each r: share of answers visible to an r-token window, and the share of selected answers that are
+    long (delay >= r) AND need memory, for random-K and for the idealised r-token surprise-K."""
+    rows = []
+    sub = S.slice_batch(batch, 0, min(64, len(batch["x"])))
+    for r in grid:
+        if r > cfg.seq_len:
+            continue
+        c = replace(cfg, local_window=r, long_delay=r)
+        sel = S.selection_audit(sub, c, {"window": IdealWindow(c), "context": IdealContext(c)}, torch.device("cpu"))
+        a = sel[sel.anchors == "all anchors"].set_index("rule")
+        rows.append(dict(r=r, pair_visible=pair_visible_fraction(batch, r),
+                         long_share_random=a.loc["random_k (exact expectation)", "long_memory_dependent"],
+                         long_share_window=a.loc["surprise_k", "long_memory_dependent"]))
+    t = pd.DataFrame(rows)
+    t["lift"] = t.long_share_window / t.long_share_random
+    return t
 
 
 # --------------------------------------------------------------------------------------
