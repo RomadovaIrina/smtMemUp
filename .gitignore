@@ -1,0 +1,6 @@
+runs/
+upstream/
+__pycache__/
+.ipynb_checkpoints/
+checks/tmp*/
+*.pt
