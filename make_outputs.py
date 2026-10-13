@@ -19,18 +19,24 @@ import pandas as pd
 import smt_memup_stack as S
 
 ROOT = Path(__file__).resolve().parent
-OUT = ROOT / "outputs"
+OUT = ROOT / "outputs_v2"
 ORDER = ["baseline", "uniform", "random_k", "surprise_k", "surprise_ctx_k", "oracle_prefix_k"]
-LABEL = {"baseline": "baseline", "uniform": "uniform", "random_k": "random-K",
-         "surprise_k": "surprise-K (окно r=8)", "surprise_ctx_k": "surprise-K (контекст декодера)*",
-         "oracle_prefix_k": "oracle (push ≤ t)*"}
+LABEL = {"baseline": "baseline: исходный SMT (α = 0)",
+         "uniform": "uniform: весь decoder loss × (1 + α)",
+         "random_k": "random-K: K случайных будущих ответов",
+         "surprise_k": "surprise-K: неожиданные по окну 8 токенов",
+         "surprise_ctx_k": "surprise-K по входам декодера (доп.)",
+         "oracle_prefix_k": "oracle: ответы из памяти по разметке (доп.)"}
+SHORT = {"baseline": "baseline", "uniform": "uniform", "random_k": "random-K",
+         "surprise_k": "surprise-K (окно 8)", "surprise_ctx_k": "surprise-K (входы декодера), доп.",
+         "oracle_prefix_k": "oracle (разметка), доп."}
 # fixed categorical order (reference palette slots 1-5); baseline is the neutral reference
 COLOR = {"baseline": "#8a8984", "uniform": "#2a78d6", "random_k": "#eb6834", "surprise_k": "#1baf7a",
          "surprise_ctx_k": "#eda100", "oracle_prefix_k": "#e87ba4"}
 INK, MUTED = "#0b0b0b", "#52514e"
 BINS = [0, 2, 4, 8, 16, 64]
 BIN_LABELS = ["1–2", "3–4", "5–8", "9–16", "17+"]
-NOTE = "tuning-фаза, один seed (107); не результат test"
+NOTE = "подбор α, один seed (107); не финальный результат"
 
 
 def style():
@@ -107,6 +113,32 @@ def histories(run: Path):
     return pd.concat(rows, ignore_index=True)
 
 
+GLOSSARY = """## Как читать
+* **Задача** — Stack Operations без шума, генератор авторов SMT (`StackDataset`): последовательность из 64 операций
+  push(значение 1–4) и pop; после каждого pop модель должна назвать извлечённое значение. Глубина стека ≤ 8.
+  **MQAR в этой версии ещё не обучался** (был только в архивном пилоте 01).
+* **Ответ** — значение, которое нужно назвать на pop. **Давность** — сколько шагов элемент пролежал в стеке
+  (шаг pop − шаг push). **Дальний ответ** — давность ≥ 8 (в Stack давность всегда нечётная, т.е. ≥ 9).
+  Случайное угадывание — 25%.
+* **Teacher** — энкодер-трансформер, сжимающий прошлое в память m_t, + декодер, предсказывающий будущие ответы.
+  **RNN** — рекуррентная модель, обновляющая m_t шаг за шагом. **SMT** учит teacher и RNN (RNN — одношаговым
+  переходам), **DMT** доучивает RNN на собственных траекториях. Итоговая модель — RNN после DMT.
+* **Дополнительный loss** (MemUP-идея): в каждый момент t выбираем K=4 будущих ответа и даём им вес α поверх
+  исходного SMT loss. Варианты отличаются правилом выбора:
+  baseline — без добавки; uniform — добавка на все ответы; random-K — K случайных;
+  **surprise-K** — K самых неожиданных для маленькой модели, видящей только 8 последних токенов (основной вариант);
+  surprise-K по входам декодера — неожиданность при виде только тех входов, что видит декодер (доп.);
+  oracle — K случайных среди ответов, которым по разметке генератора нужна память m_t (доп., подсмотр разметки).
+* «Ответу нужна память m_t» — элемент положен в стек не позже момента t, поэтому декодер может взять его только
+  из памяти. Иначе элемент появится во входах декодера после t, и память не нужна.
+"""
+STAGE_MODEL = {("smt", "teacher"): "teacher после SMT", ("smt", "rnn"): "RNN до DMT", ("dmt", "rnn"): "RNN после DMT"}
+
+
+def chance_line(ax, horizontal=True):
+    ax.axhline(.25, color=MUTED, ls=":", lw=1)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--threads", type=int, default=4)
@@ -119,66 +151,84 @@ def main():
     ex = S.Experiment(cfg, root=ROOT, device=dev, log=lambda s: None)
     run = ex.dir
     long = cfg.long_delay
-    readme = [f"# Результаты для обсуждения (собрано из `{run.name}`)\n",
-              "Все числа ниже — **данные, аудит отбора, baseline и подбор alpha** на tuning-seed 107. "
-              "Это не финальное сравнение: оно будет по трём seeds (7, 17, 27) на отдельном test по правилу "
-              "из `preregistration.md`. Checkpoint выбирался по validation, alpha — по tuning-набору. "
-              "Варианты со звёздочкой — вторичная диагностика (oracle использует metadata генератора). "
-              f"«Дальние pop» — pop с delay ≥ {long} (в Stack давность нечётная, т.е. ≥ 9); случайный уровень 25%.\n"]
+    readme = [f"# Stack Operations: данные, отбор ответов, baseline и подбор α (версия 2 графиков)\n",
+              "Это **не финальное сравнение**: все обучения ниже — на одном seed (107) при подборе α. Финал — три "
+              "seeds (7, 17, 27) на отдельном test по правилу из `preregistration.md`. Checkpoint выбирался по "
+              "validation, α — по отдельному tuning-набору (512 последовательностей). Источник: `" + run.name + "`.\n",
+              GLOSSARY]
 
-    # ---------------- data ----------------
+    # ---------------- fig1: data ----------------
     tun = ex.tuning
     audit = pd.read_csv(run / "data_audit.csv")
-    audit.to_csv(OUT / "table_data_audit.csv", index=False)
+    audit_ru = audit.rename(columns={"split": "набор", "sequences": "последовательностей", "pops": "ответов (pop)",
+                                     "long_pops": "дальних ответов", "long_fraction": "доля дальних",
+                                     "ge16_fraction": "доля с давностью ≥ 16", "delay_median": "медиана давности",
+                                     "delay_p95": "95-й перцентиль давности", "unique_sequences": "уникальных"})
+    audit_ru.to_csv(OUT / "table_data_audit.csv", index=False)
     w = S.windows(S.slice_batch(tun, 0, 128))
     v = w["valid"]
     off = (w["target_t"] - w["anchor"][:, None])[v].numpy()
     pref = w["prefix"][v].numpy()
-    fig, ax = plt.subplots(1, 2, figsize=(12, 3.6))
+    fig, ax = plt.subplots(1, 2, figsize=(12.5, 3.9))
     dl = tun["delay"][tun["target_mask"]].numpy()
-    ax[0].hist(dl, bins=np.arange(1, 65) - .5, color=COLOR["uniform"], rwidth=.85)
-    ax[0].axvline(long - .5, color=MUTED, ls="--", lw=1)
-    ax[0].text(long + .5, ax[0].get_ylim()[1] * .3, f"дальние pop: {(dl >= long).mean():.0%}", color=MUTED)
-    ax[0].set(title="Давность pop: t(pop) − t(push)", xlabel="давность", ylabel="число pop (лог. шкала)", yscale="log")
+    ax[0].hist(dl, bins=np.arange(0, 65) + .5, color=COLOR["uniform"], rwidth=.85)
+    ax[0].axvline(long, color=MUTED, ls="--", lw=1)
+    ax[0].text(long + 1, 3000, f"дальние (давность ≥ {long}):\n{(dl >= long).mean():.0%} всех ответов", color=MUTED, fontsize=9)
+    ax[0].set(title="Сколько шагов элемент лежит в стеке до pop", xlabel="давность = шаг pop − шаг push",
+              ylabel="число ответов (лог. шкала)", yscale="log", xlim=(0, 64))
     share = pd.Series(pref).groupby(off).mean()
     ax[1].plot(share.index, share.values, color=COLOR["uniform"])
-    ax[1].set(title="Доля целей, для которых нужна память m_t", xlabel="смещение цели от anchor, k − t",
-              ylabel="доля (push ≤ t)", ylim=(0, 1.02))
-    fig.suptitle("Stack (авторский генератор): T=64, глубина 8, 4 значения", x=0.01, ha="left", fontsize=11)
+    ax[1].set(title="Каким будущим ответам нужна память m_t",
+              xlabel="на сколько шагов после момента t стоит ответ", ylabel="доля ответов, взятых из памяти",
+              xlim=(0, 63), ylim=(0, 1.02))
+    ax[1].annotate("ответ в сам момент t\nвсегда берётся из памяти", xy=(0, 1), xytext=(8, .8), fontsize=9,
+                   color=MUTED, arrowprops=dict(arrowstyle="->", color=MUTED))
+    fig.suptitle("Данные: Stack Operations (генератор авторов SMT), 64 операции, глубина ≤ 8, значения 1–4",
+                 x=.01, ha="left", fontsize=11)
     save(fig, "fig1_data")
     readme += ["## 1. Данные\n", "![](fig1_data.png)\n",
-               "Слева: большинство pop короткие, дальних около 15%. Справа: цель на смещении 0 (ответ RNN) "
-               "всегда требует памяти; дальше по будущему растёт доля целей, чей элемент положен уже после anchor — "
-               "их decoder видит во входах и без m_t.\n", md_table(audit) + "\n"]
+               "Слева: большинство элементов извлекаются почти сразу; дальних ответов около 15%. Справа: чем дальше "
+               "в будущем ответ, тем чаще его элемент положен уже после t — тогда декодер видит его во входах и "
+               "память не нужна. Поэтому «неожиданный» ответ не обязательно учит память.\n",
+               md_table(audit_ru) + "\n"]
 
-    # ---------------- selection audit ----------------
+    # ---------------- fig2: selection audit ----------------
     sel = pd.read_csv(run / "selection_audit.csv")
-    sel.to_csv(OUT / "table_selection_audit.csv", index=False)
     q = json.loads((run / "detector_quality.json").read_text())
     pd.DataFrame(q).T.to_csv(OUT / "table_detector_quality.csv")
     s = sel[sel.anchors == "all anchors"].set_index("rule")
     rules = ["random_k (exact expectation)", "surprise_k", "surprise_ctx_k", "oracle_prefix_k"]
-    names = ["random-K", "surprise-K\n(окно r=8)", "surprise-K\n(контекст декодера)*", "oracle*\n(push ≤ t)"]
-    fig, ax = plt.subplots(figsize=(9.5, 3.8))
+    names = ["random-K\n(случайные)", "surprise-K\n(окно 8 токенов)", "surprise-K\n(входы декодера), доп.",
+             "oracle\n(разметка), доп."]
+    fig, ax = plt.subplots(figsize=(10, 4.2))
     x = np.arange(len(rules))
-    ax.bar(x - .2, s.loc[rules, "memory_dependent"], .38, color=COLOR["uniform"], label="нужна память m_t (push ≤ t)")
-    ax.bar(x + .2, s.loc[rules, "long_memory_dependent"], .38, color=COLOR["random_k"], label=f"нужна m_t и delay ≥ {long}")
+    ax.bar(x - .2, s.loc[rules, "memory_dependent"], .38, color=COLOR["uniform"],
+           label="ответу нужна память m_t (элемент положен до t)")
+    ax.bar(x + .2, s.loc[rules, "long_memory_dependent"], .38, color=COLOR["random_k"],
+           label=f"… и это дальний ответ (давность ≥ {long})")
     for i, r in enumerate(rules):
         for dx, col in ((-.2, "memory_dependent"), (.2, "long_memory_dependent")):
             ax.text(i + dx, s.loc[r, col] + .02, f"{s.loc[r, col]:.0%}", ha="center", fontsize=9, color=INK)
     ceiling = s.loc["oracle_prefix_k", "pairs"] / s.loc["random_k", "pairs"]
     ax.axhline(ceiling, color=MUTED, ls="--", lw=1)
-    ax.text(-.45, ceiling + .03, f"потолок доли при K=4: {ceiling:.0%}", color=MUTED, fontsize=9)
-    ax.set_xticks(x, names); ax.set_ylim(0, 1.12); ax.set_ylabel("доля выбранных пар (anchor, цель)")
-    ax.set_title("Какие цели получает дополнительный loss (tuning-набор, до обучения)")
-    ax.legend(loc="upper left")
+    ax.text(.5, ceiling + .03, f"максимум для любого правила с K=4: {ceiling:.0%}\n(часто таких ответов меньше 4)",
+            color=MUTED, fontsize=8.5, ha="center")
+    ax.set_xticks(x, names); ax.set_ylim(0, 1.15)
+    ax.set_ylabel("доля среди выбранных ответов")
+    ax.set_title("Каким ответам правило отбора даёт дополнительный вес (до обучения, tuning-набор)")
+    ax.legend(loc="upper left", fontsize=9)
     save(fig, "fig2_selection")
-    readme += ["## 2. Аудит отбора целей (до обучения SMT)\n", "![](fig2_selection.png)\n",
-               f"Окно r=8 отделяет цели «вне окна» идеально (AUC {q['window']['auc_outside_window']:.3f}), но "
-               f"{s.loc['surprise_k', 'future_source']:.0%} выбранных им пар имеют источник после anchor. "
-               "Score по входам декодера (без памяти) почти достигает потолка доли memory-dependent целей.\n",
-               md_table(sel[sel.anchors == "all anchors"][["rule", "pairs", "memory_dependent", "long_memory_dependent",
-                                                          "future_source", "mean_delay"]]) + "\n"]
+    sel_ru = sel[sel.anchors == "all anchors"][["rule", "pairs", "memory_dependent", "long_memory_dependent",
+                                                "future_source", "mean_delay"]].rename(columns={
+        "rule": "правило", "pairs": "выбрано пар", "memory_dependent": "нужна память m_t",
+        "long_memory_dependent": "нужна память и дальний", "future_source": "элемент положен после t",
+        "mean_delay": "средняя давность"})
+    sel_ru.to_csv(OUT / "table_selection_audit.csv", index=False)
+    readme += ["## 2. Каким ответам дополнительный loss даёт вес (до обучения)\n", "![](fig2_selection.png)\n",
+               f"Модель с окном 8 токенов идеально находит ответы, чей элемент старше окна (AUC "
+               f"{q['window']['auc_outside_window']:.3f}), но {s.loc['surprise_k', 'future_source']:.0%} выбранных ею "
+               "ответов не требуют памяти m_t: их элемент положен после t. Правило по входам декодера почти достигает "
+               "максимума доли ответов из памяти.\n", md_table(sel_ru) + "\n"]
 
     # ---------------- evaluate all tuning fits on the tuning split ----------------
     ev, pr = evaluate_fits(ex, run, run / "analysis_tuning")
@@ -200,22 +250,22 @@ def main():
     rows = []
     for vv in ORDER:
         for aa in sorted(piv[piv.variant == vv].alpha.unique()):
-            rows.append({"вариант": LABEL[vv], "alpha": aa, "выбран": "✓" if locked.get(vv) == aa else "",
-                         "teacher: acc дальн.": get(vv, aa, "smt", "teacher", "acc"),
-                         "teacher: CE дальн.": get(vv, aa, "smt", "teacher", "ce"),
-                         "RNN до DMT: acc": get(vv, aa, "smt", "rnn", "acc"),
-                         "RNN после DMT: acc": get(vv, aa, "dmt", "rnn", "acc"),
+            rows.append({"вариант": SHORT[vv], "α": aa, "выбран": "✓" if locked.get(vv) == aa else "",
+                         "teacher после SMT: точность": get(vv, aa, "smt", "teacher", "acc"),
+                         "teacher после SMT: CE": get(vv, aa, "smt", "teacher", "ce"),
+                         "RNN до DMT: точность": get(vv, aa, "smt", "rnn", "acc"),
+                         "RNN после DMT: точность": get(vv, aa, "dmt", "rnn", "acc"),
                          "RNN после DMT: CE": get(vv, aa, "dmt", "rnn", "ce"),
-                         "RNN после DMT, голова teacher: acc": get(vv, aa, "dmt", "rnn", "shared_acc"),
-                         "RNN после DMT: acc все pop": get(vv, aa, "dmt", "rnn", "acc_all")})
+                         "RNN после DMT через голову teacher: точность": get(vv, aa, "dmt", "rnn", "shared_acc"),
+                         "RNN после DMT: точность на всех ответах": get(vv, aa, "dmt", "rnn", "acc_all")})
     tune_tab = pd.DataFrame(rows)
-    tune_tab.to_csv(OUT / "table_tuning_long_pops.csv", index=False)
+    tune_tab.to_csv(OUT / "table_tuning_long_answers.csv", index=False)
 
-    # fig3: alpha sweep
+    # ---------------- fig3: alpha sweep ----------------
     base_rnn, base_t = get("baseline", 0.0, "dmt", "rnn", "acc"), get("baseline", 0.0, "smt", "teacher", "acc")
-    fig, ax = plt.subplots(1, 2, figsize=(12.5, 4), sharey=True)
-    for i, (stage, model, title, ref) in enumerate((("smt", "teacher", "Teacher (encoder+decoder) после SMT", base_t),
-                                                     ("dmt", "rnn", "RNN после DMT (основная модель)", base_rnn))):
+    fig, ax = plt.subplots(1, 2, figsize=(13, 4.6), sharey=True)
+    for i, (stage, model, title, ref) in enumerate((("smt", "teacher", "Teacher (энкодер + декодер) после SMT", base_t),
+                                                     ("dmt", "rnn", "RNN после DMT — итоговая модель", base_rnn))):
         for vv in ORDER[1:]:
             sub = piv[(piv.variant == vv) & (piv.stage == stage) & (piv.model == model)].sort_values("alpha")
             if sub.empty:
@@ -223,57 +273,64 @@ def main():
             ax[i].plot(sub.alpha, sub.acc, marker="o", ms=7, color=COLOR[vv], label=LABEL[vv])
             if vv in locked and locked[vv] in sub.alpha.values:
                 y = float(sub[sub.alpha == locked[vv]].acc.iloc[0])
-                ax[i].plot([locked[vv]], [y], marker="o", ms=13, mfc="none", mec=COLOR[vv], mew=2)
-        ax[i].axhline(ref, color=COLOR["baseline"], ls="--", lw=1.5, label="baseline")
-        ax[i].axhline(.25, color=MUTED, ls=":", lw=1)
-        ax[i].set(title=title, xlabel="alpha (вес дополнительной CE)", xscale="log", ylim=(.2, 1))
+                ax[i].plot([locked[vv]], [y], marker="o", ms=14, mfc="none", mec=COLOR[vv], mew=2)
+        ax[i].axhline(ref, color=COLOR["baseline"], ls="--", lw=1.5, label=LABEL["baseline"])
+        chance_line(ax[i])
+        ax[i].text(.105, .265, "случайное угадывание, 25%", color=MUTED, fontsize=8.5)
+        ax[i].set(title=title, xlabel="α — вес дополнительного loss (лог. шкала)", xscale="log", ylim=(0, 1))
         ax[i].set_xticks([.1, .3, 1.0], ["0,1", "0,3", "1,0"])
-    ax[0].set_ylabel(f"accuracy на дальних pop (delay ≥ {long})")
-    ax[1].legend(loc="upper left", fontsize=9)
-    fig.suptitle(f"Подбор alpha на tuning-наборе ({NOTE}). Обведено — выбранный alpha.", x=.01, ha="left", fontsize=11)
+    ax[0].set_ylabel(f"точность на дальних ответах (давность ≥ {long})")
+    handles, labels = ax[1].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=3, fontsize=9, bbox_to_anchor=(.5, -.12))
+    fig.suptitle(f"Подбор α на tuning-наборе ({NOTE}). Кружком обведён выбранный α.", x=.01, ha="left", fontsize=11)
     save(fig, "fig3_alpha_tuning")
 
-    # fig4: validation learning curves at locked alpha (or best tuning alpha if not locked yet)
+    # ---------------- fig4: learning curves ----------------
     hist = histories(run)
     hist.to_csv(OUT / "table_validation_histories.csv", index=False)
     chosen = dict(locked) if locked else {
         vv: float(piv[(piv.variant == vv) & (piv.stage == "dmt") & (piv.model == "rnn")].sort_values("ce").alpha.iloc[0])
         for vv in piv.variant.unique()}
     chosen["baseline"] = 0.0
-    fig, ax = plt.subplots(1, 2, figsize=(12.5, 4), sharey=True)
+    fig, ax = plt.subplots(1, 2, figsize=(13, 4.6), sharey=True)
     for vv in ORDER:
         if vv not in chosen:
             continue
         for i, (stage, col) in enumerate((("smt", "val_teacher_long_acc"), ("dmt", "val_rnn_long_acc"))):
             h = hist[(hist.variant == vv) & (hist.alpha == chosen[vv]) & (hist.stage == stage)]
             ax[i].plot(h.step, h[col], color=COLOR[vv], ls="--" if vv == "baseline" else "-",
-                       label=f"{LABEL[vv]}, α={chosen[vv]:g}" if vv != "baseline" else "baseline")
-    ax[0].set(title="SMT: teacher на validation", xlabel="шаг SMT", ylabel=f"accuracy, delay ≥ {long}", ylim=(.2, 1))
-    ax[1].set(title="DMT: RNN на validation", xlabel="шаг DMT", ylim=(.2, 1))
+                       label=LABEL[vv] if vv == "baseline" else f"{LABEL[vv]}, α = {chosen[vv]:g}")
+    ax[0].set(title="Этап SMT: teacher", xlabel="шаг обучения SMT", ylabel=f"точность на дальних ответах (давность ≥ {long})",
+              ylim=(0, 1), xlim=(0, cfg.smt_steps))
+    ax[1].set(title="Этап DMT: RNN (стартует с весов после SMT)", xlabel="шаг обучения DMT", ylim=(0, 1), xlim=(0, cfg.dmt_steps))
     for a_ in ax:
-        a_.axhline(.25, color=MUTED, ls=":", lw=1)
-    ax[1].legend(loc="upper left", fontsize=9)
-    fig.suptitle(f"Кривые обучения при выбранных alpha ({NOTE})", x=.01, ha="left", fontsize=11)
+        chance_line(a_)
+    handles, labels = ax[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=3, fontsize=9, bbox_to_anchor=(.5, -.12))
+    fig.suptitle(f"Ход обучения при выбранном α: точность на validation ({NOTE}); пунктир снизу — случайное угадывание",
+                 x=.01, ha="left", fontsize=11)
     save(fig, "fig4_learning_curves")
 
-    # fig5: teacher vs RNN (H2 transfer) across all tuning fits
-    fig, ax = plt.subplots(figsize=(6.2, 5.6))
+    # ---------------- fig5: teacher vs RNN ----------------
+    fig, ax = plt.subplots(figsize=(7, 6.4))
     for vv in ORDER:
-        for aa in sorted(piv[piv.variant == vv].alpha.unique()):
+        alphas = sorted(piv[piv.variant == vv].alpha.unique())
+        for aa in alphas:
             x_, y_ = get(vv, aa, "smt", "teacher", "acc"), get(vv, aa, "dmt", "rnn", "acc")
             ax.scatter(x_, y_, s=40 + 120 * aa, color=COLOR[vv], edgecolor="white", lw=1.5, zorder=3,
-                       label=LABEL[vv] if aa == max(piv[piv.variant == vv].alpha) else None)
-    ax.plot([.2, 1], [.2, 1], color=MUTED, lw=1, ls="--")
-    ax.text(.8, .83, "RNN = teacher", rotation=40, color=MUTED, fontsize=9)
-    ax.set(xlim=(.3, .9), ylim=(.3, .9), xlabel=f"teacher после SMT: acc, delay ≥ {long}",
-           ylabel=f"RNN после DMT: acc, delay ≥ {long}",
-           title="H2: переносится ли память teacher в RNN\n(точка — одно обучение; размер — alpha)")
-    ax.legend(fontsize=8, loc="lower right")
+                       label=SHORT[vv] if aa == alphas[-1] else None)
+    ax.plot([0, 1], [0, 1], color=MUTED, lw=1, ls="--")
+    ax.text(.12, .16, "RNN = teacher", rotation=42, color=MUTED, fontsize=9)
+    ax.text(.62, .38, "ниже диагонали: RNN хуже teacher,\nчасть памяти не перенеслась", color=MUTED, fontsize=8.5)
+    ax.set(xlim=(0, 1), ylim=(0, 1), xlabel=f"точность teacher после SMT (дальние ответы)",
+           ylabel=f"точность RNN после DMT (дальние ответы)",
+           title="Переносит ли DMT память teacher в RNN\n(точка — одно обучение; чем больше точка, тем больше α)")
+    ax.legend(fontsize=8.5, loc="upper left")
     save(fig, "fig5_teacher_vs_rnn")
 
-    # fig6: retention probe (H2) at chosen alphas
+    # ---------------- fig6: retention probe ----------------
     pr.to_csv(OUT / "table_h2_probe.csv", index=False)
-    fig, ax = plt.subplots(figsize=(8, 4))
+    fig, ax = plt.subplots(figsize=(9, 4.4))
     for vv in ORDER:
         if vv not in chosen:
             continue
@@ -281,55 +338,58 @@ def main():
         if p.empty:
             continue
         ax.plot(p.index, 100 * (p["rnn_from_teacher"] - p["teacher"]), marker="o", color=COLOR[vv],
-                ls="--" if vv == "baseline" else "-", label=f"{LABEL[vv]}, α={chosen[vv]:g}")
-    ax.axhline(0, color=MUTED, lw=1)
-    ax.set(xscale="symlog", xlabel="L — число обновлений RNN, начиная с памяти teacher в момент s",
-           ylabel="RNN − teacher, п.п.", title=f"H2: потери информации в updater (tuning-набор, delay ≥ {long})")
-    ax.set_xticks([0, 1, 2, 4, 8, 16, 32], ["0", "1", "2", "4", "8", "16", "32"])
-    ax.legend(fontsize=8, loc="lower left")
+                ls="--" if vv == "baseline" else "-",
+                label=LABEL[vv] if vv == "baseline" else f"{LABEL[vv]}, α = {chosen[vv]:g}")
+    ax.axhline(0, color=INK, lw=1)
+    ax.text(5, .5, "0 = RNN ничего не теряет", color=MUTED, fontsize=8.5)
+    ax.set(xlim=(0, 33), xlabel="L — сколько обновлений RNN сделала сама, стартовав с памяти teacher",
+           ylabel="точность RNN − точность teacher, п.п.",
+           title="Теряет ли RNN информацию при собственных обновлениях (tuning-набор, дальние ответы)")
+    ax.set_xticks([0, 1, 2, 4, 8, 16, 32])
+    ax.legend(fontsize=8.5, loc="upper center", bbox_to_anchor=(.5, -.17), ncol=2)
     save(fig, "fig6_h2_probe")
 
-    # by-delay table at chosen alphas
+    # ---------------- table: accuracy by age ----------------
     dt = ev[ev.apply(lambda r: chosen.get(r.variant) == r.alpha, axis=1)]
+    dt = dt[~((dt.stage == "dmt") & (dt.model == "teacher"))]          # teacher is frozen in DMT: same as after SMT
     bydelay = dt.groupby(["variant", "stage", "model", "delay_bin"], observed=True).correct.mean().unstack("delay_bin")
     bydelay = bydelay.reset_index()
-    bydelay["variant"] = pd.Categorical(bydelay.variant, ORDER); bydelay = bydelay.sort_values(["variant", "stage", "model"])
-    bydelay.to_csv(OUT / "table_accuracy_by_delay.csv", index=False)
+    bydelay["модель"] = [STAGE_MODEL[(st, m)] for st, m in zip(bydelay.stage, bydelay.model)]
+    bydelay["order"] = bydelay.variant.map({v: i for i, v in enumerate(ORDER)})
+    bydelay = bydelay.sort_values(["order", "stage", "model"])
+    bydelay["вариант"] = bydelay.variant.map(SHORT) + bydelay.variant.map(lambda v: f", α = {chosen[v]:g}")
+    bydelay = bydelay[["вариант", "модель", *BIN_LABELS]].rename(columns={b: f"давность {b}" for b in BIN_LABELS})
+    bydelay.to_csv(OUT / "table_accuracy_by_age.csv", index=False)
 
-    # baseline gate
     gate = json.loads((run / "baseline_gate.json").read_text())
     pd.DataFrame([gate]).to_csv(OUT / "table_baseline_gate.csv", index=False)
 
+    obs = "\n".join(f"* {SHORT[vv]}, α = {chosen[vv]:g}: teacher {get(vv, chosen[vv], 'smt', 'teacher', 'acc'):.1%}, "
+                    f"RNN после DMT {get(vv, chosen[vv], 'dmt', 'rnn', 'acc'):.1%} (CE {get(vv, chosen[vv], 'dmt', 'rnn', 'ce'):.3f})"
+                    for vv in ORDER if vv in chosen)
     readme += ["## 3. Baseline\n",
-               f"Gate на tuning-наборе пройден: teacher {gate['teacher_long_accuracy']:.1%}, RNN после DMT "
-               f"{gate['rnn_dmt_long_accuracy']:.1%} на дальних pop (пороги {gate['required_teacher']:.0%} / "
-               f"{gate['required_rnn']:.0%}). Pop с delay ≤ 8 решены почти полностью; узкое место — дальние.\n",
-               "## 4. Подбор alpha (одинаковая сетка и бюджет для всех вариантов)\n", "![](fig3_alpha_tuning.png)\n",
-               md_table(tune_tab) + "\n",
-               ("Зафиксированные alpha: `" + json.dumps(locked) + "`\n") if locked else
-               "alpha ещё не зафиксированы (подбор не закончен); на графиках — лучшие по tuning CE.\n",
-               "![](fig4_learning_curves.png)\n",
-               "### Что видно на tuning (предварительно, один seed, не test)\n",
-               "\n".join(f"* {LABEL[vv]}, α={chosen[vv]:g}: teacher {get(vv, chosen[vv], 'smt', 'teacher', 'acc'):.1%}, "
-                         f"RNN после DMT {get(vv, chosen[vv], 'dmt', 'rnn', 'acc'):.1%} "
-                         f"(CE {get(vv, chosen[vv], 'dmt', 'rnn', 'ce'):.3f})"
-                         for vv in ORDER if vv in chosen) + "\n",
-               "* Согласованный surprise-K (окно r=8) на tuning лучше random-K, но хуже uniform. Варианты, где больше "
-               "выбранных целей реально требуют памяти m_t (контекстный score, oracle), дают больший прирост. "
-               "Проверка этого — финальные три seeds на test по правилу из `preregistration.md`.\n"
-               "* **Ограничение:** у всех вариантов выбран α=1,0 — край заранее заданной сетки; при большем α результат "
-               "мог бы быть иным у всех вариантов. Сетка одинакова для всех и не менялась после просмотра.\n"
-               "* uniform — сильный контроль: при α=1 он меняет соотношение decoder : dynamics : uniformity в SMT loss "
-               "(Adam почти не чувствителен к общему масштабу loss).\n",
-               "## 5. H2: перенос памяти teacher в RNN\n", "![](fig5_teacher_vs_rnn.png)\n", "![](fig6_h2_probe.png)\n",
-               "Слева точки около диагонали — DMT переносит качество teacher в RNN. Справа: RNN стартует из памяти "
-               "teacher в момент s и делает L шагов; ниже нуля — информация теряется в updater.\n",
-               "## Таблица: accuracy по давности (выбранные alpha, tuning-набор)\n",
-               md_table(bydelay.rename(columns=str)) + "\n",
+               f"Проверка работоспособности пройдена: на дальних ответах teacher {gate['teacher_long_accuracy']:.1%}, "
+               f"RNN после DMT {gate['rnn_dmt_long_accuracy']:.1%} (пороги {gate['required_teacher']:.0%} / "
+               f"{gate['required_rnn']:.0%}, случайное — 25%). Ответы с давностью < 8 решены почти полностью.\n",
+               "## 4. Подбор α (одинаковые сетка и бюджет у всех вариантов)\n", "![](fig3_alpha_tuning.png)\n",
+               md_table(tune_tab) + "\n", "![](fig4_learning_curves.png)\n",
+               "### Что видно (предварительно: один seed, не test)\n", obs + "\n",
+               "* Основной surprise-K (окно 8 токенов) лучше random-K, но хуже uniform. Правила, у которых больше "
+               "выбранных ответов действительно берутся из памяти m_t (по входам декодера, oracle), дают больший "
+               "прирост. Проверка — три финальных seeds на test.\n"
+               "* **Ограничение:** у всех вариантов выбран α = 1,0 — край заранее заданной сетки.\n"
+               "* uniform — сильный контроль: при α = 1 он меняет соотношение слагаемых SMT loss "
+               "(decoder : dynamics : uniformity); Adam почти не чувствителен к общему масштабу loss.\n",
+               "## 5. Переносится ли память teacher в RNN (вопрос научника про последовательные обновления)\n",
+               "![](fig5_teacher_vs_rnn.png)\n", "![](fig6_h2_probe.png)\n",
+               "Слева: при слабой памяти teacher точки на диагонали или выше — RNN ничего не теряет (выше — за счёт "
+               "дообученной головы RNN). При сильной памяти (oracle, входы декодера) точки ниже диагонали. Справа то же "
+               "напрямую: RNN, стартовав с памяти teacher, за 8–16 своих шагов теряет до 15–17 п.п. у этих вариантов.\n",
+               "## Точность по давности (выбранные α, tuning-набор)\n", md_table(bydelay) + "\n",
                "## Файлы\n",
                "* `table_*.csv` — все таблицы; `table_validation_histories.csv` — validation по шагам для всех обучений.\n"
-               "* `locked_alphas.json` — зафиксированные alpha. `preregistration.md` — правило вывода, записанное до подбора alpha.\n"
-               "* Окно r=8, K=4, размеры моделей, шаги, seeds, пороги gate — наши настройки, научником не фиксировались.\n"]
+               "* `locked_alphas.json` — выбранные α. `preregistration.md` — правило вывода, записанное до подбора α.\n"
+               "* Окно 8 токенов, K = 4, размеры моделей, число шагов, seeds и пороги — наши настройки, научник их не фиксировал.\n"]
     shutil.copy(run / "preregistration.md", OUT / "preregistration.md")
     (OUT / "README.md").write_text("\n".join(readme), encoding="utf-8")
     print("outputs written:", sorted(p.name for p in OUT.iterdir()))

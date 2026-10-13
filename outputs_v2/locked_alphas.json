@@ -1,0 +1,11 @@
+{
+  "alphas": {
+    "baseline": 0.0,
+    "oracle_prefix_k": 1.0,
+    "random_k": 1.0,
+    "surprise_ctx_k": 1.0,
+    "surprise_k": 1.0,
+    "uniform": 1.0
+  },
+  "criterion": "tuning split, RNN after DMT, CE on pops with delay>=8; checkpoints selected on validation"
+}
