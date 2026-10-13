@@ -1,0 +1,2 @@
+teacher_long_accuracy,rnn_dmt_long_accuracy,chance,required_teacher,required_rnn,smt_best_step,dmt_best_step,passed
+0.3832132259431963,0.4099194573972022,0.25,0.35,0.3,3000,1500,True

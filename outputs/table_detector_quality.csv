@@ -1,0 +1,3 @@
+,ce,acc_inside_window,acc_outside_window,auc_outside_window,n,mean_ce_future_source,mean_ce_prefix_source,auc_prefix_source
+window,0.21811558306217194,1.0,0.2513777024162781,1.0,15377.0,,,
+context,0.27907902002334595,,,,521856.0,0.054685357958078384,1.4122226238250732,0.9867160222382838
