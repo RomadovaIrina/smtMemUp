@@ -220,7 +220,8 @@ ax[0].set_xticks([4, 8, 16, 32, 64, 128, 256], ["4", "8", "16", "32", "64", "128
 ax[0].legend(fontsize=8.5, loc="upper left")
 ax[1].axhline(1, color=MUTED, lw=1); ax[1].axvline(8, color=MUTED, ls=":", lw=1)
 ax[1].set(xscale="log", xlabel="r — длина окна, токенов (лог.)",
-          ylabel="во сколько раз чаще random-K\nвыбирается дальний ответ", title="Насколько surprise-K отличается от random-K (идеальный детектор)")
+          ylabel="во сколько раз чаще, чем random-K,\nвыбирается дальний ответ", title="Насколько surprise-K отличается от random-K (идеальный детектор)")
+ax[1].text(4.2, 1.02, "1 = так же, как random-K", color=MUTED, fontsize=8.5)
 ax[1].set_xticks([4, 8, 16, 32, 64, 128, 256], ["4", "8", "16", "32", "64", "128", "256"])
 fig.suptitle("Выбор окна для MQAR: обведено значение по правилу «пара видна хотя бы у половины ответов»", x=.01, y=1.02, ha="left", fontsize=11)
 save(fig, "fig2b_window")
