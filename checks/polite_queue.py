@@ -38,8 +38,11 @@ POLL = int(os.environ.get("POLL", 15))
 _seen = {}
 
 
+CKPT_GLOBS = ["runs/mqar03_*/**/*.pt"]
+
+
 def checkpoints():
-    return [p for p in ROOT.glob("runs/mqar03_*/**/*.pt")]
+    return [p for g in CKPT_GLOBS for p in ROOT.glob(g)]
 
 
 def backup():
@@ -72,7 +75,11 @@ def main():
     ap.add_argument("items", nargs="+")
     ap.add_argument("--log", default="runs/polite_queue.log")
     ap.add_argument("--fraction", default="0.25")
+    ap.add_argument("--ckpt-glob", action="append", default=None,
+                    help="checkpoints to back up / repair (default runs/mqar03_*/**/*.pt)")
     a = ap.parse_args()
+    if a.ckpt_glob:
+        CKPT_GLOBS[:] = a.ckpt_glob
     logpath = ROOT / a.log
 
     def log(msg):

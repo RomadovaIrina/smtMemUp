@@ -9,7 +9,8 @@ Same disjoint worker groups as run_final_parallel.sh, same command (`--phase fin
     (saved every 250 steps; the data stream and random draws are a function of (seed, step)).
   * no foreign process for QUIET_S seconds -> resume paused workers; start new ones (up to MAX_WORKERS)
     when >= START_FREE_MIB MiB are free, one at a time, STAGGER seconds apart.
-A killed process may leave a half-written .pt; every finished write is copied to <name>.pt.bak and a file that
+The disk is shared too: below DISK_PAUSE_GB free the workers are paused (no checkpoint writes) and resume at
+DISK_OK_GB. Failures with OOM / no space / right at start-up are retried. A killed process may leave a half-written .pt; every finished write is copied to <name>.pt.bak and a file that
 does not load is restored from it before the group restarts. The test split is never created here.
 Run: setsid nohup envs/smt-memup/bin/python checks/run_final_polite.py > /dev/null 2>&1 < /dev/null &
 Log: runs/final_polite.log, worker output: runs/final_w{1,2,3}.log
@@ -40,15 +41,24 @@ QUIET_S = int(os.environ.get("QUIET_S", 120))
 STAGGER = int(os.environ.get("STAGGER", 90))
 POLL = int(os.environ.get("POLL", 15))
 FRACTION = os.environ.get("GPU_FRACTION", "0.30")
+DISK_PAUSE_GB = float(os.environ.get("DISK_PAUSE_GB", 1.5))   # disk shared with /dub: below this, pause (no checkpoint writes)
+DISK_OK_GB = float(os.environ.get("DISK_OK_GB", 3.0))
 FINAL = ROOT / "runs" / "stack02_4c69a2819ab8" / "final"
 LOG = ROOT / "runs" / "final_polite.log"
 
 
 def log(msg):
     line = f"{time.strftime('%F %T')} {msg}"
-    with open(LOG, "a") as f:
-        f.write(line + "\n")
+    try:
+        with open(LOG, "a") as f:
+            f.write(line + "\n")
+    except OSError:
+        pass                                           # disk full: keep running, the state is in memory
     print(line, flush=True)
+
+
+def disk_free_gb():
+    return shutil.disk_usage(ROOT).free / 2**30
 
 
 def group_dirs(group):
@@ -68,8 +78,13 @@ def backup_checkpoints():
             torch.load(p, map_location="cpu", weights_only=True)
         except Exception:
             continue                                   # still being written, or broken: keep the old backup
-        shutil.copy2(p, p.with_suffix(".pt.bak"))
-        _seen[p] = m
+        tmp = p.with_suffix(".pt.bak.tmp")
+        try:                                           # atomic: a half-written copy never replaces a good backup
+            shutil.copy2(p, tmp)
+            os.replace(tmp, p.with_suffix(".pt.bak"))
+            _seen[p] = m
+        except OSError:
+            tmp.unlink(missing_ok=True)
 
 
 def repair(group):
@@ -104,13 +119,14 @@ class Worker:
             self.proc = subprocess.Popen(cmd, cwd=ROOT, env=env, stdout=f, stderr=subprocess.STDOUT,
                                          start_new_session=True)
         self.state, self.killed = "running", False
+        self.started = time.time()
         self.attempts += 1
         log(f"worker {self.i} [{self.group}] started, pid {self.proc.pid}")
 
-    def pause(self):
+    def pause(self, why="foreign GPU process"):
         os.kill(self.proc.pid, signal.SIGSTOP)
         self.state = "paused"
-        log(f"worker {self.i} paused (foreign GPU process)")
+        log(f"worker {self.i} paused ({why})")
 
     def resume(self):
         os.kill(self.proc.pid, signal.SIGCONT)
@@ -134,9 +150,11 @@ class Worker:
             log(f"worker {self.i} [{self.group}] finished")
             return
         tail = self.logfile.read_text(errors="ignore")[-6000:]
-        if "out of memory" in tail and self.attempts < 8:
+        transient = ("out of memory" in tail or "No space left" in tail or "ENOSPC" in tail
+                     or time.time() - self.started < 120)   # a failure right at start-up (e.g. import on a full disk)
+        if transient and self.attempts < 8:
             self.state = "todo"
-            log(f"worker {self.i} CUDA OOM (exit {rc}); will retry")
+            log(f"worker {self.i} failed with exit {rc} (transient: OOM / disk / start-up); will retry")
         else:
             self.state = "failed"
             log(f"worker {self.i} FAILED with exit {rc}; see {self.logfile.relative_to(ROOT)}")
@@ -152,6 +170,13 @@ def main():
         for w in workers:
             w.reap()
         free, foreign, _ = gpu_state()
+        disk = disk_free_gb()
+        if disk < DISK_PAUSE_GB:                      # shared disk almost full: stop writing until it recovers
+            for w in workers:
+                if w.state == "running":
+                    w.pause(f"disk free {disk:.1f} GB < {DISK_PAUSE_GB}")
+            time.sleep(POLL)
+            continue
         if foreign:
             last_foreign = time.time()
             if foreign_seen != set(foreign):
@@ -171,11 +196,12 @@ def main():
                 foreign_seen = None
             if time.time() - last_foreign >= QUIET_S:
                 for w in workers:
-                    if w.state == "paused":
+                    if w.state == "paused" and disk >= DISK_OK_GB:
                         w.resume()
                 n_running = sum(w.state == "running" for w in workers)
                 todo = [w for w in workers if w.state == "todo"]
-                if todo and n_running < MAX_WORKERS and free >= START_FREE_MIB and time.time() - last_start >= STAGGER:
+                if (todo and n_running < MAX_WORKERS and free >= START_FREE_MIB and disk >= DISK_OK_GB
+                        and time.time() - last_start >= STAGGER):
                     todo[0].start()
                     last_start = time.time()
         backup_checkpoints()

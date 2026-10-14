@@ -7,7 +7,7 @@ definition, so they never mistake each other for a neighbour.
 import subprocess
 from pathlib import Path
 
-OUR_SCRIPTS = ("smt_memup_stack.py", "smt_memup_mqar.py", "make_outputs.py", "make_test_outputs.py",
+OUR_SCRIPTS = ("smt_memup_", "make_outputs.py", "make_test_outputs.py", "make_interim_figures.py",
                "h2_retention", "make_mqar_outputs.py")
 
 
