@@ -1,0 +1,14 @@
+2026-10-14 14:17:00 queue: ['smt_memup_window.py --phase audit', 'smt_memup_window.py --phase baseline', 'smt_memup_window.py --phase final']
+2026-10-14 14:26:57 queue: ['smt_memup_window.py --phase audit', 'smt_memup_window.py --phase baseline', 'smt_memup_window.py --phase final']
+2026-10-14 14:26:57 start: nice -n 10 /mem/envs/smt-memup/bin/python smt_memup_window.py --phase audit --threads 4 --gpu-memory-fraction 0.30
+14:27:10 run directory: /mem/runs/stackwin_26f6a039d62c
+                             rule  pairs  anchors_with_pool  memory_dependent  long_memory_dependent  pushed_after_anchor  mean_delay  mean_distance
+0                      random_far  13880              0.863             0.081                  0.081                0.919       5.366         22.303
+1                    surprise_far  13880              0.863             0.256                  0.256                0.744      15.341         23.375
+2                         ctx_far  13880              0.863             0.322                  0.322                0.678      16.439         22.991
+3                      oracle_far   4658              0.357             1.000                  1.000                0.000      26.988         17.497
+4  random_far (exact expectation)  13880              0.863             0.082                  0.082                0.918         NaN            NaN
+2026-10-14 14:27:14 done: smt_memup_window.py --phase audit
+2026-10-14 14:27:14 start: nice -n 10 /mem/envs/smt-memup/bin/python smt_memup_window.py --phase baseline --threads 4 --gpu-memory-fraction 0.30
+14:27:23 run directory: /mem/runs/stackwin_26f6a039d62c
+2026-10-14 14:27:57 stopped by agent: version-1 final has priority; version 2 is re-queued after the final

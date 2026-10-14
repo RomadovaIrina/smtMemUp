@@ -1,0 +1,20 @@
+18:03:42 run directory: /mem/runs/stackwin_26f6a039d62c
+18:04:50 seed7/oracle_far smt 250/3000 teacher long acc=0.313 rnn long acc=0.259 select=1.5112 0.271s/step
+18:06:03 seed7/oracle_far smt 500/3000 teacher long acc=0.305 rnn long acc=0.274 select=1.4191 0.283s/step
+18:07:16 seed7/oracle_far smt 750/3000 teacher long acc=0.309 rnn long acc=0.273 select=1.3780 0.286s/step
+18:08:30 seed7/oracle_far smt 1000/3000 teacher long acc=0.363 rnn long acc=0.267 select=1.3556 0.288s/step
+18:09:44 seed7/oracle_far smt 1250/3000 teacher long acc=0.431 rnn long acc=0.284 select=1.2202 0.289s/step
+18:10:57 seed7/oracle_far smt 1500/3000 teacher long acc=0.432 rnn long acc=0.275 select=1.2147 0.290s/step
+18:12:11 seed7/oracle_far smt 1750/3000 teacher long acc=0.448 rnn long acc=0.342 select=1.1790 0.291s/step
+18:13:22 seed7/oracle_far smt 2000/3000 teacher long acc=0.475 rnn long acc=0.314 select=1.1426 0.290s/step
+18:14:36 seed7/oracle_far smt 2250/3000 teacher long acc=0.477 rnn long acc=0.356 select=1.1311 0.291s/step
+18:15:47 seed7/oracle_far smt 2500/3000 teacher long acc=0.473 rnn long acc=0.351 select=1.1313 0.290s/step
+18:17:00 seed7/oracle_far smt 2750/3000 teacher long acc=0.482 rnn long acc=0.366 select=1.1259 0.290s/step
+18:18:11 seed7/oracle_far smt 3000/3000 teacher long acc=0.481 rnn long acc=0.385 select=1.1235 0.290s/step
+18:19:21 seed7/oracle_far dmt 250/1500 teacher long acc=0.481 rnn long acc=0.387 select=1.3163 0.281s/step
+18:20:32 seed7/oracle_far dmt 500/1500 teacher long acc=0.481 rnn long acc=0.397 select=1.2605 0.282s/step
+18:21:42 seed7/oracle_far dmt 750/1500 teacher long acc=0.481 rnn long acc=0.449 select=1.1853 0.282s/step
+18:22:53 seed7/oracle_far dmt 1000/1500 teacher long acc=0.481 rnn long acc=0.476 select=1.1273 0.282s/step
+18:24:03 seed7/oracle_far dmt 1250/1500 teacher long acc=0.481 rnn long acc=0.479 select=1.1114 0.282s/step
+18:25:12 seed7/oracle_far dmt 1500/1500 teacher long acc=0.481 rnn long acc=0.487 select=1.1005 0.281s/step
+18:25:12 done window seed7/oracle_far

@@ -14,7 +14,7 @@ from pathlib import Path
 KILL_FREE_FOREIGN_MIB = int(os.environ.get("KILL_FREE_FOREIGN_MIB", 12000))
 START_FREE_FOREIGN_MIB = int(os.environ.get("START_FREE_FOREIGN_MIB", 22000))
 
-OUR_SCRIPTS = ("smt_memup_", "make_outputs.py", "make_test_outputs.py", "make_interim_figures.py",
+OUR_SCRIPTS = ("smt_memup_", "fit_one.py", "make_outputs.py", "make_test_outputs.py", "make_interim_figures.py",
                "h2_retention", "make_mqar_outputs.py")
 
 

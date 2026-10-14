@@ -76,3 +76,172 @@
 12:18:50 seed17/surprise_k dmt 750/1500 teacher long acc=0.509 rnn long acc=0.506 select=1.0847 0.324s/step
 12:20:34 seed17/surprise_k dmt 1000/1500 teacher long acc=0.509 rnn long acc=0.498 select=1.0808 0.346s/step
 12:21:56 seed17/surprise_k dmt 1250/1500 teacher long acc=0.509 rnn long acc=0.517 select=1.0442 0.343s/step
+12:23:16 seed17/surprise_k dmt 1500/1500 teacher long acc=0.509 rnn long acc=0.517 select=1.0472 0.339s/step
+12:24:11 seed27/random_k smt 250/3000 teacher long acc=0.315 rnn long acc=0.267 select=1.4608 0.220s/step
+12:25:06 seed27/random_k smt 500/3000 teacher long acc=0.294 rnn long acc=0.240 select=1.4386 0.220s/step
+12:26:01 seed27/random_k smt 750/3000 teacher long acc=0.316 rnn long acc=0.222 select=1.4009 0.220s/step
+12:26:56 seed27/random_k smt 1000/3000 teacher long acc=0.324 rnn long acc=0.240 select=1.4011 0.220s/step
+12:27:51 seed27/random_k smt 1250/3000 teacher long acc=0.341 rnn long acc=0.249 select=1.3466 0.220s/step
+12:28:38 seed27/random_k smt 1500/3000 teacher long acc=0.359 rnn long acc=0.235 select=1.3186 0.215s/step
+2026-10-14 12:30:47 [polite] start random_k,surprise_k
+12:30:53 run directory: /mem/runs/stack02_4c69a2819ab8
+12:30:53 resume random_k smt at 1500/3000
+12:31:42 seed27/random_k smt 1750/3000 teacher long acc=0.388 rnn long acc=0.274 select=1.2850 0.195s/step
+12:32:30 seed27/random_k smt 2000/3000 teacher long acc=0.424 rnn long acc=0.247 select=1.2267 0.194s/step
+12:33:18 seed27/random_k smt 2250/3000 teacher long acc=0.444 rnn long acc=0.259 select=1.1872 0.194s/step
+12:34:07 seed27/random_k smt 2500/3000 teacher long acc=0.452 rnn long acc=0.246 select=1.1712 0.194s/step
+12:34:55 seed27/random_k smt 2750/3000 teacher long acc=0.484 rnn long acc=0.236 select=1.1273 0.193s/step
+12:35:43 seed27/random_k smt 3000/3000 teacher long acc=0.486 rnn long acc=0.257 select=1.1085 0.194s/step
+12:37:00 seed27/random_k dmt 250/1500 teacher long acc=0.486 rnn long acc=0.318 select=1.3554 0.304s/step
+12:38:13 seed27/random_k dmt 500/1500 teacher long acc=0.486 rnn long acc=0.403 select=1.2219 0.298s/step
+2026-10-14 13:12:45 [polite] start random_k,surprise_k
+Traceback (most recent call last):
+  File "/mem/smt_memup_stack.py", line 1183, in <module>
+    main()
+  File "/mem/smt_memup_stack.py", line 1168, in main
+    ex = Experiment(cfg, device=device, log=log)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mem/smt_memup_stack.py", line 958, in __init__
+    sources(self.root)
+  File "/mem/smt_memup_stack.py", line 111, in sources
+    SRC = Sources(root)
+          ^^^^^^^^^^^^^
+  File "/mem/smt_memup_stack.py", line 102, in __init__
+    self.model = _load_file("smt_author_model", self.smt_root / "src/model.py")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mem/smt_memup_stack.py", line 87, in _load_file
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/mem/upstream/smt/src/model.py", line 1, in <module>
+    from x_transformers import Encoder, Decoder
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/x_transformers/__init__.py", line 1, in <module>
+    from x_transformers.x_transformers import (
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/x_transformers/x_transformers.py", line 27, in <module>
+    from einops.layers.torch import Rearrange
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/einops/layers/torch.py", line 7, in <module>
+    from .._torch_specific import apply_for_scriptable_torch
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/einops/_torch_specific.py", line 128, in <module>
+    allow_ops_in_compiled_graph()
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/einops/_torch_specific.py", line 107, in allow_ops_in_compiled_graph
+    from torch._dynamo import allow_in_graph
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/torch/_dynamo/__init__.py", line 13, in <module>
+    from . import (
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/torch/_dynamo/aot_compile.py", line 43, in <module>
+    class CompileArtifacts:
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/torch/_dynamo/aot_compile.py", line 46, in CompileArtifacts
+    guard_manager: Optional[torch._dynamo.guards.GuardManagerWrapper]
+                            ^^^^^^^^^^^^^^^^^^^^
+AttributeError: partially initialized module 'torch._dynamo' has no attribute 'guards' (most likely due to a circular import)
+2026-10-14 13:17:49 [polite] start random_k,surprise_k
+13:17:53 run directory: /mem/runs/stack02_4c69a2819ab8
+13:17:53 resume random_k smt at 3000/3000
+13:17:53 resume random_k dmt at 500/1500
+13:18:45 seed27/random_k dmt 750/1500 teacher long acc=0.486 rnn long acc=0.418 select=1.1638 0.205s/step
+13:19:40 seed27/random_k dmt 1000/1500 teacher long acc=0.486 rnn long acc=0.441 select=1.1397 0.213s/step
+13:20:50 seed27/random_k dmt 1250/1500 teacher long acc=0.486 rnn long acc=0.444 select=1.1130 0.235s/step
+2026-10-14 14:28:31 [polite] start random_k,surprise_k
+14:28:41 run directory: /mem/runs/stack02_4c69a2819ab8
+14:28:41 resume random_k smt at 3000/3000
+14:28:42 resume random_k dmt at 1250/1500
+2026-10-14 14:30:06 [polite] start random_k,surprise_k
+14:30:11 run directory: /mem/runs/stack02_4c69a2819ab8
+14:30:11 resume random_k smt at 3000/3000
+14:30:11 resume random_k dmt at 1250/1500
+2026-10-14 14:37:44 [polite] start random_k,surprise_k
+14:37:48 run directory: /mem/runs/stack02_4c69a2819ab8
+14:37:48 resume random_k smt at 3000/3000
+14:37:48 resume random_k dmt at 1250/1500
+14:39:07 seed27/random_k dmt 1500/1500 teacher long acc=0.486 rnn long acc=0.459 select=1.0964 0.314s/step
+14:39:44 seed27/surprise_k smt 250/3000 teacher long acc=0.346 rnn long acc=0.206 select=1.4268 0.150s/step
+14:40:18 seed27/surprise_k smt 500/3000 teacher long acc=0.320 rnn long acc=0.232 select=1.4032 0.142s/step
+2026-10-14 14:43:12 [polite] start random_k,surprise_k
+14:43:16 run directory: /mem/runs/stack02_4c69a2819ab8
+14:43:16 resume surprise_k smt at 500/3000
+14:43:42 seed27/surprise_k smt 750/3000 teacher long acc=0.341 rnn long acc=0.265 select=1.3611 0.106s/step
+14:44:36 seed27/surprise_k smt 1000/3000 teacher long acc=0.344 rnn long acc=0.253 select=1.3375 0.160s/step
+14:45:30 seed27/surprise_k smt 1250/3000 teacher long acc=0.364 rnn long acc=0.264 select=1.3128 0.179s/step
+14:46:04 seed27/surprise_k smt 1500/3000 teacher long acc=0.380 rnn long acc=0.276 select=1.2959 0.168s/step
+2026-10-14 14:48:42 [polite] start random_k,surprise_k
+14:48:46 run directory: /mem/runs/stack02_4c69a2819ab8
+14:48:46 resume surprise_k smt at 1500/3000
+14:49:13 seed27/surprise_k smt 1750/3000 teacher long acc=0.422 rnn long acc=0.280 select=1.2350 0.106s/step
+14:49:39 seed27/surprise_k smt 2000/3000 teacher long acc=0.449 rnn long acc=0.280 select=1.1832 0.105s/step
+14:50:06 seed27/surprise_k smt 2250/3000 teacher long acc=0.452 rnn long acc=0.274 select=1.1652 0.106s/step
+14:50:34 seed27/surprise_k smt 2500/3000 teacher long acc=0.466 rnn long acc=0.287 select=1.1382 0.107s/step
+14:51:10 seed27/surprise_k smt 2750/3000 teacher long acc=0.489 rnn long acc=0.283 select=1.1029 0.115s/step
+14:51:54 seed27/surprise_k smt 3000/3000 teacher long acc=0.485 rnn long acc=0.295 select=1.1132 0.125s/step
+2026-10-14 14:55:42 [polite] start random_k,surprise_k
+14:55:46 run directory: /mem/runs/stack02_4c69a2819ab8
+14:55:47 resume surprise_k smt at 3000/3000
+14:58:08 seed27/surprise_k dmt 250/1500 teacher long acc=0.489 rnn long acc=0.316 select=1.3758 0.565s/step
+2026-10-14 15:01:30 [polite] start random_k,surprise_k
+15:01:35 run directory: /mem/runs/stack02_4c69a2819ab8
+15:01:35 resume surprise_k smt at 3000/3000
+15:01:35 resume surprise_k dmt at 250/1500
+15:04:30 seed27/surprise_k dmt 500/1500 teacher long acc=0.489 rnn long acc=0.418 select=1.2249 0.699s/step
+2026-10-14 15:04:42 [polite] start random_k,surprise_k
+15:04:46 run directory: /mem/runs/stack02_4c69a2819ab8
+15:04:46 resume surprise_k smt at 3000/3000
+15:04:46 resume surprise_k dmt at 500/1500
+2026-10-14 15:05:14 [polite] start random_k,surprise_k
+15:05:18 run directory: /mem/runs/stack02_4c69a2819ab8
+15:05:19 resume surprise_k smt at 3000/3000
+15:05:20 resume surprise_k dmt at 500/1500
+2026-10-14 15:11:01 [polite] start random_k,surprise_k
+15:11:05 run directory: /mem/runs/stack02_4c69a2819ab8
+15:11:05 resume surprise_k smt at 3000/3000
+15:11:05 resume surprise_k dmt at 500/1500
+15:11:56 seed27/surprise_k dmt 750/1500 teacher long acc=0.489 rnn long acc=0.444 select=1.1649 0.204s/step
+15:13:00 seed27/surprise_k dmt 1000/1500 teacher long acc=0.489 rnn long acc=0.464 select=1.1156 0.229s/step
+15:14:04 seed27/surprise_k dmt 1250/1500 teacher long acc=0.489 rnn long acc=0.483 select=1.1003 0.238s/step
+15:15:07 seed27/surprise_k dmt 1500/1500 teacher long acc=0.489 rnn long acc=0.478 select=1.0927 0.241s/step
+2026-10-14 15:17:35 [polite] start oracle_prefix_k
+15:17:39 run directory: /mem/runs/stack02_4c69a2819ab8
+15:18:23 seed7/oracle_prefix_k smt 250/3000 teacher long acc=0.297 rnn long acc=0.265 select=1.4397 0.176s/step
+15:19:06 seed7/oracle_prefix_k smt 500/3000 teacher long acc=0.295 rnn long acc=0.260 select=1.4006 0.174s/step
+2026-10-14 15:26:21 [polite] start oracle_prefix_k
+15:26:25 run directory: /mem/runs/stack02_4c69a2819ab8
+15:26:25 resume oracle_prefix_k smt at 500/3000
+15:27:13 seed7/oracle_prefix_k smt 750/3000 teacher long acc=0.340 rnn long acc=0.243 select=1.3586 0.188s/step
+15:28:00 seed7/oracle_prefix_k smt 1000/3000 teacher long acc=0.385 rnn long acc=0.278 select=1.2901 0.189s/step
+15:29:07 seed7/oracle_prefix_k smt 1250/3000 teacher long acc=0.469 rnn long acc=0.267 select=1.1614 0.216s/step
+2026-10-14 15:35:52 [polite] start oracle_prefix_k
+15:35:56 run directory: /mem/runs/stack02_4c69a2819ab8
+15:35:57 resume oracle_prefix_k smt at 1250/3000
+15:36:46 seed7/oracle_prefix_k smt 1500/3000 teacher long acc=0.466 rnn long acc=0.274 select=1.1721 0.199s/step
+15:37:37 seed7/oracle_prefix_k smt 1750/3000 teacher long acc=0.519 rnn long acc=0.304 select=1.0429 0.201s/step
+15:38:36 seed7/oracle_prefix_k smt 2000/3000 teacher long acc=0.550 rnn long acc=0.320 select=0.9982 0.212s/step
+2026-10-14 15:44:12 [polite] start oracle_prefix_k
+15:44:22 run directory: /mem/runs/stack02_4c69a2819ab8
+15:44:22 resume oracle_prefix_k smt at 2000/3000
+15:45:21 seed7/oracle_prefix_k smt 2250/3000 teacher long acc=0.554 rnn long acc=0.288 select=0.9697 0.236s/step
+15:46:19 seed7/oracle_prefix_k smt 2500/3000 teacher long acc=0.562 rnn long acc=0.307 select=0.9351 0.234s/step
+2026-10-14 15:50:25 [polite] start oracle_prefix_k
+15:50:34 run directory: /mem/runs/stack02_4c69a2819ab8
+15:50:34 resume oracle_prefix_k smt at 2500/3000
+2026-10-14 16:00:10 [polite] start oracle_prefix_k
+16:00:13 run directory: /mem/runs/stack02_4c69a2819ab8
+16:00:14 resume oracle_prefix_k smt at 2500/3000
+16:00:56 seed7/oracle_prefix_k smt 2750/3000 teacher long acc=0.576 rnn long acc=0.298 select=0.9203 0.170s/step
+16:01:38 seed7/oracle_prefix_k smt 3000/3000 teacher long acc=0.572 rnn long acc=0.293 select=0.9149 0.169s/step
+16:02:33 seed7/oracle_prefix_k dmt 250/1500 teacher long acc=0.572 rnn long acc=0.364 select=1.2896 0.219s/step
+16:04:42 seed7/oracle_prefix_k dmt 500/1500 teacher long acc=0.572 rnn long acc=0.482 select=1.1048 0.368s/step
+2026-10-14 16:10:48 [polite] start oracle_prefix_k
+16:10:53 run directory: /mem/runs/stack02_4c69a2819ab8
+16:10:53 resume oracle_prefix_k smt at 3000/3000
+16:10:53 resume oracle_prefix_k dmt at 500/1500
+2026-10-14 16:16:13 [polite] start oracle_prefix_k
+16:16:23 run directory: /mem/runs/stack02_4c69a2819ab8
+16:16:23 resume oracle_prefix_k smt at 3000/3000
+16:16:23 resume oracle_prefix_k dmt at 500/1500
+16:17:51 seed7/oracle_prefix_k dmt 750/1500 teacher long acc=0.572 rnn long acc=0.541 select=1.0173 0.350s/step
+2026-10-14 16:22:45 [polite] start oracle_prefix_k
+16:22:57 run directory: /mem/runs/stack02_4c69a2819ab8
+16:22:58 resume oracle_prefix_k smt at 3000/3000
+16:22:58 resume oracle_prefix_k dmt at 750/1500
+16:25:35 seed7/oracle_prefix_k dmt 1000/1500 teacher long acc=0.572 rnn long acc=0.535 select=1.0148 0.629s/step
+2026-10-14 16:29:20 [polite] start oracle_prefix_k
+16:29:24 run directory: /mem/runs/stack02_4c69a2819ab8
+16:29:24 resume oracle_prefix_k smt at 3000/3000
+16:29:24 resume oracle_prefix_k dmt at 1000/1500

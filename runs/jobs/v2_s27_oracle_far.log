@@ -1,0 +1,20 @@
+20:25:21 run directory: /mem/runs/stackwin_26f6a039d62c
+20:26:23 seed27/oracle_far smt 250/3000 teacher long acc=0.318 rnn long acc=0.254 select=1.4936 0.249s/step
+20:27:27 seed27/oracle_far smt 500/3000 teacher long acc=0.299 rnn long acc=0.239 select=1.4075 0.251s/step
+20:28:34 seed27/oracle_far smt 750/3000 teacher long acc=0.353 rnn long acc=0.251 select=1.3373 0.257s/step
+20:29:16 seed27/oracle_far smt 1000/3000 teacher long acc=0.342 rnn long acc=0.264 select=1.3472 0.235s/step
+20:29:57 seed27/oracle_far smt 1250/3000 teacher long acc=0.340 rnn long acc=0.287 select=1.3558 0.221s/step
+20:30:44 seed27/oracle_far smt 1500/3000 teacher long acc=0.363 rnn long acc=0.302 select=1.3310 0.216s/step
+20:31:37 seed27/oracle_far smt 1750/3000 teacher long acc=0.408 rnn long acc=0.285 select=1.2440 0.215s/step
+20:32:23 seed27/oracle_far smt 2000/3000 teacher long acc=0.441 rnn long acc=0.360 select=1.2107 0.211s/step
+20:33:18 seed27/oracle_far smt 2250/3000 teacher long acc=0.468 rnn long acc=0.382 select=1.1640 0.212s/step
+20:34:13 seed27/oracle_far smt 2500/3000 teacher long acc=0.480 rnn long acc=0.377 select=1.1170 0.213s/step
+20:34:53 seed27/oracle_far smt 2750/3000 teacher long acc=0.492 rnn long acc=0.375 select=1.0871 0.208s/step
+20:35:34 seed27/oracle_far smt 3000/3000 teacher long acc=0.501 rnn long acc=0.366 select=1.0734 0.204s/step
+20:37:40 seed27/oracle_far dmt 250/1500 teacher long acc=0.501 rnn long acc=0.438 select=1.2044 0.501s/step
+20:39:50 seed27/oracle_far dmt 500/1500 teacher long acc=0.501 rnn long acc=0.479 select=1.1230 0.510s/step
+20:40:45 seed27/oracle_far dmt 750/1500 teacher long acc=0.501 rnn long acc=0.482 select=1.1051 0.414s/step
+20:41:39 seed27/oracle_far dmt 1000/1500 teacher long acc=0.501 rnn long acc=0.496 select=1.0812 0.364s/step
+20:42:32 seed27/oracle_far dmt 1250/1500 teacher long acc=0.501 rnn long acc=0.504 select=1.0693 0.334s/step
+20:43:25 seed27/oracle_far dmt 1500/1500 teacher long acc=0.501 rnn long acc=0.502 select=1.0633 0.314s/step
+20:43:25 done window seed27/oracle_far

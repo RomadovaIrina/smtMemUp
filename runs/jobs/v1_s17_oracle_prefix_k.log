@@ -1,0 +1,20 @@
+16:41:59 run directory: /mem/runs/stack02_4c69a2819ab8
+16:42:25 seed17/oracle_prefix_k smt 250/3000 teacher long acc=0.312 rnn long acc=0.253 select=1.4318 0.104s/step
+16:42:50 seed17/oracle_prefix_k smt 500/3000 teacher long acc=0.305 rnn long acc=0.262 select=1.3827 0.103s/step
+16:43:16 seed17/oracle_prefix_k smt 750/3000 teacher long acc=0.332 rnn long acc=0.266 select=1.3717 0.103s/step
+16:43:42 seed17/oracle_prefix_k smt 1000/3000 teacher long acc=0.459 rnn long acc=0.259 select=1.1502 0.103s/step
+16:44:09 seed17/oracle_prefix_k smt 1250/3000 teacher long acc=0.496 rnn long acc=0.256 select=1.0920 0.104s/step
+16:44:37 seed17/oracle_prefix_k smt 1500/3000 teacher long acc=0.588 rnn long acc=0.317 select=0.9084 0.105s/step
+16:45:04 seed17/oracle_prefix_k smt 1750/3000 teacher long acc=0.664 rnn long acc=0.343 select=0.7503 0.106s/step
+16:45:31 seed17/oracle_prefix_k smt 2000/3000 teacher long acc=0.715 rnn long acc=0.312 select=0.6362 0.106s/step
+16:45:56 seed17/oracle_prefix_k smt 2250/3000 teacher long acc=0.737 rnn long acc=0.319 select=0.5904 0.106s/step
+16:46:22 seed17/oracle_prefix_k smt 2500/3000 teacher long acc=0.757 rnn long acc=0.320 select=0.5406 0.105s/step
+16:46:48 seed17/oracle_prefix_k smt 2750/3000 teacher long acc=0.758 rnn long acc=0.329 select=0.5262 0.105s/step
+16:47:13 seed17/oracle_prefix_k smt 3000/3000 teacher long acc=0.770 rnn long acc=0.349 select=0.5106 0.105s/step
+16:48:04 seed17/oracle_prefix_k dmt 250/1500 teacher long acc=0.770 rnn long acc=0.563 select=0.9895 0.202s/step
+16:48:53 seed17/oracle_prefix_k dmt 500/1500 teacher long acc=0.770 rnn long acc=0.620 select=0.8577 0.200s/step
+16:49:43 seed17/oracle_prefix_k dmt 750/1500 teacher long acc=0.770 rnn long acc=0.664 select=0.7521 0.199s/step
+16:50:32 seed17/oracle_prefix_k dmt 1000/1500 teacher long acc=0.770 rnn long acc=0.700 select=0.7010 0.199s/step
+16:51:22 seed17/oracle_prefix_k dmt 1250/1500 teacher long acc=0.770 rnn long acc=0.711 select=0.6729 0.199s/step
+16:52:11 seed17/oracle_prefix_k dmt 1500/1500 teacher long acc=0.770 rnn long acc=0.711 select=0.6643 0.198s/step
+16:52:11 done stack seed17/oracle_prefix_k

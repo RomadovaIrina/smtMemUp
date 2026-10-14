@@ -1,0 +1,20 @@
+H2 7 baseline
+H2 7 uniform
+H2 7 random_k
+H2 7 surprise_k
+H2 7 surprise_ctx_k
+H2 7 oracle_prefix_k
+H2 17 baseline
+H2 17 uniform
+H2 17 random_k
+H2 17 surprise_k
+H2 17 surprise_ctx_k
+H2 17 oracle_prefix_k
+H2 27 baseline
+H2 27 uniform
+H2 27 random_k
+H2 27 surprise_k
+H2 27 surprise_ctx_k
+H2 27 oracle_prefix_k
+written: ['figT1_primary_per_seed.png', 'figT2_paired_deltas.png', 'figT3_stages.png', 'figT4_by_delay.png', 'figT5_h2_retention.png', 'table_test_decision_rule.csv', 'table_test_h2_retention.csv', 'table_test_paired_intervals.csv', 'table_test_paired_per_seed.csv', 'table_test_summary.csv']
+OUTPUTS_OK

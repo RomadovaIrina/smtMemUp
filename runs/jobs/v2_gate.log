@@ -1,0 +1,29 @@
+16:53:29 run directory: /mem/runs/stackwin_26f6a039d62c
+16:54:19 tuning/base_window smt 250/3000 teacher long acc=0.299 rnn long acc=0.243 select=1.4533 0.199s/step
+16:55:27 tuning/base_window smt 500/3000 teacher long acc=0.305 rnn long acc=0.232 select=1.4035 0.237s/step
+16:56:36 tuning/base_window smt 750/3000 teacher long acc=0.321 rnn long acc=0.251 select=1.3804 0.249s/step
+16:57:44 tuning/base_window smt 1000/3000 teacher long acc=0.404 rnn long acc=0.266 select=1.2722 0.255s/step
+16:58:53 tuning/base_window smt 1250/3000 teacher long acc=0.503 rnn long acc=0.298 select=1.0718 0.259s/step
+17:00:01 tuning/base_window smt 1500/3000 teacher long acc=0.580 rnn long acc=0.298 select=0.9406 0.261s/step
+17:01:08 tuning/base_window smt 1750/3000 teacher long acc=0.675 rnn long acc=0.330 select=0.7340 0.263s/step
+17:02:16 tuning/base_window smt 2000/3000 teacher long acc=0.739 rnn long acc=0.332 select=0.5936 0.263s/step
+17:03:23 tuning/base_window smt 2250/3000 teacher long acc=0.761 rnn long acc=0.356 select=0.5521 0.264s/step
+17:04:28 tuning/base_window smt 2500/3000 teacher long acc=0.792 rnn long acc=0.396 select=0.4729 0.264s/step
+17:05:30 tuning/base_window smt 2750/3000 teacher long acc=0.805 rnn long acc=0.387 select=0.4351 0.262s/step
+17:06:33 tuning/base_window smt 3000/3000 teacher long acc=0.824 rnn long acc=0.401 select=0.4016 0.261s/step
+17:07:41 tuning/base_window dmt 250/1500 teacher long acc=0.824 rnn long acc=0.486 select=1.1089 0.272s/step
+17:09:00 tuning/base_window dmt 500/1500 teacher long acc=0.824 rnn long acc=0.502 select=1.0888 0.294s/step
+17:10:09 tuning/base_window dmt 750/1500 teacher long acc=0.824 rnn long acc=0.597 select=0.8974 0.288s/step
+17:11:17 tuning/base_window dmt 1000/1500 teacher long acc=0.824 rnn long acc=0.600 select=0.8712 0.284s/step
+17:12:28 tuning/base_window dmt 1250/1500 teacher long acc=0.824 rnn long acc=0.622 select=0.8582 0.284s/step
+17:13:35 tuning/base_window dmt 1500/1500 teacher long acc=0.824 rnn long acc=0.625 select=0.8329 0.281s/step
+{
+  "teacher_long_accuracy": 0.8308605341246291,
+  "rnn_dmt_long_accuracy": 0.6066129715981348,
+  "chance": 0.25,
+  "required_teacher": 0.35,
+  "required_rnn": 0.3,
+  "smt_best_step": 3000,
+  "dmt_best_step": 1500,
+  "passed": true
+}

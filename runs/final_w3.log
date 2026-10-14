@@ -6,3 +6,58 @@
 18:56:51 seed7/surprise_ctx_k smt 750/3000 teacher long acc=0.306 rnn long acc=0.265 select=1.4031 0.197s/step
 18:57:37 seed7/surprise_ctx_k smt 1000/3000 teacher long acc=0.353 rnn long acc=0.262 select=1.3450 0.195s/step
 18:58:24 seed7/surprise_ctx_k smt 1250/3000 teacher long acc=0.415 rnn long acc=0.274 select=1.2834 0.193s/step
+2026-10-14 12:38:04 [polite] start surprise_ctx_k,oracle_prefix_k
+12:38:09 run directory: /mem/runs/stack02_4c69a2819ab8
+12:38:09 resume surprise_ctx_k smt at 1250/3000
+12:38:48 seed7/surprise_ctx_k smt 1500/3000 teacher long acc=0.423 rnn long acc=0.269 select=1.2762 0.155s/step
+2026-10-14 13:14:15 [polite] start surprise_ctx_k,oracle_prefix_k
+Traceback (most recent call last):
+  File "/mem/smt_memup_stack.py", line 1183, in <module>
+    main()
+  File "/mem/smt_memup_stack.py", line 1168, in main
+    ex = Experiment(cfg, device=device, log=log)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mem/smt_memup_stack.py", line 958, in __init__
+    sources(self.root)
+  File "/mem/smt_memup_stack.py", line 111, in sources
+    SRC = Sources(root)
+          ^^^^^^^^^^^^^
+  File "/mem/smt_memup_stack.py", line 102, in __init__
+    self.model = _load_file("smt_author_model", self.smt_root / "src/model.py")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mem/smt_memup_stack.py", line 87, in _load_file
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/mem/upstream/smt/src/model.py", line 1, in <module>
+    from x_transformers import Encoder, Decoder
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/x_transformers/__init__.py", line 1, in <module>
+    from x_transformers.x_transformers import (
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/x_transformers/x_transformers.py", line 27, in <module>
+    from einops.layers.torch import Rearrange
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/einops/layers/torch.py", line 7, in <module>
+    from .._torch_specific import apply_for_scriptable_torch
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/einops/_torch_specific.py", line 128, in <module>
+    allow_ops_in_compiled_graph()
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/einops/_torch_specific.py", line 107, in allow_ops_in_compiled_graph
+    from torch._dynamo import allow_in_graph
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/torch/_dynamo/__init__.py", line 13, in <module>
+    from . import (
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/torch/_dynamo/aot_compile.py", line 43, in <module>
+    class CompileArtifacts:
+  File "/mem/envs/smt-memup/lib/python3.12/site-packages/torch/_dynamo/aot_compile.py", line 46, in CompileArtifacts
+    guard_manager: Optional[torch._dynamo.guards.GuardManagerWrapper]
+                            ^^^^^^^^^^^^^^^^^^^^
+AttributeError: partially initialized module 'torch._dynamo' has no attribute 'guards' (most likely due to a circular import)
+2026-10-14 13:19:20 [polite] start surprise_ctx_k,oracle_prefix_k
+13:19:23 run directory: /mem/runs/stack02_4c69a2819ab8
+13:19:24 resume surprise_ctx_k smt at 1500/3000
+13:20:03 seed7/surprise_ctx_k smt 1750/3000 teacher long acc=0.498 rnn long acc=0.303 select=1.1006 0.156s/step
+13:20:42 seed7/surprise_ctx_k smt 2000/3000 teacher long acc=0.505 rnn long acc=0.292 select=1.0842 0.157s/step
+13:21:23 seed7/surprise_ctx_k smt 2250/3000 teacher long acc=0.547 rnn long acc=0.313 select=0.9786 0.159s/step
+2026-10-14 15:03:02 [polite] start surprise_ctx_k,oracle_prefix_k
+15:03:15 run directory: /mem/runs/stack02_4c69a2819ab8
+15:03:15 resume surprise_ctx_k smt at 2250/3000
+2026-10-14 15:15:09 [polite] start surprise_ctx_k,oracle_prefix_k
+15:15:13 run directory: /mem/runs/stack02_4c69a2819ab8
+15:15:13 resume surprise_ctx_k smt at 2250/3000

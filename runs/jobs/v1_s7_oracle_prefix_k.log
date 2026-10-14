@@ -1,0 +1,6 @@
+16:40:13 run directory: /mem/runs/stack02_4c69a2819ab8
+16:40:13 resume oracle_prefix_k smt at 3000/3000
+16:40:13 resume oracle_prefix_k dmt at 1000/1500
+16:41:04 seed7/oracle_prefix_k dmt 1250/1500 teacher long acc=0.572 rnn long acc=0.558 select=0.9736 0.202s/step
+16:41:54 seed7/oracle_prefix_k dmt 1500/1500 teacher long acc=0.572 rnn long acc=0.557 select=0.9674 0.201s/step
+16:41:54 done stack seed7/oracle_prefix_k

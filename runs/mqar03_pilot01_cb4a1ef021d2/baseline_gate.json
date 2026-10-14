@@ -1,0 +1,18 @@
+{
+  "criterion": "accuracy among the written values, long answers, shuffled query order (tuning split)",
+  "teacher_long_cand_accuracy": 0.11693791440626884,
+  "rnn_dmt_long_cand_accuracy": 0.15551537070524413,
+  "chance_structured": 0.125,
+  "chance_vocab": 0.015625,
+  "required_teacher": 0.225,
+  "required_rnn": 0.175,
+  "teacher_long_cand_accuracy_original_order": 0.1155527795128045,
+  "rnn_dmt_long_cand_accuracy_original_order": 0.11430356027482823,
+  "teacher_long_accuracy_full_vocab": 0.1155527795128045,
+  "rnn_dmt_long_accuracy_full_vocab": 0.1136789506558401,
+  "teacher_first_query_cand_accuracy": NaN,
+  "teacher_pred_in_written": 1.0,
+  "smt_best_step": 3000,
+  "dmt_best_step": 1500,
+  "passed": false
+}

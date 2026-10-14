@@ -89,3 +89,101 @@
 12:20:15 seed27/uniform smt 750/3000 teacher long acc=0.321 rnn long acc=0.240 select=1.4226 0.184s/step
 12:21:01 seed27/uniform smt 1000/3000 teacher long acc=0.329 rnn long acc=0.248 select=1.4093 0.184s/step
 12:21:47 seed27/uniform smt 1250/3000 teacher long acc=0.346 rnn long acc=0.234 select=1.3480 0.184s/step
+12:22:33 seed27/uniform smt 1500/3000 teacher long acc=0.362 rnn long acc=0.240 select=1.3472 0.184s/step
+12:23:19 seed27/uniform smt 1750/3000 teacher long acc=0.388 rnn long acc=0.264 select=1.2967 0.184s/step
+12:24:14 seed27/uniform smt 2000/3000 teacher long acc=0.411 rnn long acc=0.263 select=1.2469 0.188s/step
+12:25:08 seed27/uniform smt 2250/3000 teacher long acc=0.428 rnn long acc=0.243 select=1.2194 0.192s/step
+12:26:02 seed27/uniform smt 2500/3000 teacher long acc=0.472 rnn long acc=0.237 select=1.1490 0.194s/step
+12:26:57 seed27/uniform smt 2750/3000 teacher long acc=0.482 rnn long acc=0.249 select=1.1187 0.196s/step
+12:27:51 seed27/uniform smt 3000/3000 teacher long acc=0.486 rnn long acc=0.254 select=1.1128 0.198s/step
+12:31:12 seed27/uniform dmt 250/1500 teacher long acc=0.486 rnn long acc=0.317 select=1.4046 0.803s/step
+12:32:33 seed27/uniform dmt 500/1500 teacher long acc=0.486 rnn long acc=0.430 select=1.1856 0.563s/step
+12:33:53 seed27/uniform dmt 750/1500 teacher long acc=0.486 rnn long acc=0.440 select=1.1432 0.482s/step
+12:35:15 seed27/uniform dmt 1000/1500 teacher long acc=0.486 rnn long acc=0.463 select=1.1041 0.443s/step
+12:36:32 seed27/uniform dmt 1250/1500 teacher long acc=0.486 rnn long acc=0.471 select=1.0744 0.417s/step
+12:37:48 seed27/uniform dmt 1500/1500 teacher long acc=0.486 rnn long acc=0.489 select=1.0555 0.398s/step
+2026-10-14 13:16:18 [polite] start baseline,uniform
+13:16:22 run directory: /mem/runs/stack02_4c69a2819ab8
+2026-10-14 14:26:59 [polite] start baseline,uniform
+14:27:13 run directory: /mem/runs/stack02_4c69a2819ab8
+2026-10-14 14:31:54 [polite] start baseline,uniform
+14:31:58 run directory: /mem/runs/stack02_4c69a2819ab8
+2026-10-14 14:59:37 [polite] start baseline,uniform
+14:59:41 run directory: /mem/runs/stack02_4c69a2819ab8
+2026-10-14 15:15:25 [polite] start surprise_ctx_k
+15:15:30 run directory: /mem/runs/stack02_4c69a2819ab8
+15:15:31 resume surprise_ctx_k smt at 2250/3000
+15:16:05 seed7/surprise_ctx_k smt 2500/3000 teacher long acc=0.556 rnn long acc=0.310 select=0.9648 0.138s/step
+15:16:34 seed7/surprise_ctx_k smt 2750/3000 teacher long acc=0.553 rnn long acc=0.356 select=0.9582 0.128s/step
+15:17:03 seed7/surprise_ctx_k smt 3000/3000 teacher long acc=0.563 rnn long acc=0.347 select=0.9425 0.123s/step
+15:18:02 seed7/surprise_ctx_k dmt 250/1500 teacher long acc=0.563 rnn long acc=0.420 select=1.2154 0.237s/step
+15:19:01 seed7/surprise_ctx_k dmt 500/1500 teacher long acc=0.563 rnn long acc=0.489 select=1.1424 0.236s/step
+2026-10-14 15:21:27 [polite] start surprise_ctx_k
+15:21:31 run directory: /mem/runs/stack02_4c69a2819ab8
+15:21:31 resume surprise_ctx_k smt at 3000/3000
+15:21:31 resume surprise_ctx_k dmt at 500/1500
+15:22:28 seed7/surprise_ctx_k dmt 750/1500 teacher long acc=0.563 rnn long acc=0.506 select=1.0588 0.229s/step
+15:23:25 seed7/surprise_ctx_k dmt 1000/1500 teacher long acc=0.563 rnn long acc=0.521 select=1.0605 0.228s/step
+15:24:21 seed7/surprise_ctx_k dmt 1250/1500 teacher long acc=0.563 rnn long acc=0.535 select=1.0209 0.226s/step
+15:25:18 seed7/surprise_ctx_k dmt 1500/1500 teacher long acc=0.563 rnn long acc=0.544 select=1.0113 0.227s/step
+15:25:48 seed17/surprise_ctx_k smt 250/3000 teacher long acc=0.305 rnn long acc=0.238 select=1.4317 0.118s/step
+15:26:16 seed17/surprise_ctx_k smt 500/3000 teacher long acc=0.302 rnn long acc=0.255 select=1.3875 0.116s/step
+15:26:57 seed17/surprise_ctx_k smt 750/3000 teacher long acc=0.338 rnn long acc=0.262 select=1.3636 0.131s/step
+15:27:44 seed17/surprise_ctx_k smt 1000/3000 teacher long acc=0.460 rnn long acc=0.257 select=1.1931 0.145s/step
+15:28:42 seed17/surprise_ctx_k smt 1250/3000 teacher long acc=0.521 rnn long acc=0.304 select=1.0594 0.163s/step
+2026-10-14 15:34:21 [polite] start surprise_ctx_k
+15:34:25 run directory: /mem/runs/stack02_4c69a2819ab8
+15:34:25 resume surprise_ctx_k smt at 1250/3000
+15:34:51 seed17/surprise_ctx_k smt 1500/3000 teacher long acc=0.600 rnn long acc=0.313 select=0.8792 0.106s/step
+15:35:17 seed17/surprise_ctx_k smt 1750/3000 teacher long acc=0.651 rnn long acc=0.348 select=0.7813 0.105s/step
+15:35:43 seed17/surprise_ctx_k smt 2000/3000 teacher long acc=0.688 rnn long acc=0.422 select=0.6953 0.105s/step
+15:36:21 seed17/surprise_ctx_k smt 2250/3000 teacher long acc=0.704 rnn long acc=0.465 select=0.6497 0.116s/step
+15:37:10 seed17/surprise_ctx_k smt 2500/3000 teacher long acc=0.731 rnn long acc=0.491 select=0.6053 0.132s/step
+15:38:10 seed17/surprise_ctx_k smt 2750/3000 teacher long acc=0.720 rnn long acc=0.501 select=0.6178 0.150s/step
+2026-10-14 15:42:42 [polite] start surprise_ctx_k
+15:42:46 run directory: /mem/runs/stack02_4c69a2819ab8
+15:42:46 resume surprise_ctx_k smt at 2750/3000
+15:43:28 seed17/surprise_ctx_k smt 3000/3000 teacher long acc=0.737 rnn long acc=0.476 select=0.5904 0.167s/step
+15:46:26 seed17/surprise_ctx_k dmt 250/1500 teacher long acc=0.737 rnn long acc=0.607 select=0.9286 0.713s/step
+2026-10-14 15:48:55 [polite] start surprise_ctx_k
+15:48:59 run directory: /mem/runs/stack02_4c69a2819ab8
+15:48:59 resume surprise_ctx_k smt at 3000/3000
+15:48:59 resume surprise_ctx_k dmt at 250/1500
+2026-10-14 15:58:38 [polite] start surprise_ctx_k
+15:58:42 run directory: /mem/runs/stack02_4c69a2819ab8
+15:58:42 resume surprise_ctx_k smt at 3000/3000
+15:58:42 resume surprise_ctx_k dmt at 250/1500
+15:59:33 seed17/surprise_ctx_k dmt 500/1500 teacher long acc=0.737 rnn long acc=0.599 select=0.9138 0.205s/step
+16:00:25 seed17/surprise_ctx_k dmt 750/1500 teacher long acc=0.737 rnn long acc=0.681 select=0.7578 0.206s/step
+16:01:25 seed17/surprise_ctx_k dmt 1000/1500 teacher long acc=0.737 rnn long acc=0.692 select=0.6963 0.217s/step
+16:02:22 seed17/surprise_ctx_k dmt 1250/1500 teacher long acc=0.737 rnn long acc=0.705 select=0.6621 0.220s/step
+16:03:38 seed17/surprise_ctx_k dmt 1500/1500 teacher long acc=0.737 rnn long acc=0.707 select=0.6595 0.236s/step
+16:04:50 seed27/surprise_ctx_k smt 250/3000 teacher long acc=0.306 rnn long acc=0.268 select=1.4404 0.285s/step
+16:05:46 seed27/surprise_ctx_k smt 500/3000 teacher long acc=0.300 rnn long acc=0.232 select=1.4397 0.255s/step
+16:06:49 seed27/surprise_ctx_k smt 750/3000 teacher long acc=0.341 rnn long acc=0.247 select=1.3952 0.254s/step
+2026-10-14 16:09:17 [polite] start surprise_ctx_k
+16:09:21 run directory: /mem/runs/stack02_4c69a2819ab8
+16:09:21 resume surprise_ctx_k smt at 750/3000
+16:10:03 seed27/surprise_ctx_k smt 1000/3000 teacher long acc=0.350 rnn long acc=0.251 select=1.3589 0.167s/step
+16:10:41 seed27/surprise_ctx_k smt 1250/3000 teacher long acc=0.393 rnn long acc=0.260 select=1.2962 0.161s/step
+2026-10-14 16:14:42 [polite] start surprise_ctx_k
+16:14:46 run directory: /mem/runs/stack02_4c69a2819ab8
+16:14:46 resume surprise_ctx_k smt at 1250/3000
+16:15:38 seed27/surprise_ctx_k smt 1500/3000 teacher long acc=0.408 rnn long acc=0.257 select=1.2606 0.208s/step
+16:16:21 seed27/surprise_ctx_k smt 1750/3000 teacher long acc=0.421 rnn long acc=0.290 select=1.2168 0.189s/step
+16:17:19 seed27/surprise_ctx_k smt 2000/3000 teacher long acc=0.503 rnn long acc=0.302 select=1.0926 0.204s/step
+2026-10-14 16:21:15 [polite] start surprise_ctx_k
+16:21:18 run directory: /mem/runs/stack02_4c69a2819ab8
+16:21:19 resume surprise_ctx_k smt at 2000/3000
+16:21:49 seed27/surprise_ctx_k smt 2250/3000 teacher long acc=0.546 rnn long acc=0.312 select=0.9884 0.124s/step
+16:22:34 seed27/surprise_ctx_k smt 2500/3000 teacher long acc=0.578 rnn long acc=0.298 select=0.9220 0.151s/step
+16:23:30 seed27/surprise_ctx_k smt 2750/3000 teacher long acc=0.596 rnn long acc=0.309 select=0.8887 0.175s/step
+16:24:26 seed27/surprise_ctx_k smt 3000/3000 teacher long acc=0.612 rnn long acc=0.328 select=0.8614 0.187s/step
+2026-10-14 16:27:49 [polite] start surprise_ctx_k
+16:27:53 run directory: /mem/runs/stack02_4c69a2819ab8
+16:27:53 resume surprise_ctx_k smt at 3000/3000
+16:29:26 seed27/surprise_ctx_k dmt 250/1500 teacher long acc=0.612 rnn long acc=0.353 select=1.3490 0.370s/step
+2026-10-14 16:33:18 [polite] start surprise_ctx_k
+16:33:22 run directory: /mem/runs/stack02_4c69a2819ab8
+16:33:22 resume surprise_ctx_k smt at 3000/3000
+16:33:22 resume surprise_ctx_k dmt at 250/1500

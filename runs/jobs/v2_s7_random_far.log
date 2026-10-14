@@ -1,0 +1,20 @@
+17:24:46 run directory: /mem/runs/stackwin_26f6a039d62c
+17:25:59 seed7/random_far smt 250/3000 teacher long acc=0.300 rnn long acc=0.269 select=1.4782 0.288s/step
+17:27:10 seed7/random_far smt 500/3000 teacher long acc=0.296 rnn long acc=0.266 select=1.4241 0.286s/step
+17:28:21 seed7/random_far smt 750/3000 teacher long acc=0.322 rnn long acc=0.288 select=1.3784 0.286s/step
+17:29:31 seed7/random_far smt 1000/3000 teacher long acc=0.343 rnn long acc=0.287 select=1.3722 0.285s/step
+17:30:43 seed7/random_far smt 1250/3000 teacher long acc=0.367 rnn long acc=0.280 select=1.3484 0.285s/step
+17:31:54 seed7/random_far smt 1500/3000 teacher long acc=0.390 rnn long acc=0.284 select=1.3080 0.285s/step
+17:33:06 seed7/random_far smt 1750/3000 teacher long acc=0.418 rnn long acc=0.289 select=1.2502 0.285s/step
+17:34:17 seed7/random_far smt 2000/3000 teacher long acc=0.419 rnn long acc=0.268 select=1.2520 0.285s/step
+17:35:28 seed7/random_far smt 2250/3000 teacher long acc=0.435 rnn long acc=0.295 select=1.2224 0.285s/step
+17:36:32 seed7/random_far smt 2500/3000 teacher long acc=0.422 rnn long acc=0.271 select=1.2405 0.282s/step
+17:37:35 seed7/random_far smt 2750/3000 teacher long acc=0.453 rnn long acc=0.279 select=1.1782 0.280s/step
+17:38:38 seed7/random_far smt 3000/3000 teacher long acc=0.465 rnn long acc=0.282 select=1.1568 0.277s/step
+17:39:47 seed7/random_far dmt 250/1500 teacher long acc=0.465 rnn long acc=0.301 select=1.4002 0.274s/step
+17:40:55 seed7/random_far dmt 500/1500 teacher long acc=0.465 rnn long acc=0.356 select=1.3154 0.273s/step
+17:42:03 seed7/random_far dmt 750/1500 teacher long acc=0.465 rnn long acc=0.400 select=1.2649 0.273s/step
+17:43:09 seed7/random_far dmt 1000/1500 teacher long acc=0.465 rnn long acc=0.399 select=1.2568 0.271s/step
+17:44:20 seed7/random_far dmt 1250/1500 teacher long acc=0.465 rnn long acc=0.429 select=1.2384 0.273s/step
+17:45:33 seed7/random_far dmt 1500/1500 teacher long acc=0.465 rnn long acc=0.423 select=1.2367 0.276s/step
+17:45:33 done window seed7/random_far

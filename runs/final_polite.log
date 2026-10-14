@@ -6,3 +6,234 @@
 2026-10-14 11:10:22 no foreign GPU processes; free 32108 MiB
 2026-10-14 11:12:07 worker 1 [baseline,uniform] started, pid 15748
 2026-10-14 11:13:37 worker 2 [random_k,surprise_k] started, pid 16105
+2026-10-14 12:28:46 foreign GPU processes {29538: 2656} MiB; free 4140 MiB
+2026-10-14 12:28:47 worker 2 killed (yield GPU memory to a foreign process); will resume from its last checkpoint
+2026-10-14 12:28:47 worker 1 paused (foreign GPU process)
+2026-10-14 12:29:02 no foreign GPU processes; free 16661 MiB
+2026-10-14 12:30:47 worker 1 resumed
+2026-10-14 12:30:47 worker 2 [random_k,surprise_k] started, pid 30276
+2026-10-14 12:38:04 worker 1 [baseline,uniform] finished
+2026-10-14 12:38:04 worker 3 [surprise_ctx_k,oracle_prefix_k] started, pid 32279
+2026-10-14 12:39:19 foreign GPU processes {32719: 5508} MiB; free 8524 MiB
+2026-10-14 12:39:19 worker 3 killed (yield GPU memory to a foreign process); will resume from its last checkpoint
+2026-10-14 12:39:19 worker 2 paused (foreign GPU process)
+2026-10-14 12:39:34 foreign GPU processes {32719: 5252, 32903: 870} MiB; free 17138 MiB
+2026-10-14 12:39:49 foreign GPU processes {32719: 5252} MiB; free 18013 MiB
+2026-10-14 12:40:04 foreign GPU processes {32719: 5252, 33455: 870} MiB; free 17138 MiB
+2026-10-14 12:40:20 foreign GPU processes {32719: 5252} MiB; free 18013 MiB
+2026-10-14 12:40:35 foreign GPU processes {32719: 5252, 34049: 870} MiB; free 17138 MiB
+2026-10-14 12:40:50 foreign GPU processes {32719: 5508} MiB; free 17757 MiB
+2026-10-14 12:41:05 foreign GPU processes {32719: 5252, 34717: 870} MiB; free 17138 MiB
+2026-10-14 12:41:35 foreign GPU processes {32719: 5252, 35549: 742} MiB; free 17266 MiB
+2026-10-14 12:42:05 foreign GPU processes {32719: 5252} MiB; free 18013 MiB
+2026-10-14 12:42:20 foreign GPU processes {32719: 5252, 36209: 870} MiB; free 17138 MiB
+2026-10-14 12:42:50 foreign GPU processes {32719: 5252, 36797: 742} MiB; free 17266 MiB
+2026-10-14 12:43:35 foreign GPU processes {32719: 5252} MiB; free 18013 MiB
+2026-10-14 12:43:50 foreign GPU processes {32719: 5252, 37320: 870} MiB; free 17138 MiB
+2026-10-14 12:44:35 foreign GPU processes {32719: 5252, 37938: 742} MiB; free 17266 MiB
+2026-10-14 12:45:05 foreign GPU processes {32719: 5252, 37938: 1194, 38427: 498} MiB; free 16576 MiB
+2026-10-14 12:45:20 foreign GPU processes {38427: 502} MiB; free 22763 MiB
+2026-10-14 12:46:51 no foreign GPU processes; free 23270 MiB
+2026-10-14 12:47:36 foreign GPU processes {39267: 498} MiB; free 22767 MiB
+2026-10-14 12:51:53 foreign GPU processes {39267: 660, 40504: 686} MiB; free 21914 MiB
+2026-10-14 12:52:53 foreign GPU processes {39267: 4736, 41083: 714} MiB; free 17810 MiB
+2026-10-14 12:53:08 foreign GPU processes {41362: 502} MiB; free 22763 MiB
+2026-10-14 12:54:09 foreign GPU processes {41362: 502, 41576: 498, 41638: 774} MiB; free 21480 MiB
+2026-10-14 12:55:55 foreign GPU processes {41362: 660, 41576: 502} MiB; free 22098 MiB
+2026-10-14 12:56:10 foreign GPU processes {41362: 660, 41576: 502, 42130: 582} MiB; free 21510 MiB
+2026-10-14 12:56:40 foreign GPU processes {41362: 660, 41576: 502} MiB; free 22098 MiB
+2026-10-14 13:00:12 foreign GPU processes {41576: 660} MiB; free 22605 MiB
+2026-10-14 13:02:13 foreign GPU processes {43333: 2784} MiB; free 20481 MiB
+2026-10-14 13:04:43 no foreign GPU processes; free 23270 MiB
+2026-10-14 13:04:58 foreign GPU processes {43870: 502} MiB; free 22763 MiB
+2026-10-14 13:06:44 worker 2 killed (free memory 873 MiB < 1500); will resume from its last checkpoint
+2026-10-14 13:11:00 no foreign GPU processes; free 32108 MiB
+2026-10-14 13:12:45 worker 2 [random_k,surprise_k] started, pid 45389
+2026-10-14 13:13:00 worker 2 FAILED with exit 1; see runs/final_w2.log
+2026-10-14 13:14:15 worker 3 [surprise_ctx_k,oracle_prefix_k] started, pid 45569
+2026-10-14 13:14:30 worker 3 FAILED with exit 1; see runs/final_w3.log
+2026-10-14 13:14:45 all groups: baseline,uniform=done, random_k,surprise_k=failed, surprise_ctx_k,oracle_prefix_k=failed
+2026-10-14 13:16:17 polite final launcher: max 2 workers, start at >= 10000 MiB free, quiet 120s, fraction 0.30
+2026-10-14 13:16:18 worker 1 [baseline,uniform] started, pid 46004
+2026-10-14 13:16:34 worker 1 [baseline,uniform] finished
+2026-10-14 13:17:49 worker 2 [random_k,surprise_k] started, pid 46538
+2026-10-14 13:19:20 worker 3 [surprise_ctx_k,oracle_prefix_k] started, pid 46773
+2026-10-14 13:21:35 foreign GPU processes {47304: 502} MiB; free 12316 MiB
+2026-10-14 13:21:35 worker 3 killed (yield GPU memory to a foreign process); will resume from its last checkpoint
+2026-10-14 13:21:35 worker 2 paused (foreign GPU process)
+2026-10-14 13:23:21 worker 2 killed (free memory 209 MiB < 1500); will resume from its last checkpoint
+2026-10-14 13:27:37 no foreign GPU processes; free 32108 MiB
+2026-10-14 13:27:52 foreign GPU processes {50099: 582} MiB; free 31518 MiB
+2026-10-14 13:28:07 no foreign GPU processes; free 32108 MiB
+2026-10-14 13:28:37 foreign GPU processes {50629: 714} MiB; free 31386 MiB
+2026-10-14 13:28:52 no foreign GPU processes; free 32108 MiB
+2026-10-14 13:29:07 foreign GPU processes {50990: 714} MiB; free 31386 MiB
+2026-10-14 13:29:22 no foreign GPU processes; free 32108 MiB
+2026-10-14 13:30:22 foreign GPU processes {52272: 502} MiB; free 31598 MiB
+2026-10-14 13:35:54 foreign GPU processes {54615: 498} MiB; free 31602 MiB
+2026-10-14 13:46:56 no foreign GPU processes; free 32108 MiB
+2026-10-14 13:47:11 foreign GPU processes {56592: 714} MiB; free 31386 MiB
+2026-10-14 13:47:41 foreign GPU processes {56944: 502} MiB; free 31598 MiB
+2026-10-14 13:53:57 foreign GPU processes {58387: 714} MiB; free 31386 MiB
+2026-10-14 13:54:12 foreign GPU processes {58685: 502} MiB; free 31598 MiB
+2026-10-14 13:59:59 foreign GPU processes {61040: 498} MiB; free 31602 MiB
+2026-10-14 14:11:16 foreign GPU processes {64047: 714} MiB; free 31386 MiB
+2026-10-14 14:11:46 foreign GPU processes {64453: 502} MiB; free 31598 MiB
+2026-10-14 14:16:14 polite final launcher: max 2 workers, start at >= 10000 MiB free, quiet 120s, fraction 0.30
+2026-10-14 14:16:14 foreign GPU processes {64453: 660} MiB; free 31440 MiB
+2026-10-14 14:18:50 foreign GPU processes {66989: 714} MiB; free 31386 MiB
+2026-10-14 14:19:05 foreign GPU processes {67267: 502} MiB; free 31598 MiB
+2026-10-14 14:25:07 foreign GPU processes {69836: 714} MiB; free 31386 MiB
+2026-10-14 14:25:22 foreign GPU processes {70130: 502} MiB; free 31598 MiB
+2026-10-14 14:26:57 polite final launcher: max 2 workers, start at >= 10000 MiB free, quiet 20s, fraction 0.30
+2026-10-14 14:26:57 foreign GPU processes {70130: 502} MiB; free 31598 MiB
+2026-10-14 14:26:59 worker 1 [baseline,uniform] started, pid 70792
+2026-10-14 14:27:16 worker 1 [baseline,uniform] finished
+2026-10-14 14:28:31 worker 2 [random_k,surprise_k] started, pid 71583
+2026-10-14 14:29:15 worker 2 killed (neighbour needs memory: free 11546 MiB < 12000); will resume from its last checkpoint
+2026-10-14 14:30:06 worker 2 [random_k,surprise_k] started, pid 72545
+2026-10-14 14:31:06 polite final launcher: max 2 workers, start at >= 10000 MiB free, quiet 20s, fraction 0.30
+2026-10-14 14:31:06 foreign GPU processes {70130: 22384} MiB; free 9716 MiB
+2026-10-14 14:31:54 worker 1 [baseline,uniform] started, pid 74050
+2026-10-14 14:31:56 no foreign GPU processes; free 31602 MiB
+2026-10-14 14:32:00 worker 1 [baseline,uniform] finished
+2026-10-14 14:32:00 foreign GPU processes {74072: 714} MiB; free 31386 MiB
+2026-10-14 14:32:04 no foreign GPU processes; free 32108 MiB
+2026-10-14 14:33:19 foreign GPU processes {75089: 498} MiB; free 23063 MiB
+2026-10-14 14:37:44 worker 2 [random_k,surprise_k] started, pid 77452
+2026-10-14 14:37:46 no foreign GPU processes; free 31602 MiB
+2026-10-14 14:38:30 foreign GPU processes {77889: 498} MiB; free 27349 MiB
+2026-10-14 14:40:19 worker 2 killed (neighbour needs memory: free 9025 MiB < 12000); will resume from its last checkpoint
+2026-10-14 14:42:53 no foreign GPU processes; free 32108 MiB
+2026-10-14 14:43:12 worker 2 [random_k,surprise_k] started, pid 80421
+2026-10-14 14:43:52 foreign GPU processes {80682: 498} MiB; free 23047 MiB
+2026-10-14 14:46:09 worker 2 killed (neighbour needs memory: free 10499 MiB < 12000); will resume from its last checkpoint
+2026-10-14 14:48:42 worker 2 [random_k,surprise_k] started, pid 83207
+2026-10-14 14:48:44 no foreign GPU processes; free 31602 MiB
+2026-10-14 14:49:55 foreign GPU processes {83841: 556} MiB; free 22989 MiB
+2026-10-14 14:50:34 no foreign GPU processes; free 23550 MiB
+2026-10-14 14:50:44 foreign GPU processes {84364: 498} MiB; free 23047 MiB
+2026-10-14 14:52:39 worker 2 killed (neighbour needs memory: free 10219 MiB < 12000); will resume from its last checkpoint
+2026-10-14 14:55:40 no foreign GPU processes; free 32108 MiB
+2026-10-14 14:55:42 foreign GPU processes {86969: 12} MiB; free 32108 MiB
+2026-10-14 14:55:42 worker 2 [random_k,surprise_k] started, pid 87034
+2026-10-14 14:59:36 polite final launcher: max 2 workers, start at >= 10000 MiB free, quiet 20s, fraction 0.30
+2026-10-14 14:59:36 foreign GPU processes {86969: 7902} MiB; free 24198 MiB
+2026-10-14 14:59:37 worker 1 [baseline,uniform] started, pid 88619
+2026-10-14 14:59:42 worker 1 [baseline,uniform] finished
+2026-10-14 15:01:30 worker 2 [random_k,surprise_k] started, pid 90242
+2026-10-14 15:01:32 no foreign GPU processes; free 31602 MiB
+2026-10-14 15:01:34 foreign GPU processes {90272: 498} MiB; free 31099 MiB
+2026-10-14 15:03:02 worker 3 [surprise_ctx_k,oracle_prefix_k] started, pid 90874
+2026-10-14 15:04:39 worker 2 killed (neighbour needs memory: free 4784 MiB < 8000); will resume from its last checkpoint
+2026-10-14 15:04:39 worker 3 killed (neighbour needs memory: free 4784 MiB < 8000); will resume from its last checkpoint
+2026-10-14 15:04:42 worker 2 [random_k,surprise_k] started, pid 91511
+2026-10-14 15:05:13 polite final launcher: max 2 workers, start at >= 10000 MiB free, quiet 20s, fraction 0.30
+2026-10-14 15:05:13 foreign GPU processes {90272: 4080} MiB; free 28020 MiB
+2026-10-14 15:05:14 worker 2 [random_k,surprise_k] started, pid 91990
+2026-10-14 15:05:23 worker 2 killed (neighbour needs memory: free 5463 MiB < 8000); will resume from its last checkpoint
+2026-10-14 15:11:01 worker 2 [random_k,surprise_k] started, pid 94543
+2026-10-14 15:11:03 no foreign GPU processes; free 31602 MiB
+2026-10-14 15:11:38 foreign GPU processes {94780: 538} MiB; free 27309 MiB
+2026-10-14 15:11:40 no foreign GPU processes; free 27852 MiB
+2026-10-14 15:12:08 foreign GPU processes {95297: 5022, 95445: 742} MiB; free 16282 MiB
+2026-10-14 15:12:41 foreign GPU processes {95297: 5022, 95445: 870, 96299: 582} MiB; free 15566 MiB
+2026-10-14 15:13:11 foreign GPU processes {95297: 5022, 96299: 714, 96713: 870} MiB; free 15434 MiB
+2026-10-14 15:13:42 foreign GPU processes {95297: 5022, 97168: 714} MiB; free 16310 MiB
+2026-10-14 15:14:12 foreign GPU processes {95297: 5022, 97657: 870, 97962: 714} MiB; free 15434 MiB
+2026-10-14 15:14:42 foreign GPU processes {95297: 5022, 97657: 870, 98441: 714} MiB; free 15434 MiB
+2026-10-14 15:15:09 worker 2 [random_k,surprise_k] finished
+2026-10-14 15:15:09 worker 3 [surprise_ctx_k,oracle_prefix_k] started, pid 99711
+2026-10-14 15:15:13 foreign GPU processes {95297: 5022, 98942: 870, 99380: 714} MiB; free 24980 MiB
+2026-10-14 15:15:25 polite final launcher: max 2 workers, start at >= 10000 MiB free, quiet 20s, fraction 0.30
+2026-10-14 15:15:25 foreign GPU processes {95297: 5022, 98942: 870, 99380: 714} MiB; free 25484 MiB
+2026-10-14 15:15:25 worker 1 [surprise_ctx_k] started, pid 99954
+2026-10-14 15:15:55 foreign GPU processes {95297: 5180, 100228: 870} MiB; free 16536 MiB
+2026-10-14 15:16:48 foreign GPU processes {95297: 5180} MiB; free 17687 MiB
+2026-10-14 15:17:19 foreign GPU processes {95297: 5180, 100980: 870} MiB; free 16536 MiB
+2026-10-14 15:17:35 worker 2 [oracle_prefix_k] started, pid 101722
+2026-10-14 15:17:37 no foreign GPU processes; free 22093 MiB
+2026-10-14 15:17:49 foreign GPU processes {101742: 5022} MiB; free 9094 MiB
+2026-10-14 15:18:20 foreign GPU processes {101742: 5022, 101943: 870} MiB; free 8218 MiB
+2026-10-14 15:19:25 worker 1 killed (neighbour needs memory: free 7298 MiB < 8000); will resume from its last checkpoint
+2026-10-14 15:19:25 worker 2 killed (neighbour needs memory: free 7298 MiB < 8000); will resume from its last checkpoint
+2026-10-14 15:19:27 foreign GPU processes {101742: 5022} MiB; free 27078 MiB
+2026-10-14 15:19:58 foreign GPU processes {101742: 5022, 103369: 742} MiB; free 26331 MiB
+2026-10-14 15:20:28 foreign GPU processes {101742: 5022, 103903: 870} MiB; free 26203 MiB
+2026-10-14 15:20:59 foreign GPU processes {101742: 5180, 104427: 870} MiB; free 26045 MiB
+2026-10-14 15:21:27 worker 1 [surprise_ctx_k] started, pid 105338
+2026-10-14 15:21:29 foreign GPU processes {101742: 5180, 105027: 870} MiB; free 25542 MiB
+2026-10-14 15:21:47 no foreign GPU processes; free 27852 MiB
+2026-10-14 15:21:59 foreign GPU processes {105634: 5200, 105739: 742} MiB; free 21900 MiB
+2026-10-14 15:22:30 foreign GPU processes {105634: 5200, 106284: 742} MiB; free 16104 MiB
+2026-10-14 15:23:00 foreign GPU processes {105634: 5200} MiB; free 16851 MiB
+2026-10-14 15:23:31 foreign GPU processes {105634: 5200, 106863: 870} MiB; free 15976 MiB
+2026-10-14 15:24:01 foreign GPU processes {105634: 5200, 107498: 870} MiB; free 15976 MiB
+2026-10-14 15:24:32 foreign GPU processes {105634: 5200} MiB; free 16851 MiB
+2026-10-14 15:25:02 foreign GPU processes {105634: 5200, 108204: 870} MiB; free 15976 MiB
+2026-10-14 15:25:33 foreign GPU processes {105634: 5200, 108851: 870} MiB; free 16774 MiB
+2026-10-14 15:26:21 foreign GPU processes {105634: 614} MiB; free 21077 MiB
+2026-10-14 15:26:21 worker 2 [oracle_prefix_k] started, pid 109694
+2026-10-14 15:26:23 no foreign GPU processes; free 22027 MiB
+2026-10-14 15:27:53 foreign GPU processes {110271: 498} MiB; free 13480 MiB
+2026-10-14 15:29:22 worker 1 killed (neighbour needs memory: free 6218 MiB < 8000); will resume from its last checkpoint
+2026-10-14 15:29:22 worker 2 killed (neighbour needs memory: free 6218 MiB < 8000); will resume from its last checkpoint
+2026-10-14 15:34:21 worker 1 [surprise_ctx_k] started, pid 113464
+2026-10-14 15:34:23 no foreign GPU processes; free 31602 MiB
+2026-10-14 15:35:52 worker 2 [oracle_prefix_k] started, pid 114257
+2026-10-14 15:35:56 foreign GPU processes {114222: 686} MiB; free 21678 MiB
+2026-10-14 15:37:07 no foreign GPU processes; free 14325 MiB
+2026-10-14 15:37:22 foreign GPU processes {115046: 498} MiB; free 13822 MiB
+2026-10-14 15:38:50 worker 1 killed (neighbour needs memory: free 6562 MiB < 8000); will resume from its last checkpoint
+2026-10-14 15:38:50 worker 2 killed (neighbour needs memory: free 6562 MiB < 8000); will resume from its last checkpoint
+2026-10-14 15:42:40 no foreign GPU processes; free 32108 MiB
+2026-10-14 15:42:42 foreign GPU processes {117947: 498} MiB; free 31602 MiB
+2026-10-14 15:42:42 worker 1 [surprise_ctx_k] started, pid 118015
+2026-10-14 15:44:12 worker 2 [oracle_prefix_k] started, pid 118566
+2026-10-14 15:46:50 worker 1 killed (neighbour needs memory: free 7876 MiB < 8000); will resume from its last checkpoint
+2026-10-14 15:46:51 worker 2 killed (neighbour needs memory: free 7876 MiB < 8000); will resume from its last checkpoint
+2026-10-14 15:48:53 no foreign GPU processes; free 32108 MiB
+2026-10-14 15:48:55 foreign GPU processes {121061: 498} MiB; free 32070 MiB
+2026-10-14 15:48:55 worker 1 [surprise_ctx_k] started, pid 121128
+2026-10-14 15:50:25 worker 2 [oracle_prefix_k] started, pid 121506
+2026-10-14 15:51:16 worker 1 killed (neighbour needs memory: free 5818 MiB < 8000); will resume from its last checkpoint
+2026-10-14 15:51:16 worker 2 killed (neighbour needs memory: free 5818 MiB < 8000); will resume from its last checkpoint
+2026-10-14 15:58:20 no foreign GPU processes; free 32108 MiB
+2026-10-14 15:58:38 worker 1 [surprise_ctx_k] started, pid 124421
+2026-10-14 16:00:10 worker 2 [oracle_prefix_k] started, pid 125334
+2026-10-14 16:00:30 foreign GPU processes {125390: 686} MiB; free 12892 MiB
+2026-10-14 16:00:40 no foreign GPU processes; free 13583 MiB
+2026-10-14 16:01:00 foreign GPU processes {125733: 542} MiB; free 12962 MiB
+2026-10-14 16:01:04 no foreign GPU processes; free 13509 MiB
+2026-10-14 16:01:31 foreign GPU processes {126062: 714} MiB; free 12790 MiB
+2026-10-14 16:01:39 no foreign GPU processes; free 13231 MiB
+2026-10-14 16:02:50 foreign GPU processes {126669: 498} MiB; free 12728 MiB
+2026-10-14 16:07:12 worker 1 killed (neighbour needs memory: free 6598 MiB < 8000); will resume from its last checkpoint
+2026-10-14 16:07:12 worker 2 killed (neighbour needs memory: free 6598 MiB < 8000); will resume from its last checkpoint
+2026-10-14 16:09:17 worker 1 [surprise_ctx_k] started, pid 129079
+2026-10-14 16:09:19 no foreign GPU processes; free 31602 MiB
+2026-10-14 16:09:21 foreign GPU processes {129117: 498} MiB; free 31099 MiB
+2026-10-14 16:10:48 worker 2 [oracle_prefix_k] started, pid 130019
+2026-10-14 16:11:17 worker 1 killed (neighbour needs memory: free 5576 MiB < 8000); will resume from its last checkpoint
+2026-10-14 16:11:17 worker 2 killed (neighbour needs memory: free 5576 MiB < 8000); will resume from its last checkpoint
+2026-10-14 16:14:42 worker 1 [surprise_ctx_k] started, pid 131646
+2026-10-14 16:14:44 no foreign GPU processes; free 31602 MiB
+2026-10-14 16:14:46 foreign GPU processes {131677: 498} MiB; free 31003 MiB
+2026-10-14 16:16:13 worker 2 [oracle_prefix_k] started, pid 132074
+2026-10-14 16:17:51 worker 1 killed (neighbour needs memory: free 4784 MiB < 8000); will resume from its last checkpoint
+2026-10-14 16:17:51 worker 2 killed (neighbour needs memory: free 4784 MiB < 8000); will resume from its last checkpoint
+2026-10-14 16:20:56 no foreign GPU processes; free 32108 MiB
+2026-10-14 16:21:15 worker 1 [surprise_ctx_k] started, pid 133870
+2026-10-14 16:21:29 foreign GPU processes {134000: 498} MiB; free 22093 MiB
+2026-10-14 16:22:45 worker 2 [oracle_prefix_k] started, pid 134378
+2026-10-14 16:25:40 worker 1 killed (neighbour needs memory: free 7816 MiB < 8000); will resume from its last checkpoint
+2026-10-14 16:25:40 worker 2 killed (neighbour needs memory: free 7816 MiB < 8000); will resume from its last checkpoint
+2026-10-14 16:27:49 worker 1 [surprise_ctx_k] started, pid 136765
+2026-10-14 16:27:51 no foreign GPU processes; free 31602 MiB
+2026-10-14 16:27:53 foreign GPU processes {136797: 498} MiB; free 31099 MiB
+2026-10-14 16:29:20 worker 2 [oracle_prefix_k] started, pid 137503
+2026-10-14 16:29:40 worker 1 killed (neighbour needs memory: free 4760 MiB < 8000); will resume from its last checkpoint
+2026-10-14 16:29:40 worker 2 killed (neighbour needs memory: free 4760 MiB < 8000); will resume from its last checkpoint
+2026-10-14 16:33:16 no foreign GPU processes; free 25112 MiB
+2026-10-14 16:33:18 foreign GPU processes {139389: 498} MiB; free 31602 MiB
+2026-10-14 16:33:18 worker 1 [surprise_ctx_k] started, pid 139449

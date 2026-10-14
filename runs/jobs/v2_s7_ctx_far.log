@@ -1,0 +1,20 @@
+17:42:58 run directory: /mem/runs/stackwin_26f6a039d62c
+17:44:08 seed7/ctx_far smt 250/3000 teacher long acc=0.309 rnn long acc=0.253 select=1.4410 0.278s/step
+17:45:17 seed7/ctx_far smt 500/3000 teacher long acc=0.296 rnn long acc=0.244 select=1.3928 0.277s/step
+17:46:26 seed7/ctx_far smt 750/3000 teacher long acc=0.290 rnn long acc=0.285 select=1.4213 0.276s/step
+17:47:37 seed7/ctx_far smt 1000/3000 teacher long acc=0.348 rnn long acc=0.280 select=1.3501 0.279s/step
+17:48:50 seed7/ctx_far smt 1250/3000 teacher long acc=0.364 rnn long acc=0.304 select=1.3240 0.281s/step
+17:50:02 seed7/ctx_far smt 1500/3000 teacher long acc=0.397 rnn long acc=0.299 select=1.2805 0.283s/step
+17:51:14 seed7/ctx_far smt 1750/3000 teacher long acc=0.420 rnn long acc=0.309 select=1.2359 0.283s/step
+17:52:27 seed7/ctx_far smt 2000/3000 teacher long acc=0.446 rnn long acc=0.282 select=1.1947 0.284s/step
+17:53:40 seed7/ctx_far smt 2250/3000 teacher long acc=0.469 rnn long acc=0.343 select=1.1400 0.285s/step
+17:54:54 seed7/ctx_far smt 2500/3000 teacher long acc=0.465 rnn long acc=0.316 select=1.1583 0.286s/step
+17:56:07 seed7/ctx_far smt 2750/3000 teacher long acc=0.487 rnn long acc=0.350 select=1.1122 0.287s/step
+17:57:17 seed7/ctx_far smt 3000/3000 teacher long acc=0.486 rnn long acc=0.356 select=1.1187 0.286s/step
+17:58:28 seed7/ctx_far dmt 250/1500 teacher long acc=0.487 rnn long acc=0.333 select=1.4175 0.280s/step
+17:59:38 seed7/ctx_far dmt 500/1500 teacher long acc=0.487 rnn long acc=0.466 select=1.1448 0.280s/step
+18:00:48 seed7/ctx_far dmt 750/1500 teacher long acc=0.487 rnn long acc=0.492 select=1.1075 0.280s/step
+18:01:58 seed7/ctx_far dmt 1000/1500 teacher long acc=0.487 rnn long acc=0.499 select=1.0672 0.281s/step
+18:03:08 seed7/ctx_far dmt 1250/1500 teacher long acc=0.487 rnn long acc=0.520 select=1.0408 0.281s/step
+18:04:17 seed7/ctx_far dmt 1500/1500 teacher long acc=0.487 rnn long acc=0.517 select=1.0320 0.280s/step
+18:04:17 done window seed7/ctx_far

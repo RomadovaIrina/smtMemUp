@@ -1,0 +1,20 @@
+18:04:22 run directory: /mem/runs/stackwin_26f6a039d62c
+18:05:31 seed17/base_window smt 250/3000 teacher long acc=0.296 rnn long acc=0.255 select=1.4441 0.275s/step
+18:06:39 seed17/base_window smt 500/3000 teacher long acc=0.283 rnn long acc=0.256 select=1.4088 0.274s/step
+18:07:48 seed17/base_window smt 750/3000 teacher long acc=0.317 rnn long acc=0.258 select=1.4206 0.274s/step
+18:08:56 seed17/base_window smt 1000/3000 teacher long acc=0.382 rnn long acc=0.264 select=1.2856 0.273s/step
+18:10:04 seed17/base_window smt 1250/3000 teacher long acc=0.441 rnn long acc=0.279 select=1.1960 0.273s/step
+18:11:12 seed17/base_window smt 1500/3000 teacher long acc=0.540 rnn long acc=0.287 select=1.0178 0.273s/step
+18:12:20 seed17/base_window smt 1750/3000 teacher long acc=0.640 rnn long acc=0.325 select=0.7949 0.273s/step
+18:13:29 seed17/base_window smt 2000/3000 teacher long acc=0.681 rnn long acc=0.347 select=0.6862 0.273s/step
+18:14:37 seed17/base_window smt 2250/3000 teacher long acc=0.731 rnn long acc=0.415 select=0.5823 0.273s/step
+18:15:47 seed17/base_window smt 2500/3000 teacher long acc=0.756 rnn long acc=0.434 select=0.5334 0.274s/step
+18:16:55 seed17/base_window smt 2750/3000 teacher long acc=0.767 rnn long acc=0.459 select=0.5260 0.274s/step
+18:18:04 seed17/base_window smt 3000/3000 teacher long acc=0.778 rnn long acc=0.475 select=0.4896 0.274s/step
+18:19:15 seed17/base_window dmt 250/1500 teacher long acc=0.778 rnn long acc=0.453 select=1.1807 0.281s/step
+18:20:26 seed17/base_window dmt 500/1500 teacher long acc=0.778 rnn long acc=0.594 select=0.9262 0.282s/step
+18:21:36 seed17/base_window dmt 750/1500 teacher long acc=0.778 rnn long acc=0.609 select=0.8731 0.282s/step
+18:22:46 seed17/base_window dmt 1000/1500 teacher long acc=0.778 rnn long acc=0.634 select=0.8075 0.282s/step
+18:23:57 seed17/base_window dmt 1250/1500 teacher long acc=0.778 rnn long acc=0.655 select=0.7563 0.282s/step
+18:25:07 seed17/base_window dmt 1500/1500 teacher long acc=0.778 rnn long acc=0.667 select=0.7413 0.282s/step
+18:25:07 done window seed17/base_window

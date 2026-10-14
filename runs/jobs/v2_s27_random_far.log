@@ -1,0 +1,20 @@
+19:30:36 run directory: /mem/runs/stackwin_26f6a039d62c
+19:31:48 seed27/random_far smt 250/3000 teacher long acc=0.302 rnn long acc=0.284 select=1.4628 0.288s/step
+19:32:59 seed27/random_far smt 500/3000 teacher long acc=0.280 rnn long acc=0.247 select=1.4398 0.287s/step
+19:34:11 seed27/random_far smt 750/3000 teacher long acc=0.326 rnn long acc=0.235 select=1.3931 0.286s/step
+19:35:22 seed27/random_far smt 1000/3000 teacher long acc=0.337 rnn long acc=0.287 select=1.3505 0.286s/step
+19:36:33 seed27/random_far smt 1250/3000 teacher long acc=0.367 rnn long acc=0.299 select=1.3458 0.286s/step
+19:37:45 seed27/random_far smt 1500/3000 teacher long acc=0.449 rnn long acc=0.255 select=1.1640 0.286s/step
+19:38:56 seed27/random_far smt 1750/3000 teacher long acc=0.474 rnn long acc=0.256 select=1.1050 0.286s/step
+19:40:07 seed27/random_far smt 2000/3000 teacher long acc=0.506 rnn long acc=0.270 select=1.0621 0.286s/step
+19:41:19 seed27/random_far smt 2250/3000 teacher long acc=0.521 rnn long acc=0.269 select=1.0230 0.286s/step
+19:46:41 seed27/random_far smt 2500/3000 teacher long acc=0.536 rnn long acc=0.290 select=0.9801 0.386s/step
+19:56:32 seed27/random_far smt 2750/3000 teacher long acc=0.540 rnn long acc=0.302 select=0.9635 0.566s/step
+19:57:40 seed27/random_far smt 3000/3000 teacher long acc=0.549 rnn long acc=0.295 select=0.9559 0.541s/step
+19:58:52 seed27/random_far dmt 250/1500 teacher long acc=0.549 rnn long acc=0.321 select=1.3407 0.287s/step
+20:00:04 seed27/random_far dmt 500/1500 teacher long acc=0.549 rnn long acc=0.461 select=1.1498 0.288s/step
+20:01:16 seed27/random_far dmt 750/1500 teacher long acc=0.549 rnn long acc=0.462 select=1.0850 0.287s/step
+20:02:27 seed27/random_far dmt 1000/1500 teacher long acc=0.549 rnn long acc=0.478 select=1.0600 0.287s/step
+20:03:38 seed27/random_far dmt 1250/1500 teacher long acc=0.549 rnn long acc=0.504 select=1.0270 0.286s/step
+20:04:48 seed27/random_far dmt 1500/1500 teacher long acc=0.549 rnn long acc=0.524 select=1.0129 0.285s/step
+20:04:49 done window seed27/random_far

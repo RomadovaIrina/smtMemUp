@@ -1,0 +1,45 @@
+2026-10-14 12:43:44 queue: ['smt_memup_stack.py --phase baseline --override {"smt_steps":20000}']
+2026-10-14 12:45:45 cancelled by agent before start: plan and cost must be agreed first
+2026-10-14 14:11:20 queue: ['smt_memup_stack.py --phase baseline --override {"dmt_steps":6000}', 'smt_memup_stack.py --phase baseline --override {"smt_steps":30000,"dmt_steps":6000}']
+2026-10-14 14:11:47 queue: ['smt_memup_stack.py --phase baseline --override {"dmt_steps":6000}', 'smt_memup_stack.py --phase baseline --override {"smt_steps":30000,"dmt_steps":6000}']
+2026-10-14 14:16:13 queue: ['smt_memup_stack.py --phase baseline --override {"dmt_steps":6000}', 'smt_memup_stack.py --phase baseline --override {"smt_steps":30000,"dmt_steps":6000}']
+2026-10-14 14:26:57 queue: ['smt_memup_stack.py --phase baseline --override {"dmt_steps":6000}', 'smt_memup_stack.py --phase baseline --override {"smt_steps":30000,"dmt_steps":6000}']
+2026-10-14 14:26:57 start: nice -n 10 /mem/envs/smt-memup/bin/python smt_memup_stack.py --phase baseline --override {dmt_steps:6000} --threads 4 --gpu-memory-fraction 0.30
+Traceback (most recent call last):
+  File "/mem/smt_memup_stack.py", line 1183, in <module>
+    main()
+  File "/mem/smt_memup_stack.py", line 1161, in main
+    cfg = replace(Config(), **{k: tuple(v) if isinstance(v, list) else v for k, v in json.loads(a.override).items()})
+                                                                                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2026-10-14 14:27:08 FAILED (exit 1): smt_memup_stack.py --phase baseline --override {"dmt_steps":6000}
+2026-10-14 14:27:32 queue: ['smt_memup_stack.py --phase baseline --override \'{"dmt_steps":6000}\'', 'smt_memup_stack.py --phase baseline --override \'{"smt_steps":30000,"dmt_steps":6000}\'']
+2026-10-14 14:27:32 start: nice -n 10 /mem/envs/smt-memup/bin/python smt_memup_stack.py --phase baseline --override {"dmt_steps":6000} --threads 4 --gpu-memory-fraction 0.30
+14:27:42 run directory: /mem/runs/stack02_fa90a9158b51
+14:28:36 tuning/baseline smt 250/3000 teacher long acc=0.312 rnn long acc=0.284 select=1.5121 0.214s/step
+14:29:24 tuning/baseline smt 500/3000 teacher long acc=0.286 rnn long acc=0.240 select=1.4204 0.203s/step
+14:30:02 tuning/baseline smt 750/3000 teacher long acc=0.300 rnn long acc=0.236 select=1.4481 0.186s/step
+14:30:42 tuning/baseline smt 1000/3000 teacher long acc=0.296 rnn long acc=0.254 select=1.4520 0.179s/step
+2026-10-14 14:31:06 queue: ['smt_memup_stack.py --phase baseline --override \'{"dmt_steps":6000}\'', 'smt_memup_stack.py --phase baseline --override \'{"smt_steps":30000,"dmt_steps":6000}\'']
+2026-10-14 14:32:23 start: nice -n 10 /mem/envs/smt-memup/bin/python smt_memup_stack.py --phase baseline --override {"dmt_steps":6000} --threads 4 --gpu-memory-fraction 0.30
+14:32:27 run directory: /mem/runs/stack02_fa90a9158b51
+14:32:27 resume baseline smt at 1000/3000
+14:32:53 tuning/baseline smt 1250/3000 teacher long acc=0.335 rnn long acc=0.282 select=1.3617 0.105s/step
+14:33:19 tuning/baseline smt 1500/3000 teacher long acc=0.323 rnn long acc=0.269 select=1.3636 0.104s/step
+14:34:05 tuning/baseline smt 1750/3000 teacher long acc=0.341 rnn long acc=0.285 select=1.3595 0.130s/step
+14:34:43 tuning/baseline smt 2000/3000 teacher long acc=0.360 rnn long acc=0.320 select=1.3172 0.136s/step
+2026-10-14 14:35:10 killed (neighbour needs memory, free 10537 MiB); will restart from the last checkpoint: smt_memup_stack.py --phase baseline --override '{"dmt_steps":6000}'
+2026-10-14 14:35:30 queue: ['smt_memup_stack.py --phase baseline --override \'{"dmt_steps":6000}\'', 'smt_memup_stack.py --phase baseline --override \'{"smt_steps":30000,"dmt_steps":6000}\'']
+2026-10-14 14:59:38 queue: ['smt_memup_stack.py --phase baseline --override \'{"dmt_steps":6000}\'', 'smt_memup_stack.py --phase baseline --override \'{"smt_steps":30000,"dmt_steps":6000}\'']
+2026-10-14 15:05:15 queue: ['smt_memup_stack.py --phase baseline --override \'{"dmt_steps":6000}\'', 'smt_memup_stack.py --phase baseline --override \'{"smt_steps":30000,"dmt_steps":6000}\'']
+2026-10-14 15:15:27 queue: ['smt_memup_stack.py --phase baseline --override \'{"dmt_steps":6000}\'', 'smt_memup_stack.py --phase baseline --override \'{"smt_steps":30000,"dmt_steps":6000}\'']
+2026-10-14 15:48:35 stopped by agent: the version-1 test report goes first (user, 14.10); re-queued afterwards

@@ -1,0 +1,9 @@
+16:34:02 run directory: /mem/runs/stack02_4c69a2819ab8
+16:34:02 resume surprise_ctx_k smt at 3000/3000
+16:34:03 resume surprise_ctx_k dmt at 250/1500
+16:35:49 seed27/surprise_ctx_k dmt 500/1500 teacher long acc=0.612 rnn long acc=0.456 select=1.1867 0.424s/step
+16:36:49 seed27/surprise_ctx_k dmt 750/1500 teacher long acc=0.612 rnn long acc=0.545 select=1.0218 0.333s/step
+16:37:49 seed27/surprise_ctx_k dmt 1000/1500 teacher long acc=0.612 rnn long acc=0.585 select=0.9470 0.303s/step
+16:38:49 seed27/surprise_ctx_k dmt 1250/1500 teacher long acc=0.612 rnn long acc=0.609 select=0.8890 0.287s/step
+16:39:50 seed27/surprise_ctx_k dmt 1500/1500 teacher long acc=0.612 rnn long acc=0.608 select=0.8821 0.278s/step
+16:39:50 done stack seed27/surprise_ctx_k

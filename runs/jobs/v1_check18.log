@@ -1,0 +1,21 @@
+detector window step 2000 best 0.211
+detector context step 2000 best 0.2616
+seed7/baseline: completed ok=True smt_best=3000 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=3000; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed7/uniform: completed ok=True smt_best=3000 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=3000; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed7/random_k: completed ok=True smt_best=3000 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=3000; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed7/surprise_k: completed ok=True smt_best=2750 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=2750; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed7/surprise_ctx_k: completed ok=True smt_best=3000 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=3000; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed7/oracle_prefix_k: completed ok=True smt_best=3000 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=3000; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed17/baseline: completed ok=True smt_best=3000 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=3000; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed17/uniform: completed ok=True smt_best=2750 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=2750; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed17/random_k: completed ok=True smt_best=3000 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=3000; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed17/surprise_k: completed ok=True smt_best=3000 dmt_best=1250; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=3000; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1250
+seed17/surprise_ctx_k: completed ok=True smt_best=3000 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=3000; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed17/oracle_prefix_k: completed ok=True smt_best=3000 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=3000; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed27/baseline: completed ok=True smt_best=3000 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=3000; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed27/uniform: completed ok=True smt_best=3000 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=3000; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed27/random_k: completed ok=True smt_best=3000 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=3000; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed27/surprise_k: completed ok=True smt_best=2750 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=2750; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed27/surprise_ctx_k: completed ok=True smt_best=3000 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=3000; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+seed27/oracle_prefix_k: completed ok=True smt_best=3000 dmt_best=1500; smt_last step=3000 ok=True sched_last_epoch=3000 hist=3000 best_step=3000; dmt_last step=1500 ok=True sched_last_epoch=1500 hist=1500 best_step=1500
+complete: 18/18

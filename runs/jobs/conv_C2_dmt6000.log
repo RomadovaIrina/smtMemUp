@@ -1,0 +1,40 @@
+16:54:09 run directory: /mem/runs/stack02_fa90a9158b51
+16:54:10 resume baseline smt at 2000/3000
+16:55:19 tuning/baseline smt 2250/3000 teacher long acc=0.371 rnn long acc=0.331 select=1.3132 0.275s/step
+16:56:27 tuning/baseline smt 2500/3000 teacher long acc=0.375 rnn long acc=0.326 select=1.2884 0.274s/step
+16:57:35 tuning/baseline smt 2750/3000 teacher long acc=0.387 rnn long acc=0.343 select=1.2792 0.273s/step
+16:58:43 tuning/baseline smt 3000/3000 teacher long acc=0.396 rnn long acc=0.356 select=1.2742 0.273s/step
+16:59:52 tuning/baseline dmt 250/6000 teacher long acc=0.396 rnn long acc=0.379 select=1.3009 0.274s/step
+17:01:00 tuning/baseline dmt 500/6000 teacher long acc=0.396 rnn long acc=0.393 select=1.2921 0.275s/step
+17:02:11 tuning/baseline dmt 750/6000 teacher long acc=0.396 rnn long acc=0.422 select=1.2414 0.277s/step
+17:03:20 tuning/baseline dmt 1000/6000 teacher long acc=0.396 rnn long acc=0.414 select=1.2518 0.277s/step
+17:04:29 tuning/baseline dmt 1250/6000 teacher long acc=0.396 rnn long acc=0.411 select=1.2727 0.277s/step
+17:05:39 tuning/baseline dmt 1500/6000 teacher long acc=0.396 rnn long acc=0.407 select=1.2547 0.277s/step
+17:06:48 tuning/baseline dmt 1750/6000 teacher long acc=0.396 rnn long acc=0.417 select=1.2482 0.277s/step
+17:07:56 tuning/baseline dmt 2000/6000 teacher long acc=0.396 rnn long acc=0.428 select=1.2186 0.276s/step
+17:09:15 tuning/baseline dmt 2250/6000 teacher long acc=0.396 rnn long acc=0.357 select=1.3014 0.281s/step
+17:10:23 tuning/baseline dmt 2500/6000 teacher long acc=0.396 rnn long acc=0.419 select=1.2212 0.280s/step
+17:11:31 tuning/baseline dmt 2750/6000 teacher long acc=0.396 rnn long acc=0.407 select=1.2540 0.279s/step
+17:12:40 tuning/baseline dmt 3000/6000 teacher long acc=0.396 rnn long acc=0.448 select=1.1895 0.279s/step
+17:13:46 tuning/baseline dmt 3250/6000 teacher long acc=0.396 rnn long acc=0.452 select=1.1750 0.278s/step
+17:14:42 tuning/baseline dmt 3500/6000 teacher long acc=0.396 rnn long acc=0.433 select=1.2234 0.274s/step
+17:15:41 tuning/baseline dmt 3750/6000 teacher long acc=0.396 rnn long acc=0.450 select=1.1811 0.271s/step
+17:16:41 tuning/baseline dmt 4000/6000 teacher long acc=0.396 rnn long acc=0.430 select=1.2154 0.269s/step
+17:17:36 tuning/baseline dmt 4250/6000 teacher long acc=0.396 rnn long acc=0.461 select=1.1560 0.267s/step
+17:18:31 tuning/baseline dmt 4500/6000 teacher long acc=0.396 rnn long acc=0.461 select=1.1626 0.264s/step
+17:19:26 tuning/baseline dmt 4750/6000 teacher long acc=0.396 rnn long acc=0.455 select=1.1714 0.262s/step
+17:20:22 tuning/baseline dmt 5000/6000 teacher long acc=0.396 rnn long acc=0.452 select=1.1570 0.260s/step
+17:21:17 tuning/baseline dmt 5250/6000 teacher long acc=0.396 rnn long acc=0.468 select=1.1434 0.258s/step
+17:22:13 tuning/baseline dmt 5500/6000 teacher long acc=0.396 rnn long acc=0.462 select=1.1395 0.256s/step
+17:23:23 tuning/baseline dmt 5750/6000 teacher long acc=0.396 rnn long acc=0.464 select=1.1492 0.257s/step
+17:24:32 tuning/baseline dmt 6000/6000 teacher long acc=0.396 rnn long acc=0.475 select=1.1369 0.258s/step
+{
+  "teacher_long_accuracy": 0.3832132259431963,
+  "rnn_dmt_long_accuracy": 0.4429843153878762,
+  "chance": 0.25,
+  "required_teacher": 0.35,
+  "required_rnn": 0.3,
+  "smt_best_step": 3000,
+  "dmt_best_step": 6000,
+  "passed": true
+}

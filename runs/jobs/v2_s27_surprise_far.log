@@ -1,0 +1,20 @@
+20:03:13 run directory: /mem/runs/stackwin_26f6a039d62c
+20:04:23 seed27/surprise_far smt 250/3000 teacher long acc=0.316 rnn long acc=0.249 select=1.4494 0.281s/step
+20:05:29 seed27/surprise_far smt 500/3000 teacher long acc=0.282 rnn long acc=0.243 select=1.4195 0.272s/step
+20:06:38 seed27/surprise_far smt 750/3000 teacher long acc=0.309 rnn long acc=0.253 select=1.4029 0.274s/step
+20:07:47 seed27/surprise_far smt 1000/3000 teacher long acc=0.318 rnn long acc=0.246 select=1.3967 0.274s/step
+20:08:56 seed27/surprise_far smt 1250/3000 teacher long acc=0.349 rnn long acc=0.281 select=1.3720 0.274s/step
+20:10:05 seed27/surprise_far smt 1500/3000 teacher long acc=0.376 rnn long acc=0.248 select=1.3031 0.275s/step
+20:11:14 seed27/surprise_far smt 1750/3000 teacher long acc=0.407 rnn long acc=0.263 select=1.2851 0.275s/step
+20:12:23 seed27/surprise_far smt 2000/3000 teacher long acc=0.418 rnn long acc=0.295 select=1.2260 0.275s/step
+20:13:32 seed27/surprise_far smt 2250/3000 teacher long acc=0.452 rnn long acc=0.280 select=1.2305 0.275s/step
+20:14:40 seed27/surprise_far smt 2500/3000 teacher long acc=0.478 rnn long acc=0.295 select=1.1428 0.275s/step
+20:15:49 seed27/surprise_far smt 2750/3000 teacher long acc=0.516 rnn long acc=0.293 select=1.0862 0.275s/step
+20:16:58 seed27/surprise_far smt 3000/3000 teacher long acc=0.527 rnn long acc=0.313 select=1.0531 0.275s/step
+20:18:09 seed27/surprise_far dmt 250/1500 teacher long acc=0.527 rnn long acc=0.337 select=1.3721 0.282s/step
+20:19:18 seed27/surprise_far dmt 500/1500 teacher long acc=0.527 rnn long acc=0.481 select=1.1283 0.280s/step
+20:20:28 seed27/surprise_far dmt 750/1500 teacher long acc=0.527 rnn long acc=0.491 select=1.0941 0.280s/step
+20:21:42 seed27/surprise_far dmt 1000/1500 teacher long acc=0.527 rnn long acc=0.500 select=1.0781 0.284s/step
+20:23:13 seed27/surprise_far dmt 1250/1500 teacher long acc=0.527 rnn long acc=0.516 select=1.0544 0.300s/step
+20:25:01 seed27/surprise_far dmt 1500/1500 teacher long acc=0.527 rnn long acc=0.524 select=1.0552 0.322s/step
+20:25:01 done window seed27/surprise_far

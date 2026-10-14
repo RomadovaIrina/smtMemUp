@@ -1,0 +1,20 @@
+18:25:15 run directory: /mem/runs/stackwin_26f6a039d62c
+18:26:06 seed17/uniform_far smt 250/3000 teacher long acc=0.309 rnn long acc=0.263 select=1.4832 0.203s/step
+18:27:16 seed17/uniform_far smt 500/3000 teacher long acc=0.292 rnn long acc=0.251 select=1.3990 0.241s/step
+18:28:26 seed17/uniform_far smt 750/3000 teacher long acc=0.306 rnn long acc=0.246 select=1.4333 0.254s/step
+18:29:36 seed17/uniform_far smt 1000/3000 teacher long acc=0.417 rnn long acc=0.243 select=1.2296 0.261s/step
+18:30:46 seed17/uniform_far smt 1250/3000 teacher long acc=0.502 rnn long acc=0.279 select=1.0540 0.265s/step
+18:31:56 seed17/uniform_far smt 1500/3000 teacher long acc=0.602 rnn long acc=0.307 select=0.8631 0.267s/step
+18:33:06 seed17/uniform_far smt 1750/3000 teacher long acc=0.682 rnn long acc=0.319 select=0.7034 0.269s/step
+18:34:16 seed17/uniform_far smt 2000/3000 teacher long acc=0.747 rnn long acc=0.371 select=0.5535 0.270s/step
+18:35:26 seed17/uniform_far smt 2250/3000 teacher long acc=0.773 rnn long acc=0.379 select=0.5105 0.271s/step
+18:36:36 seed17/uniform_far smt 2500/3000 teacher long acc=0.796 rnn long acc=0.360 select=0.4661 0.272s/step
+18:37:45 seed17/uniform_far smt 2750/3000 teacher long acc=0.812 rnn long acc=0.363 select=0.4413 0.273s/step
+18:38:55 seed17/uniform_far smt 3000/3000 teacher long acc=0.807 rnn long acc=0.345 select=0.4230 0.273s/step
+18:40:10 seed17/uniform_far dmt 250/1500 teacher long acc=0.807 rnn long acc=0.560 select=1.0412 0.299s/step
+18:41:23 seed17/uniform_far dmt 500/1500 teacher long acc=0.807 rnn long acc=0.625 select=0.8322 0.297s/step
+18:42:36 seed17/uniform_far dmt 750/1500 teacher long acc=0.807 rnn long acc=0.686 select=0.7100 0.294s/step
+18:43:46 seed17/uniform_far dmt 1000/1500 teacher long acc=0.807 rnn long acc=0.695 select=0.6883 0.291s/step
+18:44:56 seed17/uniform_far dmt 1250/1500 teacher long acc=0.807 rnn long acc=0.714 select=0.6485 0.289s/step
+18:46:08 seed17/uniform_far dmt 1500/1500 teacher long acc=0.807 rnn long acc=0.703 select=0.6487 0.289s/step
+18:46:08 done window seed17/uniform_far

@@ -1,0 +1,20 @@
+17:21:50 run directory: /mem/runs/stackwin_26f6a039d62c
+17:22:45 seed7/base_window smt 250/3000 teacher long acc=0.301 rnn long acc=0.261 select=1.4771 0.217s/step
+17:23:52 seed7/base_window smt 500/3000 teacher long acc=0.302 rnn long acc=0.263 select=1.4102 0.244s/step
+17:24:56 seed7/base_window smt 750/3000 teacher long acc=0.318 rnn long acc=0.292 select=1.3914 0.247s/step
+17:26:05 seed7/base_window smt 1000/3000 teacher long acc=0.347 rnn long acc=0.273 select=1.3512 0.254s/step
+17:27:14 seed7/base_window smt 1250/3000 teacher long acc=0.412 rnn long acc=0.258 select=1.2462 0.259s/step
+17:28:23 seed7/base_window smt 1500/3000 teacher long acc=0.434 rnn long acc=0.252 select=1.2218 0.262s/step
+17:29:32 seed7/base_window smt 1750/3000 teacher long acc=0.480 rnn long acc=0.270 select=1.1465 0.264s/step
+17:30:42 seed7/base_window smt 2000/3000 teacher long acc=0.480 rnn long acc=0.299 select=1.1284 0.266s/step
+17:31:50 seed7/base_window smt 2250/3000 teacher long acc=0.518 rnn long acc=0.297 select=1.0732 0.267s/step
+17:33:00 seed7/base_window smt 2500/3000 teacher long acc=0.528 rnn long acc=0.320 select=1.0435 0.268s/step
+17:34:10 seed7/base_window smt 2750/3000 teacher long acc=0.538 rnn long acc=0.317 select=1.0075 0.269s/step
+17:35:19 seed7/base_window smt 3000/3000 teacher long acc=0.552 rnn long acc=0.305 select=0.9829 0.270s/step
+17:36:30 seed7/base_window dmt 250/1500 teacher long acc=0.552 rnn long acc=0.276 select=1.3655 0.282s/step
+17:37:40 seed7/base_window dmt 500/1500 teacher long acc=0.552 rnn long acc=0.388 select=1.2736 0.281s/step
+17:38:50 seed7/base_window dmt 750/1500 teacher long acc=0.552 rnn long acc=0.449 select=1.1620 0.280s/step
+17:39:58 seed7/base_window dmt 1000/1500 teacher long acc=0.552 rnn long acc=0.462 select=1.1415 0.279s/step
+17:41:06 seed7/base_window dmt 1250/1500 teacher long acc=0.552 rnn long acc=0.500 select=1.0926 0.277s/step
+17:42:14 seed7/base_window dmt 1500/1500 teacher long acc=0.552 rnn long acc=0.501 select=1.0800 0.277s/step
+17:42:14 done window seed7/base_window
