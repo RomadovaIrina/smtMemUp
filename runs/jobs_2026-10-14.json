@@ -1,0 +1,187 @@
+[
+ {
+  "name": "v1_s27_surprise_ctx_k",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp stack --seed 27 --variant surprise_ctx_k --threads 4 --gpu-memory-fraction 0.30",
+  "after": []
+ },
+ {
+  "name": "v1_s7_oracle_prefix_k",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp stack --seed 7 --variant oracle_prefix_k --threads 4 --gpu-memory-fraction 0.30",
+  "after": []
+ },
+ {
+  "name": "v1_s17_oracle_prefix_k",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp stack --seed 17 --variant oracle_prefix_k --threads 4 --gpu-memory-fraction 0.30",
+  "after": []
+ },
+ {
+  "name": "v1_s27_oracle_prefix_k",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp stack --seed 27 --variant oracle_prefix_k --threads 4 --gpu-memory-fraction 0.30",
+  "after": []
+ },
+ {
+  "name": "v1_check18",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/check_final_fits.py",
+  "after": [
+   "v1_s27_surprise_ctx_k",
+   "v1_s7_oracle_prefix_k",
+   "v1_s17_oracle_prefix_k",
+   "v1_s27_oracle_prefix_k"
+  ]
+ },
+ {
+  "name": "v1_test_report",
+  "cmd": "/mem/envs/smt-memup/bin/python smt_memup_stack.py --phase report --confirm-test --variants baseline,uniform,random_k,surprise_k,surprise_ctx_k,oracle_prefix_k --threads 4 --gpu-memory-fraction 0.25",
+  "after": [
+   "v1_check18"
+  ]
+ },
+ {
+  "name": "v1_test_outputs",
+  "cmd": "/mem/envs/smt-memup/bin/python make_test_outputs.py --h2 --gpu-memory-fraction 0.25",
+  "after": [
+   "v1_test_report"
+  ]
+ },
+ {
+  "name": "v2_gate",
+  "cmd": "/mem/envs/smt-memup/bin/python smt_memup_window.py --phase baseline --threads 4 --gpu-memory-fraction 0.30",
+  "after": []
+ },
+ {
+  "name": "v2_s7_base_window",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 7 --variant base_window --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s7_uniform_far",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 7 --variant uniform_far --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s7_random_far",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 7 --variant random_far --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s7_surprise_far",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 7 --variant surprise_far --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s7_ctx_far",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 7 --variant ctx_far --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s7_oracle_far",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 7 --variant oracle_far --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s17_base_window",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 17 --variant base_window --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s17_uniform_far",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 17 --variant uniform_far --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s17_random_far",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 17 --variant random_far --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s17_surprise_far",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 17 --variant surprise_far --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s17_ctx_far",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 17 --variant ctx_far --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s17_oracle_far",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 17 --variant oracle_far --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s27_base_window",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 27 --variant base_window --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s27_uniform_far",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 27 --variant uniform_far --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s27_random_far",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 27 --variant random_far --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s27_surprise_far",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 27 --variant surprise_far --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s27_ctx_far",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 27 --variant ctx_far --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "v2_s27_oracle_far",
+  "cmd": "/mem/envs/smt-memup/bin/python checks/fit_one.py --exp window --seed 27 --variant oracle_far --threads 4 --gpu-memory-fraction 0.30",
+  "after": [
+   "v2_gate"
+  ]
+ },
+ {
+  "name": "conv_C2_dmt6000",
+  "cmd": "/mem/envs/smt-memup/bin/python smt_memup_stack.py --phase baseline --override '{\"dmt_steps\": 6000}' --threads 4 --gpu-memory-fraction 0.30",
+  "after": []
+ },
+ {
+  "name": "conv_C1_smt30000",
+  "cmd": "/mem/envs/smt-memup/bin/python smt_memup_stack.py --phase baseline --override '{\"smt_steps\": 30000, \"dmt_steps\": 6000}' --threads 4 --gpu-memory-fraction 0.30",
+  "after": []
+ }
+]

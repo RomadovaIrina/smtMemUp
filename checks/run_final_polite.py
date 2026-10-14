@@ -2,7 +2,8 @@
 """Final Stack fits that yield the shared GPU to other users (launcher only; experiment code unchanged).
 
 Same disjoint worker groups as run_final_parallel.sh, same command (`--phase final`, 4 threads, nice 10,
---gpu-memory-fraction 0.30). Policy, checked every POLL seconds:
+--gpu-memory-fraction 0.30). Policy, checked every POLL seconds (revised 14.10: next to a neighbour, run ONE worker while >= START_FREE_FOREIGN_MIB
+is free and kill it as soon as free memory < KILL_FREE_FOREIGN_MIB; see gpu_polite.py). Original policy:
   * a foreign process (a GPU process not running one of our scripts, checks/gpu_polite.py) is on the GPU -> keep at most ONE of our workers and
     pause it (SIGSTOP: no compute, ~8 GB stays allocated); extra workers are killed; if free memory falls
     below KILL_FREE_MIB the paused one is killed too. Killed fits resume from their last checkpoint
@@ -27,19 +28,20 @@ os.environ["CUDA_VISIBLE_DEVICES"] = ""          # this supervisor never touches
 import torch  # noqa: E402  (only torch.load on CPU for checkpoint integrity)
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from gpu_polite import gpu_state  # noqa: E402  (foreign = not one of our scripts, see gpu_polite.py)
+from gpu_polite import KILL_FREE_FOREIGN_MIB, START_FREE_FOREIGN_MIB, gpu_state  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 PY = os.environ.get("PY", "/mem/envs/smt-memup/bin/python")
 if not Path(PY).exists():
     PY = str(ROOT / "envs/smt-memup/bin/python")
-GROUPS = ["baseline,uniform", "random_k,surprise_k", "surprise_ctx_k,oracle_prefix_k"]
+GROUPS = os.environ.get("FINAL_GROUPS", "baseline,uniform;random_k,surprise_k;surprise_ctx_k,oracle_prefix_k").split(";")
 MAX_WORKERS = int(os.environ.get("MAX_WORKERS", 2))
 START_FREE_MIB = int(os.environ.get("START_FREE_MIB", 10000))
 KILL_FREE_MIB = int(os.environ.get("KILL_FREE_MIB", 1500))
-QUIET_S = int(os.environ.get("QUIET_S", 120))
+QUIET_S = int(os.environ.get("QUIET_S", 20))
 STAGGER = int(os.environ.get("STAGGER", 90))
-POLL = int(os.environ.get("POLL", 15))
+KILL_COOLDOWN = int(os.environ.get("KILL_COOLDOWN", 120))   # after yielding to a growing neighbour, let it finish growing
+POLL = int(os.environ.get("POLL", 2))
 FRACTION = os.environ.get("GPU_FRACTION", "0.30")
 DISK_PAUSE_GB = float(os.environ.get("DISK_PAUSE_GB", 1.5))   # disk shared with /dub: below this, pause (no checkpoint writes)
 DISK_OK_GB = float(os.environ.get("DISK_OK_GB", 3.0))
@@ -162,14 +164,20 @@ class Worker:
 
 def main():
     workers = [Worker(i + 1, g) for i, g in enumerate(GROUPS)]
+    n_seeds = 3
+    for w in workers:                                  # groups whose fits are all complete need no process
+        if sum((d / "completed.pt").exists() for d in group_dirs(w.group)) == n_seeds * len(w.group.split(",")):
+            w.state = "done"
     log(f"polite final launcher: max {MAX_WORKERS} workers, start at >= {START_FREE_MIB} MiB free, "
         f"quiet {QUIET_S}s, fraction {FRACTION}")
     last_foreign, last_start = time.time() - QUIET_S, 0.0
-    foreign_seen = None
+    foreign_seen, last_foreign_log, last_kill = None, 0.0, 0.0
     while any(w.state not in ("done", "failed") for w in workers):
         for w in workers:
             w.reap()
-        free, foreign, _ = gpu_state()
+        free, foreign, ours = gpu_state()
+        mine = {w.proc.pid for w in workers if w.proc is not None}
+        others_ours = set(ours) - mine                # our processes from other launchers (queues)
         disk = disk_free_gb()
         if disk < DISK_PAUSE_GB:                      # shared disk almost full: stop writing until it recovers
             for w in workers:
@@ -179,17 +187,24 @@ def main():
             continue
         if foreign:
             last_foreign = time.time()
-            if foreign_seen != set(foreign):
+            if foreign_seen != set(foreign) and time.time() - last_foreign_log > 30:
                 log(f"foreign GPU processes {foreign} MiB; free {free} MiB")
-                foreign_seen = set(foreign)
+                foreign_seen, last_foreign_log = set(foreign), time.time()
             active = [w for w in workers if w.state in ("running", "paused")]
-            for w in active[1:]:
-                w.kill("yield GPU memory to a foreign process")
-            for w in active[:1]:
-                if w.state == "running":
-                    w.pause()
-                if free < KILL_FREE_MIB:
-                    w.kill(f"free memory {free} MiB < {KILL_FREE_MIB}")
+            if free < KILL_FREE_FOREIGN_MIB:              # the neighbour is growing: give the memory back at once
+                for w in active:
+                    w.kill(f"neighbour needs memory: free {free} MiB < {KILL_FREE_FOREIGN_MIB}")
+                last_kill = time.time()
+            else:                                         # room left: memory-gated, up to MAX_WORKERS next to the neighbour
+                for w in active:
+                    if w.state == "paused" and disk >= DISK_OK_GB:
+                        w.resume()
+                todo = [w for w in workers if w.state == "todo"]
+                if (len(active) < MAX_WORKERS and not others_ours and todo and free >= START_FREE_FOREIGN_MIB
+                        and disk >= DISK_OK_GB and time.time() - last_start >= STAGGER
+                        and time.time() - last_kill >= KILL_COOLDOWN):
+                    todo[0].start()
+                    last_start = time.time()
         else:
             if foreign_seen:
                 log(f"no foreign GPU processes; free {free} MiB")

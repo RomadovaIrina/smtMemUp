@@ -4,8 +4,15 @@ A GPU process is OURS if its command line runs one of our scripts; everything el
 FOREIGN and has priority. Both launchers (run_final_polite.py for Stack, polite_queue.py for MQAR) use the same
 definition, so they never mistake each other for a neighbour.
 """
+import os
 import subprocess
 from pathlib import Path
+
+# Next to a neighbour (user, 14.10: "if anything fits, fit in"): keep / start ONE of our processes only while plenty of
+# memory is free; the moment the neighbour grows and free memory drops below KILL_FREE_FOREIGN_MIB, our process is
+# killed (SIGKILL frees its memory at once) and later resumes from its last checkpoint.
+KILL_FREE_FOREIGN_MIB = int(os.environ.get("KILL_FREE_FOREIGN_MIB", 12000))
+START_FREE_FOREIGN_MIB = int(os.environ.get("START_FREE_FOREIGN_MIB", 22000))
 
 OUR_SCRIPTS = ("smt_memup_", "make_outputs.py", "make_test_outputs.py", "make_interim_figures.py",
                "h2_retention", "make_mqar_outputs.py")
