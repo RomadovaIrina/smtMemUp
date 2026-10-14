@@ -1,0 +1,8 @@
+[
+ {
+  "name": "conv_C1_smt30000",
+  "cmd": "/mem/envs/smt-memup/bin/python smt_memup_stack.py --phase baseline --override '{\"smt_steps\": 30000, \"dmt_steps\": 6000}' --threads 4 --gpu-memory-fraction 0.30",
+  "after": [],
+  "min_free": 10500
+ }
+]

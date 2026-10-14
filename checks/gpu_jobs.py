@@ -56,7 +56,8 @@ def main():
                 log(f"skipped (dependency failed): {j['name']}")
         free, foreign, _ = gpu_state()
         ready = [j for j in jobs if state[j["name"]] == "todo" and all(state.get(d) == "done" for d in j.get("after", []))]
-        if (ready and len(procs) < MAX_JOBS and free >= START_FREE_MIB and time.time() - last_start >= STAGGER
+        ready = [j for j in ready if free >= j.get("min_free", START_FREE_MIB)]     # per-job memory need (CPU jobs: 0)
+        if (ready and len(procs) < MAX_JOBS and time.time() - last_start >= STAGGER
                 and sum(foreign.values()) <= FOREIGN_MIB):
             j = ready[0]
             out = open(ROOT / "runs" / "jobs" / f"{j['name']}.log", "a")
