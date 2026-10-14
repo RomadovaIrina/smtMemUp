@@ -173,4 +173,4 @@ Test-набор:
 * `table_test_paired_intervals.csv`, `table_test_paired_per_seed.csv` — все заявленные сравнения: группы давности, модели и стадии, best/last.
 * `table_test_summary.csv` — точность и CE по seed, варианту, стадии, группе; голова teacher.
 * `table_test_h2_retention.csv` — H2 по seed и варианту: фиксированный набор и разделение по моменту push.
-* Сырые события test (`runs/stack02_4c69a2819ab8/test_events.csv`, 760 МБ) в git не входят; итоговые таблицы запуска — `runs/stack02_4c69a2819ab8/test_*.csv`.
+* Сырые события test (`runs/stack02_4c69a2819ab8/test_events.csv.gz`, 141 МБ) в git не входят; итоговые таблицы запуска — `runs/stack02_4c69a2819ab8/test_*.csv`.

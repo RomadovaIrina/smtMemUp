@@ -42,6 +42,26 @@ CONTEXT = [("baseline", v) for v in ("uniform", "random_k", "surprise_k")]
 SECONDARY = [(r, v) for v in ("surprise_ctx_k", "oracle_prefix_k") for r in ("random_k", "uniform", "surprise_k")]
 COMPARISONS = PRIMARY + CONTEXT + SECONDARY
 BLOCK = {**{c: "основное" for c in PRIMARY}, **{c: "контекст" for c in CONTEXT}, **{c: "доп. диагностика" for c in SECONDARY}}
+RULE = [("random_k", "surprise_k"), ("uniform", "surprise_k")]          # comparisons the decision rule is applied to
+
+
+def use_preset_v3(variants_present):
+    """Version 3 (smt_memup_v3.py, converged regime): decoder-aware selection is the confirmatory hypothesis."""
+    global VARIANTS, PRIMARY, CONTEXT, SECONDARY, COMPARISONS, BLOCK, RULE, TAG
+    VARIANTS = [v for v in ["baseline", "uniform", "random_k", "surprise_k", "surprise_ctx_k", "oracle_prefix_k"]
+                if v in variants_present]
+    PRIMARY = [("baseline", "surprise_ctx_k"), ("random_k", "surprise_ctx_k"), ("uniform", "surprise_ctx_k"),
+               ("random_k", "surprise_k"), ("uniform", "surprise_k")]
+    CONTEXT = [("baseline", v) for v in ("uniform", "random_k", "surprise_k")] + [("surprise_k", "surprise_ctx_k")]
+    SECONDARY = ([(r, "oracle_prefix_k") for r in ("baseline", "random_k", "surprise_ctx_k")]
+                 if "oracle_prefix_k" in VARIANTS else [])
+    COMPARISONS = PRIMARY + CONTEXT + SECONDARY
+    BLOCK = {**{c: "основное" for c in PRIMARY}, **{c: "контекст" for c in CONTEXT}, **{c: "доп. диагностика" for c in SECONDARY}}
+    RULE = PRIMARY
+    TAG = "TEST версии 3 (сходящийся режим; 2048 новых последовательностей, один раз), 3 новых seeds"
+    SHORT["surprise_ctx_k"] = "surprise-K по входам декодера"
+    TICK["surprise_ctx_k"] = "surprise-K\nвходы декодера"
+    MINI["surprise_ctx_k"] = "ctx"
 STAGE_MODEL = {("smt", "teacher"): "teacher после SMT", ("smt", "rnn"): "RNN до DMT", ("dmt", "rnn"): "RNN после DMT"}
 BINS, BIN_LABELS = [0, 2, 4, 8, 16, 64], ["1–2", "3–4", "5–8", "9–16", "17+"]
 TAG = "TEST (2048 последовательностей, один раз), 3 seeds"
@@ -74,7 +94,8 @@ def md_table(df, floatfmt="{:.3f}"):
 
 
 def load_events(run):
-    ev = pd.read_csv(run / "test_events.csv")
+    f = run / "test_events.csv"
+    ev = pd.read_csv(f if f.exists() else run / "test_events.csv.gz")
     assert set(ev.split) == {"test"}, "only the test split belongs here"
     assert set(ev.variant) == set(VARIANTS), f"all six pre-declared variants must be reported: {sorted(set(ev.variant))}"
     assert set(ev.checkpoint) == {"best", "last"}
@@ -111,17 +132,16 @@ def paired(ev, cfg):
 def decision_rule(iv, cfg, checkpoint="best"):
     """Pre-registered rule for H1 (both primary comparisons, RNN after DMT, delay >= long_delay)."""
     g = f"delay>={cfg.long_delay} (первичная)"
-    m = iv[(iv.model == "rnn") & (iv.stage == "dmt") & (iv.group == g) & (iv.checkpoint == checkpoint)
-           & (iv.variant == "surprise_k") & iv.reference.isin(["random_k", "uniform"])]
+    m = iv[(iv.model == "rnn") & (iv.stage == "dmt") & (iv.group == g) & (iv.checkpoint == checkpoint)]
     rows = []
-    for ref in ("random_k", "uniform"):
-        ce = m[(m.reference == ref) & (m.metric == "ce")].iloc[0]
-        acc = m[(m.reference == ref) & (m.metric == "correct")].iloc[0]
+    for ref, var in RULE:
+        ce = m[(m.reference == ref) & (m.variant == var) & (m.metric == "ce")].iloc[0]
+        acc = m[(m.reference == ref) & (m.variant == var) & (m.metric == "correct")].iloc[0]
         c = {"1: средняя ΔCE < 0": ce.delta_mean < 0,
              "2: ΔCE < 0 у каждого seed": bool(ce.delta_mean < 0 and ce.seeds_same_sign == ce.seeds),
              "3: 95% ДИ (последовательности) не содержит 0": bool(ce.ci_sequences_high < 0),
              "4: средняя Δaccuracy ≥ 0": bool(acc.delta_mean >= 0)}
-        rows.append(dict(checkpoint=checkpoint, comparison=f"surprise-K − {SHORT[ref]}", delta_ce=ce.delta_mean,
+        rows.append(dict(checkpoint=checkpoint, comparison=f"{SHORT[var]} − {SHORT[ref]}", delta_ce=ce.delta_mean,
                          ci_ce=f"[{ce.ci_sequences_low:+.4f}, {ce.ci_sequences_high:+.4f}]",
                          delta_acc=acc.delta_mean, **{k: "да" if v else "нет" for k, v in c.items()},
                          passed=all(c.values())))
@@ -136,7 +156,7 @@ def fig_primary(sm, cfg):
         for j, v in enumerate(VARIANTS):
             d = g[g.variant == v]
             for _, r in d.iterrows():
-                ax[i].scatter(j + (r.seed - 17) / 60, r[col], marker=SEED_MARK[r.seed], s=40, color=COLOR[v],
+                ax[i].scatter(j + (list(SEED_MARK).index(r.seed) - 1) / 60, r[col], marker=SEED_MARK[r.seed], s=40, color=COLOR[v],
                               edgecolor="white", zorder=3)
             ax[i].hlines(d[col].mean(), j - .28, j + .28, color=COLOR[v], lw=3)
         ax[i].set_xticks(range(len(VARIANTS)), [TICK[v] for v in VARIANTS], fontsize=8.5)
@@ -179,7 +199,8 @@ def fig_forest(iv, ps, cfg):
     ax[0].set_yticks(range(len(COMPARISONS)), labels[::-1], fontsize=8.5)
     ax[0].scatter([], [], s=45, color=MUTED, label="best checkpoint: среднее по seeds, 95% ДИ по последовательностям")
     ax[0].scatter([], [], s=45, color="white", edgecolor=MUTED, label="last checkpoint (проверка устойчивости)")
-    ax[0].scatter([], [], s=14, marker="o", color=MUTED, label="отдельные seeds (○ 7, □ 17, △ 27), best")
+    seeds_txt = ", ".join(f"{m} {sd}" for sd, m in zip(SEED_MARK, "○□△"))
+    ax[0].scatter([], [], s=14, marker="o", color=MUTED, label=f"отдельные seeds ({seeds_txt}), best")
     fig.legend(loc="lower center", ncol=3, fontsize=8.5, bbox_to_anchor=(.5, -.04))
     fig.suptitle(f"Парные разности на одних и тех же test-последовательностях: RNN после DMT, давность ≥ {cfg.long_delay}.\n"
                  f"Сверху вниз: основные, контекст (против baseline), доп. диагностика. ДИ по последовательностям не учитывает "
@@ -197,7 +218,7 @@ def fig_stages(sm, cfg):
         d = g[g.model_stage == ms]
         for j, v in enumerate(VARIANTS):
             dv = d[d.variant == v]
-            ax[i].scatter([j + (s - 17) / 60 for s in dv.seed], dv[col], c=COLOR[v], s=22, zorder=3)
+            ax[i].scatter([j + (list(SEED_MARK).index(s) - 1) / 60 for s in dv.seed], dv[col], c=COLOR[v], s=22, zorder=3)
             ax[i].hlines(dv[col].mean(), j - .3, j + .3, color=COLOR[v], lw=3)
         ax[i].axhline(1 / cfg.n_elements, color=MUTED, ls=":", lw=1)
         ax[i].set_xticks(range(len(VARIANTS)), [MINI[v] for v in VARIANTS], fontsize=8, rotation=40, ha="right")
@@ -285,6 +306,7 @@ def main():
     ap.add_argument("--run", default=str(RUN))
     ap.add_argument("--out", default=str(OUT))
     ap.add_argument("--h2", action="store_true")
+    ap.add_argument("--preset", choices=["v1", "v3"], default="v1")
     ap.add_argument("--threads", type=int, default=4)
     ap.add_argument("--gpu-memory-fraction", type=float, default=0.15)
     a = ap.parse_args()
@@ -292,7 +314,11 @@ def main():
     OUT.mkdir(exist_ok=True)
     style()
     cfg = S.Config()
+    if a.preset == "v3":
+        f = RUN / "test_events.csv.gz"
+        use_preset_v3(set(pd.read_csv(f, usecols=["variant"]).variant))
     ev = load_events(RUN)
+    SEED_MARK.clear(); SEED_MARK.update({sd: m for sd, m in zip(sorted(ev.seed.unique()), "os^")})
     sm = summary_table(ev, cfg)
     sm.to_csv(OUT / "table_test_summary.csv", index=False)
     iv, ps = paired(ev, cfg)

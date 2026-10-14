@@ -56,6 +56,15 @@ python smt_memup_mqar.py --phase benchmark|audit|baseline|tune|final|report --co
   (teacher 11,7% среди записанных значений при уровне наугад 12,5%). По решению пользователя MQAR отложен до проверенной
   на Stack интеграции.
 
+**Завтра: версия 3 — сравнение версии 1 в сходящемся режиме** (всё подготовлено, на GPU ещё не запускалось):
+* что это: SMT 10 000 шагов (постоянный LR после разогрева, как у авторов), DMT 6000, новые seeds 37 / 47 / 57,
+  новый test. Surprise по входам декодера (ctx) — подтверждающая гипотеза. Протокол — `proposals/preregistration_v3.md`;
+  ноутбук — `04_smt_memup_v3.ipynb`; код — `smt_memup_v3.py`; проверки — `checks/test_smt_memup_v3.py` (7/7);
+* запуск при свободном GPU: `checks/run_v3.sh` (15 обучений, ~6,3 ч) или `checks/run_v3.sh --with-oracle` (18, ~7,5 ч);
+* прогресс (безопасно на CPU): `python smt_memup_v3.py --phase speed` или раздел 4 ноутбука;
+* test — один раз, только с разрешения: раздел 5 ноутбука или команды в предрегистрации;
+* **не править `smt_memup_v3.py` во время обучений**: его хэш входит в identity, и путь каталога запуска изменится.
+
 **Не сделано / ждёт решения:**
 * **Test версии 2 не запускался — только с разрешения пользователя.** Команды:
   `python smt_memup_window.py --phase report --confirm-test`, затем `python make_v2_outputs.py --test`.
@@ -73,7 +82,7 @@ python smt_memup_mqar.py --phase benchmark|audit|baseline|tune|final|report --co
   `.git/config` задан `core.sshCommand` с нашим ключом `~/.ssh/id_ed25519`.
 
 **Что не в git:**
-* checkpoints всех обучений и сырые события test (`runs/stack02_4c69a2819ab8/test_events.csv`, 760 МБ) лежат только
+* checkpoints всех обучений и сырые события test (`runs/stack02_4c69a2819ab8/test_events.csv.gz`, 141 МБ) лежат только
   на сервере;
 * шесть `.pt` seed 7 в git — устаревшие версии от 13.10.
 
