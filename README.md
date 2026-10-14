@@ -15,6 +15,7 @@
 uv venv --python 3.12.3 envs/smt-memup
 uv pip install --python envs/smt-memup/bin/python torch==2.9.1 torchvision==0.24.1 --index-url https://download.pytorch.org/whl/cu128
 uv pip install --python envs/smt-memup/bin/python numpy==2.1.0 pandas==2.3.3 matplotlib==3.10.8 einops==0.8.1 x-transformers==2.18.5 tqdm==4.67.1 pydantic==2.14.1 ipykernel jupyter nbformat nbclient nbconvert
+uv pip install --python envs/smt-memup/bin/python wandb==0.22.2 pyyaml   # Zoology импортирует wandb (на identity Stack не влияет)
 envs/smt-memup/bin/python -m ipykernel install --user --name smt-memup --display-name "Python (smt-memup)"
 ```
 
@@ -38,7 +39,27 @@ python smt_memup_mqar.py --phase benchmark|audit|baseline|tune|final|report --co
 
 ## Продолжение на другом сервере (инструкция для агента)
 
-### 1. Где остановились (13.10.2026, ~19:00)
+### 0. Обновление 14.10.2026 (сервер с RTX 5090, репозиторий в `/mem`)
+* Окружение пересобрано по списку выше; `check_resume_identity.py` → OK; проверки на CPU: Stack 16/16, MQAR 13/13.
+  Все начатые final fits совместимы (identity, initial_hash, scheduler).
+* GPU делится с пайплайнами `/dub`; пользователь разрешил GPU **только так, чтобы им не мешать**. Поэтому:
+  * Stack final — `checks/run_final_polite.py` (вместо `run_final_parallel.sh`): те же группы и команда; при чужом
+    процессе на GPU лишние воркеры останавливаются, один ставится на паузу; resume с checkpoint; `.pt.bak`-копии.
+    Лог `runs/final_polite.log`.
+  * MQAR — `checks/polite_queue.py` (очередь команд, при чужом процессе — kill и restart с checkpoint). Лог `runs/mqar_queue.log`.
+  * «Наш» процесс определяется по командной строке (`checks/gpu_polite.py`).
+* **Важно:** тип устройства входит в identity. Запуск `S.Experiment` на CPU создаёт новый пустой каталог; `make_outputs.py`
+  теперь находит сохранённый CUDA-запуск сам (`SavedRun`), а `--phase report` надо запускать с видимым GPU.
+* Новые файлы (обучающий код Stack не менялся):
+  * `make_test_outputs.py` — таблицы и графики **по test** в `outputs_test/` (все заявленные сравнения, включая вторичные
+    против surprise_k, которых нет в `final_report`; группы давности; best/last; teacher / RNN до и после DMT / голова teacher;
+    правило вывода 8.0). Флаг `--h2` — H2 на test.
+  * `h2_retention.py` — H2-probe с разделением source≤start / source>start и фиксированным набором ответов (давность > 16)
+    для сравнения горизонтов.
+  * `outputs_mqar/protocol_mqar_v1.md` — протокол MQAR (конфиг `pilot01`, gate по связыванию, α-сетка {0,3; 1; 3}).
+    В `smt_memup_mqar.py` добавлены точность/CE среди записанных значений и оценка с перемешанным порядком запросов.
+
+### 1. Где остановились (13.10.2026, ~19:00; актуальное — раздел 0)
 
 **Stack Operations** (ноутбук 02, запуск `runs/stack02_4c69a2819ab8`):
 * baseline (gate пройден), аудит отбора и подбор α закончены. У всех вариантов зафиксирован α = 1,0 — это край сетки, ограничение записано в `outputs_v2/README.md`.

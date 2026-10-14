@@ -255,6 +255,36 @@ def _():
 
 
 
+@check("Binding metrics: candidate-restricted CE/accuracy = softmax over the written values; shuffled query order")
+def _():
+    teacher, rnn = S.make_models(TINY, 8, DEV)
+    data = Q.sample_mqar(TINY, 12, 5)
+    N = TINY.num_kv_pairs
+    ev = Q.evaluate(teacher, rnn, data, TINY, DEV, seed=1, variant="baseline", stage="dmt", split="x")
+    # reference computation, one answer at a time
+    tm = Q.all_states(teacher, data["x"], TINY, DEV)
+    b, t = torch.where(data["target_mask"])
+    logits = teacher.teacher_readout(tm[b, t]).detach()
+    written = data["x"][:, 1:2 * N:2][b]
+    cl = logits.gather(1, written)
+    yi = (written == data["y"][b, t][:, None]).float().argmax(1)
+    te = ev[ev.model == "teacher"].reset_index(drop=True)
+    assert np.allclose(te.cand_ce, torch.nn.functional.cross_entropy(cl, yi, reduction="none").numpy(), atol=1e-5)
+    assert np.array_equal(te.cand_correct, (cl.argmax(1) == yi).numpy())
+    assert all(sorted(g) == list(range(N)) for _, g in te.groupby("sequence").query_rank)
+    assert (written.gather(1, torch.as_tensor(te.pair_slot.to_numpy())[:, None])[:, 0] == data["y"][b, t]).all()
+    # shuffled order: same pairs and query positions, answer = value of the key now asked, order independent of slot
+    sh = Q.shuffle_query_order(data, TINY, 3)
+    assert torch.equal(sh["target_mask"], data["target_mask"]) and torch.equal(sh["x"][:, :2 * N], data["x"][:, :2 * N])
+    assert torch.equal(sh["x"][~data["target_mask"]], data["x"][~data["target_mask"]])
+    big = Q.sample_mqar(Q.candidate("pilot01"), 512, 9)
+    cfg = Q.candidate("pilot01")
+    first = lambda d: ((d["source_pos"][d["target_mask"]].view(-1, cfg.num_kv_pairs)[:, 0] - 1) // 2 == 0).float().mean()
+    assert first(big) > 0.2 and abs(first(Q.shuffle_query_order(big, cfg, 4)) - 1 / cfg.num_kv_pairs) < 0.05
+    sm = Q.summarize(ev, TINY, keys=("model",))
+    assert {"cand_accuracy", "cand_ce", "pred_in_written"} <= set(sm.columns) and sm.cand_accuracy.notna().all()
+
+
 @check("Window r of every candidate follows the pre-set rule (smallest grid r with the pair visible for >= half of answers)")
 def _():
     for name in Q.CANDIDATES:

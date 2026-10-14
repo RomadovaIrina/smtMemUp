@@ -1,0 +1,3 @@
+split,sequences,answers,answers_per_sequence,delay_median,delay_p95,long_fraction,pair_inside_last_r_tokens,anchors_inside_written_prefix,anchors_with_future_answers,mean_pool,anchors_pool_gt_K,chance_structured,chance_vocab,unique_sequences
+validation,512,4096,8,19.0,49.0,0.37890625,0.5751953125,0.25,0.85009765625,4.7191267013549805,0.7013210654258728,0.125,0.015625,512
+tuning,512,4096,8,19.0,49.0,0.390869140625,0.564208984375,0.25,0.87890625,4.687777996063232,0.7083333134651184,0.125,0.015625,512

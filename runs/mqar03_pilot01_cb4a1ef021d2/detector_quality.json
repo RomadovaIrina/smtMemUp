@@ -1,0 +1,16 @@
+{
+  "window": {
+    "ce": 2.9748051166534424,
+    "acc_pair_in_window": 0.17568152315015145,
+    "acc_pair_outside": 0.03753501400560224,
+    "auc_pair_outside": 0.9523748919732324,
+    "n": 4096
+  },
+  "context": {
+    "ce": 3.7519924640655518,
+    "mean_ce_future_source": 2.0905447006225586,
+    "mean_ce_prefix_source": 4.305819988250732,
+    "auc_prefix_source": 1.0,
+    "n": 131070
+  }
+}

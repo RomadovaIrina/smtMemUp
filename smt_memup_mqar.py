@@ -82,13 +82,17 @@ class MQARConfig:
     min_lr_ratio: float = 0.1
     # auxiliary loss
     K: int = 4
-    alpha_grid: tuple = (0.1, 0.3, 1.0)
+    alpha_grid: tuple = (0.3, 1.0, 3.0)   # Stack: every variant chose 1.0, the edge of (0.1, 0.3, 1.0); fixed before any MQAR fit
     local_window: int = 8
-    detector_steps: int = 2000
+    # detectors: same GRU family as Stack, larger and longer. With the Stack setting (16/64, 2000 steps) the MQAR window
+    # detector ranked pair-outside answers with AUC 0.79 only; 64/128 reaches ~0.94 by 4000 steps (CPU trial on validation).
+    # A local GRU stays at the value-set level (~18% when the pair is inside the window): it does not learn binding,
+    # but the RANKING (pair outside window -> high surprise), which is what top-K uses, is close to the ideal one.
+    detector_steps: int = 20000
     detector_batch_size: int = 32
     detector_lr: float = 1e-3
-    detector_hidden: int = 64
-    detector_embed: int = 16
+    detector_hidden: int = 128
+    detector_embed: int = 64
     detector_seed: int = 911
     # protocol
     eval_every: int = 250
@@ -209,6 +213,25 @@ def sample_mqar(cfg: MQARConfig, batch_size: int, seed: int) -> dict:
     batch = annotate_mqar(x, y, cfg.num_kv_pairs)
     check_batch(batch, cfg)
     return batch
+
+
+def shuffle_query_order(batch: dict, cfg: MQARConfig, seed: int) -> dict:
+    """Binding control (evaluation only): the same written pairs and query positions, but the keys are assigned
+    to the query positions by a uniformly random permutation (labels follow the keys). The generator places the
+    keys of earlier pairs at earlier queries more often (power-law gaps drawn without replacement), so a model
+    could exceed 1/N among the written values by query order alone; here the order carries no information."""
+    x, m = batch["x"].clone(), batch["target_mask"]
+    N = cfg.num_kv_pairs
+    keys, vals = x[:, 0:2 * N:2], x[:, 1:2 * N:2]
+    g = torch.Generator().manual_seed(int(seed))
+    y = torch.full_like(x, IGNORE)
+    for b in range(len(x)):
+        q = torch.where(m[b])[0]
+        perm = torch.randperm(N, generator=g)
+        x[b, q], y[b, q] = keys[b, perm], vals[b, perm]
+    out = annotate_mqar(x, y, N)
+    check_batch(out, cfg)
+    return out
 
 
 def check_batch(batch: dict, cfg: MQARConfig) -> bool:
@@ -428,8 +451,11 @@ def dmt_loss(teacher, rnn, batch: dict, cfg: MQARConfig, device, generator: torc
 @torch.no_grad()
 def evaluate(teacher, rnn, batch: dict, cfg: MQARConfig, device, **labels) -> pd.DataFrame:
     """One row per (answer, model). Own head and frozen teacher head ('shared_*') on the same state.
-    pred_in_written: the predicted token is one of the values written in this sequence (separates
-    'knows the value set' from 'knows the binding')."""
+    pred_in_written: the predicted token is one of the values written in this sequence ('knows the value set').
+    cand_*: the same logits restricted to the N values written in this sequence (candidates come from the
+    inputs only). Chance among candidates is 1/N; clearly above it = the key selects its value (binding). The
+    query order leaks a little (see shuffle_query_order), so the gate reads the shuffled-order split.
+    query_rank: 0 for the first query of the sequence, ...; pair_slot: which written pair is asked."""
     teacher.eval(); rnn.eval()
     N = cfg.num_kv_pairs
     frames = []
@@ -441,16 +467,24 @@ def evaluate(teacher, rnn, batch: dict, cfg: MQARConfig, device, **labels) -> pd
         b, t = torch.where(part["target_mask"])
         y = part["y"][b, t]
         written = x[:, 1:2 * N:2][b]
+        slot = (part["source_pos"][b, t] - 1) // 2
+        rank = part["target_mask"].long().cumsum(1)[b, t] - 1
+        cand_y = (written == y[:, None]).float().argmax(1)          # index of the answer among the candidates
         for name, mem, head in (("teacher", tm, teacher.teacher_readout), ("rnn", rm, rnn.rnn_readout)):
             z = mem[b.to(device), t.to(device)]
             own, shared = head(z).float().cpu(), teacher.teacher_readout(z).float().cpu()
             pred, spred = own.argmax(-1), shared.argmax(-1)
+            cand, scand = own.gather(1, written), shared.gather(1, written)
             frames.append(pd.DataFrame(dict(
                 **labels, model=name, sequence=(b + lo).numpy(), t=t.numpy(),
                 delay=part["delay"][b, t].numpy(), target=y.numpy(), correct=(pred == y).numpy(),
                 ce=F.cross_entropy(own, y, reduction="none").numpy(),
                 shared_correct=(spred == y).numpy(), shared_ce=F.cross_entropy(shared, y, reduction="none").numpy(),
                 pred_in_written=(pred[:, None] == written).any(1).numpy(),
+                cand_correct=(cand.argmax(1) == cand_y).numpy(), cand_ce=F.cross_entropy(cand, cand_y, reduction="none").numpy(),
+                shared_cand_correct=(scand.argmax(1) == cand_y).numpy(),
+                shared_cand_ce=F.cross_entropy(scand, cand_y, reduction="none").numpy(),
+                query_rank=rank.numpy(), pair_slot=slot.numpy(),
                 memory_mse=(mem - tm)[b.to(device), t.to(device)].square().mean(-1).cpu().numpy())))
     return pd.concat(frames, ignore_index=True)
 
@@ -458,8 +492,16 @@ def evaluate(teacher, rnn, batch: dict, cfg: MQARConfig, device, **labels) -> pd
 def summarize(events: pd.DataFrame, cfg: MQARConfig, keys=("seed", "variant", "stage", "split", "model")) -> pd.DataFrame:
     out = S.summarize(events, cfg, keys)
     keys = [k for k in keys if k in events.columns]
-    w = events.groupby(keys, observed=True).pred_in_written.mean().rename("pred_in_written").reset_index()
-    return out.merge(w, on=keys, how="left")
+    groups = {"all": events, f"delay>={cfg.long_delay}": events[events.delay >= cfg.long_delay],
+              "delay>=16": events[events.delay >= 16], f"delay<{cfg.long_delay}": events[events.delay < cfg.long_delay]}
+    extra = []
+    for name, data in groups.items():
+        t = data.groupby(keys, observed=True).agg(
+            pred_in_written=("pred_in_written", "mean"), cand_accuracy=("cand_correct", "mean"), cand_ce=("cand_ce", "mean"),
+            shared_cand_accuracy=("shared_cand_correct", "mean"), shared_cand_ce=("shared_cand_ce", "mean")).reset_index()
+        t.insert(0, "group", name)
+        extra.append(t)
+    return out.merge(pd.concat(extra, ignore_index=True), on=["group", *keys], how="left")
 
 
 @torch.no_grad()
@@ -483,7 +525,9 @@ def retention_probe(teacher, rnn, batch: dict, cfg: MQARConfig, device, horizons
             for name, z in (("rnn_from_teacher", state), ("teacher", tm[bb.to(device), qq.to(device)])):
                 logits = teacher.teacher_readout(z).float().cpu()
                 rows.append(pd.DataFrame(dict(model=name, horizon=L, sequence=(bb + lo).numpy(), t=qq.numpy(),
-                                              delay=part["delay"][bb, qq].numpy(), correct=(logits.argmax(-1) == yy).numpy(),
+                                              delay=part["delay"][bb, qq].numpy(),
+                                              source_le_start=(part["source_pos"][bb, qq] <= qq - L).numpy(),
+                                              correct=(logits.argmax(-1) == yy).numpy(),
                                               ce=F.cross_entropy(logits, yy, reduction="none").numpy())))
     return pd.concat(rows, ignore_index=True)
 
@@ -644,6 +688,7 @@ def fit(cfg: MQARConfig, variant: str, alpha: float, seed: int, out: Path, detec
                     row[f"val_{mname}_long_ce"], row[f"val_{mname}_long_acc"] = float(lg.ce.mean()), float(lg.correct.mean())
                     row[f"val_{mname}_all_acc"] = float(ev[ev.model == mname].correct.mean())
                     row[f"val_{mname}_pred_in_written"] = float(ev[ev.model == mname].pred_in_written.mean())
+                    row[f"val_{mname}_long_cand_acc"] = float(lg.cand_correct.mean())
                 row["seconds_per_step"] = (time.perf_counter() - tic) / max(1, (step + 1 - start))
                 if device.type == "cuda":
                     row["peak_mib"] = torch.cuda.max_memory_allocated(device) / 2**20
@@ -721,21 +766,34 @@ class Experiment:
             self.detectors[kind], _ = fit_detector(kind, self.cfg, self.dir, self.validation, self.device, self.log)
 
     def baseline(self) -> dict:
+        """Baseline on the tuning seed + gate. The gate asks for key->value BINDING, not the value set: accuracy
+        among the N values written in the sequence (chance 1/N) on long answers (delay >= long_delay), read on
+        the tuning split with a shuffled query order (shuffle_query_order: the order carries no information)."""
         cfg = self.cfg
         saved = fit(cfg, "baseline", 0.0, cfg.tuning_seed, self.dir / "tuning" / "baseline", {}, self.validation,
                     self.device, self.log)
+        shuffled = shuffle_query_order(self.tuning, cfg, S.derive_seed(514, 0))
         frames = []
         for stage in ("smt", "dmt"):
             t, r = S.load_fitted(cfg, saved, self.device, stage)
-            frames.append(evaluate(t, r, self.tuning, cfg, self.device, seed=cfg.tuning_seed, variant="baseline",
-                                   stage=stage, split="tuning"))
+            for split, data in (("tuning", self.tuning), ("tuning_shuffled_order", shuffled)):
+                frames.append(evaluate(t, r, data, cfg, self.device, seed=cfg.tuning_seed, variant="baseline",
+                                       stage=stage, split=split))
         ev = pd.concat(frames, ignore_index=True)
         chance = cfg.chance_structured
-        lt = ev[(ev.model == "teacher") & (ev.stage == "smt") & (ev.delay >= cfg.long_delay)].correct.mean()
-        lr_ = ev[(ev.model == "rnn") & (ev.stage == "dmt") & (ev.delay >= cfg.long_delay)].correct.mean()
-        gate = dict(teacher_long_accuracy=float(lt), rnn_dmt_long_accuracy=float(lr_), chance_structured=chance,
-                    chance_vocab=cfg.chance_vocab, required_teacher=chance + cfg.gate_teacher_margin,
-                    required_rnn=chance + cfg.gate_rnn_margin,
+        sh = ev[(ev.split == "tuning_shuffled_order") & (ev.delay >= cfg.long_delay)]
+        lt = sh[(sh.model == "teacher") & (sh.stage == "smt")].cand_correct.mean()
+        lr_ = sh[(sh.model == "rnn") & (sh.stage == "dmt")].cand_correct.mean()
+        orig = ev[(ev.split == "tuning") & (ev.delay >= cfg.long_delay)]
+        gate = dict(criterion="accuracy among the written values, long answers, shuffled query order (tuning split)",
+                    teacher_long_cand_accuracy=float(lt), rnn_dmt_long_cand_accuracy=float(lr_),
+                    chance_structured=chance, chance_vocab=cfg.chance_vocab,
+                    required_teacher=chance + cfg.gate_teacher_margin, required_rnn=chance + cfg.gate_rnn_margin,
+                    teacher_long_cand_accuracy_original_order=float(orig[(orig.model == "teacher") & (orig.stage == "smt")].cand_correct.mean()),
+                    rnn_dmt_long_cand_accuracy_original_order=float(orig[(orig.model == "rnn") & (orig.stage == "dmt")].cand_correct.mean()),
+                    teacher_long_accuracy_full_vocab=float(orig[(orig.model == "teacher") & (orig.stage == "smt")].correct.mean()),
+                    rnn_dmt_long_accuracy_full_vocab=float(orig[(orig.model == "rnn") & (orig.stage == "dmt")].correct.mean()),
+                    teacher_first_query_cand_accuracy=float(sh[(sh.model == "teacher") & (sh.stage == "smt") & (sh.query_rank == 0)].cand_correct.mean()),
                     teacher_pred_in_written=float(ev[(ev.model == "teacher") & (ev.stage == "smt")].pred_in_written.mean()),
                     smt_best_step=saved["smt_best_step"], dmt_best_step=saved["dmt_best_step"])
         gate["passed"] = bool(lt >= gate["required_teacher"] and lr_ >= gate["required_rnn"])
@@ -744,7 +802,7 @@ class Experiment:
         t, r = S.load_fitted(cfg, saved, self.device, "dmt")
         probe = retention_probe(t, r, self.tuning, cfg, self.device)
         probe.to_csv(self.dir / "baseline_retention_probe.csv", index=False)
-        return dict(gate=gate, summary=summarize(ev, cfg), events=ev, retention=probe)
+        return dict(gate=gate, summary=summarize(ev, cfg, keys=("split", "stage", "model")), events=ev, retention=probe)
 
     def tune(self, variants=VARIANTS_AGREED, require_gate: bool = True) -> dict:
         cfg = self.cfg
@@ -798,6 +856,7 @@ class Experiment:
         fitted = self.final_fits(variants)
         test = sample_mqar(cfg, cfg.test_examples, S.derive_seed(513, 0))
         assert not set(S.fingerprints(test)) & (set(S.fingerprints(self.validation)) | set(S.fingerprints(self.tuning)))
+        test_shuffled = shuffle_query_order(test, cfg, S.derive_seed(515, 0))
         frames = []
         for (seed, v), saved in fitted.items():
             for which in ("best", "last"):
@@ -805,13 +864,17 @@ class Experiment:
                     t, r = S.load_fitted(cfg, saved, self.device, stage, which)
                     frames.append(evaluate(t, r, test, cfg, self.device, seed=seed, variant=v, stage=stage,
                                            split="test", checkpoint=which))
+                    if which == "best":
+                        frames.append(evaluate(t, r, test_shuffled, cfg, self.device, seed=seed, variant=v, stage=stage,
+                                               split="test_shuffled_order", checkpoint=which))
         events = pd.concat(frames, ignore_index=True)
         comps = [("random_k", "surprise_k"), ("uniform", "surprise_k"), ("baseline", "surprise_k"),
                  ("baseline", "uniform"), ("baseline", "random_k")]
         comps += [(ref, v) for v in variants if v in VARIANTS_OPTIONAL for ref in ("random_k", "uniform", "surprise_k")]
         comps = [(a, b) for a, b in comps if a in variants and b in variants]
-        intervals, per_seed = S.paired_deltas(events[events.checkpoint == "best"], cfg, comps)
-        summary = summarize(events, cfg, keys=("checkpoint", "seed", "variant", "stage", "model"))
+        metrics = ("ce", "correct", "shared_ce", "shared_correct", "cand_ce", "cand_correct")
+        intervals, per_seed = S.paired_deltas(events[(events.checkpoint == "best") & (events.split == "test")], cfg, comps, metrics)
+        summary = summarize(events, cfg, keys=("split", "checkpoint", "seed", "variant", "stage", "model"))
         for name, df in (("test_events", events), ("test_summary", summary), ("test_intervals", intervals),
                          ("test_per_seed", per_seed)):
             df.to_csv(self.dir / f"{name}.csv", index=False)

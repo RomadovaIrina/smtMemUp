@@ -1,0 +1,118 @@
+#!/usr/bin/env python3
+"""Run a queue of our GPU commands one after another, yielding the shared GPU to foreign processes.
+
+Usage: setsid nohup envs/smt-memup/bin/python checks/polite_queue.py --log runs/mqar_queue.log \
+           "smt_memup_mqar.py --phase benchmark --config pilot01" "smt_memup_mqar.py --phase audit ..." &
+Each item is run as `nice -n 10 <PY> <item> --threads 4 --gpu-memory-fraction <F>` from the repository root.
+  * a command starts only after QUIET_S seconds without foreign GPU processes (checks/gpu_polite.py) and with
+    >= START_FREE_MIB MiB free;
+  * if a foreign process appears, the running command is KILLED (not paused: nothing of ours keeps GPU memory)
+    and restarted later; all our phases resume from their last checkpoint (every eval_every steps);
+  * a .pt file left half-written by the kill is restored from its .pt.bak copy (made after every finished write)
+    under runs/mqar03_*;
+  * a command that fails by itself stops the queue. The test report is never started from here.
+"""
+import argparse
+import os
+import shlex
+import shutil
+import signal
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+os.environ["CUDA_VISIBLE_DEVICES"] = ""          # the supervisor itself never touches the GPU
+import torch  # noqa: E402
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from gpu_polite import gpu_state  # noqa: E402
+
+ROOT = Path(__file__).resolve().parents[1]
+PY = os.environ.get("PY", "/mem/envs/smt-memup/bin/python")
+if not Path(PY).exists():
+    PY = str(ROOT / "envs/smt-memup/bin/python")
+QUIET_S = int(os.environ.get("QUIET_S", 120))
+START_FREE_MIB = int(os.environ.get("START_FREE_MIB", 8000))
+POLL = int(os.environ.get("POLL", 15))
+_seen = {}
+
+
+def checkpoints():
+    return [p for p in ROOT.glob("runs/mqar03_*/**/*.pt")]
+
+
+def backup():
+    for p in checkpoints():
+        m = p.stat().st_mtime
+        if _seen.get(p) == m or time.time() - m < 5:
+            continue
+        try:
+            torch.load(p, map_location="cpu", weights_only=True)
+        except Exception:
+            continue
+        shutil.copy2(p, p.with_suffix(".pt.bak"))
+        _seen[p] = m
+
+
+def repair(log):
+    for p in checkpoints():
+        try:
+            torch.load(p, map_location="cpu", weights_only=True)
+        except Exception:
+            bak = p.with_suffix(".pt.bak")
+            if bak.exists():
+                shutil.copy2(bak, p); log(f"restored {p.relative_to(ROOT)} from backup")
+            else:
+                p.unlink(); log(f"removed unreadable {p.relative_to(ROOT)}")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("items", nargs="+")
+    ap.add_argument("--log", default="runs/polite_queue.log")
+    ap.add_argument("--fraction", default="0.25")
+    a = ap.parse_args()
+    logpath = ROOT / a.log
+
+    def log(msg):
+        line = f"{time.strftime('%F %T')} {msg}"
+        with open(logpath, "a") as f:
+            f.write(line + "\n")
+
+    for item in a.items:
+        assert "report" not in item, "the test report is never started automatically"
+    log(f"queue: {a.items}")
+    last_foreign = time.time() - QUIET_S
+    for item in a.items:
+        cmd = ["nice", "-n", "10", PY, *shlex.split(item), "--threads", "4", "--gpu-memory-fraction", a.fraction]
+        proc = None
+        while True:
+            free, foreign, _ = gpu_state()
+            if foreign:
+                last_foreign = time.time()
+            if proc is not None:
+                rc = proc.poll()
+                if rc is not None:
+                    if rc == 0:
+                        log(f"done: {item}")
+                        break
+                    log(f"FAILED (exit {rc}): {item}")
+                    sys.exit(rc)
+                if foreign:
+                    os.kill(proc.pid, signal.SIGKILL); proc.wait(); proc = None
+                    log(f"killed (foreign GPU process {foreign}); will restart from the last checkpoint: {item}")
+            elif not foreign and time.time() - last_foreign >= QUIET_S and free >= START_FREE_MIB:
+                repair(log)
+                env = {k: v for k, v in os.environ.items() if k != "CUDA_VISIBLE_DEVICES"}
+                env["OMP_NUM_THREADS"] = "4"
+                out = open(logpath, "a")
+                out.write(f"{time.strftime('%F %T')} start: {' '.join(cmd)}\n"); out.flush()
+                proc = subprocess.Popen(cmd, cwd=ROOT, env=env, stdout=out, stderr=subprocess.STDOUT, start_new_session=True)
+            backup()
+            time.sleep(POLL)
+    log("queue finished")
+
+
+if __name__ == "__main__":
+    main()

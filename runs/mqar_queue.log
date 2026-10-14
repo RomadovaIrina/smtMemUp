@@ -1,0 +1,335 @@
+2026-10-14 11:03:29 queue: ['smt_memup_mqar.py --phase benchmark --config pilot01', 'smt_memup_mqar.py --phase audit --config pilot01', 'smt_memup_mqar.py --phase baseline --config pilot01']
+2026-10-14 11:12:15 start: nice -n 10 /mem/envs/smt-memup/bin/python smt_memup_mqar.py --phase benchmark --config pilot01 --threads 4 --gpu-memory-fraction 0.25
+/mem/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/mem/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+{
+  "smt_s_per_step": 0.11944554978981614,
+  "smt_peak_mib": 4001.61181640625,
+  "dmt_s_per_step": 0.19685221556574106,
+  "dmt_peak_mib": 432.49169921875,
+  "eval_s": 1.0529521931894124,
+  "eval_peak_mib": 455.0654296875
+}
+           phase  fits  smt_steps  dmt_steps  hours_est
+0  baseline_gate     1       3000       1500   0.186824
+1   alpha_tuning     9      27000      13500   1.681420
+2          final    12      36000      18000   2.241894
+2026-10-14 11:12:30 done: smt_memup_mqar.py --phase benchmark --config pilot01
+2026-10-14 11:12:30 start: nice -n 10 /mem/envs/smt-memup/bin/python smt_memup_mqar.py --phase audit --config pilot01 --threads 4 --gpu-memory-fraction 0.25
+/mem/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/mem/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+11:12:34 run directory: /mem/runs/mqar03_pilot01_037cb754085a
+11:12:35 detector[window] 200/2000 {'ce': 4.165959358215332, 'acc_pair_in_window': 0.012733446519524618, 'acc_pair_outside': 0.016091954022988506, 'auc_pair_outside': 0.5031407948402709, 'n': 4096}
+11:12:36 detector[window] 400/2000 {'ce': 4.166508197784424, 'acc_pair_in_window': 0.014855687606112054, 'acc_pair_outside': 0.017816091954022988, 'auc_pair_outside': 0.5159777920886756, 'n': 4096}
+11:12:36 detector[window] 600/2000 {'ce': 4.165431976318359, 'acc_pair_in_window': 0.016553480475382003, 'acc_pair_outside': 0.015517241379310345, 'auc_pair_outside': 0.5073355141190016, 'n': 4096}
+11:12:37 detector[window] 800/2000 {'ce': 4.133866310119629, 'acc_pair_in_window': 0.04074702886247878, 'acc_pair_outside': 0.017816091954022988, 'auc_pair_outside': 0.5564639316589582, 'n': 4096}
+11:12:38 detector[window] 1000/2000 {'ce': 4.0657243728637695, 'acc_pair_in_window': 0.08064516129032258, 'acc_pair_outside': 0.02471264367816092, 'auc_pair_outside': 0.6352245672579669, 'n': 4096}
+11:12:38 detector[window] 1200/2000 {'ce': 3.991183280944824, 'acc_pair_in_window': 0.11460101867572156, 'acc_pair_outside': 0.03620689655172414, 'auc_pair_outside': 0.6617251380676386, 'n': 4096}
+11:12:39 detector[window] 1400/2000 {'ce': 3.9273383617401123, 'acc_pair_in_window': 0.12054329371816638, 'acc_pair_outside': 0.03045977011494253, 'auc_pair_outside': 0.7092313828230198, 'n': 4096}
+11:12:39 detector[window] 1600/2000 {'ce': 3.8662376403808594, 'acc_pair_in_window': 0.1337011884550085, 'acc_pair_outside': 0.034482758620689655, 'auc_pair_outside': 0.7419775627890639, 'n': 4096}
+11:12:40 detector[window] 1800/2000 {'ce': 3.819401264190674, 'acc_pair_in_window': 0.1400679117147708, 'acc_pair_outside': 0.03735632183908046, 'auc_pair_outside': 0.7678517065745565, 'n': 4096}
+11:12:40 detector[window] 2000/2000 {'ce': 3.7748594284057617, 'acc_pair_in_window': 0.149830220713073, 'acc_pair_outside': 0.038505747126436785, 'auc_pair_outside': 0.7858117206252562, 'n': 4096}
+11:12:42 detector[context] 200/2000 {'ce': 4.168460369110107, 'mean_ce_future_source': 4.1641740798950195, 'mean_ce_prefix_source': 4.1699042320251465, 'auc_prefix_source': 0.5125673809869032, 'n': 130058}
+11:12:44 detector[context] 400/2000 {'ce': 4.171174049377441, 'mean_ce_future_source': 4.171059608459473, 'mean_ce_prefix_source': 4.171212673187256, 'auc_prefix_source': 0.5005707568163641, 'n': 130058}
+11:12:45 detector[context] 600/2000 {'ce': 4.169728755950928, 'mean_ce_future_source': 4.168465614318848, 'mean_ce_prefix_source': 4.170155048370361, 'auc_prefix_source': 0.5044396132944495, 'n': 130058}
+11:12:47 detector[context] 800/2000 {'ce': 4.164398193359375, 'mean_ce_future_source': 4.164454460144043, 'mean_ce_prefix_source': 4.164379596710205, 'auc_prefix_source': 0.499137169038763, 'n': 130058}
+11:12:48 detector[context] 1000/2000 {'ce': 4.1640825271606445, 'mean_ce_future_source': 4.161740779876709, 'mean_ce_prefix_source': 4.164870738983154, 'auc_prefix_source': 0.5083000809674102, 'n': 130058}
+11:12:50 detector[context] 1200/2000 {'ce': 4.165809154510498, 'mean_ce_future_source': 4.164398193359375, 'mean_ce_prefix_source': 4.166284561157227, 'auc_prefix_source': 0.5038355837231955, 'n': 130058}
+11:12:51 detector[context] 1400/2000 {'ce': 4.162420749664307, 'mean_ce_future_source': 4.155178070068359, 'mean_ce_prefix_source': 4.164860725402832, 'auc_prefix_source': 0.5196623874428657, 'n': 130058}
+11:12:53 detector[context] 1600/2000 {'ce': 4.160540580749512, 'mean_ce_future_source': 4.130248546600342, 'mean_ce_prefix_source': 4.170742988586426, 'auc_prefix_source': 0.5522599268797699, 'n': 130058}
+11:12:54 detector[context] 1800/2000 {'ce': 4.147426605224609, 'mean_ce_future_source': 4.072996616363525, 'mean_ce_prefix_source': 4.172494888305664, 'auc_prefix_source': 0.603312951298801, 'n': 130058}
+11:12:56 detector[context] 2000/2000 {'ce': 4.129074573516846, 'mean_ce_future_source': 3.9842920303344727, 'mean_ce_prefix_source': 4.1778388023376465, 'auc_prefix_source': 0.652384067299751, 'n': 130058}
+        split  sequences  answers  answers_per_sequence  delay_median  delay_p95  long_fraction  pair_inside_last_r_tokens  anchors_inside_written_prefix  anchors_with_future_answers  mean_pool  anchors_pool_gt_K  chance_structured  chance_vocab  unique_sequences
+0  validation        512     4096                     8          19.0       49.0       0.378906                   0.575195                           0.25                     0.850098   4.719127           0.701321              0.125      0.015625               512
+1      tuning        512     4096                     8          19.0       49.0       0.390869                   0.564209                           0.25                     0.878906   4.687778           0.708333              0.125      0.015625               512
+{
+  "window": {
+    "ce": 3.763709545135498,
+    "acc_pair_in_window": 0.14971873647771528,
+    "acc_pair_outside": 0.03137254901960784,
+    "auc_pair_outside": 0.792327523826493,
+    "n": 4096
+  },
+  "context": {
+    "ce": 4.131414890289307,
+    "mean_ce_future_source": 3.9891579151153564,
+    "mean_ce_prefix_source": 4.178834915161133,
+    "auc_prefix_source": 0.6438618287223103,
+    "n": 131070
+  }
+}
+                           rule      anchors  pairs  memory_dependent  long_memory_dependent  future_source  mean_delay  mean_offset  anchors_with_pool_le_K
+0                      random_k  all anchors  13044          0.841536               0.626342       0.158464   33.027447    15.817694                0.258301
+1                      random_k     pool > K   9936          0.791969               0.516103       0.208031   29.401167    18.242754                0.258301
+2                    surprise_k  all anchors  13044          0.855872               0.755290       0.144128   35.581722    17.783962                0.258301
+3                    surprise_k     pool > K   9936          0.810789               0.685386       0.189211   32.754429    20.824074                0.258301
+4                surprise_ctx_k  all anchors  13044          0.879868               0.643821       0.120132   32.863998    15.477614                0.258301
+5                surprise_ctx_k     pool > K   9936          0.842291               0.539050       0.157709   29.186594    17.796297                0.258301
+6               oracle_prefix_k  all anchors  12532          1.000000               0.702442       0.000000   33.961380    14.712256                0.258301
+7               oracle_prefix_k     pool > K   9424          1.000000               0.611312       0.000000   30.446095    16.904499                0.258301
+8  random_k (exact expectation)  all anchors  13044          0.842993               0.625383       0.157007         NaN          NaN                0.258301
+9  random_k (exact expectation)     pool > K   9936          0.793881               0.514845       0.206119         NaN          NaN                0.258301
+2026-10-14 11:13:00 done: smt_memup_mqar.py --phase audit --config pilot01
+2026-10-14 11:13:00 start: nice -n 10 /mem/envs/smt-memup/bin/python smt_memup_mqar.py --phase baseline --config pilot01 --threads 4 --gpu-memory-fraction 0.25
+/mem/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/mem/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+11:13:05 run directory: /mem/runs/mqar03_pilot01_037cb754085a
+2026-10-14 11:13:30 stopped by agent: detectors undertrained (Stack detector settings); baseline restarted after detector fix
+2026-10-14 12:01:57 queue: ['smt_memup_mqar.py --phase audit --config pilot01', 'smt_memup_mqar.py --phase baseline --config pilot01']
+2026-10-14 12:01:57 start: nice -n 10 /mem/envs/smt-memup/bin/python smt_memup_mqar.py --phase audit --config pilot01 --threads 4 --gpu-memory-fraction 0.25
+/mem/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/mem/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+12:02:04 run directory: /mem/runs/mqar03_pilot01_cb4a1ef021d2
+12:02:06 detector[window] 200/20000 {'ce': 4.1651740074157715, 'acc_pair_in_window': 0.01740237691001698, 'acc_pair_outside': 0.01954022988505747, 'auc_pair_outside': 0.5074362595866753, 'n': 4096}
+12:02:08 detector[window] 400/20000 {'ce': 4.083287239074707, 'acc_pair_in_window': 0.09083191850594227, 'acc_pair_outside': 0.017816091954022988, 'auc_pair_outside': 0.6593118816228558, 'n': 4096}
+12:02:10 detector[window] 600/20000 {'ce': 3.771127700805664, 'acc_pair_in_window': 0.15280135823429541, 'acc_pair_outside': 0.035632183908045977, 'auc_pair_outside': 0.8282611771363894, 'n': 4096}
+12:02:11 detector[window] 800/20000 {'ce': 3.5273995399475098, 'acc_pair_in_window': 0.17232597623089982, 'acc_pair_outside': 0.03505747126436782, 'auc_pair_outside': 0.8914593212731495, 'n': 4096}
+12:02:13 detector[window] 1000/20000 {'ce': 3.3803067207336426, 'acc_pair_in_window': 0.17529711375212223, 'acc_pair_outside': 0.04195402298850575, 'auc_pair_outside': 0.9101269929551353, 'n': 4096}
+12:02:15 detector[window] 1200/20000 {'ce': 3.285695791244507, 'acc_pair_in_window': 0.17911714770797962, 'acc_pair_outside': 0.041379310344827586, 'auc_pair_outside': 0.9175531292078918, 'n': 4096}
+12:02:17 detector[window] 1400/20000 {'ce': 3.221846103668213, 'acc_pair_in_window': 0.18421052631578946, 'acc_pair_outside': 0.0367816091954023, 'auc_pair_outside': 0.9253268739144859, 'n': 4096}
+12:02:19 detector[window] 1600/20000 {'ce': 3.177313804626465, 'acc_pair_in_window': 0.17147707979626486, 'acc_pair_outside': 0.040229885057471264, 'auc_pair_outside': 0.9264438557461507, 'n': 4096}
+12:02:21 detector[window] 1800/20000 {'ce': 3.148906946182251, 'acc_pair_in_window': 0.17572156196943972, 'acc_pair_outside': 0.035632183908045977, 'auc_pair_outside': 0.9297521124836563, 'n': 4096}
+12:02:23 detector[window] 2000/20000 {'ce': 3.118689775466919, 'acc_pair_in_window': 0.1765704584040747, 'acc_pair_outside': 0.03045977011494253, 'auc_pair_outside': 0.9362581230607108, 'n': 4096}
+12:02:24 detector[window] 2200/20000 {'ce': 3.0972065925598145, 'acc_pair_in_window': 0.1808149405772496, 'acc_pair_outside': 0.03908045977011494, 'auc_pair_outside': 0.9336772827508147, 'n': 4096}
+12:02:26 detector[window] 2400/20000 {'ce': 3.0855016708374023, 'acc_pair_in_window': 0.17784380305602718, 'acc_pair_outside': 0.0367816091954023, 'auc_pair_outside': 0.9403118474718498, 'n': 4096}
+12:02:28 detector[window] 2600/20000 {'ce': 3.0716629028320312, 'acc_pair_in_window': 0.1702037351443124, 'acc_pair_outside': 0.02586206896551724, 'auc_pair_outside': 0.9400157094627559, 'n': 4096}
+12:02:30 detector[window] 2800/20000 {'ce': 3.0598936080932617, 'acc_pair_in_window': 0.17572156196943972, 'acc_pair_outside': 0.03505747126436782, 'auc_pair_outside': 0.9425123919364596, 'n': 4096}
+12:02:32 detector[window] 3000/20000 {'ce': 3.0590343475341797, 'acc_pair_in_window': 0.17105263157894737, 'acc_pair_outside': 0.03218390804597701, 'auc_pair_outside': 0.946520988232539, 'n': 4096}
+12:02:34 detector[window] 3200/20000 {'ce': 3.0497841835021973, 'acc_pair_in_window': 0.1731748726655348, 'acc_pair_outside': 0.0367816091954023, 'auc_pair_outside': 0.9462602209082216, 'n': 4096}
+12:02:35 detector[window] 3400/20000 {'ce': 3.039689302444458, 'acc_pair_in_window': 0.17402376910016978, 'acc_pair_outside': 0.029310344827586206, 'auc_pair_outside': 0.9456018382998653, 'n': 4096}
+12:02:37 detector[window] 3600/20000 {'ce': 3.0337541103363037, 'acc_pair_in_window': 0.1774193548387097, 'acc_pair_outside': 0.03103448275862069, 'auc_pair_outside': 0.9496531233534337, 'n': 4096}
+12:02:39 detector[window] 3800/20000 {'ce': 3.0306925773620605, 'acc_pair_in_window': 0.1735993208828523, 'acc_pair_outside': 0.03908045977011494, 'auc_pair_outside': 0.9359419823195363, 'n': 4096}
+12:02:41 detector[window] 4000/20000 {'ce': 3.02518367767334, 'acc_pair_in_window': 0.1799660441426146, 'acc_pair_outside': 0.038505747126436785, 'auc_pair_outside': 0.9425709365181586, 'n': 4096}
+12:02:43 detector[window] 4200/20000 {'ce': 3.025319814682007, 'acc_pair_in_window': 0.1668081494057725, 'acc_pair_outside': 0.03505747126436782, 'auc_pair_outside': 0.9474905108990497, 'n': 4096}
+12:02:44 detector[window] 4400/20000 {'ce': 3.0191524028778076, 'acc_pair_in_window': 0.16850594227504245, 'acc_pair_outside': 0.044252873563218394, 'auc_pair_outside': 0.9412407548348067, 'n': 4096}
+12:02:46 detector[window] 4600/20000 {'ce': 3.010910749435425, 'acc_pair_in_window': 0.18293718166383702, 'acc_pair_outside': 0.0367816091954023, 'auc_pair_outside': 0.9476777315926078, 'n': 4096}
+12:02:48 detector[window] 4800/20000 {'ce': 3.0109691619873047, 'acc_pair_in_window': 0.17402376910016978, 'acc_pair_outside': 0.032758620689655175, 'auc_pair_outside': 0.9456855082645435, 'n': 4096}
+12:02:50 detector[window] 5000/20000 {'ce': 3.0022706985473633, 'acc_pair_in_window': 0.183786078098472, 'acc_pair_outside': 0.04252873563218391, 'auc_pair_outside': 0.9445153484378355, 'n': 4096}
+12:02:52 detector[window] 5200/20000 {'ce': 2.9981489181518555, 'acc_pair_in_window': 0.18590831918505943, 'acc_pair_outside': 0.035632183908045977, 'auc_pair_outside': 0.9433872675292235, 'n': 4096}
+12:02:53 detector[window] 5400/20000 {'ce': 3.0038013458251953, 'acc_pair_in_window': 0.17911714770797962, 'acc_pair_outside': 0.040229885057471264, 'auc_pair_outside': 0.9417835118943075, 'n': 4096}
+12:02:55 detector[window] 5600/20000 {'ce': 2.997720718383789, 'acc_pair_in_window': 0.18463497453310695, 'acc_pair_outside': 0.038505747126436785, 'auc_pair_outside': 0.9449563842866343, 'n': 4096}
+12:02:57 detector[window] 5800/20000 {'ce': 2.9907705783843994, 'acc_pair_in_window': 0.1960950764006791, 'acc_pair_outside': 0.03735632183908046, 'auc_pair_outside': 0.9460923931073513, 'n': 4096}
+12:02:59 detector[window] 6000/20000 {'ce': 2.9953720569610596, 'acc_pair_in_window': 0.17784380305602718, 'acc_pair_outside': 0.03333333333333333, 'auc_pair_outside': 0.9471464395136897, 'n': 4096}
+12:03:01 detector[window] 6200/20000 {'ce': 2.9907498359680176, 'acc_pair_in_window': 0.17826825127334464, 'acc_pair_outside': 0.0339080459770115, 'auc_pair_outside': 0.9450190757762036, 'n': 4096}
+12:03:02 detector[window] 6400/20000 {'ce': 2.9912328720092773, 'acc_pair_in_window': 0.18548387096774194, 'acc_pair_outside': 0.041379310344827586, 'auc_pair_outside': 0.940723123158285, 'n': 4096}
+12:03:04 detector[window] 6600/20000 {'ce': 2.9862725734710693, 'acc_pair_in_window': 0.19524617996604415, 'acc_pair_outside': 0.03620689655172414, 'auc_pair_outside': 0.9423182190738247, 'n': 4096}
+12:03:06 detector[window] 6800/20000 {'ce': 2.9861927032470703, 'acc_pair_in_window': 0.18633276740237692, 'acc_pair_outside': 0.038505747126436785, 'auc_pair_outside': 0.9426980270475968, 'n': 4096}
+12:03:08 detector[window] 7000/20000 {'ce': 2.9882595539093018, 'acc_pair_in_window': 0.1727504244482173, 'acc_pair_outside': 0.04195402298850575, 'auc_pair_outside': 0.9404418652303729, 'n': 4096}
+12:03:10 detector[window] 7200/20000 {'ce': 2.985334873199463, 'acc_pair_in_window': 0.19015280135823429, 'acc_pair_outside': 0.04367816091954023, 'auc_pair_outside': 0.9366591534453487, 'n': 4096}
+12:03:12 detector[window] 7400/20000 {'ce': 2.985485315322876, 'acc_pair_in_window': 0.1735993208828523, 'acc_pair_outside': 0.0339080459770115, 'auc_pair_outside': 0.9408685088695041, 'n': 4096}
+12:03:13 detector[window] 7600/20000 {'ce': 2.982130527496338, 'acc_pair_in_window': 0.17529711375212223, 'acc_pair_outside': 0.03793103448275862, 'auc_pair_outside': 0.9475294186523038, 'n': 4096}
+12:03:15 detector[window] 7800/20000 {'ce': 2.9824471473693848, 'acc_pair_in_window': 0.17954159592529711, 'acc_pair_outside': 0.039655172413793106, 'auc_pair_outside': 0.9419471927873075, 'n': 4096}
+12:03:17 detector[window] 8000/20000 {'ce': 2.9808506965637207, 'acc_pair_in_window': 0.17784380305602718, 'acc_pair_outside': 0.040229885057471264, 'auc_pair_outside': 0.9389764211697207, 'n': 4096}
+12:03:18 detector[window] 8200/20000 {'ce': 2.977539539337158, 'acc_pair_in_window': 0.17954159592529711, 'acc_pair_outside': 0.03735632183908046, 'auc_pair_outside': 0.9464414651757314, 'n': 4096}
+12:03:20 detector[window] 8400/20000 {'ce': 2.9770846366882324, 'acc_pair_in_window': 0.18421052631578946, 'acc_pair_outside': 0.04310344827586207, 'auc_pair_outside': 0.9418069297269871, 'n': 4096}
+12:03:22 detector[window] 8600/20000 {'ce': 2.9811530113220215, 'acc_pair_in_window': 0.17572156196943972, 'acc_pair_outside': 0.0339080459770115, 'auc_pair_outside': 0.9454991413461351, 'n': 4096}
+12:03:24 detector[window] 8800/20000 {'ce': 2.9788894653320312, 'acc_pair_in_window': 0.17232597623089982, 'acc_pair_outside': 0.03333333333333333, 'auc_pair_outside': 0.9457625919637804, 'n': 4096}
+12:03:26 detector[window] 9000/20000 {'ce': 2.976619243621826, 'acc_pair_in_window': 0.1803904923599321, 'acc_pair_outside': 0.0339080459770115, 'auc_pair_outside': 0.9437049938528189, 'n': 4096}
+12:03:28 detector[window] 9200/20000 {'ce': 2.969597816467285, 'acc_pair_in_window': 0.18166383701188454, 'acc_pair_outside': 0.03045977011494253, 'auc_pair_outside': 0.9523888628690748, 'n': 4096}
+12:03:29 detector[window] 9400/20000 {'ce': 2.974796772003174, 'acc_pair_in_window': 0.17529711375212223, 'acc_pair_outside': 0.032758620689655175, 'auc_pair_outside': 0.9514881300860606, 'n': 4096}
+12:03:31 detector[window] 9600/20000 {'ce': 2.97642183303833, 'acc_pair_in_window': 0.18548387096774194, 'acc_pair_outside': 0.038505747126436785, 'auc_pair_outside': 0.9481985344339715, 'n': 4096}
+12:03:33 detector[window] 9800/20000 {'ce': 2.9749104976654053, 'acc_pair_in_window': 0.17954159592529711, 'acc_pair_outside': 0.032758620689655175, 'auc_pair_outside': 0.9428016997443553, 'n': 4096}
+12:03:36 detector[window] 10000/20000 {'ce': 2.9679136276245117, 'acc_pair_in_window': 0.18251273344651953, 'acc_pair_outside': 0.04310344827586207, 'auc_pair_outside': 0.940343315184513, 'n': 4096}
+12:03:38 detector[window] 10200/20000 {'ce': 2.967844009399414, 'acc_pair_in_window': 0.183786078098472, 'acc_pair_outside': 0.03505747126436782, 'auc_pair_outside': 0.9434783775344925, 'n': 4096}
+12:03:40 detector[window] 10400/20000 {'ce': 2.96429705619812, 'acc_pair_in_window': 0.18845500848896435, 'acc_pair_outside': 0.04080459770114943, 'auc_pair_outside': 0.944226772437211, 'n': 4096}
+12:03:43 detector[window] 10600/20000 {'ce': 2.969313621520996, 'acc_pair_in_window': 0.19142614601018676, 'acc_pair_outside': 0.03735632183908046, 'auc_pair_outside': 0.9392509708643132, 'n': 4096}
+12:03:45 detector[window] 10800/20000 {'ce': 2.9692392349243164, 'acc_pair_in_window': 0.1808149405772496, 'acc_pair_outside': 0.03793103448275862, 'auc_pair_outside': 0.9423594442167711, 'n': 4096}
+12:03:47 detector[window] 11000/20000 {'ce': 2.9608426094055176, 'acc_pair_in_window': 0.18633276740237692, 'acc_pair_outside': 0.04080459770114943, 'auc_pair_outside': 0.9462558300645942, 'n': 4096}
+12:03:49 detector[window] 11200/20000 {'ce': 2.963407278060913, 'acc_pair_in_window': 0.18845500848896435, 'acc_pair_outside': 0.04252873563218391, 'auc_pair_outside': 0.9412127022227427, 'n': 4096}
+12:03:52 detector[window] 11400/20000 {'ce': 2.962414503097534, 'acc_pair_in_window': 0.1867572156196944, 'acc_pair_outside': 0.034482758620689655, 'auc_pair_outside': 0.9418942587280213, 'n': 4096}
+12:03:54 detector[window] 11600/20000 {'ce': 2.960047721862793, 'acc_pair_in_window': 0.18548387096774194, 'acc_pair_outside': 0.02528735632183908, 'auc_pair_outside': 0.9494873690064984, 'n': 4096}
+12:03:56 detector[window] 11800/20000 {'ce': 2.962054967880249, 'acc_pair_in_window': 0.18421052631578946, 'acc_pair_outside': 0.040229885057471264, 'auc_pair_outside': 0.948098276837812, 'n': 4096}
+12:03:59 detector[window] 12000/20000 {'ce': 2.9607322216033936, 'acc_pair_in_window': 0.18718166383701187, 'acc_pair_outside': 0.03505747126436782, 'auc_pair_outside': 0.9498531506742385, 'n': 4096}
+12:04:01 detector[window] 12200/20000 {'ce': 2.9580864906311035, 'acc_pair_in_window': 0.17869269949066213, 'acc_pair_outside': 0.040229885057471264, 'auc_pair_outside': 0.9458865113283765, 'n': 4096}
+12:04:03 detector[window] 12400/20000 {'ce': 2.9604406356811523, 'acc_pair_in_window': 0.17869269949066213, 'acc_pair_outside': 0.028160919540229885, 'auc_pair_outside': 0.9557744472415745, 'n': 4096}
+12:04:05 detector[window] 12600/20000 {'ce': 2.960960865020752, 'acc_pair_in_window': 0.18123938879456705, 'acc_pair_outside': 0.03505747126436782, 'auc_pair_outside': 0.9451412875905002, 'n': 4096}
+12:04:08 detector[window] 12800/20000 {'ce': 2.957076072692871, 'acc_pair_in_window': 0.18505942275042445, 'acc_pair_outside': 0.035632183908045977, 'auc_pair_outside': 0.940019124563355, 'n': 4096}
+12:04:10 detector[window] 13000/20000 {'ce': 2.960026502609253, 'acc_pair_in_window': 0.17954159592529711, 'acc_pair_outside': 0.038505747126436785, 'auc_pair_outside': 0.946070194953457, 'n': 4096}
+12:04:12 detector[window] 13200/20000 {'ce': 2.962512731552124, 'acc_pair_in_window': 0.17529711375212223, 'acc_pair_outside': 0.03333333333333333, 'auc_pair_outside': 0.9525254668930391, 'n': 4096}
+12:04:14 detector[window] 13400/20000 {'ce': 2.960667610168457, 'acc_pair_in_window': 0.18463497453310695, 'acc_pair_outside': 0.03218390804597701, 'auc_pair_outside': 0.94929600140507, 'n': 4096}
+12:04:17 detector[window] 13600/20000 {'ce': 2.9540231227874756, 'acc_pair_in_window': 0.18930390492359933, 'acc_pair_outside': 0.034482758620689655, 'auc_pair_outside': 0.9474040356731651, 'n': 4096}
+12:04:19 detector[window] 13800/20000 {'ce': 2.9601383209228516, 'acc_pair_in_window': 0.18887945670628184, 'acc_pair_outside': 0.035632183908045977, 'auc_pair_outside': 0.9459609117342856, 'n': 4096}
+12:04:21 detector[window] 14000/20000 {'ce': 2.9510107040405273, 'acc_pair_in_window': 0.17826825127334464, 'acc_pair_outside': 0.03333333333333333, 'auc_pair_outside': 0.9514121440977305, 'n': 4096}
+12:04:23 detector[window] 14200/20000 {'ce': 2.9498045444488525, 'acc_pair_in_window': 0.1833616298811545, 'acc_pair_outside': 0.04195402298850575, 'auc_pair_outside': 0.9458018656206701, 'n': 4096}
+12:04:25 detector[window] 14400/20000 {'ce': 2.9537272453308105, 'acc_pair_in_window': 0.183786078098472, 'acc_pair_outside': 0.028735632183908046, 'auc_pair_outside': 0.949848515894854, 'n': 4096}
+12:04:28 detector[window] 14600/20000 {'ce': 2.9592952728271484, 'acc_pair_in_window': 0.1727504244482173, 'acc_pair_outside': 0.027586206896551724, 'auc_pair_outside': 0.9541554456218411, 'n': 4096}
+12:04:30 detector[window] 14800/20000 {'ce': 2.9560065269470215, 'acc_pair_in_window': 0.18123938879456705, 'acc_pair_outside': 0.03333333333333333, 'auc_pair_outside': 0.9485561442538493, 'n': 4096}
+12:04:32 detector[window] 15000/20000 {'ce': 2.9521493911743164, 'acc_pair_in_window': 0.17487266553480477, 'acc_pair_outside': 0.03735632183908046, 'auc_pair_outside': 0.9571080440255254, 'n': 4096}
+12:04:34 detector[window] 15200/20000 {'ce': 2.951446056365967, 'acc_pair_in_window': 0.18463497453310695, 'acc_pair_outside': 0.0339080459770115, 'auc_pair_outside': 0.9495384735476065, 'n': 4096}
+12:04:37 detector[window] 15400/20000 {'ce': 2.954930305480957, 'acc_pair_in_window': 0.1735993208828523, 'acc_pair_outside': 0.040229885057471264, 'auc_pair_outside': 0.946492691684718, 'n': 4096}
+12:04:39 detector[window] 15600/20000 {'ce': 2.9503579139709473, 'acc_pair_in_window': 0.17784380305602718, 'acc_pair_outside': 0.034482758620689655, 'auc_pair_outside': 0.9516380286087855, 'n': 4096}
+12:04:41 detector[window] 15800/20000 {'ce': 2.9515209197998047, 'acc_pair_in_window': 0.18505942275042445, 'acc_pair_outside': 0.03045977011494253, 'auc_pair_outside': 0.9500831820931639, 'n': 4096}
+12:04:43 detector[window] 16000/20000 {'ce': 2.952833414077759, 'acc_pair_in_window': 0.18930390492359933, 'acc_pair_outside': 0.03218390804597701, 'auc_pair_outside': 0.9492491657397107, 'n': 4096}
+12:04:46 detector[window] 16200/20000 {'ce': 2.95218825340271, 'acc_pair_in_window': 0.17869269949066213, 'acc_pair_outside': 0.03735632183908046, 'auc_pair_outside': 0.9417822922155221, 'n': 4096}
+12:04:48 detector[window] 16400/20000 {'ce': 2.949125289916992, 'acc_pair_in_window': 0.17911714770797962, 'acc_pair_outside': 0.03045977011494253, 'auc_pair_outside': 0.9521717600452745, 'n': 4096}
+12:04:50 detector[window] 16600/20000 {'ce': 2.9475021362304688, 'acc_pair_in_window': 0.18166383701188454, 'acc_pair_outside': 0.0339080459770115, 'auc_pair_outside': 0.9487020178365826, 'n': 4096}
+12:04:53 detector[window] 16800/20000 {'ce': 2.9497389793395996, 'acc_pair_in_window': 0.17954159592529711, 'acc_pair_outside': 0.038505747126436785, 'auc_pair_outside': 0.9501702671584411, 'n': 4096}
+12:04:55 detector[window] 17000/20000 {'ce': 2.9489550590515137, 'acc_pair_in_window': 0.17232597623089982, 'acc_pair_outside': 0.03735632183908046, 'auc_pair_outside': 0.9477335928809789, 'n': 4096}
+12:04:57 detector[window] 17200/20000 {'ce': 2.9491918087005615, 'acc_pair_in_window': 0.17784380305602718, 'acc_pair_outside': 0.035632183908045977, 'auc_pair_outside': 0.9493536922116191, 'n': 4096}
+12:04:59 detector[window] 17400/20000 {'ce': 2.948004722595215, 'acc_pair_in_window': 0.1765704584040747, 'acc_pair_outside': 0.04195402298850575, 'auc_pair_outside': 0.9471944948578342, 'n': 4096}
+12:05:01 detector[window] 17600/20000 {'ce': 2.9481284618377686, 'acc_pair_in_window': 0.1769949066213922, 'acc_pair_outside': 0.03908045977011494, 'auc_pair_outside': 0.9532975235641942, 'n': 4096}
+12:05:04 detector[window] 17800/20000 {'ce': 2.9536869525909424, 'acc_pair_in_window': 0.17869269949066213, 'acc_pair_outside': 0.04367816091954023, 'auc_pair_outside': 0.9438757488827743, 'n': 4096}
+12:05:06 detector[window] 18000/20000 {'ce': 2.947277069091797, 'acc_pair_in_window': 0.18293718166383702, 'acc_pair_outside': 0.028735632183908046, 'auc_pair_outside': 0.957214643951369, 'n': 4096}
+12:05:08 detector[window] 18200/20000 {'ce': 2.9435839653015137, 'acc_pair_in_window': 0.18505942275042445, 'acc_pair_outside': 0.040229885057471264, 'auc_pair_outside': 0.9517773159260777, 'n': 4096}
+12:05:10 detector[window] 18400/20000 {'ce': 2.9436488151550293, 'acc_pair_in_window': 0.1931239388794567, 'acc_pair_outside': 0.03103448275862069, 'auc_pair_outside': 0.9502266163183264, 'n': 4096}
+12:05:13 detector[window] 18600/20000 {'ce': 2.947589159011841, 'acc_pair_in_window': 0.1774193548387097, 'acc_pair_outside': 0.03735632183908046, 'auc_pair_outside': 0.9516336377651582, 'n': 4096}
+12:05:15 detector[window] 18800/20000 {'ce': 2.946718454360962, 'acc_pair_in_window': 0.18123938879456705, 'acc_pair_outside': 0.031609195402298854, 'auc_pair_outside': 0.9513916534941358, 'n': 4096}
+12:05:17 detector[window] 19000/20000 {'ce': 2.9527511596679688, 'acc_pair_in_window': 0.18505942275042445, 'acc_pair_outside': 0.029885057471264367, 'auc_pair_outside': 0.9608685576566556, 'n': 4096}
+12:05:19 detector[window] 19200/20000 {'ce': 2.946582794189453, 'acc_pair_in_window': 0.19057724957555178, 'acc_pair_outside': 0.029885057471264367, 'auc_pair_outside': 0.9506764338543802, 'n': 4096}
+12:05:22 detector[window] 19400/20000 {'ce': 2.944857120513916, 'acc_pair_in_window': 0.1799660441426146, 'acc_pair_outside': 0.03735632183908046, 'auc_pair_outside': 0.9511377163710165, 'n': 4096}
+12:05:24 detector[window] 19600/20000 {'ce': 2.9424972534179688, 'acc_pair_in_window': 0.1769949066213922, 'acc_pair_outside': 0.03103448275862069, 'auc_pair_outside': 0.954315711414242, 'n': 4096}
+12:05:26 detector[window] 19800/20000 {'ce': 2.9487180709838867, 'acc_pair_in_window': 0.1774193548387097, 'acc_pair_outside': 0.028735632183908046, 'auc_pair_outside': 0.9544167008176726, 'n': 4096}
+12:05:28 detector[window] 20000/20000 {'ce': 2.9443135261535645, 'acc_pair_in_window': 0.19100169779286927, 'acc_pair_outside': 0.029885057471264367, 'auc_pair_outside': 0.9547804090314774, 'n': 4096}
+12:05:33 detector[context] 200/20000 {'ce': 4.170861721038818, 'mean_ce_future_source': 4.167782783508301, 'mean_ce_prefix_source': 4.171898365020752, 'auc_prefix_source': 0.507843386775262, 'n': 130058}
+12:05:37 detector[context] 400/20000 {'ce': 4.179102897644043, 'mean_ce_future_source': 4.171063423156738, 'mean_ce_prefix_source': 4.18181037902832, 'auc_prefix_source': 0.5160919335312657, 'n': 130058}
+12:05:41 detector[context] 600/20000 {'ce': 4.1566691398620605, 'mean_ce_future_source': 4.096153259277344, 'mean_ce_prefix_source': 4.177051067352295, 'auc_prefix_source': 0.6045568779274793, 'n': 130058}
+12:05:45 detector[context] 800/20000 {'ce': 4.092783451080322, 'mean_ce_future_source': 3.8134169578552246, 'mean_ce_prefix_source': 4.18687629699707, 'auc_prefix_source': 0.7765967217828745, 'n': 130058}
+12:05:49 detector[context] 1000/20000 {'ce': 4.009807586669922, 'mean_ce_future_source': 3.3841123580932617, 'mean_ce_prefix_source': 4.220546245574951, 'auc_prefix_source': 0.9023188647955291, 'n': 130058}
+12:05:53 detector[context] 1200/20000 {'ce': 3.939032554626465, 'mean_ce_future_source': 3.0106406211853027, 'mean_ce_prefix_source': 4.2517218589782715, 'auc_prefix_source': 0.9638406540828223, 'n': 130058}
+12:05:58 detector[context] 1400/20000 {'ce': 3.8896288871765137, 'mean_ce_future_source': 2.7509117126464844, 'mean_ce_prefix_source': 4.273158073425293, 'auc_prefix_source': 0.9905685214641492, 'n': 130058}
+12:06:02 detector[context] 1600/20000 {'ce': 3.862837076187134, 'mean_ce_future_source': 2.582388401031494, 'mean_ce_prefix_source': 4.294102191925049, 'auc_prefix_source': 0.9970413838497401, 'n': 130058}
+12:06:07 detector[context] 1800/20000 {'ce': 3.8431787490844727, 'mean_ce_future_source': 2.488241672515869, 'mean_ce_prefix_source': 4.299531936645508, 'auc_prefix_source': 0.9985162787330103, 'n': 130058}
+12:06:12 detector[context] 2000/20000 {'ce': 3.8296315670013428, 'mean_ce_future_source': 2.429353713989258, 'mean_ce_prefix_source': 4.301255702972412, 'auc_prefix_source': 0.9991752753903239, 'n': 130058}
+12:06:16 detector[context] 2200/20000 {'ce': 3.818084716796875, 'mean_ce_future_source': 2.37253999710083, 'mean_ce_prefix_source': 4.304955005645752, 'auc_prefix_source': 0.9994918611510609, 'n': 130058}
+12:06:21 detector[context] 2400/20000 {'ce': 3.8133656978607178, 'mean_ce_future_source': 2.329737663269043, 'mean_ce_prefix_source': 4.313063144683838, 'auc_prefix_source': 0.9995668603969828, 'n': 130058}
+12:06:26 detector[context] 2600/20000 {'ce': 3.80663800239563, 'mean_ce_future_source': 2.3216216564178467, 'mean_ce_prefix_source': 4.306802749633789, 'auc_prefix_source': 0.9997845482196429, 'n': 130058}
+12:06:30 detector[context] 2800/20000 {'ce': 3.801845073699951, 'mean_ce_future_source': 2.2876105308532715, 'mean_ce_prefix_source': 4.3118510246276855, 'auc_prefix_source': 0.9996943453917071, 'n': 130058}
+12:06:35 detector[context] 3000/20000 {'ce': 3.800297737121582, 'mean_ce_future_source': 2.2699103355407715, 'mean_ce_prefix_source': 4.3157429695129395, 'auc_prefix_source': 0.9997482031611356, 'n': 130058}
+12:06:39 detector[context] 3200/20000 {'ce': 3.794816493988037, 'mean_ce_future_source': 2.2552359104156494, 'mean_ce_prefix_source': 4.313358783721924, 'auc_prefix_source': 0.9997954796857634, 'n': 130058}
+12:06:44 detector[context] 3400/20000 {'ce': 3.7899627685546875, 'mean_ce_future_source': 2.2332935333251953, 'mean_ce_prefix_source': 4.314260959625244, 'auc_prefix_source': 0.9998735052817085, 'n': 130058}
+12:06:49 detector[context] 3600/20000 {'ce': 3.7868216037750244, 'mean_ce_future_source': 2.218759298324585, 'mean_ce_prefix_source': 4.3149566650390625, 'auc_prefix_source': 0.9998809243562055, 'n': 130058}
+12:06:53 detector[context] 3800/20000 {'ce': 3.785071611404419, 'mean_ce_future_source': 2.2229137420654297, 'mean_ce_prefix_source': 4.31121826171875, 'auc_prefix_source': 0.9998589930425066, 'n': 130058}
+12:06:58 detector[context] 4000/20000 {'ce': 3.7818610668182373, 'mean_ce_future_source': 2.200636863708496, 'mean_ce_prefix_source': 4.314429759979248, 'auc_prefix_source': 0.9999185623888832, 'n': 130058}
+12:07:02 detector[context] 4200/20000 {'ce': 3.7842206954956055, 'mean_ce_future_source': 2.2021713256835938, 'mean_ce_prefix_source': 4.3170671463012695, 'auc_prefix_source': 0.9999358757584444, 'n': 130058}
+12:07:07 detector[context] 4400/20000 {'ce': 3.7782163619995117, 'mean_ce_future_source': 2.1893670558929443, 'mean_ce_prefix_source': 4.313352108001709, 'auc_prefix_source': 0.999976418748374, 'n': 130058}
+12:07:11 detector[context] 4600/20000 {'ce': 3.7773051261901855, 'mean_ce_future_source': 2.1912825107574463, 'mean_ce_prefix_source': 4.311489582061768, 'auc_prefix_source': 0.9999341320312701, 'n': 130058}
+12:07:15 detector[context] 4800/20000 {'ce': 3.778512716293335, 'mean_ce_future_source': 2.1772522926330566, 'mean_ce_prefix_source': 4.317829132080078, 'auc_prefix_source': 0.9999766361261274, 'n': 130058}
+12:07:19 detector[context] 5000/20000 {'ce': 3.774473190307617, 'mean_ce_future_source': 2.1857757568359375, 'mean_ce_prefix_source': 4.309557914733887, 'auc_prefix_source': 0.9999643102115173, 'n': 130058}
+12:07:24 detector[context] 5200/20000 {'ce': 3.772409677505493, 'mean_ce_future_source': 2.1790528297424316, 'mean_ce_prefix_source': 4.309063911437988, 'auc_prefix_source': 0.9999833541338435, 'n': 130058}
+12:07:28 detector[context] 5400/20000 {'ce': 3.7716591358184814, 'mean_ce_future_source': 2.1578361988067627, 'mean_ce_prefix_source': 4.315206050872803, 'auc_prefix_source': 0.9999807435619046, 'n': 130058}
+12:07:32 detector[context] 5600/20000 {'ce': 3.7710037231445312, 'mean_ce_future_source': 2.161228656768799, 'mean_ce_prefix_source': 4.313187599182129, 'auc_prefix_source': 0.9999130992436533, 'n': 130058}
+12:07:36 detector[context] 5800/20000 {'ce': 3.7693488597869873, 'mean_ce_future_source': 2.1561450958251953, 'mean_ce_prefix_source': 4.312687397003174, 'auc_prefix_source': 0.9999630253929337, 'n': 130058}
+12:07:40 detector[context] 6000/20000 {'ce': 3.7681710720062256, 'mean_ce_future_source': 2.1645169258117676, 'mean_ce_prefix_source': 4.308294296264648, 'auc_prefix_source': 0.99998095027466, 'n': 130058}
+12:07:45 detector[context] 6200/20000 {'ce': 3.7699649333953857, 'mean_ce_future_source': 2.1566805839538574, 'mean_ce_prefix_source': 4.313331127166748, 'auc_prefix_source': 0.9999859701951198, 'n': 130058}
+12:07:49 detector[context] 6400/20000 {'ce': 3.766841411590576, 'mean_ce_future_source': 2.1360480785369873, 'mean_ce_prefix_source': 4.316105365753174, 'auc_prefix_source': 0.9999917713266836, 'n': 130058}
+12:07:53 detector[context] 6600/20000 {'ce': 3.7633705139160156, 'mean_ce_future_source': 2.1602365970611572, 'mean_ce_prefix_source': 4.303318023681641, 'auc_prefix_source': 0.9999999670639768, 'n': 130058}
+12:07:57 detector[context] 6800/20000 {'ce': 3.7648396492004395, 'mean_ce_future_source': 2.151901960372925, 'mean_ce_prefix_source': 4.308088779449463, 'auc_prefix_source': 0.999998140839906, 'n': 130058}
+12:08:01 detector[context] 7000/20000 {'ce': 3.7638254165649414, 'mean_ce_future_source': 2.1435272693634033, 'mean_ce_prefix_source': 4.309554576873779, 'auc_prefix_source': 0.999999786072687, 'n': 130058}
+12:08:05 detector[context] 7200/20000 {'ce': 3.7623889446258545, 'mean_ce_future_source': 2.137985944747925, 'mean_ce_prefix_source': 4.309500217437744, 'auc_prefix_source': 0.9999999974905887, 'n': 130058}
+12:08:09 detector[context] 7400/20000 {'ce': 3.764660596847534, 'mean_ce_future_source': 2.129863739013672, 'mean_ce_prefix_source': 4.315272808074951, 'auc_prefix_source': 0.9999990602254696, 'n': 130058}
+12:08:14 detector[context] 7600/20000 {'ce': 3.7609665393829346, 'mean_ce_future_source': 2.1459310054779053, 'mean_ce_prefix_source': 4.304922580718994, 'auc_prefix_source': 0.999999477728774, 'n': 130058}
+12:08:18 detector[context] 7800/20000 {'ce': 3.76271915435791, 'mean_ce_future_source': 2.124159574508667, 'mean_ce_prefix_source': 4.314598083496094, 'auc_prefix_source': 0.9999999325595714, 'n': 130058}
+12:08:22 detector[context] 8000/20000 {'ce': 3.759016513824463, 'mean_ce_future_source': 2.1341614723205566, 'mean_ce_prefix_source': 4.30627965927124, 'auc_prefix_source': 0.9999999934127953, 'n': 130058}
+12:08:26 detector[context] 8200/20000 {'ce': 3.76059627532959, 'mean_ce_future_source': 2.1180570125579834, 'mean_ce_prefix_source': 4.313815593719482, 'auc_prefix_source': 0.9999885498699322, 'n': 130058}
+12:08:30 detector[context] 8400/20000 {'ce': 3.759965181350708, 'mean_ce_future_source': 2.125253200531006, 'mean_ce_prefix_source': 4.310548782348633, 'auc_prefix_source': 0.9999999952948538, 'n': 130058}
+12:08:34 detector[context] 8600/20000 {'ce': 3.7611196041107178, 'mean_ce_future_source': 2.1196861267089844, 'mean_ce_prefix_source': 4.313967227935791, 'auc_prefix_source': 0.9999999752195634, 'n': 130058}
+12:08:39 detector[context] 8800/20000 {'ce': 3.7600252628326416, 'mean_ce_future_source': 2.119029998779297, 'mean_ce_prefix_source': 4.312725067138672, 'auc_prefix_source': 0.999999693224469, 'n': 130058}
+12:08:43 detector[context] 9000/20000 {'ce': 3.760535955429077, 'mean_ce_future_source': 2.131497859954834, 'mean_ce_prefix_source': 4.309208393096924, 'auc_prefix_source': 0.9999999422835402, 'n': 130058}
+12:08:47 detector[context] 9200/20000 {'ce': 3.756620168685913, 'mean_ce_future_source': 2.1212921142578125, 'mean_ce_prefix_source': 4.307410717010498, 'auc_prefix_source': 0.999999347553063, 'n': 130058}
+12:08:51 detector[context] 9400/20000 {'ce': 3.756709337234497, 'mean_ce_future_source': 2.110934257507324, 'mean_ce_prefix_source': 4.311018466949463, 'auc_prefix_source': 0.9999886020970548, 'n': 130058}
+12:08:55 detector[context] 9600/20000 {'ce': 3.7573494911193848, 'mean_ce_future_source': 2.102440595626831, 'mean_ce_prefix_source': 4.3147358894348145, 'auc_prefix_source': 0.9999999874529435, 'n': 130058}
+12:08:59 detector[context] 9800/20000 {'ce': 3.758723258972168, 'mean_ce_future_source': 2.108088970184326, 'mean_ce_prefix_source': 4.314669609069824, 'auc_prefix_source': 0.9999978356327571, 'n': 130058}
+12:09:04 detector[context] 10000/20000 {'ce': 3.7580251693725586, 'mean_ce_future_source': 2.112454652786255, 'mean_ce_prefix_source': 4.312265396118164, 'auc_prefix_source': 0.9999643694963591, 'n': 130058}
+12:09:08 detector[context] 10200/20000 {'ce': 3.7570390701293945, 'mean_ce_future_source': 2.1159708499908447, 'mean_ce_prefix_source': 4.309762477874756, 'auc_prefix_source': 0.9999999265997196, 'n': 130058}
+12:09:12 detector[context] 10400/20000 {'ce': 3.7547552585601807, 'mean_ce_future_source': 2.1197428703308105, 'mean_ce_prefix_source': 4.305439472198486, 'auc_prefix_source': 0.9999999981179415, 'n': 130058}
+12:09:16 detector[context] 10600/20000 {'ce': 3.7555060386657715, 'mean_ce_future_source': 2.1031579971313477, 'mean_ce_prefix_source': 4.312028884887695, 'auc_prefix_source': 0.9999712816697743, 'n': 130058}
+12:09:20 detector[context] 10800/20000 {'ce': 3.757575273513794, 'mean_ce_future_source': 2.1037356853485107, 'mean_ce_prefix_source': 4.314600944519043, 'auc_prefix_source': 0.9999992562732272, 'n': 130058}
+12:09:24 detector[context] 11000/20000 {'ce': 3.7556536197662354, 'mean_ce_future_source': 2.1254916191101074, 'mean_ce_prefix_source': 4.304704189300537, 'auc_prefix_source': 0.9999973180666772, 'n': 130058}
+12:09:28 detector[context] 11200/20000 {'ce': 3.7537600994110107, 'mean_ce_future_source': 2.108377695083618, 'mean_ce_prefix_source': 4.3079376220703125, 'auc_prefix_source': 0.9999992434124942, 'n': 130058}
+12:09:32 detector[context] 11400/20000 {'ce': 3.7550048828125, 'mean_ce_future_source': 2.1034703254699707, 'mean_ce_prefix_source': 4.311254978179932, 'auc_prefix_source': 0.9999999993726472, 'n': 130058}
+12:09:36 detector[context] 11600/20000 {'ce': 3.7551310062408447, 'mean_ce_future_source': 2.10408091545105, 'mean_ce_prefix_source': 4.311217308044434, 'auc_prefix_source': 0.9999999996863236, 'n': 130058}
+12:09:41 detector[context] 11800/20000 {'ce': 3.7522997856140137, 'mean_ce_future_source': 2.1115143299102783, 'mean_ce_prefix_source': 4.304928779602051, 'auc_prefix_source': 0.9999998619823787, 'n': 130058}
+12:09:45 detector[context] 12000/20000 {'ce': 3.752763032913208, 'mean_ce_future_source': 2.10560941696167, 'mean_ce_prefix_source': 4.307536602020264, 'auc_prefix_source': 0.9999978958586282, 'n': 130058}
+12:09:49 detector[context] 12200/20000 {'ce': 3.752786636352539, 'mean_ce_future_source': 2.10752010345459, 'mean_ce_prefix_source': 4.306924343109131, 'auc_prefix_source': 0.9999970715170174, 'n': 130058}
+12:09:53 detector[context] 12400/20000 {'ce': 3.7542121410369873, 'mean_ce_future_source': 2.10189151763916, 'mean_ce_prefix_source': 4.310725688934326, 'auc_prefix_source': 0.999997040776729, 'n': 130058}
+12:09:57 detector[context] 12600/20000 {'ce': 3.7546446323394775, 'mean_ce_future_source': 2.1016664505004883, 'mean_ce_prefix_source': 4.311379909515381, 'auc_prefix_source': 0.9999999971769122, 'n': 130058}
+12:10:01 detector[context] 12800/20000 {'ce': 3.7521767616271973, 'mean_ce_future_source': 2.100968599319458, 'mean_ce_prefix_source': 4.308315277099609, 'auc_prefix_source': 0.9999842694416138, 'n': 130058}
+12:10:05 detector[context] 13000/20000 {'ce': 3.753418207168579, 'mean_ce_future_source': 2.107677459716797, 'mean_ce_prefix_source': 4.30771541595459, 'auc_prefix_source': 0.9999781690627529, 'n': 130058}
+12:10:08 detector[context] 13200/20000 {'ce': 3.7537083625793457, 'mean_ce_future_source': 2.097141981124878, 'mean_ce_prefix_source': 4.311652183532715, 'auc_prefix_source': 0.9999999984316179, 'n': 130058}
+12:10:12 detector[context] 13400/20000 {'ce': 3.7535173892974854, 'mean_ce_future_source': 2.095858097076416, 'mean_ce_prefix_source': 4.311830043792725, 'auc_prefix_source': 0.9999936653048593, 'n': 130058}
+12:10:16 detector[context] 13600/20000 {'ce': 3.750603437423706, 'mean_ce_future_source': 2.1005568504333496, 'mean_ce_prefix_source': 4.306351661682129, 'auc_prefix_source': 0.9999763136667759, 'n': 130058}
+12:10:20 detector[context] 13800/20000 {'ce': 3.7535858154296875, 'mean_ce_future_source': 2.1008572578430176, 'mean_ce_prefix_source': 4.310236930847168, 'auc_prefix_source': 0.999992162167493, 'n': 130058}
+12:10:23 detector[context] 14000/20000 {'ce': 3.7526700496673584, 'mean_ce_future_source': 2.111992359161377, 'mean_ce_prefix_source': 4.305262565612793, 'auc_prefix_source': 1.0, 'n': 130058}
+12:10:27 detector[context] 14200/20000 {'ce': 3.751317024230957, 'mean_ce_future_source': 2.089998245239258, 'mean_ce_prefix_source': 4.310861587524414, 'auc_prefix_source': 0.9999748767151324, 'n': 130058}
+12:10:31 detector[context] 14400/20000 {'ce': 3.7529261112213135, 'mean_ce_future_source': 2.094036102294922, 'mean_ce_prefix_source': 4.311653137207031, 'auc_prefix_source': 0.9999891157421795, 'n': 130058}
+12:10:34 detector[context] 14600/20000 {'ce': 3.753424644470215, 'mean_ce_future_source': 2.103015422821045, 'mean_ce_prefix_source': 4.3092942237854, 'auc_prefix_source': 0.9999742829256845, 'n': 130058}
+12:10:38 detector[context] 14800/20000 {'ce': 3.7526988983154297, 'mean_ce_future_source': 2.0911335945129395, 'mean_ce_prefix_source': 4.312325954437256, 'auc_prefix_source': 0.9999904485532541, 'n': 130058}
+12:10:42 detector[context] 15000/20000 {'ce': 3.750223159790039, 'mean_ce_future_source': 2.098116636276245, 'mean_ce_prefix_source': 4.306664943695068, 'auc_prefix_source': 1.0, 'n': 130058}
+12:10:45 detector[context] 15200/20000 {'ce': 3.7504141330718994, 'mean_ce_future_source': 2.0962090492248535, 'mean_ce_prefix_source': 4.307563304901123, 'auc_prefix_source': 0.9999960473635322, 'n': 130058}
+12:10:49 detector[context] 15400/20000 {'ce': 3.750797986984253, 'mean_ce_future_source': 2.093972682952881, 'mean_ce_prefix_source': 4.308828830718994, 'auc_prefix_source': 0.9999928240247223, 'n': 130058}
+12:10:53 detector[context] 15600/20000 {'ce': 3.750985860824585, 'mean_ce_future_source': 2.104599952697754, 'mean_ce_prefix_source': 4.305500507354736, 'auc_prefix_source': 0.9999999987452943, 'n': 130058}
+12:10:57 detector[context] 15800/20000 {'ce': 3.7515923976898193, 'mean_ce_future_source': 2.0980069637298584, 'mean_ce_prefix_source': 4.30853271484375, 'auc_prefix_source': 0.999972275710324, 'n': 130058}
+12:11:00 detector[context] 16000/20000 {'ce': 3.750868797302246, 'mean_ce_future_source': 2.0870535373687744, 'mean_ce_prefix_source': 4.311254501342773, 'auc_prefix_source': 0.9999925213269847, 'n': 130058}
+12:11:04 detector[context] 16200/20000 {'ce': 3.7495102882385254, 'mean_ce_future_source': 2.1038665771484375, 'mean_ce_prefix_source': 4.303775310516357, 'auc_prefix_source': 0.9999697303830787, 'n': 130058}
+12:11:08 detector[context] 16400/20000 {'ce': 3.7513234615325928, 'mean_ce_future_source': 2.095595598220825, 'mean_ce_prefix_source': 4.308984756469727, 'auc_prefix_source': 0.9999992656835195, 'n': 130058}
+12:11:12 detector[context] 16600/20000 {'ce': 3.7491869926452637, 'mean_ce_future_source': 2.098314046859741, 'mean_ce_prefix_source': 4.30521297454834, 'auc_prefix_source': 0.9999466847339261, 'n': 130058}
+12:11:15 detector[context] 16800/20000 {'ce': 3.751018524169922, 'mean_ce_future_source': 2.0745253562927246, 'mean_ce_prefix_source': 4.315673351287842, 'auc_prefix_source': 0.9999999993726472, 'n': 130058}
+12:11:19 detector[context] 17000/20000 {'ce': 3.7509145736694336, 'mean_ce_future_source': 2.0894775390625, 'mean_ce_prefix_source': 4.31049919128418, 'auc_prefix_source': 0.9999988952316768, 'n': 130058}
+12:11:23 detector[context] 17200/20000 {'ce': 3.751920700073242, 'mean_ce_future_source': 2.095487356185913, 'mean_ce_prefix_source': 4.30981969833374, 'auc_prefix_source': 0.9999744748956486, 'n': 130058}
+12:11:27 detector[context] 17400/20000 {'ce': 3.7486486434936523, 'mean_ce_future_source': 2.1010560989379883, 'mean_ce_prefix_source': 4.303570747375488, 'auc_prefix_source': 0.9999991094726662, 'n': 130058}
+12:11:30 detector[context] 17600/20000 {'ce': 3.749408483505249, 'mean_ce_future_source': 2.093475103378296, 'mean_ce_prefix_source': 4.307138919830322, 'auc_prefix_source': 0.9999999956085303, 'n': 130058}
+12:11:34 detector[context] 17800/20000 {'ce': 3.7510271072387695, 'mean_ce_future_source': 2.0938806533813477, 'mean_ce_prefix_source': 4.309166431427002, 'auc_prefix_source': 0.9999996235883056, 'n': 130058}
+12:11:38 detector[context] 18000/20000 {'ce': 3.7483105659484863, 'mean_ce_future_source': 2.095414161682129, 'mean_ce_prefix_source': 4.305018424987793, 'auc_prefix_source': 0.9999999153073688, 'n': 130058}
+12:11:42 detector[context] 18200/20000 {'ce': 3.7492637634277344, 'mean_ce_future_source': 2.1005587577819824, 'mean_ce_prefix_source': 4.304559707641602, 'auc_prefix_source': 0.9999999761605927, 'n': 130058}
+12:11:45 detector[context] 18400/20000 {'ce': 3.749359607696533, 'mean_ce_future_source': 2.097553253173828, 'mean_ce_prefix_source': 4.305700302124023, 'auc_prefix_source': 0.999999953575891, 'n': 130058}
+12:11:49 detector[context] 18600/20000 {'ce': 3.75069522857666, 'mean_ce_future_source': 2.082307815551758, 'mean_ce_prefix_source': 4.312620639801025, 'auc_prefix_source': 0.9999877866952218, 'n': 130058}
+12:11:53 detector[context] 18800/20000 {'ce': 3.7497308254241943, 'mean_ce_future_source': 2.0885977745056152, 'mean_ce_prefix_source': 4.309213161468506, 'auc_prefix_source': 1.0, 'n': 130058}
+12:11:56 detector[context] 19000/20000 {'ce': 3.7501132488250732, 'mean_ce_future_source': 2.0937561988830566, 'mean_ce_prefix_source': 4.307986259460449, 'auc_prefix_source': 1.0, 'n': 130058}
+12:12:00 detector[context] 19200/20000 {'ce': 3.7500205039978027, 'mean_ce_future_source': 2.083082437515259, 'mean_ce_prefix_source': 4.311456680297852, 'auc_prefix_source': 0.9999999993726472, 'n': 130058}
+12:12:04 detector[context] 19400/20000 {'ce': 3.749112129211426, 'mean_ce_future_source': 2.074409008026123, 'mean_ce_prefix_source': 4.313164710998535, 'auc_prefix_source': 0.9999998510037043, 'n': 130058}
+12:12:08 detector[context] 19600/20000 {'ce': 3.748858690261841, 'mean_ce_future_source': 2.086138963699341, 'mean_ce_prefix_source': 4.30887508392334, 'auc_prefix_source': 0.9999999388330997, 'n': 130058}
+12:12:11 detector[context] 19800/20000 {'ce': 3.74936842918396, 'mean_ce_future_source': 2.079916477203369, 'mean_ce_prefix_source': 4.311651706695557, 'auc_prefix_source': 1.0, 'n': 130058}
+12:12:15 detector[context] 20000/20000 {'ce': 3.7471423149108887, 'mean_ce_future_source': 2.0895299911499023, 'mean_ce_prefix_source': 4.305438995361328, 'auc_prefix_source': 1.0, 'n': 130058}
+        split  sequences  answers  answers_per_sequence  delay_median  delay_p95  long_fraction  pair_inside_last_r_tokens  anchors_inside_written_prefix  anchors_with_future_answers  mean_pool  anchors_pool_gt_K  chance_structured  chance_vocab  unique_sequences
+0  validation        512     4096                     8          19.0       49.0       0.378906                   0.575195                           0.25                     0.850098   4.719127           0.701321              0.125      0.015625               512
+1      tuning        512     4096                     8          19.0       49.0       0.390869                   0.564209                           0.25                     0.878906   4.687778           0.708333              0.125      0.015625               512
+{
+  "window": {
+    "ce": 2.9748051166534424,
+    "acc_pair_in_window": 0.17568152315015145,
+    "acc_pair_outside": 0.03753501400560224,
+    "auc_pair_outside": 0.9523748919732324,
+    "n": 4096
+  },
+  "context": {
+    "ce": 3.7519924640655518,
+    "mean_ce_future_source": 2.0905447006225586,
+    "mean_ce_prefix_source": 4.305819988250732,
+    "auc_prefix_source": 1.0,
+    "n": 131070
+  }
+}
+                           rule      anchors  pairs  memory_dependent  long_memory_dependent  future_source  mean_delay  mean_offset  anchors_with_pool_le_K
+0                      random_k  all anchors  13044          0.841536               0.626342       0.158464   33.027447    15.817694                0.258301
+1                      random_k     pool > K   9936          0.791969               0.516103       0.208031   29.401167    18.242754                0.258301
+2                    surprise_k  all anchors  13044          0.864765               0.844833       0.135235   38.609322    20.503986                0.258301
+3                    surprise_k     pool > K   9936          0.822464               0.802939       0.177536   36.729065    24.394928                0.258301
+4                surprise_ctx_k  all anchors  13044          0.960748               0.723474       0.039252   34.959061    16.818920                0.258301
+5                surprise_ctx_k     pool > K   9936          0.948470               0.643619       0.051530   31.936996    19.557165                0.258301
+6               oracle_prefix_k  all anchors  12532          1.000000               0.702442       0.000000   33.961380    14.712256                0.258301
+7               oracle_prefix_k     pool > K   9424          1.000000               0.611312       0.000000   30.446095    16.904499                0.258301
+8  random_k (exact expectation)  all anchors  13044          0.842993               0.625383       0.157007         NaN          NaN                0.258301
+9  random_k (exact expectation)     pool > K   9936          0.793881               0.514845       0.206119         NaN          NaN                0.258301
+2026-10-14 12:12:29 done: smt_memup_mqar.py --phase audit --config pilot01
+2026-10-14 12:12:29 start: nice -n 10 /mem/envs/smt-memup/bin/python smt_memup_mqar.py --phase baseline --config pilot01 --threads 4 --gpu-memory-fraction 0.25
+/mem/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/mem/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+12:12:35 run directory: /mem/runs/mqar03_pilot01_cb4a1ef021d2
+12:13:59 tuning/baseline smt 250/3000 teacher long acc=0.026 rnn long acc=0.008 select=4.1658 0.336s/step
+12:15:08 tuning/baseline smt 500/3000 teacher long acc=0.117 rnn long acc=0.022 select=3.4517 0.306s/step
+12:15:59 tuning/baseline smt 750/3000 teacher long acc=0.135 rnn long acc=0.028 select=3.1431 0.272s/step
+12:16:50 tuning/baseline smt 1000/3000 teacher long acc=0.126 rnn long acc=0.027 select=2.9805 0.255s/step
+12:17:42 tuning/baseline smt 1250/3000 teacher long acc=0.129 rnn long acc=0.026 select=2.8710 0.245s/step
+12:18:59 tuning/baseline smt 1500/3000 teacher long acc=0.132 rnn long acc=0.022 select=2.7746 0.256s/step
+12:20:27 tuning/baseline smt 1750/3000 teacher long acc=0.125 rnn long acc=0.030 select=2.7301 0.270s/step
+12:21:55 tuning/baseline smt 2000/3000 teacher long acc=0.124 rnn long acc=0.035 select=2.6836 0.280s/step

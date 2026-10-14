@@ -1,0 +1,8 @@
+2026-10-14 10:42:48 polite final launcher: max 2 workers, start at >= 10000 MiB free, quiet 120s, fraction 0.30
+2026-10-14 10:42:48 foreign GPU processes {9179: 3040} MiB; free 29060 MiB
+2026-10-14 10:54:21 foreign GPU processes {11919: 498} MiB; free 31602 MiB
+2026-10-14 10:58:48 polite final launcher: max 2 workers, start at >= 10000 MiB free, quiet 120s, fraction 0.30
+2026-10-14 10:58:48 foreign GPU processes {11919: 8038} MiB; free 24062 MiB
+2026-10-14 11:10:22 no foreign GPU processes; free 32108 MiB
+2026-10-14 11:12:07 worker 1 [baseline,uniform] started, pid 15748
+2026-10-14 11:13:37 worker 2 [random_k,surprise_k] started, pid 16105

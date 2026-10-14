@@ -5,6 +5,7 @@ the H2 retention probe, and reads validation histories. Test is never touched.
 Run: python make_outputs.py [--threads 4] [--gpu-memory-fraction 0.12]
 """
 import argparse
+import hashlib
 import json
 import re
 import shutil
@@ -59,15 +60,31 @@ def md_table(df: pd.DataFrame, floatfmt="{:.3f}") -> str:
     return head + "".join("| " + " | ".join(f(v) for v in row) + " |\n" for row in df.itertuples(index=False))
 
 
-def fits(run: Path):
+def fits(run: Path, need_model: bool = True):
+    """Tuning fits. need_model=False: every fit with saved histories (the models themselves were not
+    transferred to the new server; their evaluations are cached in analysis_tuning/)."""
     for d in sorted((run / "tuning").iterdir()):
-        if not (d / "completed.pt").exists():
+        if not (d / ("completed.pt" if need_model else "dmt_history.csv")).exists():
             continue
         if d.name == "baseline":
             yield d, "baseline", 0.0
         else:
             m = re.fullmatch(r"(.+)_a([0-9.]+)", d.name)
             yield d, m.group(1), float(m.group(2))
+
+
+class SavedRun:
+    """The saved CUDA run without S.Experiment: Experiment derives the run directory from the CURRENT device,
+    so a CPU-only analysis through it would create (and look into) a new, empty directory."""
+
+    def __init__(self, cfg, device):
+        S.sources(ROOT)
+        ident = S.run_identity(cfg, S.torch.device("cuda"))          # the saved runs were trained on CUDA
+        key = hashlib.sha256(json.dumps(ident, sort_keys=True).encode()).hexdigest()[:12]
+        self.dir = ROOT / "runs" / f"stack02_{key}"
+        assert json.loads((self.dir / "identity.json").read_text()) == ident, "environment does not match the saved run"
+        self.cfg, self.device = cfg, device
+        self.tuning = S.sample_stack(cfg, cfg.tuning_examples, S.derive_seed(502, 0))
 
 
 def evaluate_fits(ex, run: Path, cache: Path):
@@ -80,9 +97,10 @@ def evaluate_fits(ex, run: Path, cache: Path):
         ev, pr, done = pd.DataFrame(), pd.DataFrame(), set()
     cfg, dev = S.replace(ex.cfg, eval_batch_size=32), ex.device   # smaller eval batch: stays within a small GPU share
     new_ev, new_pr = [], []
-    for d, variant, alpha in fits(run):
+    for d, variant, alpha in fits(run, need_model=False):
         if (variant, alpha) in done:
             continue
+        assert (d / "completed.pt").exists(), f"{d.name}: no cached evaluation and no model"
         saved = S.torch.load(d / "completed.pt", map_location="cpu", weights_only=True)
         for stage in ("smt", "dmt"):
             t, r = S.load_fitted(cfg, saved, dev, stage)
@@ -104,7 +122,7 @@ def evaluate_fits(ex, run: Path, cache: Path):
 
 def histories(run: Path):
     rows = []
-    for d, variant, alpha in fits(run):
+    for d, variant, alpha in fits(run, need_model=False):
         for stage in ("smt", "dmt"):
             h = pd.read_csv(d / f"{stage}_history.csv").dropna(subset=["val_teacher_long_acc"])
             h = h[["step", "val_teacher_long_acc", "val_rnn_long_acc", "val_teacher_long_ce", "val_rnn_long_ce"]].copy()
@@ -148,7 +166,7 @@ def main():
     style()
     OUT.mkdir(exist_ok=True)
     cfg = S.Config()
-    ex = S.Experiment(cfg, root=ROOT, device=dev, log=lambda s: None)
+    ex = SavedRun(cfg, dev)
     run = ex.dir
     long = cfg.long_delay
     readme = [f"# Stack Operations: данные, отбор ответов, baseline и подбор α (версия 2 графиков)\n",
