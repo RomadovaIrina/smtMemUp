@@ -1,0 +1,20 @@
+{
+  "variants": [
+    "baseline",
+    "uniform",
+    "random_k",
+    "surprise_k",
+    "surprise_ctx_k",
+    "oracle_prefix_k"
+  ],
+  "seeds": [
+    7,
+    17,
+    27
+  ],
+  "test_hash": "001b81cb35d1fedbfa2270435d8f0b8e69f64a62018cd20ed6a35c23147aaf79",
+  "validation_hash": "36f1d5a0094ac065082e504c1a65990db1b5f8c1f93080b2d278bbfe5ba07c0a",
+  "tuning_hash": "5805368b388f62d1c6adab291c21598416782b716b99f9e9bac560cb8e469c24",
+  "primary": "RNN after DMT, CE on pops with delay>=long_delay, surprise_k vs random_k and uniform",
+  "caveat": "Few training seeds; the per-seed table is the primary evidence."
+}
