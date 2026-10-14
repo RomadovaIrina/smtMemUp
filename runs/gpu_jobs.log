@@ -1,0 +1,79 @@
+2026-10-14 16:33:51 scheduler: 28 jobs, max 4 at once, start at >= 10500 MiB free
+2026-10-14 16:33:51 started: v1_s27_surprise_ctx_k (pid 139597, free 27345 MiB)
+2026-10-14 16:39:54 done: v1_s27_surprise_ctx_k (exit 0)
+2026-10-14 16:40:09 started: v1_s7_oracle_prefix_k (pid 141540, free 32108 MiB)
+2026-10-14 16:41:55 done: v1_s7_oracle_prefix_k (exit 0)
+2026-10-14 16:41:55 started: v1_s17_oracle_prefix_k (pid 141931, free 32108 MiB)
+2026-10-14 16:52:14 done: v1_s17_oracle_prefix_k (exit 0)
+2026-10-14 16:52:14 started: v1_s27_oracle_prefix_k (pid 143290, free 32108 MiB)
+2026-10-14 16:52:45 scheduler restarted: fit_one.py was mistaken for a foreign process (jobs ran one at a time); remaining jobs in runs/jobs_2026-10-14b.json
+2026-10-14 16:52:45 scheduler: 25 jobs, max 5 at once, start at >= 10500 MiB free
+2026-10-14 16:52:45 started: wait_v1_s27_oracle (pid 143429, free 23558 MiB)
+2026-10-14 16:53:25 started: v2_gate (pid 143672, free 23558 MiB)
+2026-10-14 16:54:05 started: conv_C2_dmt6000 (pid 144018, free 15081 MiB)
+2026-10-14 17:10:57 started: conv_C1_smt30000 (pid 146888, free 14455 MiB)
+2026-10-14 17:11:07 done: wait_v1_s27_oracle (exit 0)
+2026-10-14 17:11:43 scheduler restarted with per-job memory needs (test report first); running jobs left alone: v2_gate 143672, C2 144018, C1 146888
+2026-10-14 17:11:43 scheduler: 22 jobs, max 5 at once, start at >= 10500 MiB free
+2026-10-14 17:11:44 started: v1_check18 (pid 147056, free 5986 MiB)
+2026-10-14 17:11:54 done: v1_check18 (exit 0)
+2026-10-14 17:12:04 started: v1_test_report (pid 147160, free 5914 MiB)
+2026-10-14 17:12:14 failed: v1_test_report (exit 1)
+2026-10-14 17:12:14 skipped (dependency failed): v1_test_outputs
+2026-10-14 17:12:24 started: wait_v2_gate (pid 147282, free 5914 MiB)
+2026-10-14 17:12:35 C1 (pid 146888) stopped to free memory for the test report (OOM at 17:12); resumes later from its checkpoint
+2026-10-14 17:12:57 scheduler 147050 paused (SIGSTOP) while the test report runs
+2026-10-14 17:21:46 done: wait_v2_gate (exit 0)
+2026-10-14 17:21:46 scheduler 147050 resumed after the test report
+2026-10-14 17:21:46 started: v2_s7_base_window (pid 148370, free 23284 MiB)
+2026-10-14 17:22:06 started: v2_s7_uniform_far (pid 148456, free 14807 MiB)
+2026-10-14 17:24:42 started: v2_s7_random_far (pid 148952, free 15007 MiB)
+2026-10-14 17:25:03 scheduler: 1 jobs, max 1 at once, start at >= 10500 MiB free
+2026-10-14 17:42:19 done: v2_s7_base_window (exit 0)
+2026-10-14 17:42:19 started: v2_s7_surprise_far (pid 152126, free 14445 MiB)
+2026-10-14 17:42:20 started: conv_C1_smt30000 (pid 152162, free 14445 MiB)
+2026-10-14 17:42:30 failed: conv_C1_smt30000 (exit 1)
+2026-10-14 17:42:35 all jobs: conv_C1_smt30000=failed
+2026-10-14 17:42:54 done: v2_s7_uniform_far (exit 0)
+2026-10-14 17:42:54 started: v2_s7_ctx_far (pid 152330, free 14791 MiB)
+2026-10-14 17:43:04 single scheduler from now on (two schedulers raced at 17:42 -> C1 OOM at start); runs/jobs_2026-10-14e.json
+2026-10-14 17:43:04 scheduler: 18 jobs, max 6 at once, start at >= 10500 MiB free
+2026-10-14 17:43:04 started: wait_v2_s7_uniform_far (pid 152390, free 5284 MiB)
+2026-10-14 17:43:09 done: wait_v2_s7_uniform_far (exit 0)
+2026-10-14 17:43:20 scheduler relaunched: v2_s7_ctx_far had been started by the old scheduler at 17:42:54 (pid 152330) - waited for, not restarted
+2026-10-14 17:43:20 scheduler: 17 jobs, max 6 at once, start at >= 10500 MiB free
+2026-10-14 17:43:20 started: wait_v2_s7_random_far (pid 152445, free 5284 MiB)
+2026-10-14 17:44:00 started: wait_v2_s7_surprise_far (pid 152542, free 5212 MiB)
+2026-10-14 17:44:40 started: wait_v2_s7_ctx_far (pid 152629, free 5488 MiB)
+2026-10-14 17:45:36 started: conv_C1_smt30000 (pid 152772, free 14319 MiB)
+2026-10-14 17:45:41 done: wait_v2_s7_random_far (exit 0)
+2026-10-14 18:03:38 started: v2_s7_oracle_far (pid 155285, free 14057 MiB)
+2026-10-14 18:03:43 done: wait_v2_s7_surprise_far (exit 0)
+2026-10-14 18:04:18 started: v2_s17_base_window (pid 155442, free 15085 MiB)
+2026-10-14 18:04:23 done: wait_v2_s7_ctx_far (exit 0)
+2026-10-14 18:25:11 done: v2_s17_base_window (exit 0)
+2026-10-14 18:25:11 started: v2_s17_uniform_far (pid 158202, free 14735 MiB)
+2026-10-14 18:25:16 done: v2_s7_oracle_far (exit 0)
+2026-10-14 18:25:51 started: v2_s17_random_far (pid 158345, free 15089 MiB)
+2026-10-14 18:46:09 started: v2_s17_surprise_far (pid 160997, free 14735 MiB)
+2026-10-14 18:46:14 done: v2_s17_uniform_far (exit 0)
+2026-10-14 18:47:20 done: v2_s17_random_far (exit 0)
+2026-10-14 18:47:20 started: v2_s17_ctx_far (pid 161189, free 18503 MiB)
+2026-10-14 19:08:03 done: v2_s17_surprise_far (exit 0)
+2026-10-14 19:08:03 started: v2_s17_oracle_far (pid 163877, free 14055 MiB)
+2026-10-14 19:09:13 done: v2_s17_ctx_far (exit 0)
+2026-10-14 19:09:13 started: v2_s27_base_window (pid 164066, free 19959 MiB)
+2026-10-14 19:29:51 done: v2_s17_oracle_far (exit 0)
+2026-10-14 19:29:51 started: v2_s27_uniform_far (pid 166674, free 14735 MiB)
+2026-10-14 19:30:06 done: v2_s27_base_window (exit 0)
+2026-10-14 19:30:31 started: v2_s27_random_far (pid 166803, free 15087 MiB)
+2026-10-14 20:03:08 done: v2_s27_uniform_far (exit 0)
+2026-10-14 20:03:08 started: v2_s27_surprise_far (pid 174360, free 14733 MiB)
+2026-10-14 20:04:54 done: v2_s27_random_far (exit 0)
+2026-10-14 20:04:54 started: v2_s27_ctx_far (pid 174759, free 15009 MiB)
+2026-10-14 20:25:08 done: v2_s27_surprise_far (exit 0)
+2026-10-14 20:25:08 started: v2_s27_oracle_far (pid 178436, free 13777 MiB)
+2026-10-14 20:28:42 done: v2_s27_ctx_far (exit 0)
+2026-10-14 20:40:21 done: conv_C1_smt30000 (exit 0)
+2026-10-14 20:43:27 done: v2_s27_oracle_far (exit 0)
+2026-10-14 20:43:32 all jobs: wait_v2_s7_random_far=done, wait_v2_s7_surprise_far=done, wait_v2_s7_ctx_far=done, conv_C1_smt30000=done, v2_s7_oracle_far=done, v2_s17_base_window=done, v2_s17_uniform_far=done, v2_s17_random_far=done, v2_s17_surprise_far=done, v2_s17_ctx_far=done, v2_s17_oracle_far=done, v2_s27_base_window=done, v2_s27_uniform_far=done, v2_s27_random_far=done, v2_s27_surprise_far=done, v2_s27_ctx_far=done, v2_s27_oracle_far=done
