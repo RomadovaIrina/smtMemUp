@@ -18,3 +18,62 @@
 22:17:16 diag/bptt_1_lr0.0001 bptt 8500/20000 select=1.3927 val_rnn_long_acc=0.273 0.624s/step(train)
 22:22:29 diag/bptt_1_lr0.0001 bptt 9000/20000 select=1.3982 val_rnn_long_acc=0.277 0.624s/step(train)
 22:27:42 diag/bptt_1_lr0.0001 bptt 9500/20000 select=1.4535 val_rnn_long_acc=0.282 0.624s/step(train)
+22:32:54 diag/bptt_1_lr0.0001 bptt 10000/20000 select=1.4585 val_rnn_long_acc=0.276 0.624s/step(train)
+22:38:06 diag/bptt_1_lr0.0001 bptt 10500/20000 select=1.4302 val_rnn_long_acc=0.297 0.624s/step(train)
+Traceback (most recent call last):
+  File "/workspace/smtMemUp/smt_memup_v4.py", line 586, in <module>
+    main()
+  File "/workspace/smtMemUp/smt_memup_v4.py", line 573, in main
+    ex.diag_job(a.job)
+  File "/workspace/smtMemUp/smt_memup_v4.py", line 427, in diag_job
+    return fit_bptt(cfg, variant, seed, float(lr), out, self.validation, self.device, self.log)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/smt_memup_v4.py", line 321, in fit_bptt
+    r = _run_stage("bptt", cfg.bptt_steps, lr, cfg.bptt_lr_schedule, list(rnn.parameters()), step_fn, monitor_fn,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/smt_memup_v4.py", line 196, in _run_stage
+    score, extras = monitor_fn()
+                    ^^^^^^^^^^^^
+  File "/workspace/smtMemUp/smt_memup_v4.py", line 318, in monitor_fn
+    ev = evaluate_rnn(rnn, validation, cfg, device)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/smt_memup_v4.py", line 132, in evaluate_rnn
+    own = rnn.rnn_readout(rm.flatten(0, 1)).reshape(*y.shape, -1).float()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/upstream/smt/src/model.py", line 225, in rnn_readout
+    logits = self.to_logits(self.decoder(z)[:, -1, :]) # (B, V)
+                            ^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/x_transformers/x_transformers.py", line 3231, in forward
+    out, inter = block(x, mask = mask, context_mask = self_attn_kv_mask, attn_mask = attn_mask, rel_pos = self.rel_pos, pos = pos, rotary_pos_emb = rotary_pos_emb, polar_pos_emb = polar_pos_emb, additional_key_values = next(iter_self_attn_kv, None), additional_key_value_mask = additional_kv_mask, prev_attn = prev_attn, cache = next(iter_attn_cache, None), mem = layer_mem, mem_mask = layer_mem_mask, attn_bias = attn_bias, kv_input_residual = next(self_attn_kv_residuals_iter, None), value_residual = maybe_self_attn_value_residual, flash_pack_seq_kwargs = flash_pack_seq_kwargs, return_intermediates = True, causal = causal)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/x_transformers/x_transformers.py", line 2261, in forward
+    out, intermediates = self.attend(
+                         ^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/x_transformers/attend.py", line 617, in forward
+    out = einsum(f'b h i j, {kv_einsum_eq} -> b h i d', attn, v)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/functional.py", line 373, in einsum
+    return _VF.einsum(equation, operands)  # type: ignore[attr-defined]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 64.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 23.75 MiB is free. Process 8377 has 14.24 GiB memory in use. Process 8488 has 8.88 GiB memory in use. Process 8599 has 1.85 GiB memory in use. Process 8726 has 1.85 GiB memory in use. Process 8835 has 1.85 GiB memory in use. Including non-PyTorch memory, this process has 1.31 GiB memory in use. Process 9135 has 1.31 GiB memory in use. Of the allocated memory 601.39 MiB is allocated by PyTorch, and 100.61 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

@@ -88,3 +88,6 @@
 2026-10-16 20:48:33 started: v4d_bptt_1_lr0.0001 (pid 8944, free 10081 MiB)
 2026-10-16 20:49:34 started: v4d_bptt_1_lr0.0003 (pid 9135, free 4760 MiB)
 2026-10-16 22:27:50 scheduler: 4 jobs, max 4 at once, start at >= 10000 MiB free
+2026-10-16 22:29:37 scheduler: 4 jobs, max 4 at once, start at >= 10000 MiB free
+2026-10-16 22:43:22 failed: v4d_bptt_1_lr0.0001 (exit 1)
+2026-10-16 22:43:22 skipped (dependency failed): v4d_report

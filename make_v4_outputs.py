@@ -77,6 +77,7 @@ def stack_run_dir(cfg=CFG) -> Path | None:
 
 def load_stack(run: Path) -> pd.DataFrame:
     rows = []
+    conf = json.loads((run / "identity.json").read_text())["config"]
     for d in sorted((run / "diag").glob("*/")):
         variant, lr = (d.name.split("_lr") + [None])[:2]
         for stage in ("smt", "dmt", "bptt"):
@@ -85,6 +86,8 @@ def load_stack(run: Path) -> pd.DataFrame:
                 h = pd.read_csv(f)
                 h = h.dropna(subset=[c for c in h.columns if c.startswith("val_")][:1])
                 h.insert(0, "stage", stage); h.insert(0, "job_lr", float(lr) if lr else np.nan); h.insert(0, "variant", variant)
+                h.insert(0, "steps_max", {"smt": conf["smt_steps"], "dmt": conf["dmt_steps"], "bptt": conf["bptt_steps"]}[stage])
+                h.insert(0, "smt_budget", conf["smt_steps"])
                 h.insert(0, "run", d.name)
                 rows.append(h)
     return pd.concat(rows, ignore_index=True) if rows else pd.DataFrame()
@@ -94,7 +97,7 @@ def stack_progress(hist: pd.DataFrame, run: Path) -> pd.DataFrame:
     rows = []
     for (name, stage), h in hist.groupby(["run", "stage"], sort=False):
         col = "val_teacher_long_acc" if stage == "smt" else "val_rnn_long_acc"
-        maximum = {"smt": CFG.smt_steps, "dmt": CFG.dmt_steps, "bptt": CFG.bptt_steps}[stage]
+        maximum = int(h.steps_max.iloc[0])
         s = V.sufficiency(h, col, CFG)
         best_i = h[col].idxmax()
         rows.append(dict(run=name, stage=stage, metric=col.replace("val_", "").replace("_long_acc", ""),
@@ -148,8 +151,9 @@ def stack_cost_figure(hist: pd.DataFrame, path: Path):
             smt, dmt = h[h.stage == "smt"], h[h.stage == "dmt"]
             if not len(dmt):
                 continue
-            x = (CFG.smt_steps * CFG.batch_size + dmt.step * CFG.dmt_batch_size) / 1e6
-            ax.plot(x, dmt.val_rnn_long_acc, color=COLOR.get(variant, MUTED), linewidth=2, label=NAMES[variant] + " (после SMT 20k)")
+            x = (int(h.smt_budget.iloc[0]) * CFG.batch_size + dmt.step * CFG.dmt_batch_size) / 1e6
+            ax.plot(x, dmt.val_rnn_long_acc, color=COLOR.get(variant, MUTED), linewidth=2,
+                    label=NAMES[variant] + f" (после SMT {int(h.smt_budget.iloc[0]) // 1000}k)")
         else:
             lr = h.job_lr.iloc[0]
             ax.plot(h.step * CFG.bptt_batch_size / 1e6, h.val_rnn_long_acc, color=COLOR.get(variant, MUTED), linewidth=2,
@@ -248,8 +252,10 @@ def main():
     stamp = time.strftime("%d.%m.%Y %H:%M")
     p = lambda x: f"{100 * x:.1f}%"
     run = stack_run_dir()
-    fw = stack_run_dir(replace(CFG, future_window=CFG.seq_len))          # full-window reference (own run dir)
-    parts = [load_stack(r) for r in (run, fw) if r]
+    # part D (default config) plus the extra diagnostic runs (short budget, full window): every GPU run directory
+    dirs = [Path(d) for d in sorted(glob.glob(str(ROOT / "runs" / "stackv4_*")))
+            if json.loads((Path(d) / "identity.json").read_text()).get("device") == "cuda"]
+    parts = [load_stack(r) for r in dirs]
     parts = [p for p in parts if len(p)]
     hist = pd.concat(parts, ignore_index=True) if parts else pd.DataFrame()
     prog = stack_progress(hist, run) if len(hist) else pd.DataFrame()
