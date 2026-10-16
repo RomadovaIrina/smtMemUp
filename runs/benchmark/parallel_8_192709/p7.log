@@ -1,0 +1,10 @@
+dmt {"wall_ms_median": 608.7910979995286, "wall_ms_p90": 630.7414404987867, "measured_steps": 20, "warmup_steps": 5, "gpu_ms_median": 605.5494079589844, "peak_allocated_mib": 3208.3896484375, "peak_reserved_mib": 3634.0, "batch_size": 32, "data_generation_ms_per_batch": 52.02238899983058, "parameters": 395781}
+bptt_full {"wall_ms_median": 549.0564015008204, "wall_ms_p90": 555.7832320006128, "measured_steps": 20, "warmup_steps": 5, "gpu_ms_median": 548.13427734375, "peak_allocated_mib": 645.041015625, "peak_reserved_mib": 690.0, "batch_size": 32, "data_generation_ms_per_batch": 52.17249225006526, "parameters": 395781}
+{"eval_smt_s": 2.3176440419993014, "eval_dmt_s": 1.8808519470003375, "eval_bptt_s": 0.7955060120002599}
+ESTIMATE (from the measured medians, single process): {
+  "diag_smt_one_fit_h": NaN,
+  "diag_bptt_full_one_fit_h": 3.3489994765271454,
+  "diag_bptt_1_one_fit_h": NaN,
+  "diag_total_sequential_h": NaN
+}
+written runs/benchmark/parallel_8_192709/bench_cuda_20261016_192755.json

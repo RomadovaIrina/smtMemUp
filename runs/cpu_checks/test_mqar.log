@@ -1,0 +1,20 @@
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+OK  Data: Zoology semantics (pairs, one query per pair, answer = written value, no noise), reproducible
+OK  Same raw data as the direct Zoology call (only -100 -> -1)
+OK  Encoder: trimmed chunked windows equal full padded windows (Stack code path)
+OK  Decoder: logits at answer positions equal Teacher.decode
+OK  SMT loss with all anchors = smt_memup_stack.smt_loss (MQAR and Stack batches, all deterministic variants)
+OK  Random-K: E[L_selected] = L_dec; uniform = (1+alpha) L_dec; alpha=0 identical for all variants
+OK  Anchor subset: only the requested windows are encoded; A = T reproduces the all-anchor loss
+OK  Gradients: SMT reaches encoder and updater, not detectors; DMT readout never reaches updater; truncated DMT
+OK  Selector uses no metadata: scrambling source/delay/key positions changes only the oracle
+OK  Resume: crash in SMT and in DMT reproduces the uninterrupted run bit-exactly; identity mismatch refused
+OK  Evaluation, retention probe, idealised-detector selection audit run and are consistent
+OK  Binding metrics: candidate-restricted CE/accuracy = softmax over the written values; shuffled query order
+OK  Window r of every candidate follows the pre-set rule (smallest grid r with the pair visible for >= half of answers)
+
+13 checks passed
+exit=0

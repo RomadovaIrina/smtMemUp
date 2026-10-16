@@ -1,0 +1,19 @@
+OK  Stack: author generator, replay annotation, paper example, seed reproducibility
+OK  Windows: shifts equal the author get_smt_batch at anchor t=Tc-1; prefix/future partition
+OK  Teacher: left padding is exactly masked; m_t independent of future inputs (no leakage)
+OK  Decoder: output j sees only memory + x_fut[:j]; teacher_readout == decode[:, 0]; RNN readout == teacher head after copy
+OK  Loss normalisation: alpha=0 identical for all variants; uniform == (1+alpha) L_dec; E[random-K] == L_dec
+OK  Top-K: equals MemUP TopKSelector inside the pool; never duplicates; pool<K -> whole pool
+OK  Gradients: SMT reaches encoder+updater, not detectors; DMT readout CE never reaches updater; teacher frozen
+OK  Context detector: output j depends only on x_fut[:j] (same information as decoder, no memory)
+OK  Training: same seed -> same initial weights for every variant; rerun after a lost DMT stage is identical
+OK  Mid-stage resume: crash after step 3 of 6 reproduces the uninterrupted SMT weights
+OK  Evaluation + retention probe + paired statistics run on a tiny model and give finite values
+OK  Selection audit runs; oracle pool contains only memory-dependent pairs
+OK  Selector uses no metadata: scrambling source_pos/delay/depth leaves every non-oracle loss unchanged
+OK  Context detector score for (t, k): invariant to x_{<=t}, to x_{>k} and to all labels except y_k
+OK  Oracle: only push<=t targets, min(K, P_t) per anchor, E[aux] = mean CE over memory-dependent pairs
+OK  Mid-DMT resume (random_k): optimizer, scheduler and random draws restored; result bit-identical
+
+16 checks passed
+exit=0

@@ -1,0 +1,12 @@
+OK  Full BPTT loss equals the authors' forward_bptt (upstream model.py) exactly
+OK  BPTT-1 carries the state forward: forward values equal full BPTT, differ from resetting the state to zero
+OK  Gradient paths: full BPTT reaches earlier updates; BPTT-1 gives no gradient to any previous update
+OK  BPTT-1 gradient = sum over t of per-step gradients with the incoming state as a constant; differs from full BPTT
+OK  BPTT models: same RNN class, state size, head and initial weights as the SMT -> DMT RNN of the same seed
+OK  BPTT training: a crash in the middle reproduces the uninterrupted run (resume)
+OK  SMT under version-2 schedules reproduces version-2 training bit for bit (same loss, streams, init)
+OK  Metrics: evaluate_rnn gives the same CE/accuracy rows as S.evaluate for the same RNN
+OK  Sufficiency rule and final-budget rule behave as written in the protocol
+OK  Splits: the version-4 test stream is disjoint from validation, tuning and the version 1/2 and 3 tests
+
+10/10 checks passed

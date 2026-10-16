@@ -1,0 +1,12 @@
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+OK  pilot01 data: Zoology generator, 8 pairs then 8 queries, labels only at query keys, values never after the prefix
+OK  Causality: logits at t do not change when inputs after t change (Transformer and RNN)
+OK  RNN baseline: loss equals the authors' forward_bptt on MQAR batches; same init as the pilot01 RNN
+OK  Metrics: a perfect model scores 1 everywhere; uniform over written values gives cand CE = ln N, chance 1/N
+OK  Shuffled query order: same written pairs and query positions, answers follow the permuted keys
+OK  Training: a crash in the middle reproduces the uninterrupted run; fixed training set is disjoint from val/tuning
+
+6/6 checks passed

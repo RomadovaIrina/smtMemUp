@@ -1,0 +1,59 @@
+dmt {"wall_ms_median": 619.8406194998825, "wall_ms_p90": 630.3557748002277, "measured_steps": 20, "warmup_steps": 5, "gpu_ms_median": 616.2877197265625, "peak_allocated_mib": 3208.3896484375, "peak_reserved_mib": 3634.0, "batch_size": 32, "data_generation_ms_per_batch": 52.530919000219, "parameters": 395781}
+bptt_full {"wall_ms_median": 550.3726269998879, "wall_ms_p90": 552.0573853011228, "measured_steps": 20, "warmup_steps": 5, "gpu_ms_median": 549.7950744628906, "peak_allocated_mib": 645.041015625, "peak_reserved_mib": 690.0, "batch_size": 32, "data_generation_ms_per_batch": 52.59081724989301, "parameters": 395781}
+Traceback (most recent call last):
+  File "/workspace/smtMemUp/checks/benchmark_train_step.py", line 196, in <module>
+    main()
+  File "/workspace/smtMemUp/checks/benchmark_train_step.py", line 171, in main
+    res["eval_smt_s"] = timed(lambda: (S.evaluate(teacher, rnn, val, cfg, device),
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/checks/benchmark_train_step.py", line 72, in timed
+    fn()
+  File "/workspace/smtMemUp/checks/benchmark_train_step.py", line 171, in <lambda>
+    res["eval_smt_s"] = timed(lambda: (S.evaluate(teacher, rnn, val, cfg, device),
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/smt_memup_stack.py", line 570, in evaluate
+    tm = teacher_states(teacher, part, device)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/smt_memup_stack.py", line 385, in teacher_states
+    return encode_chunked(teacher, w["x_ctx"].to(device), chunk).reshape(B, T, -1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/smt_memup_stack.py", line 378, in encode_chunked
+    return torch.cat([teacher.encode(p) for p in x_ctx.split(chunk)])
+                      ^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/upstream/smt/src/model.py", line 141, in encode
+    z = self.encoder(encoder_input, mask=mask) # (B, Tc+K, D)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/x_transformers/x_transformers.py", line 3231, in forward
+    out, inter = block(x, mask = mask, context_mask = self_attn_kv_mask, attn_mask = attn_mask, rel_pos = self.rel_pos, pos = pos, rotary_pos_emb = rotary_pos_emb, polar_pos_emb = polar_pos_emb, additional_key_values = next(iter_self_attn_kv, None), additional_key_value_mask = additional_kv_mask, prev_attn = prev_attn, cache = next(iter_attn_cache, None), mem = layer_mem, mem_mask = layer_mem_mask, attn_bias = attn_bias, kv_input_residual = next(self_attn_kv_residuals_iter, None), value_residual = maybe_self_attn_value_residual, flash_pack_seq_kwargs = flash_pack_seq_kwargs, return_intermediates = True, causal = causal)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/x_transformers/x_transformers.py", line 2054, in forward
+    v = self.to_v(v_input)
+        ^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 288.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 61.75 MiB is free. Process 3321 has 712.00 MiB memory in use. Process 3319 has 7.07 GiB memory in use. Process 3324 has 7.07 GiB memory in use. Process 3323 has 7.07 GiB memory in use. Process 3322 has 848.00 MiB memory in use. Including non-PyTorch memory, this process has 1.46 GiB memory in use. Process 3325 has 7.07 GiB memory in use. Of the allocated memory 811.36 MiB is allocated by PyTorch, and 46.64 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

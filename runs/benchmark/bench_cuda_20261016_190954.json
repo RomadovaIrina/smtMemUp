@@ -1,0 +1,136 @@
+{
+  "device": "NVIDIA GeForce RTX 5090",
+  "torch": "2.9.1+cu128",
+  "measured": "2026-10-16 19:08:35",
+  "components": {
+    "smt_base_window": {
+      "wall_ms_median": 98.66439150027873,
+      "wall_ms_p90": 99.2404622005779,
+      "measured_steps": 20,
+      "warmup_steps": 5,
+      "gpu_ms_median": 98.64096069335938,
+      "peak_allocated_mib": 7732.41357421875,
+      "peak_reserved_mib": 7864.0,
+      "batch_size": 32,
+      "data_generation_ms_per_batch": 55.224692249794316,
+      "parameters": 890826
+    },
+    "smt_ctx_far": {
+      "wall_ms_median": 103.22739599996567,
+      "wall_ms_p90": 104.18295630024659,
+      "measured_steps": 20,
+      "warmup_steps": 5,
+      "gpu_ms_median": 103.20123291015625,
+      "peak_allocated_mib": 7732.41357421875,
+      "peak_reserved_mib": 8398.0,
+      "batch_size": 32,
+      "data_generation_ms_per_batch": 51.90273674998025,
+      "parameters": 890826
+    },
+    "smt_surprise_far": {
+      "wall_ms_median": 104.15642900079547,
+      "wall_ms_p90": 105.41742810019059,
+      "measured_steps": 20,
+      "warmup_steps": 5,
+      "gpu_ms_median": 104.13334274291992,
+      "peak_allocated_mib": 7732.41357421875,
+      "peak_reserved_mib": 7866.0,
+      "batch_size": 32,
+      "data_generation_ms_per_batch": 51.86974825028301,
+      "parameters": 890826
+    },
+    "dmt": {
+      "wall_ms_median": 624.6736445000352,
+      "wall_ms_p90": 959.5274794997749,
+      "measured_steps": 20,
+      "warmup_steps": 5,
+      "gpu_ms_median": 624.6222839355469,
+      "peak_allocated_mib": 3208.3896484375,
+      "peak_reserved_mib": 3582.0,
+      "batch_size": 32,
+      "data_generation_ms_per_batch": 51.705730999856314,
+      "parameters": 395781
+    },
+    "bptt_full": {
+      "wall_ms_median": 545.3318115005459,
+      "wall_ms_p90": 555.4280846006804,
+      "measured_steps": 20,
+      "warmup_steps": 5,
+      "gpu_ms_median": 545.2872009277344,
+      "peak_allocated_mib": 645.041015625,
+      "peak_reserved_mib": 702.0,
+      "batch_size": 32,
+      "data_generation_ms_per_batch": 58.93126399996618,
+      "parameters": 395781
+    },
+    "bptt_1": {
+      "wall_ms_median": 549.8783100001674,
+      "wall_ms_p90": 553.6099882991039,
+      "measured_steps": 20,
+      "warmup_steps": 5,
+      "gpu_ms_median": 549.83349609375,
+      "peak_allocated_mib": 645.041015625,
+      "peak_reserved_mib": 702.0,
+      "batch_size": 32,
+      "data_generation_ms_per_batch": 52.34336949979479,
+      "parameters": 395781
+    },
+    "detector_window": {
+      "wall_ms_median": 3.7599160004901933,
+      "wall_ms_p90": 4.35858600139909,
+      "measured_steps": 20,
+      "warmup_steps": 5,
+      "gpu_ms_median": 3.7177599668502808,
+      "peak_allocated_mib": 81.88525390625,
+      "peak_reserved_mib": 128.0,
+      "batch_size": 32,
+      "data_generation_ms_per_batch": 51.891201000216824,
+      "parameters": 16165
+    },
+    "detector_context": {
+      "wall_ms_median": 4.830977500205336,
+      "wall_ms_p90": 5.787200999839115,
+      "measured_steps": 20,
+      "warmup_steps": 5,
+      "gpu_ms_median": 4.808112144470215,
+      "peak_allocated_mib": 936.06689453125,
+      "peak_reserved_mib": 1482.0,
+      "batch_size": 32,
+      "data_generation_ms_per_batch": 55.262982999920496,
+      "parameters": 16181
+    },
+    "mqar_transformer": {
+      "wall_ms_median": 12.344378999841865,
+      "wall_ms_p90": 14.596301200253947,
+      "measured_steps": 20,
+      "warmup_steps": 5,
+      "gpu_ms_median": 12.303359985351562,
+      "peak_allocated_mib": 72.49609375,
+      "peak_reserved_mib": 96.0,
+      "batch_size": 32,
+      "data_generation_ms_per_batch": 221.01375124975675,
+      "parameters": 218048
+    },
+    "mqar_rnn_bptt": {
+      "wall_ms_median": 565.3636765000556,
+      "wall_ms_p90": 566.5880680990085,
+      "measured_steps": 20,
+      "warmup_steps": 5,
+      "gpu_ms_median": 565.3153686523438,
+      "peak_allocated_mib": 645.2197265625,
+      "peak_reserved_mib": 706.0,
+      "batch_size": 32,
+      "data_generation_ms_per_batch": 5.225796749982692,
+      "parameters": 411648
+    }
+  },
+  "eval_smt_s": 1.2680273530004342,
+  "eval_dmt_s": 1.138817970000673,
+  "eval_bptt_s": 0.7825012270004663,
+  "projection_estimate": {
+    "diag_smt_one_fit_h": 3.1381133017771248,
+    "diag_bptt_full_one_fit_h": 3.365711544191739,
+    "diag_bptt_1_one_fit_h": 3.354370455299795,
+    "diag_total_sequential_h": 26.43647260202885
+  }
+}

@@ -1,0 +1,14 @@
+OK  Full window (Tf = T): base_window equals the version-1 SMT loss exactly
+OK  Window loss: only pairs with j < Tf; far pool = valid pairs with j >= Tf; the two partition all valid pairs
+/workspace/smtMemUp/checks/test_smt_memup_window.py:81: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  est = np.mean([float(loss_of(TINY, "random_far", b, seed=s, teacher=teacher, rnn=rnn)[1]["auxiliary"]) for s in range(400)])
+OK  Normalisation: uniform_far = mean CE over far pairs; E[random_far] = uniform_far; alpha scales only L_far
+OK  Selection: chosen pairs lie in the far pool, min(K, N_t) per anchor; oracle only push <= t; no metadata otherwise
+OK  Gradients: L_far reaches decoder and encoder, not the RNN updater; detectors get none
+OK  Far-memory probe: exactly the far pairs with push <= t, with consistent anchor, distance and delay
+OK  Training: same seed -> same initial weights as version 1; mid-SMT crash reproduces the uninterrupted run
+OK  Version-1 detectors load unchanged and are tied to the saved version-1 identity
+
+8 checks passed
+exit=0

@@ -1,0 +1,53 @@
+dmt {"wall_ms_median": 614.6905619998506, "wall_ms_p90": 638.7251626008947, "measured_steps": 20, "warmup_steps": 5, "gpu_ms_median": 612.3895874023438, "peak_allocated_mib": 3208.3896484375, "peak_reserved_mib": 3634.0, "batch_size": 32, "data_generation_ms_per_batch": 51.75949024987858, "parameters": 395781}
+bptt_full {"wall_ms_median": 553.6348235000332, "wall_ms_p90": 560.3723786009141, "measured_steps": 20, "warmup_steps": 5, "gpu_ms_median": 553.0026550292969, "peak_allocated_mib": 645.041015625, "peak_reserved_mib": 690.0, "batch_size": 32, "data_generation_ms_per_batch": 51.42892074991323, "parameters": 395781}
+Traceback (most recent call last):
+  File "/workspace/smtMemUp/checks/benchmark_train_step.py", line 196, in <module>
+    main()
+  File "/workspace/smtMemUp/checks/benchmark_train_step.py", line 171, in main
+    res["eval_smt_s"] = timed(lambda: (S.evaluate(teacher, rnn, val, cfg, device),
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/checks/benchmark_train_step.py", line 72, in timed
+    fn()
+  File "/workspace/smtMemUp/checks/benchmark_train_step.py", line 171, in <lambda>
+    res["eval_smt_s"] = timed(lambda: (S.evaluate(teacher, rnn, val, cfg, device),
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/smt_memup_stack.py", line 570, in evaluate
+    tm = teacher_states(teacher, part, device)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/smt_memup_stack.py", line 385, in teacher_states
+    return encode_chunked(teacher, w["x_ctx"].to(device), chunk).reshape(B, T, -1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/smt_memup_stack.py", line 378, in encode_chunked
+    return torch.cat([teacher.encode(p) for p in x_ctx.split(chunk)])
+                      ^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/upstream/smt/src/model.py", line 141, in encode
+    z = self.encoder(encoder_input, mask=mask) # (B, Tc+K, D)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/x_transformers/x_transformers.py", line 3209, in forward
+    x = pre_norm(x)
+        ^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/x_transformers/x_transformers.py", line 955, in forward
+    return F.normalize(x, dim = -1) * self.scale * gamma
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/functional.py", line 5572, in normalize
+    return input / denom
+           ~~~~~~^~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 72.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 61.75 MiB is free. Process 3321 has 712.00 MiB memory in use. Process 3319 has 7.07 GiB memory in use. Process 3324 has 7.07 GiB memory in use. Process 3323 has 7.07 GiB memory in use. Including non-PyTorch memory, this process has 848.00 MiB memory in use. Process 3320 has 1.46 GiB memory in use. Process 3325 has 7.07 GiB memory in use. Of the allocated memory 164.48 MiB is allocated by PyTorch, and 45.52 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

@@ -77,3 +77,13 @@
 2026-10-14 20:40:21 done: conv_C1_smt30000 (exit 0)
 2026-10-14 20:43:27 done: v2_s27_oracle_far (exit 0)
 2026-10-14 20:43:32 all jobs: wait_v2_s7_random_far=done, wait_v2_s7_surprise_far=done, wait_v2_s7_ctx_far=done, conv_C1_smt30000=done, v2_s7_oracle_far=done, v2_s17_base_window=done, v2_s17_uniform_far=done, v2_s17_random_far=done, v2_s17_surprise_far=done, v2_s17_ctx_far=done, v2_s17_oracle_far=done, v2_s27_base_window=done, v2_s27_uniform_far=done, v2_s27_random_far=done, v2_s27_surprise_far=done, v2_s27_ctx_far=done, v2_s27_oracle_far=done
+2026-10-16 20:46:07 scheduler: 0 jobs, max 7 at once, start at >= 3000 MiB free
+2026-10-16 20:46:07 all jobs: 
+2026-10-16 20:46:52 scheduler: 18 jobs, max 7 at once, start at >= 3000 MiB free
+2026-10-16 20:46:52 started: v4d_base_window (pid 8377, free 32110 MiB)
+2026-10-16 20:47:12 started: v4d_ctx_far (pid 8488, free 23600 MiB)
+2026-10-16 20:47:33 started: v4d_bptt_full_lr0.0001 (pid 8599, free 14063 MiB)
+2026-10-16 20:47:53 started: v4d_bptt_full_lr0.0003 (pid 8726, free 12736 MiB)
+2026-10-16 20:48:13 started: v4d_bptt_full_lr0.001 (pid 8835, free 11408 MiB)
+2026-10-16 20:48:33 started: v4d_bptt_1_lr0.0001 (pid 8944, free 10081 MiB)
+2026-10-16 20:49:34 started: v4d_bptt_1_lr0.0003 (pid 9135, free 4760 MiB)

@@ -1,0 +1,10 @@
+OK  Schedules: warmup_constant = linear warm-up then 1.0 (authors); cosine = the version-1 schedule
+OK  Training loop: with the version-1 schedules, V3 fit reproduces smt_memup_stack.fit bit-exactly
+OK  Resume: a crash in the middle of SMT (warmup_constant) reproduces the uninterrupted run
+OK  Same seed -> same initial weights for every variant; baseline trains with alpha = 0, the others with alpha = 1
+OK  Splits: the version-3 test (stream 603) is disjoint from validation, tuning and the version-1 test; new seeds
+OK  Speed metric: first evaluation step at or above the threshold; NaN if never reached
+OK  Version-1 detectors load unchanged for version 3
+
+7 checks passed
+exit=0

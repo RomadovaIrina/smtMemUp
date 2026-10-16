@@ -1,0 +1,10 @@
+20:47:58 run directory: /workspace/smtMemUp/runs/stackv4_d459c6921638
+20:53:11 diag/bptt_full_lr0.0003 bptt 500/20000 select=1.3026 val_rnn_long_acc=0.377 0.625s/step(train)
+20:58:22 diag/bptt_full_lr0.0003 bptt 1000/20000 select=1.0324 val_rnn_long_acc=0.538 0.623s/step(train)
+21:03:28 diag/bptt_full_lr0.0003 bptt 1500/20000 select=0.7762 val_rnn_long_acc=0.659 0.618s/step(train)
+21:08:39 diag/bptt_full_lr0.0003 bptt 2000/20000 select=0.6026 val_rnn_long_acc=0.734 0.619s/step(train)
+21:13:46 diag/bptt_full_lr0.0003 bptt 2500/20000 select=0.4826 val_rnn_long_acc=0.784 0.617s/step(train)
+21:18:56 diag/bptt_full_lr0.0003 bptt 3000/20000 select=0.4505 val_rnn_long_acc=0.811 0.617s/step(train)
+21:24:10 diag/bptt_full_lr0.0003 bptt 3500/20000 select=0.3630 val_rnn_long_acc=0.847 0.619s/step(train)
+21:29:18 diag/bptt_full_lr0.0003 bptt 4000/20000 select=0.3041 val_rnn_long_acc=0.873 0.618s/step(train)
+21:34:26 diag/bptt_full_lr0.0003 bptt 4500/20000 select=0.3284 val_rnn_long_acc=0.865 0.618s/step(train)

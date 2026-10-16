@@ -1,0 +1,5 @@
+expected directory: stack02_4c69a2819ab8 | this environment -> stack02_4c69a2819ab8
+missing state files: none
+torch.cuda.is_available(): False
+OK: this environment resumes the saved Stack run.
+exit=0

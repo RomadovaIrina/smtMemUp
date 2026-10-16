@@ -1,0 +1,121 @@
+[
+ {
+  "name": "v4d_base_window",
+  "min_free": 9000,
+  "after": [],
+  "cmd": "/workspace/envs/smt-memup/bin/python smt_memup_v4.py --phase diag --job base_window --threads 4"
+ },
+ {
+  "name": "v4d_ctx_far",
+  "min_free": 9000,
+  "after": [],
+  "cmd": "/workspace/envs/smt-memup/bin/python smt_memup_v4.py --phase diag --job ctx_far --threads 4"
+ },
+ {
+  "name": "v4d_bptt_full_lr0.0001",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "/workspace/envs/smt-memup/bin/python smt_memup_v4.py --phase diag --job bptt_full_lr0.0001 --threads 4"
+ },
+ {
+  "name": "v4d_bptt_full_lr0.0003",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "/workspace/envs/smt-memup/bin/python smt_memup_v4.py --phase diag --job bptt_full_lr0.0003 --threads 4"
+ },
+ {
+  "name": "v4d_bptt_full_lr0.001",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "/workspace/envs/smt-memup/bin/python smt_memup_v4.py --phase diag --job bptt_full_lr0.001 --threads 4"
+ },
+ {
+  "name": "v4d_bptt_1_lr0.0001",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "/workspace/envs/smt-memup/bin/python smt_memup_v4.py --phase diag --job bptt_1_lr0.0001 --threads 4"
+ },
+ {
+  "name": "v4d_bptt_1_lr0.0003",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "/workspace/envs/smt-memup/bin/python smt_memup_v4.py --phase diag --job bptt_1_lr0.0003 --threads 4"
+ },
+ {
+  "name": "v4d_bptt_1_lr0.001",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "/workspace/envs/smt-memup/bin/python smt_memup_v4.py --phase diag --job bptt_1_lr0.001 --threads 4"
+ },
+ {
+  "name": "v4d_report",
+  "min_free": 2000,
+  "after": [
+   "v4d_base_window",
+   "v4d_ctx_far",
+   "v4d_bptt_full_lr0.0001",
+   "v4d_bptt_full_lr0.0003",
+   "v4d_bptt_full_lr0.001",
+   "v4d_bptt_1_lr0.0001",
+   "v4d_bptt_1_lr0.0003",
+   "v4d_bptt_1_lr0.001"
+  ],
+  "cmd": "/workspace/envs/smt-memup/bin/python smt_memup_v4.py --phase diag_report --threads 4"
+ },
+ {
+  "name": "mqarA_tf_overfit256",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "/workspace/envs/smt-memup/bin/python mqar_baselines.py --job tf_overfit256 --threads 4"
+ },
+ {
+  "name": "mqarA_rnn_overfit256",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "/workspace/envs/smt-memup/bin/python mqar_baselines.py --job rnn_overfit256 --threads 4"
+ },
+ {
+  "name": "mqarA_tf_lr3e-4",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "/workspace/envs/smt-memup/bin/python mqar_baselines.py --job tf_lr3e-4 --threads 4"
+ },
+ {
+  "name": "mqarA_tf_lr1e-3",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "/workspace/envs/smt-memup/bin/python mqar_baselines.py --job tf_lr1e-3 --threads 4"
+ },
+ {
+  "name": "mqarA_rnn_lr1e-4",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "/workspace/envs/smt-memup/bin/python mqar_baselines.py --job rnn_lr1e-4 --threads 4"
+ },
+ {
+  "name": "mqarA_rnn_lr3e-4",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "/workspace/envs/smt-memup/bin/python mqar_baselines.py --job rnn_lr3e-4 --threads 4"
+ },
+ {
+  "name": "mqarA_rnn_lr1e-3",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "/workspace/envs/smt-memup/bin/python mqar_baselines.py --job rnn_lr1e-3 --threads 4"
+ },
+ {
+  "name": "zooB_smoke_n64",
+  "min_free": 8000,
+  "after": [],
+  "cmd": "env ZOO_CELL=n64_d64 PYTHONPATH=upstream/zoology /workspace/envs/smt-memup/bin/python zoology_repro/run_repro.py"
+ },
+ {
+  "name": "zooB_main_n256",
+  "min_free": 12000,
+  "after": [
+   "zooB_smoke_n64"
+  ],
+  "cmd": "env ZOO_CELL=n256_d64 PYTHONPATH=upstream/zoology /workspace/envs/smt-memup/bin/python zoology_repro/run_repro.py"
+ }
+]

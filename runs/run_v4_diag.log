@@ -1,0 +1,4 @@
+started: 18 jobs; scheduler log runs/gpu_jobs.log
+2026-10-16 20:46:07 all jobs: 
+2026-10-16 20:46:52 scheduler: 18 jobs, max 7 at once, start at >= 3000 MiB free
+2026-10-16 20:46:52 started: v4d_base_window (pid 8377, free 32110 MiB)

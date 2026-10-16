@@ -1,0 +1,26 @@
+saved run: stackwin_26f6a039d62c | this environment -> stackwin_26f6a039d62c
+present 6 / 26 required files
+  MISSING runs/stackwin_26f6a039d62c/final/seed7/base_window/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed7/uniform_far/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed7/random_far/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed7/surprise_far/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed7/ctx_far/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed7/oracle_far/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed17/base_window/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed17/uniform_far/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed17/random_far/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed17/surprise_far/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed17/ctx_far/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed17/oracle_far/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed27/base_window/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed27/uniform_far/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed27/random_far/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed27/surprise_far/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed27/ctx_far/completed.pt
+  MISSING runs/stackwin_26f6a039d62c/final/seed27/oracle_far/completed.pt
+  MISSING runs/stack02_4c69a2819ab8/final/seed17/baseline/completed.pt
+  MISSING runs/stack02_4c69a2819ab8/final/seed27/baseline/completed.pt
+version-2 test already run: False
+  5f45f5fe1c51377198147abaabc20c0d5afefe2e5404c42db8dd39ca0aa157b0  runs/stack02_4c69a2819ab8/final/seed7/baseline/completed.pt  identity_ok=True
+NOT READY: copy the missing files from the training server and/or fix the environment (do not retrain).
+exit=1
