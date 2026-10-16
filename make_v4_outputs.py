@@ -12,6 +12,7 @@ from __future__ import annotations
 import glob
 import json
 import time
+from dataclasses import replace
 from pathlib import Path
 
 import matplotlib
@@ -29,11 +30,15 @@ OUT_V4, OUT_MQAR = ROOT / "outputs_v4", ROOT / "outputs_mqar"
 CFG = V.V4Config()
 # categorical slots in fixed order (reference palette, light mode); LR is a secondary encoding (line style)
 COLOR = {"base_window": "#2a78d6", "ctx_far": "#eb6834", "bptt_full": "#1baf7a", "bptt_1": "#eda100",
+         "random_far": "#e87ba4", "surprise_far": "#008300", "uniform_far": "#6250d6", "full_window": "#e34948",
          "transformer": "#2a78d6", "rnn_bptt": "#1baf7a"}
+SMT_RUNS = ("base_window", "ctx_far", "random_far", "surprise_far", "uniform_far", "full_window", "oracle_far")
 STYLE = {1e-4: ":", 3e-4: "-", 1e-3: "--"}
 INK, MUTED, GRID = "#1f1f1e", "#6b6a64", "#e4e3de"
 NAMES = {"base_window": "SMT короткое окно, без добавки", "ctx_far": "SMT + контекстный отбор (ctx_far)",
-         "bptt_full": "full BPTT", "bptt_1": "BPTT-1"}
+         "bptt_full": "full BPTT", "bptt_1": "BPTT-1", "random_far": "SMT + случайные дальние (random_far)",
+         "surprise_far": "SMT + локальный surprise r=8 (surprise_far)", "uniform_far": "SMT + все дальние (uniform_far)",
+         "full_window": "SMT полное окно Tf=T (бейзлайн статьи)", "oracle_far": "SMT + oracle (диагностика)"}
 
 
 def style_axes(ax, title, ylabel, xlabel="шаг оптимизации"):
@@ -61,11 +66,11 @@ def pct(ax):
 # Stack v4, part D
 # --------------------------------------------------------------------------------------
 
-def stack_run_dir() -> Path | None:
-    """The GPU run of the default V4Config (found by its identity; nothing is created)."""
+def stack_run_dir(cfg=CFG) -> Path | None:
+    """The GPU run of a V4Config (found by its identity; nothing is created)."""
     for d in sorted(glob.glob(str(ROOT / "runs" / "stackv4_*"))):
         ident = json.loads((Path(d) / "identity.json").read_text())
-        if ident.get("device") == "cuda" and ident["config"] == S.config_json(CFG):
+        if ident.get("device") == "cuda" and ident["config"] == S.config_json(cfg):
             return Path(d)
     return None
 
@@ -106,7 +111,7 @@ def stack_progress(hist: pd.DataFrame, run: Path) -> pd.DataFrame:
 
 def stack_figure(hist: pd.DataFrame, path: Path):
     fig, axes = plt.subplots(2, 2, figsize=(11, 7.5), constrained_layout=True)
-    diag = ("base_window", "ctx_far")
+    diag = SMT_RUNS
     panels = [(axes[0, 0], "smt", "val_teacher_long_acc", "а) SMT: teacher, дальние ответы", diag),
               (axes[0, 1], "smt", "val_far_memory_acc", "б) SMT: far-memory probe (память m_t teacher)", diag),
               (axes[1, 0], "dmt", "val_rnn_long_acc", "в) DMT: итоговая RNN, дальние ответы", diag),
@@ -118,7 +123,7 @@ def stack_figure(hist: pd.DataFrame, path: Path):
             if col not in h or h[col].isna().all():
                 continue
             label = NAMES[variant] + (f", LR {lr:g}" if not np.isnan(lr) else "")
-            ax.plot(h.step, h[col], color=COLOR[variant], linewidth=2, linestyle=STYLE.get(lr, "-") if not np.isnan(lr) else "-",
+            ax.plot(h.step, h[col], color=COLOR.get(variant, MUTED), linewidth=2, linestyle=STYLE.get(lr, "-") if not np.isnan(lr) else "-",
                     label=label)
         pct(ax)
         if ax.lines:
@@ -139,15 +144,15 @@ def stack_cost_figure(hist: pd.DataFrame, path: Path):
                "точность RNN", "обучающих последовательностей, млн")
     for name, h in (hist.groupby("run") if len(hist) else []):
         variant = h.variant.iloc[0]
-        if variant in ("base_window", "ctx_far"):
+        if variant in SMT_RUNS:
             smt, dmt = h[h.stage == "smt"], h[h.stage == "dmt"]
             if not len(dmt):
                 continue
             x = (CFG.smt_steps * CFG.batch_size + dmt.step * CFG.dmt_batch_size) / 1e6
-            ax.plot(x, dmt.val_rnn_long_acc, color=COLOR[variant], linewidth=2, label=NAMES[variant] + " (после SMT 20k)")
+            ax.plot(x, dmt.val_rnn_long_acc, color=COLOR.get(variant, MUTED), linewidth=2, label=NAMES[variant] + " (после SMT 20k)")
         else:
             lr = h.job_lr.iloc[0]
-            ax.plot(h.step * CFG.bptt_batch_size / 1e6, h.val_rnn_long_acc, color=COLOR[variant], linewidth=2,
+            ax.plot(h.step * CFG.bptt_batch_size / 1e6, h.val_rnn_long_acc, color=COLOR.get(variant, MUTED), linewidth=2,
                     linestyle=STYLE.get(lr, "-"), label=f"{NAMES[variant]}, LR {lr:g}")
     pct(ax)
     if ax.lines:
@@ -243,7 +248,10 @@ def main():
     stamp = time.strftime("%d.%m.%Y %H:%M")
     p = lambda x: f"{100 * x:.1f}%"
     run = stack_run_dir()
-    hist = load_stack(run) if run else pd.DataFrame()
+    fw = stack_run_dir(replace(CFG, future_window=CFG.seq_len))          # full-window reference (own run dir)
+    parts = [load_stack(r) for r in (run, fw) if r]
+    parts = [p for p in parts if len(p)]
+    hist = pd.concat(parts, ignore_index=True) if parts else pd.DataFrame()
     prog = stack_progress(hist, run) if len(hist) else pd.DataFrame()
     hist.to_csv(OUT_V4 / "table_diag_histories.csv", index=False)
     prog.to_csv(OUT_V4 / "table_diag_progress.csv", index=False)

@@ -11,7 +11,7 @@ publish() {
   CUDA_VISIBLE_DEVICES="" "$PY" make_v4_outputs.py || return 1
   shopt -s nullglob
   local files=(outputs_v4 outputs_mqar make_v4_outputs.py checks/publish_progress.sh
-               runs/gpu_jobs.log runs/jobs_v4.json runs/run_v4_diag.log runs/jobs/v4d_*.log runs/jobs/mqarA_*.log
+               runs/gpu_jobs.log runs/jobs_v4.json runs/run_v4_diag.log runs/jobs/v4d_*.log runs/jobs/v4x_*.log runs/jobs_v4_extra.json checks/smt_memup_v4_extra.py runs/jobs/mqarA_*.log
                runs/jobs/zooB_*.log runs/jobs/cpu_*.log runs/cpu_checks/*.log runs/benchmark/*.json
                runs/benchmark/parallel_*/*.log
                runs/stackv4_*/identity.json runs/stackv4_*/diag/*/*.csv runs/stackv4_*/diag/*/cost.json

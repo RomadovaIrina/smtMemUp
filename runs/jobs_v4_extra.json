@@ -1,0 +1,6 @@
+[
+ {"name": "v4x_full_window", "min_free": 10000, "after": [], "cmd": "/workspace/envs/smt-memup/bin/python checks/smt_memup_v4_extra.py --variant full_window"},
+ {"name": "v4x_random_far", "min_free": 10000, "after": [], "cmd": "/workspace/envs/smt-memup/bin/python checks/smt_memup_v4_extra.py --variant random_far"},
+ {"name": "v4x_surprise_far", "min_free": 10000, "after": [], "cmd": "/workspace/envs/smt-memup/bin/python checks/smt_memup_v4_extra.py --variant surprise_far"},
+ {"name": "v4x_uniform_far", "min_free": 10000, "after": [], "cmd": "/workspace/envs/smt-memup/bin/python checks/smt_memup_v4_extra.py --variant uniform_far"}
+]
