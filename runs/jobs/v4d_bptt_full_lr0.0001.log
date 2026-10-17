@@ -35,3 +35,7 @@
 23:43:31 diag/bptt_full_lr0.0001 bptt 17000/20000 select=0.2455 val_rnn_long_acc=0.900 0.619s/step(train)
 23:48:35 diag/bptt_full_lr0.0001 bptt 17500/20000 select=0.1887 val_rnn_long_acc=0.919 0.619s/step(train)
 23:53:45 diag/bptt_full_lr0.0001 bptt 18000/20000 select=0.2940 val_rnn_long_acc=0.874 0.619s/step(train)
+23:58:53 diag/bptt_full_lr0.0001 bptt 18500/20000 select=0.1967 val_rnn_long_acc=0.924 0.619s/step(train)
+00:03:59 diag/bptt_full_lr0.0001 bptt 19000/20000 select=0.2142 val_rnn_long_acc=0.908 0.618s/step(train)
+00:09:05 diag/bptt_full_lr0.0001 bptt 19500/20000 select=0.1639 val_rnn_long_acc=0.930 0.618s/step(train)
+00:14:15 diag/bptt_full_lr0.0001 bptt 20000/20000 select=0.1852 val_rnn_long_acc=0.926 0.618s/step(train)

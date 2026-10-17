@@ -1,0 +1,3 @@
+00:14:23 run directory: /workspace/smtMemUp/runs/stackv4_d459c6921638
+00:19:39 diag/bptt_1_lr0.001 bptt 500/20000 select=1.4200 val_rnn_long_acc=0.255 0.630s/step(train)
+00:24:49 diag/bptt_1_lr0.001 bptt 1000/20000 select=1.5388 val_rnn_long_acc=0.262 0.624s/step(train)

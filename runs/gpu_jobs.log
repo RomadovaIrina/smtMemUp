@@ -91,3 +91,17 @@
 2026-10-16 22:29:37 scheduler: 4 jobs, max 4 at once, start at >= 10000 MiB free
 2026-10-16 22:43:22 failed: v4d_bptt_1_lr0.0001 (exit 1)
 2026-10-16 22:43:22 skipped (dependency failed): v4d_report
+2026-10-17 00:11:36 done: v4d_bptt_full_lr0.0003 (exit 0)
+2026-10-17 00:14:18 done: v4d_bptt_full_lr0.0001 (exit 0)
+2026-10-17 00:14:19 started: v4d_bptt_1_lr0.001 (pid 33817, free 4318 MiB)
+2026-10-17 00:15:04 started: mqarA_tf_overfit256 (pid 33966, free 4894 MiB)
+2026-10-17 00:15:09 done: v4d_bptt_full_lr0.001 (exit 0)
+2026-10-17 00:15:24 started: mqarA_rnn_overfit256 (pid 34079, free 4083 MiB)
+2026-10-17 00:16:00 done: mqarA_tf_overfit256 (exit 0)
+2026-10-17 00:16:00 started: mqarA_tf_lr3e-4 (pid 34233, free 3573 MiB)
+2026-10-17 00:16:40 done: mqarA_tf_lr3e-4 (exit 0)
+2026-10-17 00:16:41 started: mqarA_tf_lr1e-3 (pid 34410, free 3573 MiB)
+2026-10-17 00:16:56 done: v4d_bptt_1_lr0.0003 (exit 0)
+2026-10-17 00:17:01 started: mqarA_rnn_lr1e-4 (pid 34522, free 4681 MiB)
+2026-10-17 00:17:06 done: mqarA_tf_lr1e-3 (exit 0)
+2026-10-17 00:17:21 started: mqarA_rnn_lr3e-4 (pid 34680, free 4171 MiB)
