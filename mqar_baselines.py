@@ -46,6 +46,7 @@ IGNORE = S.IGNORE
 @dataclass(frozen=True)
 class BaselineConfig:
     data: str = "pilot01"                # name in smt_memup_mqar.CANDIDATES
+    kv_pairs: int = 0                    # > 0: override num_kv_pairs of the data config (pairs-count sweep, 17.10)
     model: str = "transformer"           # transformer | rnn_bptt
     # transformer (ordinary causal LM; learned absolute positions, pre-norm, GELU MLP x4)
     tf_d_model: int = 64
@@ -67,7 +68,7 @@ class BaselineConfig:
 
 
 def data_config(cfg: BaselineConfig) -> M.MQARConfig:
-    return M.candidate(cfg.data)
+    return M.candidate(cfg.data, num_kv_pairs=cfg.kv_pairs) if cfg.kv_pairs else M.candidate(cfg.data)
 
 
 def code_sha256() -> str:
@@ -315,6 +316,11 @@ JOBS = {
     "rnn_lr1e-4": dict(model="rnn_bptt", lr=1e-4, steps=20000, stop_accuracy=0.99),
     "rnn_lr3e-4": dict(model="rnn_bptt", lr=3e-4, steps=20000, stop_accuracy=0.99),
     "rnn_lr1e-3": dict(model="rnn_bptt", lr=1e-3, steps=20000, stop_accuracy=0.99),
+    # pairs-count sweep (17.10): where do the recurrent models break? (8 pairs = the runs above)
+    "tf_kv2": dict(model="transformer", kv_pairs=2, lr=1e-3, steps=3000, stop_accuracy=0.99),
+    "tf_kv4": dict(model="transformer", kv_pairs=4, lr=1e-3, steps=3000, stop_accuracy=0.99),
+    "rnn_kv2": dict(model="rnn_bptt", kv_pairs=2, lr=1e-3, steps=6000, stop_accuracy=0.99),
+    "rnn_kv4": dict(model="rnn_bptt", kv_pairs=4, lr=1e-3, steps=6000, stop_accuracy=0.99),
 }
 
 

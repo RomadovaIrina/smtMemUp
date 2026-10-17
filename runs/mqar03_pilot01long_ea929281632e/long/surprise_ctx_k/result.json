@@ -1,0 +1,9 @@
+{
+  "variant": "surprise_ctx_k",
+  "alpha": 1.0,
+  "smt_steps": 20000,
+  "dmt_steps": 10000,
+  "smt_best_step": 19250,
+  "dmt_best_step": 9250,
+  "chance_written": 0.125
+}

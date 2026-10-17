@@ -1,0 +1,18 @@
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+09:48:30 run directory: /workspace/smtMemUp/runs/mqar_baselines_0e2d9706fb9c
+09:53:13 rnn_kv2 500/6000 val long acc=0.004 cand=0.500 first=0.039
+09:57:53 rnn_kv2 1000/6000 val long acc=0.030 cand=0.523 first=0.037
+10:02:32 rnn_kv2 1500/6000 val long acc=0.053 cand=0.473 first=0.035
+10:07:11 rnn_kv2 2000/6000 val long acc=0.038 cand=0.492 first=0.047
+10:11:50 rnn_kv2 2500/6000 val long acc=0.023 cand=0.515 first=0.043
+10:16:27 rnn_kv2 3000/6000 val long acc=0.068 cand=0.481 first=0.066
+10:21:03 rnn_kv2 3500/6000 val long acc=0.045 cand=0.530 first=0.047
+10:25:39 rnn_kv2 4000/6000 val long acc=0.053 cand=0.455 first=0.039
+10:30:19 rnn_kv2 4500/6000 val long acc=0.087 cand=0.508 first=0.049
+10:34:59 rnn_kv2 5000/6000 val long acc=0.072 cand=0.496 first=0.064
+10:39:35 rnn_kv2 5500/6000 val long acc=0.072 cand=0.500 first=0.062
+10:44:12 rnn_kv2 6000/6000 val long acc=0.057 cand=0.500 first=0.062
+[W1017 10:44:18.463489868 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

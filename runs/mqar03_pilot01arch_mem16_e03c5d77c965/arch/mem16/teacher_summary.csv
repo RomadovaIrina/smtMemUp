@@ -1,0 +1,2 @@
+name,split,teacher_long_full_vocab,teacher_long_cand,teacher_all_cand,pred_in_written,smt_best_step
+mem16,tuning,0.12804497189256714,0.12804497189256714,0.132568359375,1.0,6000

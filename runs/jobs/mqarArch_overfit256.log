@@ -1,0 +1,35 @@
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+08:52:01 run directory: /workspace/smtMemUp/runs/mqar03_pilot01arch_overfit256_903234685665
+08:53:31 arch/overfit256 smt 250/6000 teacher long acc=0.032 rnn long acc=0.014 select=4.1389 0.357s/step
+08:54:59 arch/overfit256 smt 500/6000 teacher long acc=0.088 rnn long acc=0.013 select=3.6556 0.356s/step
+08:56:28 arch/overfit256 smt 750/6000 teacher long acc=0.098 rnn long acc=0.019 select=3.7020 0.356s/step
+08:57:59 arch/overfit256 smt 1000/6000 teacher long acc=0.088 rnn long acc=0.024 select=4.1181 0.357s/step
+08:59:27 arch/overfit256 smt 1250/6000 teacher long acc=0.088 rnn long acc=0.028 select=4.8856 0.356s/step
+09:00:57 arch/overfit256 smt 1500/6000 teacher long acc=0.084 rnn long acc=0.026 select=6.1656 0.357s/step
+09:02:25 arch/overfit256 smt 1750/6000 teacher long acc=0.082 rnn long acc=0.028 select=7.1526 0.356s/step
+09:03:55 arch/overfit256 smt 2000/6000 teacher long acc=0.079 rnn long acc=0.034 select=7.7877 0.357s/step
+09:05:25 arch/overfit256 smt 2250/6000 teacher long acc=0.088 rnn long acc=0.028 select=8.3465 0.357s/step
+09:06:56 arch/overfit256 smt 2500/6000 teacher long acc=0.084 rnn long acc=0.043 select=8.6818 0.358s/step
+09:08:24 arch/overfit256 smt 2750/6000 teacher long acc=0.063 rnn long acc=0.041 select=9.0558 0.357s/step
+09:09:54 arch/overfit256 smt 3000/6000 teacher long acc=0.073 rnn long acc=0.039 select=9.2462 0.357s/step
+09:11:24 arch/overfit256 smt 3250/6000 teacher long acc=0.064 rnn long acc=0.043 select=9.5801 0.358s/step
+09:12:52 arch/overfit256 smt 3500/6000 teacher long acc=0.073 rnn long acc=0.046 select=9.6283 0.357s/step
+09:14:22 arch/overfit256 smt 3750/6000 teacher long acc=0.070 rnn long acc=0.050 select=9.9151 0.358s/step
+09:15:52 arch/overfit256 smt 4000/6000 teacher long acc=0.069 rnn long acc=0.043 select=10.1951 0.358s/step
+09:17:21 arch/overfit256 smt 4250/6000 teacher long acc=0.068 rnn long acc=0.038 select=10.3390 0.358s/step
+09:18:52 arch/overfit256 smt 4500/6000 teacher long acc=0.073 rnn long acc=0.036 select=10.5238 0.358s/step
+09:20:22 arch/overfit256 smt 4750/6000 teacher long acc=0.067 rnn long acc=0.037 select=10.8359 0.358s/step
+09:21:52 arch/overfit256 smt 5000/6000 teacher long acc=0.064 rnn long acc=0.037 select=10.8449 0.358s/step
+09:23:21 arch/overfit256 smt 5250/6000 teacher long acc=0.068 rnn long acc=0.036 select=11.1536 0.358s/step
+09:24:51 arch/overfit256 smt 5500/6000 teacher long acc=0.073 rnn long acc=0.042 select=11.1819 0.358s/step
+09:26:20 arch/overfit256 smt 5750/6000 teacher long acc=0.073 rnn long acc=0.046 select=11.3899 0.358s/step
+09:27:49 arch/overfit256 smt 6000/6000 teacher long acc=0.071 rnn long acc=0.043 select=11.5868 0.358s/step
+09:28:26 arch/overfit256 dmt 50/50 teacher long acc=0.088 rnn long acc=0.024 select=4.3034 0.733s/step
+         name        split  teacher_long_full_vocab  teacher_long_cand  teacher_all_cand  pred_in_written  smt_best_step
+0  overfit256       tuning                    0.097              0.119             0.128            0.800            500
+1  overfit256  fixed_train                    0.221              0.233             0.150            0.948            500
+09:28:30 done overfit256
+[W1017 09:28:31.612484354 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

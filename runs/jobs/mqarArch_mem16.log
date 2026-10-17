@@ -1,0 +1,34 @@
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+08:52:04 run directory: /workspace/smtMemUp/runs/mqar03_pilot01arch_mem16_e03c5d77c965
+08:53:36 arch/mem16 smt 250/6000 teacher long acc=0.013 rnn long acc=0.016 select=4.1981 0.366s/step
+08:55:07 arch/mem16 smt 500/6000 teacher long acc=0.120 rnn long acc=0.019 select=3.5760 0.365s/step
+08:56:38 arch/mem16 smt 750/6000 teacher long acc=0.130 rnn long acc=0.026 select=3.1953 0.365s/step
+08:58:09 arch/mem16 smt 1000/6000 teacher long acc=0.120 rnn long acc=0.019 select=3.0083 0.364s/step
+08:59:39 arch/mem16 smt 1250/6000 teacher long acc=0.126 rnn long acc=0.014 select=2.8635 0.364s/step
+09:01:10 arch/mem16 smt 1500/6000 teacher long acc=0.123 rnn long acc=0.015 select=2.7543 0.363s/step
+09:02:41 arch/mem16 smt 1750/6000 teacher long acc=0.122 rnn long acc=0.023 select=2.6862 0.364s/step
+09:04:12 arch/mem16 smt 2000/6000 teacher long acc=0.119 rnn long acc=0.024 select=2.6335 0.364s/step
+09:05:43 arch/mem16 smt 2250/6000 teacher long acc=0.124 rnn long acc=0.035 select=2.5767 0.364s/step
+09:07:13 arch/mem16 smt 2500/6000 teacher long acc=0.117 rnn long acc=0.029 select=2.5128 0.363s/step
+09:08:44 arch/mem16 smt 2750/6000 teacher long acc=0.124 rnn long acc=0.028 select=2.5016 0.363s/step
+09:10:14 arch/mem16 smt 3000/6000 teacher long acc=0.131 rnn long acc=0.037 select=2.4891 0.363s/step
+09:11:46 arch/mem16 smt 3250/6000 teacher long acc=0.129 rnn long acc=0.018 select=2.4506 0.363s/step
+09:13:17 arch/mem16 smt 3500/6000 teacher long acc=0.119 rnn long acc=0.030 select=2.4395 0.364s/step
+09:14:48 arch/mem16 smt 3750/6000 teacher long acc=0.133 rnn long acc=0.041 select=2.4174 0.364s/step
+09:16:19 arch/mem16 smt 4000/6000 teacher long acc=0.128 rnn long acc=0.032 select=2.4098 0.364s/step
+09:17:49 arch/mem16 smt 4250/6000 teacher long acc=0.133 rnn long acc=0.026 select=2.3892 0.364s/step
+09:19:20 arch/mem16 smt 4500/6000 teacher long acc=0.133 rnn long acc=0.037 select=2.3803 0.364s/step
+09:20:51 arch/mem16 smt 4750/6000 teacher long acc=0.133 rnn long acc=0.029 select=2.3788 0.364s/step
+09:22:22 arch/mem16 smt 5000/6000 teacher long acc=0.130 rnn long acc=0.041 select=2.3676 0.364s/step
+09:23:53 arch/mem16 smt 5250/6000 teacher long acc=0.113 rnn long acc=0.039 select=2.3655 0.364s/step
+09:25:24 arch/mem16 smt 5500/6000 teacher long acc=0.127 rnn long acc=0.055 select=2.3559 0.364s/step
+09:26:55 arch/mem16 smt 5750/6000 teacher long acc=0.129 rnn long acc=0.048 select=2.3546 0.364s/step
+09:28:23 arch/mem16 smt 6000/6000 teacher long acc=0.122 rnn long acc=0.046 select=2.3476 0.363s/step
+09:28:59 arch/mem16 dmt 50/50 teacher long acc=0.122 rnn long acc=0.101 select=3.6538 0.700s/step
+    name   split  teacher_long_full_vocab  teacher_long_cand  teacher_all_cand  pred_in_written  smt_best_step
+0  mem16  tuning                    0.128              0.128             0.133              1.0           6000
+09:29:02 done mem16
+[W1017 09:29:02.146260817 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

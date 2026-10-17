@@ -1,0 +1,34 @@
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+09:48:24 run directory: /workspace/smtMemUp/runs/mqar03_pilot01arch_kv4_c65fa8824a5d
+09:49:34 arch/kv4 smt 250/6000 teacher long acc=0.073 rnn long acc=0.000 select=4.0866 0.279s/step
+09:50:40 arch/kv4 smt 500/6000 teacher long acc=0.233 rnn long acc=0.030 select=2.9364 0.272s/step
+09:51:47 arch/kv4 smt 750/6000 teacher long acc=0.255 rnn long acc=0.034 select=2.5106 0.270s/step
+09:52:54 arch/kv4 smt 1000/6000 teacher long acc=0.250 rnn long acc=0.039 select=2.2896 0.269s/step
+09:54:00 arch/kv4 smt 1250/6000 teacher long acc=0.228 rnn long acc=0.046 select=2.1207 0.268s/step
+09:55:06 arch/kv4 smt 1500/6000 teacher long acc=0.230 rnn long acc=0.066 select=2.0297 0.268s/step
+09:56:13 arch/kv4 smt 1750/6000 teacher long acc=0.248 rnn long acc=0.120 select=1.9419 0.268s/step
+09:57:21 arch/kv4 smt 2000/6000 teacher long acc=0.240 rnn long acc=0.174 select=1.8848 0.268s/step
+09:58:28 arch/kv4 smt 2250/6000 teacher long acc=0.235 rnn long acc=0.191 select=1.8666 0.268s/step
+09:59:35 arch/kv4 smt 2500/6000 teacher long acc=0.252 rnn long acc=0.218 select=1.7924 0.268s/step
+10:00:42 arch/kv4 smt 2750/6000 teacher long acc=0.240 rnn long acc=0.171 select=1.7560 0.268s/step
+10:01:49 arch/kv4 smt 3000/6000 teacher long acc=0.208 rnn long acc=0.209 select=1.7590 0.268s/step
+10:02:56 arch/kv4 smt 3250/6000 teacher long acc=0.228 rnn long acc=0.199 select=1.7299 0.268s/step
+10:04:04 arch/kv4 smt 3500/6000 teacher long acc=0.238 rnn long acc=0.235 select=1.7265 0.269s/step
+10:05:12 arch/kv4 smt 3750/6000 teacher long acc=0.260 rnn long acc=0.233 select=1.7160 0.269s/step
+10:06:20 arch/kv4 smt 4000/6000 teacher long acc=0.250 rnn long acc=0.233 select=1.6750 0.269s/step
+10:07:26 arch/kv4 smt 4250/6000 teacher long acc=0.233 rnn long acc=0.220 select=1.6849 0.269s/step
+10:08:34 arch/kv4 smt 4500/6000 teacher long acc=0.238 rnn long acc=0.216 select=1.6644 0.269s/step
+10:09:42 arch/kv4 smt 4750/6000 teacher long acc=0.245 rnn long acc=0.218 select=1.6606 0.269s/step
+10:10:49 arch/kv4 smt 5000/6000 teacher long acc=0.233 rnn long acc=0.211 select=1.6534 0.269s/step
+10:11:56 arch/kv4 smt 5250/6000 teacher long acc=0.231 rnn long acc=0.245 select=1.6451 0.269s/step
+10:13:03 arch/kv4 smt 5500/6000 teacher long acc=0.238 rnn long acc=0.233 select=1.6458 0.269s/step
+10:14:04 arch/kv4 smt 5750/6000 teacher long acc=0.252 rnn long acc=0.221 select=1.6370 0.268s/step
+10:15:03 arch/kv4 smt 6000/6000 teacher long acc=0.235 rnn long acc=0.253 select=1.6342 0.267s/step
+10:15:37 arch/kv4 dmt 50/50 teacher long acc=0.235 rnn long acc=0.235 select=1.9318 0.678s/step
+  name   split  teacher_long_full_vocab  teacher_long_cand  teacher_all_cand  pred_in_written  smt_best_step
+0  kv4  tuning                    0.254              0.254             0.256              1.0           6000
+10:15:40 done kv4
+[W1017 10:15:41.898604154 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

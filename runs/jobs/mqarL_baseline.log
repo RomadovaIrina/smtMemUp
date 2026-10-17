@@ -1,0 +1,136 @@
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+07:20:40 run directory: /workspace/smtMemUp/runs/mqar03_pilot01long_ea929281632e
+07:21:47 long/baseline smt 250/20000 teacher long acc=0.026 rnn long acc=0.008 select=4.1657 0.267s/step
+07:22:52 long/baseline smt 500/20000 teacher long acc=0.115 rnn long acc=0.024 select=3.4491 0.264s/step
+07:23:58 long/baseline smt 750/20000 teacher long acc=0.131 rnn long acc=0.028 select=3.1324 0.264s/step
+07:25:04 long/baseline smt 1000/20000 teacher long acc=0.122 rnn long acc=0.025 select=2.9649 0.263s/step
+07:26:04 long/baseline smt 1250/20000 teacher long acc=0.134 rnn long acc=0.022 select=2.8373 0.259s/step
+07:27:04 long/baseline smt 1500/20000 teacher long acc=0.131 rnn long acc=0.021 select=2.7337 0.256s/step
+07:28:02 long/baseline smt 1750/20000 teacher long acc=0.126 rnn long acc=0.039 select=2.6835 0.252s/step
+07:29:01 long/baseline smt 2000/20000 teacher long acc=0.117 rnn long acc=0.049 select=2.6113 0.251s/step
+07:30:00 long/baseline smt 2250/20000 teacher long acc=0.127 rnn long acc=0.029 select=2.5619 0.249s/step
+07:30:58 long/baseline smt 2500/20000 teacher long acc=0.113 rnn long acc=0.030 select=2.5141 0.247s/step
+07:31:57 long/baseline smt 2750/20000 teacher long acc=0.120 rnn long acc=0.023 select=2.4763 0.246s/step
+07:32:55 long/baseline smt 3000/20000 teacher long acc=0.108 rnn long acc=0.057 select=2.4677 0.245s/step
+07:33:54 long/baseline smt 3250/20000 teacher long acc=0.111 rnn long acc=0.032 select=2.4333 0.244s/step
+07:34:52 long/baseline smt 3500/20000 teacher long acc=0.121 rnn long acc=0.028 select=2.4194 0.243s/step
+07:35:51 long/baseline smt 3750/20000 teacher long acc=0.120 rnn long acc=0.032 select=2.3884 0.243s/step
+07:36:50 long/baseline smt 4000/20000 teacher long acc=0.120 rnn long acc=0.018 select=2.3825 0.242s/step
+07:37:50 long/baseline smt 4250/20000 teacher long acc=0.115 rnn long acc=0.020 select=2.3423 0.242s/step
+07:38:50 long/baseline smt 4500/20000 teacher long acc=0.119 rnn long acc=0.022 select=2.3327 0.242s/step
+07:39:50 long/baseline smt 4750/20000 teacher long acc=0.110 rnn long acc=0.021 select=2.3195 0.242s/step
+07:40:49 long/baseline smt 5000/20000 teacher long acc=0.124 rnn long acc=0.030 select=2.2968 0.242s/step
+07:41:47 long/baseline smt 5250/20000 teacher long acc=0.111 rnn long acc=0.025 select=2.2989 0.241s/step
+07:42:46 long/baseline smt 5500/20000 teacher long acc=0.119 rnn long acc=0.040 select=2.2873 0.241s/step
+07:43:45 long/baseline smt 5750/20000 teacher long acc=0.125 rnn long acc=0.016 select=2.2767 0.241s/step
+07:44:47 long/baseline smt 6000/20000 teacher long acc=0.126 rnn long acc=0.044 select=2.2646 0.241s/step
+07:45:47 long/baseline smt 6250/20000 teacher long acc=0.128 rnn long acc=0.037 select=2.2478 0.241s/step
+07:46:47 long/baseline smt 6500/20000 teacher long acc=0.126 rnn long acc=0.037 select=2.2554 0.241s/step
+07:47:46 long/baseline smt 6750/20000 teacher long acc=0.111 rnn long acc=0.027 select=2.2494 0.241s/step
+07:48:43 long/baseline smt 7000/20000 teacher long acc=0.124 rnn long acc=0.026 select=2.2403 0.240s/step
+07:49:43 long/baseline smt 7250/20000 teacher long acc=0.123 rnn long acc=0.048 select=2.2434 0.240s/step
+07:50:43 long/baseline smt 7500/20000 teacher long acc=0.123 rnn long acc=0.026 select=2.2383 0.240s/step
+07:51:42 long/baseline smt 7750/20000 teacher long acc=0.127 rnn long acc=0.028 select=2.2286 0.240s/step
+07:52:42 long/baseline smt 8000/20000 teacher long acc=0.130 rnn long acc=0.029 select=2.2326 0.240s/step
+07:53:43 long/baseline smt 8250/20000 teacher long acc=0.124 rnn long acc=0.036 select=2.2279 0.240s/step
+07:54:42 long/baseline smt 8500/20000 teacher long acc=0.122 rnn long acc=0.032 select=2.2224 0.240s/step
+07:55:40 long/baseline smt 8750/20000 teacher long acc=0.127 rnn long acc=0.031 select=2.2186 0.240s/step
+07:56:39 long/baseline smt 9000/20000 teacher long acc=0.126 rnn long acc=0.033 select=2.2089 0.240s/step
+07:57:39 long/baseline smt 9250/20000 teacher long acc=0.127 rnn long acc=0.040 select=2.1985 0.240s/step
+07:58:38 long/baseline smt 9500/20000 teacher long acc=0.117 rnn long acc=0.032 select=2.2070 0.240s/step
+07:59:37 long/baseline smt 9750/20000 teacher long acc=0.117 rnn long acc=0.032 select=2.2034 0.240s/step
+08:00:36 long/baseline smt 10000/20000 teacher long acc=0.117 rnn long acc=0.032 select=2.2078 0.240s/step
+08:01:36 long/baseline smt 10250/20000 teacher long acc=0.123 rnn long acc=0.024 select=2.1927 0.240s/step
+08:02:36 long/baseline smt 10500/20000 teacher long acc=0.122 rnn long acc=0.035 select=2.1942 0.240s/step
+08:03:35 long/baseline smt 10750/20000 teacher long acc=0.130 rnn long acc=0.043 select=2.1896 0.239s/step
+08:04:37 long/baseline smt 11000/20000 teacher long acc=0.133 rnn long acc=0.032 select=2.1927 0.240s/step
+08:05:37 long/baseline smt 11250/20000 teacher long acc=0.124 rnn long acc=0.028 select=2.1935 0.240s/step
+08:06:36 long/baseline smt 11500/20000 teacher long acc=0.119 rnn long acc=0.039 select=2.1901 0.240s/step
+08:07:35 long/baseline smt 11750/20000 teacher long acc=0.128 rnn long acc=0.043 select=2.1791 0.240s/step
+08:08:34 long/baseline smt 12000/20000 teacher long acc=0.139 rnn long acc=0.044 select=2.1936 0.240s/step
+08:09:34 long/baseline smt 12250/20000 teacher long acc=0.122 rnn long acc=0.037 select=2.1798 0.239s/step
+08:10:34 long/baseline smt 12500/20000 teacher long acc=0.119 rnn long acc=0.034 select=2.1811 0.240s/step
+08:11:32 long/baseline smt 12750/20000 teacher long acc=0.115 rnn long acc=0.038 select=2.1820 0.239s/step
+08:12:31 long/baseline smt 13000/20000 teacher long acc=0.118 rnn long acc=0.039 select=2.1898 0.239s/step
+08:13:31 long/baseline smt 13250/20000 teacher long acc=0.118 rnn long acc=0.029 select=2.1741 0.239s/step
+08:14:32 long/baseline smt 13500/20000 teacher long acc=0.126 rnn long acc=0.039 select=2.1760 0.239s/step
+08:15:33 long/baseline smt 13750/20000 teacher long acc=0.122 rnn long acc=0.046 select=2.1726 0.239s/step
+08:16:32 long/baseline smt 14000/20000 teacher long acc=0.128 rnn long acc=0.041 select=2.1756 0.239s/step
+08:17:32 long/baseline smt 14250/20000 teacher long acc=0.128 rnn long acc=0.032 select=2.1730 0.239s/step
+08:18:30 long/baseline smt 14500/20000 teacher long acc=0.118 rnn long acc=0.046 select=2.1694 0.239s/step
+08:19:29 long/baseline smt 14750/20000 teacher long acc=0.119 rnn long acc=0.041 select=2.1756 0.239s/step
+08:20:30 long/baseline smt 15000/20000 teacher long acc=0.122 rnn long acc=0.043 select=2.1691 0.239s/step
+08:21:31 long/baseline smt 15250/20000 teacher long acc=0.120 rnn long acc=0.050 select=2.1657 0.239s/step
+08:22:31 long/baseline smt 15500/20000 teacher long acc=0.119 rnn long acc=0.049 select=2.1676 0.239s/step
+08:23:30 long/baseline smt 15750/20000 teacher long acc=0.120 rnn long acc=0.046 select=2.1669 0.239s/step
+08:24:29 long/baseline smt 16000/20000 teacher long acc=0.124 rnn long acc=0.051 select=2.1630 0.239s/step
+08:25:28 long/baseline smt 16250/20000 teacher long acc=0.128 rnn long acc=0.048 select=2.1632 0.239s/step
+08:26:28 long/baseline smt 16500/20000 teacher long acc=0.123 rnn long acc=0.055 select=2.1595 0.239s/step
+08:27:25 long/baseline smt 16750/20000 teacher long acc=0.122 rnn long acc=0.049 select=2.1601 0.239s/step
+08:28:24 long/baseline smt 17000/20000 teacher long acc=0.113 rnn long acc=0.046 select=2.1623 0.239s/step
+08:29:23 long/baseline smt 17250/20000 teacher long acc=0.118 rnn long acc=0.055 select=2.1639 0.239s/step
+08:30:24 long/baseline smt 17500/20000 teacher long acc=0.117 rnn long acc=0.046 select=2.1626 0.239s/step
+08:31:25 long/baseline smt 17750/20000 teacher long acc=0.119 rnn long acc=0.039 select=2.1554 0.239s/step
+08:32:26 long/baseline smt 18000/20000 teacher long acc=0.119 rnn long acc=0.047 select=2.1552 0.239s/step
+08:33:27 long/baseline smt 18250/20000 teacher long acc=0.119 rnn long acc=0.048 select=2.1570 0.239s/step
+08:34:27 long/baseline smt 18500/20000 teacher long acc=0.119 rnn long acc=0.053 select=2.1574 0.239s/step
+08:35:26 long/baseline smt 18750/20000 teacher long acc=0.117 rnn long acc=0.061 select=2.1551 0.239s/step
+08:36:25 long/baseline smt 19000/20000 teacher long acc=0.119 rnn long acc=0.050 select=2.1549 0.239s/step
+08:37:23 long/baseline smt 19250/20000 teacher long acc=0.123 rnn long acc=0.046 select=2.1549 0.239s/step
+08:38:21 long/baseline smt 19500/20000 teacher long acc=0.119 rnn long acc=0.049 select=2.1561 0.239s/step
+08:39:20 long/baseline smt 19750/20000 teacher long acc=0.120 rnn long acc=0.044 select=2.1554 0.239s/step
+08:40:20 long/baseline smt 20000/20000 teacher long acc=0.122 rnn long acc=0.046 select=2.1523 0.239s/step
+08:43:03 long/baseline dmt 250/10000 teacher long acc=0.122 rnn long acc=0.115 select=3.0203 0.652s/step
+08:45:43 long/baseline dmt 500/10000 teacher long acc=0.122 rnn long acc=0.106 select=2.6073 0.646s/step
+08:48:22 long/baseline dmt 750/10000 teacher long acc=0.122 rnn long acc=0.120 select=2.4625 0.643s/step
+08:50:59 long/baseline dmt 1000/10000 teacher long acc=0.122 rnn long acc=0.120 select=2.4092 0.638s/step
+08:53:48 long/baseline dmt 1250/10000 teacher long acc=0.122 rnn long acc=0.132 select=2.4186 0.646s/step
+08:56:46 long/baseline dmt 1500/10000 teacher long acc=0.122 rnn long acc=0.119 select=2.3247 0.657s/step
+08:59:44 long/baseline dmt 1750/10000 teacher long acc=0.122 rnn long acc=0.124 select=2.2949 0.665s/step
+09:02:44 long/baseline dmt 2000/10000 teacher long acc=0.122 rnn long acc=0.113 select=2.3385 0.672s/step
+09:05:44 long/baseline dmt 2250/10000 teacher long acc=0.122 rnn long acc=0.127 select=2.3363 0.677s/step
+09:08:43 long/baseline dmt 2500/10000 teacher long acc=0.122 rnn long acc=0.139 select=2.3128 0.681s/step
+09:11:42 long/baseline dmt 2750/10000 teacher long acc=0.122 rnn long acc=0.128 select=2.2662 0.684s/step
+09:14:42 long/baseline dmt 3000/10000 teacher long acc=0.122 rnn long acc=0.132 select=2.2623 0.687s/step
+09:17:39 long/baseline dmt 3250/10000 teacher long acc=0.122 rnn long acc=0.117 select=2.3194 0.689s/step
+09:20:38 long/baseline dmt 3500/10000 teacher long acc=0.122 rnn long acc=0.128 select=2.2763 0.691s/step
+09:23:39 long/baseline dmt 3750/10000 teacher long acc=0.122 rnn long acc=0.133 select=2.2436 0.693s/step
+09:26:37 long/baseline dmt 4000/10000 teacher long acc=0.122 rnn long acc=0.140 select=2.2533 0.694s/step
+09:29:29 long/baseline dmt 4250/10000 teacher long acc=0.122 rnn long acc=0.130 select=2.2445 0.694s/step
+09:32:05 long/baseline dmt 4500/10000 teacher long acc=0.122 rnn long acc=0.127 select=2.2327 0.690s/step
+09:34:41 long/baseline dmt 4750/10000 teacher long acc=0.122 rnn long acc=0.129 select=2.2404 0.686s/step
+09:37:17 long/baseline dmt 5000/10000 teacher long acc=0.122 rnn long acc=0.119 select=2.2119 0.683s/step
+09:39:53 long/baseline dmt 5250/10000 teacher long acc=0.122 rnn long acc=0.131 select=2.2129 0.680s/step
+09:42:29 long/baseline dmt 5500/10000 teacher long acc=0.122 rnn long acc=0.115 select=2.2110 0.678s/step
+09:45:06 long/baseline dmt 5750/10000 teacher long acc=0.122 rnn long acc=0.126 select=2.1955 0.676s/step
+09:47:46 long/baseline dmt 6000/10000 teacher long acc=0.122 rnn long acc=0.125 select=2.1945 0.674s/step
+09:50:34 long/baseline dmt 6250/10000 teacher long acc=0.122 rnn long acc=0.121 select=2.1991 0.674s/step
+09:53:23 long/baseline dmt 6500/10000 teacher long acc=0.122 rnn long acc=0.117 select=2.1933 0.674s/step
+09:56:16 long/baseline dmt 6750/10000 teacher long acc=0.122 rnn long acc=0.128 select=2.1907 0.675s/step
+09:59:07 long/baseline dmt 7000/10000 teacher long acc=0.122 rnn long acc=0.129 select=2.1881 0.675s/step
+10:01:57 long/baseline dmt 7250/10000 teacher long acc=0.122 rnn long acc=0.129 select=2.1926 0.675s/step
+10:04:48 long/baseline dmt 7500/10000 teacher long acc=0.122 rnn long acc=0.126 select=2.1884 0.676s/step
+10:07:41 long/baseline dmt 7750/10000 teacher long acc=0.122 rnn long acc=0.130 select=2.1797 0.676s/step
+10:10:31 long/baseline dmt 8000/10000 teacher long acc=0.122 rnn long acc=0.122 select=2.1800 0.676s/step
+10:13:20 long/baseline dmt 8250/10000 teacher long acc=0.122 rnn long acc=0.126 select=2.1780 0.676s/step
+10:16:03 long/baseline dmt 8500/10000 teacher long acc=0.122 rnn long acc=0.131 select=2.1753 0.676s/step
+10:18:42 long/baseline dmt 8750/10000 teacher long acc=0.122 rnn long acc=0.137 select=2.1715 0.675s/step
+10:21:22 long/baseline dmt 9000/10000 teacher long acc=0.122 rnn long acc=0.124 select=2.1712 0.673s/step
+10:24:01 long/baseline dmt 9250/10000 teacher long acc=0.122 rnn long acc=0.126 select=2.1733 0.672s/step
+10:26:40 long/baseline dmt 9500/10000 teacher long acc=0.122 rnn long acc=0.132 select=2.1698 0.672s/step
+10:29:20 long/baseline dmt 9750/10000 teacher long acc=0.122 rnn long acc=0.130 select=2.1696 0.671s/step
+10:32:01 long/baseline dmt 10000/10000 teacher long acc=0.122 rnn long acc=0.124 select=2.1681 0.670s/step
+  stage                  split    model  long_answers  full_vocab_acc  cand_acc     ce  pred_in_written
+0   dmt                 tuning      rnn          1601           0.123     0.123  2.187            1.000
+1   dmt                 tuning  teacher          1601           0.123     0.123  2.157            1.000
+2   dmt  tuning_shuffled_order      rnn          1659           0.124     0.124  2.176            1.000
+3   dmt  tuning_shuffled_order  teacher          1659           0.099     0.099  2.205            1.000
+4   smt                 tuning      rnn          1601           0.039     0.112  5.982            0.347
+5   smt                 tuning  teacher          1601           0.123     0.123  2.157            1.000
+6   smt  tuning_shuffled_order      rnn          1659           0.049     0.146  5.827            0.369
+7   smt  tuning_shuffled_order  teacher          1659           0.099     0.099  2.205            1.000
+10:32:12 done baseline
+[W1017 10:32:13.554763825 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

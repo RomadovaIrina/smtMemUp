@@ -1,0 +1,236 @@
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+07:20:42 run directory: /workspace/smtMemUp/runs/mqar03_pilot01long_ea929281632e
+07:20:45 detector[context] 200/20000 {'ce': 4.170861721038818, 'mean_ce_future_source': 4.167782783508301, 'mean_ce_prefix_source': 4.171898365020752, 'auc_prefix_source': 0.507843386775262, 'n': 130058}
+07:20:48 detector[context] 400/20000 {'ce': 4.179102897644043, 'mean_ce_future_source': 4.171063423156738, 'mean_ce_prefix_source': 4.18181037902832, 'auc_prefix_source': 0.5160919335312657, 'n': 130058}
+07:20:51 detector[context] 600/20000 {'ce': 4.1566691398620605, 'mean_ce_future_source': 4.096153259277344, 'mean_ce_prefix_source': 4.177051067352295, 'auc_prefix_source': 0.6045568779274793, 'n': 130058}
+07:20:54 detector[context] 800/20000 {'ce': 4.092783451080322, 'mean_ce_future_source': 3.8134169578552246, 'mean_ce_prefix_source': 4.18687629699707, 'auc_prefix_source': 0.7765967217828745, 'n': 130058}
+07:20:56 detector[context] 1000/20000 {'ce': 4.009807586669922, 'mean_ce_future_source': 3.3841123580932617, 'mean_ce_prefix_source': 4.220546245574951, 'auc_prefix_source': 0.9023188647955291, 'n': 130058}
+07:20:59 detector[context] 1200/20000 {'ce': 3.939032554626465, 'mean_ce_future_source': 3.0106406211853027, 'mean_ce_prefix_source': 4.2517218589782715, 'auc_prefix_source': 0.9638406540828223, 'n': 130058}
+07:21:02 detector[context] 1400/20000 {'ce': 3.8896288871765137, 'mean_ce_future_source': 2.7509117126464844, 'mean_ce_prefix_source': 4.273158073425293, 'auc_prefix_source': 0.9905685214641492, 'n': 130058}
+07:21:04 detector[context] 1600/20000 {'ce': 3.862837076187134, 'mean_ce_future_source': 2.582388401031494, 'mean_ce_prefix_source': 4.294102191925049, 'auc_prefix_source': 0.9970413838497401, 'n': 130058}
+07:21:07 detector[context] 1800/20000 {'ce': 3.8431787490844727, 'mean_ce_future_source': 2.488241672515869, 'mean_ce_prefix_source': 4.299531936645508, 'auc_prefix_source': 0.9985162787330103, 'n': 130058}
+07:21:10 detector[context] 2000/20000 {'ce': 3.8296315670013428, 'mean_ce_future_source': 2.429353713989258, 'mean_ce_prefix_source': 4.301255702972412, 'auc_prefix_source': 0.9991752753903239, 'n': 130058}
+07:21:12 detector[context] 2200/20000 {'ce': 3.818084716796875, 'mean_ce_future_source': 2.37253999710083, 'mean_ce_prefix_source': 4.304955005645752, 'auc_prefix_source': 0.9994918611510609, 'n': 130058}
+07:21:15 detector[context] 2400/20000 {'ce': 3.8133656978607178, 'mean_ce_future_source': 2.329737663269043, 'mean_ce_prefix_source': 4.313063144683838, 'auc_prefix_source': 0.9995668603969828, 'n': 130058}
+07:21:18 detector[context] 2600/20000 {'ce': 3.80663800239563, 'mean_ce_future_source': 2.3216216564178467, 'mean_ce_prefix_source': 4.306802749633789, 'auc_prefix_source': 0.9997845482196429, 'n': 130058}
+07:21:20 detector[context] 2800/20000 {'ce': 3.801845073699951, 'mean_ce_future_source': 2.2876105308532715, 'mean_ce_prefix_source': 4.3118510246276855, 'auc_prefix_source': 0.9996943453917071, 'n': 130058}
+07:21:23 detector[context] 3000/20000 {'ce': 3.800297737121582, 'mean_ce_future_source': 2.2699103355407715, 'mean_ce_prefix_source': 4.3157429695129395, 'auc_prefix_source': 0.9997482031611356, 'n': 130058}
+07:21:26 detector[context] 3200/20000 {'ce': 3.794816493988037, 'mean_ce_future_source': 2.2552359104156494, 'mean_ce_prefix_source': 4.313358783721924, 'auc_prefix_source': 0.9997954796857634, 'n': 130058}
+07:21:29 detector[context] 3400/20000 {'ce': 3.7899627685546875, 'mean_ce_future_source': 2.2332935333251953, 'mean_ce_prefix_source': 4.314260959625244, 'auc_prefix_source': 0.9998735052817085, 'n': 130058}
+07:21:31 detector[context] 3600/20000 {'ce': 3.7868216037750244, 'mean_ce_future_source': 2.218759298324585, 'mean_ce_prefix_source': 4.3149566650390625, 'auc_prefix_source': 0.9998809243562055, 'n': 130058}
+07:21:34 detector[context] 3800/20000 {'ce': 3.785071611404419, 'mean_ce_future_source': 2.2229137420654297, 'mean_ce_prefix_source': 4.31121826171875, 'auc_prefix_source': 0.9998589930425066, 'n': 130058}
+07:21:37 detector[context] 4000/20000 {'ce': 3.7818610668182373, 'mean_ce_future_source': 2.200636863708496, 'mean_ce_prefix_source': 4.314429759979248, 'auc_prefix_source': 0.9999185623888832, 'n': 130058}
+07:21:39 detector[context] 4200/20000 {'ce': 3.7842206954956055, 'mean_ce_future_source': 2.2021713256835938, 'mean_ce_prefix_source': 4.3170671463012695, 'auc_prefix_source': 0.9999358757584444, 'n': 130058}
+07:21:42 detector[context] 4400/20000 {'ce': 3.7782163619995117, 'mean_ce_future_source': 2.1893670558929443, 'mean_ce_prefix_source': 4.313352108001709, 'auc_prefix_source': 0.999976418748374, 'n': 130058}
+07:21:45 detector[context] 4600/20000 {'ce': 3.7773051261901855, 'mean_ce_future_source': 2.1912825107574463, 'mean_ce_prefix_source': 4.311489582061768, 'auc_prefix_source': 0.9999341320312701, 'n': 130058}
+07:21:47 detector[context] 4800/20000 {'ce': 3.778512716293335, 'mean_ce_future_source': 2.1772522926330566, 'mean_ce_prefix_source': 4.317829132080078, 'auc_prefix_source': 0.9999766361261274, 'n': 130058}
+07:21:50 detector[context] 5000/20000 {'ce': 3.774473190307617, 'mean_ce_future_source': 2.1857757568359375, 'mean_ce_prefix_source': 4.309557914733887, 'auc_prefix_source': 0.9999643102115173, 'n': 130058}
+07:21:53 detector[context] 5200/20000 {'ce': 3.772409677505493, 'mean_ce_future_source': 2.1790528297424316, 'mean_ce_prefix_source': 4.309063911437988, 'auc_prefix_source': 0.9999833541338435, 'n': 130058}
+07:21:56 detector[context] 5400/20000 {'ce': 3.7716591358184814, 'mean_ce_future_source': 2.1578361988067627, 'mean_ce_prefix_source': 4.315206050872803, 'auc_prefix_source': 0.9999807435619046, 'n': 130058}
+07:21:58 detector[context] 5600/20000 {'ce': 3.7710037231445312, 'mean_ce_future_source': 2.161228656768799, 'mean_ce_prefix_source': 4.313187599182129, 'auc_prefix_source': 0.9999130992436533, 'n': 130058}
+07:22:01 detector[context] 5800/20000 {'ce': 3.7693488597869873, 'mean_ce_future_source': 2.1561450958251953, 'mean_ce_prefix_source': 4.312687397003174, 'auc_prefix_source': 0.9999630253929337, 'n': 130058}
+07:22:04 detector[context] 6000/20000 {'ce': 3.7681710720062256, 'mean_ce_future_source': 2.1645169258117676, 'mean_ce_prefix_source': 4.308294296264648, 'auc_prefix_source': 0.99998095027466, 'n': 130058}
+07:22:07 detector[context] 6200/20000 {'ce': 3.7699649333953857, 'mean_ce_future_source': 2.1566805839538574, 'mean_ce_prefix_source': 4.313331127166748, 'auc_prefix_source': 0.9999859701951198, 'n': 130058}
+07:22:09 detector[context] 6400/20000 {'ce': 3.766841411590576, 'mean_ce_future_source': 2.1360480785369873, 'mean_ce_prefix_source': 4.316105365753174, 'auc_prefix_source': 0.9999917713266836, 'n': 130058}
+07:22:12 detector[context] 6600/20000 {'ce': 3.7633705139160156, 'mean_ce_future_source': 2.1602365970611572, 'mean_ce_prefix_source': 4.303318023681641, 'auc_prefix_source': 0.9999999670639768, 'n': 130058}
+07:22:15 detector[context] 6800/20000 {'ce': 3.7648396492004395, 'mean_ce_future_source': 2.151901960372925, 'mean_ce_prefix_source': 4.308088779449463, 'auc_prefix_source': 0.999998140839906, 'n': 130058}
+07:22:17 detector[context] 7000/20000 {'ce': 3.7638254165649414, 'mean_ce_future_source': 2.1435272693634033, 'mean_ce_prefix_source': 4.309554576873779, 'auc_prefix_source': 0.999999786072687, 'n': 130058}
+07:22:20 detector[context] 7200/20000 {'ce': 3.7623889446258545, 'mean_ce_future_source': 2.137985944747925, 'mean_ce_prefix_source': 4.309500217437744, 'auc_prefix_source': 0.9999999974905887, 'n': 130058}
+07:22:23 detector[context] 7400/20000 {'ce': 3.764660596847534, 'mean_ce_future_source': 2.129863739013672, 'mean_ce_prefix_source': 4.315272808074951, 'auc_prefix_source': 0.9999990602254696, 'n': 130058}
+07:22:26 detector[context] 7600/20000 {'ce': 3.7609665393829346, 'mean_ce_future_source': 2.1459310054779053, 'mean_ce_prefix_source': 4.304922580718994, 'auc_prefix_source': 0.999999477728774, 'n': 130058}
+07:22:28 detector[context] 7800/20000 {'ce': 3.76271915435791, 'mean_ce_future_source': 2.124159574508667, 'mean_ce_prefix_source': 4.314598083496094, 'auc_prefix_source': 0.9999999325595714, 'n': 130058}
+07:22:31 detector[context] 8000/20000 {'ce': 3.759016513824463, 'mean_ce_future_source': 2.1341614723205566, 'mean_ce_prefix_source': 4.30627965927124, 'auc_prefix_source': 0.9999999934127953, 'n': 130058}
+07:22:34 detector[context] 8200/20000 {'ce': 3.76059627532959, 'mean_ce_future_source': 2.1180570125579834, 'mean_ce_prefix_source': 4.313815593719482, 'auc_prefix_source': 0.9999885498699322, 'n': 130058}
+07:22:36 detector[context] 8400/20000 {'ce': 3.759965181350708, 'mean_ce_future_source': 2.125253200531006, 'mean_ce_prefix_source': 4.310548782348633, 'auc_prefix_source': 0.9999999952948538, 'n': 130058}
+07:22:39 detector[context] 8600/20000 {'ce': 3.7611196041107178, 'mean_ce_future_source': 2.1196861267089844, 'mean_ce_prefix_source': 4.313967227935791, 'auc_prefix_source': 0.9999999752195634, 'n': 130058}
+07:22:42 detector[context] 8800/20000 {'ce': 3.7600252628326416, 'mean_ce_future_source': 2.119029998779297, 'mean_ce_prefix_source': 4.312725067138672, 'auc_prefix_source': 0.999999693224469, 'n': 130058}
+07:22:45 detector[context] 9000/20000 {'ce': 3.760535955429077, 'mean_ce_future_source': 2.131497859954834, 'mean_ce_prefix_source': 4.309208393096924, 'auc_prefix_source': 0.9999999422835402, 'n': 130058}
+07:22:47 detector[context] 9200/20000 {'ce': 3.756620168685913, 'mean_ce_future_source': 2.1212921142578125, 'mean_ce_prefix_source': 4.307410717010498, 'auc_prefix_source': 0.999999347553063, 'n': 130058}
+07:22:50 detector[context] 9400/20000 {'ce': 3.756709337234497, 'mean_ce_future_source': 2.110934257507324, 'mean_ce_prefix_source': 4.311018466949463, 'auc_prefix_source': 0.9999886020970548, 'n': 130058}
+07:22:53 detector[context] 9600/20000 {'ce': 3.7573494911193848, 'mean_ce_future_source': 2.102440595626831, 'mean_ce_prefix_source': 4.3147358894348145, 'auc_prefix_source': 0.9999999874529435, 'n': 130058}
+07:22:55 detector[context] 9800/20000 {'ce': 3.758723258972168, 'mean_ce_future_source': 2.108088970184326, 'mean_ce_prefix_source': 4.314669609069824, 'auc_prefix_source': 0.9999978356327571, 'n': 130058}
+07:22:58 detector[context] 10000/20000 {'ce': 3.7580251693725586, 'mean_ce_future_source': 2.112454652786255, 'mean_ce_prefix_source': 4.312265396118164, 'auc_prefix_source': 0.9999643694963591, 'n': 130058}
+07:23:01 detector[context] 10200/20000 {'ce': 3.7570390701293945, 'mean_ce_future_source': 2.1159708499908447, 'mean_ce_prefix_source': 4.309762477874756, 'auc_prefix_source': 0.9999999265997196, 'n': 130058}
+07:23:03 detector[context] 10400/20000 {'ce': 3.7547552585601807, 'mean_ce_future_source': 2.1197428703308105, 'mean_ce_prefix_source': 4.305439472198486, 'auc_prefix_source': 0.9999999981179415, 'n': 130058}
+07:23:06 detector[context] 10600/20000 {'ce': 3.7555060386657715, 'mean_ce_future_source': 2.1031579971313477, 'mean_ce_prefix_source': 4.312028884887695, 'auc_prefix_source': 0.9999712816697743, 'n': 130058}
+07:23:09 detector[context] 10800/20000 {'ce': 3.757575273513794, 'mean_ce_future_source': 2.1037356853485107, 'mean_ce_prefix_source': 4.314600944519043, 'auc_prefix_source': 0.9999992562732272, 'n': 130058}
+07:23:11 detector[context] 11000/20000 {'ce': 3.7556536197662354, 'mean_ce_future_source': 2.1254916191101074, 'mean_ce_prefix_source': 4.304704189300537, 'auc_prefix_source': 0.9999973180666772, 'n': 130058}
+07:23:14 detector[context] 11200/20000 {'ce': 3.7537600994110107, 'mean_ce_future_source': 2.108377695083618, 'mean_ce_prefix_source': 4.3079376220703125, 'auc_prefix_source': 0.9999992434124942, 'n': 130058}
+07:23:17 detector[context] 11400/20000 {'ce': 3.7550048828125, 'mean_ce_future_source': 2.1034703254699707, 'mean_ce_prefix_source': 4.311254978179932, 'auc_prefix_source': 0.9999999993726472, 'n': 130058}
+07:23:20 detector[context] 11600/20000 {'ce': 3.7551310062408447, 'mean_ce_future_source': 2.10408091545105, 'mean_ce_prefix_source': 4.311217308044434, 'auc_prefix_source': 0.9999999996863236, 'n': 130058}
+07:23:22 detector[context] 11800/20000 {'ce': 3.7522997856140137, 'mean_ce_future_source': 2.1115143299102783, 'mean_ce_prefix_source': 4.304928779602051, 'auc_prefix_source': 0.9999998619823787, 'n': 130058}
+07:23:25 detector[context] 12000/20000 {'ce': 3.752763032913208, 'mean_ce_future_source': 2.10560941696167, 'mean_ce_prefix_source': 4.307536602020264, 'auc_prefix_source': 0.9999978958586282, 'n': 130058}
+07:23:28 detector[context] 12200/20000 {'ce': 3.752786636352539, 'mean_ce_future_source': 2.10752010345459, 'mean_ce_prefix_source': 4.306924343109131, 'auc_prefix_source': 0.9999970715170174, 'n': 130058}
+07:23:30 detector[context] 12400/20000 {'ce': 3.7542121410369873, 'mean_ce_future_source': 2.10189151763916, 'mean_ce_prefix_source': 4.310725688934326, 'auc_prefix_source': 0.999997040776729, 'n': 130058}
+07:23:33 detector[context] 12600/20000 {'ce': 3.7546446323394775, 'mean_ce_future_source': 2.1016664505004883, 'mean_ce_prefix_source': 4.311379909515381, 'auc_prefix_source': 0.9999999971769122, 'n': 130058}
+07:23:36 detector[context] 12800/20000 {'ce': 3.7521767616271973, 'mean_ce_future_source': 2.100968599319458, 'mean_ce_prefix_source': 4.308315277099609, 'auc_prefix_source': 0.9999842694416138, 'n': 130058}
+07:23:39 detector[context] 13000/20000 {'ce': 3.753418207168579, 'mean_ce_future_source': 2.107677459716797, 'mean_ce_prefix_source': 4.30771541595459, 'auc_prefix_source': 0.9999781690627529, 'n': 130058}
+07:23:41 detector[context] 13200/20000 {'ce': 3.7537083625793457, 'mean_ce_future_source': 2.097141981124878, 'mean_ce_prefix_source': 4.311652183532715, 'auc_prefix_source': 0.9999999984316179, 'n': 130058}
+07:23:44 detector[context] 13400/20000 {'ce': 3.7535173892974854, 'mean_ce_future_source': 2.095858097076416, 'mean_ce_prefix_source': 4.311830043792725, 'auc_prefix_source': 0.9999936653048593, 'n': 130058}
+07:23:47 detector[context] 13600/20000 {'ce': 3.750603437423706, 'mean_ce_future_source': 2.1005568504333496, 'mean_ce_prefix_source': 4.306351661682129, 'auc_prefix_source': 0.9999763136667759, 'n': 130058}
+07:23:49 detector[context] 13800/20000 {'ce': 3.7535858154296875, 'mean_ce_future_source': 2.1008572578430176, 'mean_ce_prefix_source': 4.310236930847168, 'auc_prefix_source': 0.999992162167493, 'n': 130058}
+07:23:52 detector[context] 14000/20000 {'ce': 3.7526700496673584, 'mean_ce_future_source': 2.111992359161377, 'mean_ce_prefix_source': 4.305262565612793, 'auc_prefix_source': 1.0, 'n': 130058}
+07:23:55 detector[context] 14200/20000 {'ce': 3.751317024230957, 'mean_ce_future_source': 2.089998245239258, 'mean_ce_prefix_source': 4.310861587524414, 'auc_prefix_source': 0.9999748767151324, 'n': 130058}
+07:23:58 detector[context] 14400/20000 {'ce': 3.7529261112213135, 'mean_ce_future_source': 2.094036102294922, 'mean_ce_prefix_source': 4.311653137207031, 'auc_prefix_source': 0.9999891157421795, 'n': 130058}
+07:24:00 detector[context] 14600/20000 {'ce': 3.753424644470215, 'mean_ce_future_source': 2.103015422821045, 'mean_ce_prefix_source': 4.3092942237854, 'auc_prefix_source': 0.9999742829256845, 'n': 130058}
+07:24:03 detector[context] 14800/20000 {'ce': 3.7526988983154297, 'mean_ce_future_source': 2.0911335945129395, 'mean_ce_prefix_source': 4.312325954437256, 'auc_prefix_source': 0.9999904485532541, 'n': 130058}
+07:24:06 detector[context] 15000/20000 {'ce': 3.750223159790039, 'mean_ce_future_source': 2.098116636276245, 'mean_ce_prefix_source': 4.306664943695068, 'auc_prefix_source': 1.0, 'n': 130058}
+07:24:08 detector[context] 15200/20000 {'ce': 3.7504141330718994, 'mean_ce_future_source': 2.0962090492248535, 'mean_ce_prefix_source': 4.307563304901123, 'auc_prefix_source': 0.9999960473635322, 'n': 130058}
+07:24:11 detector[context] 15400/20000 {'ce': 3.750797986984253, 'mean_ce_future_source': 2.093972682952881, 'mean_ce_prefix_source': 4.308828830718994, 'auc_prefix_source': 0.9999928240247223, 'n': 130058}
+07:24:14 detector[context] 15600/20000 {'ce': 3.750985860824585, 'mean_ce_future_source': 2.104599952697754, 'mean_ce_prefix_source': 4.305500507354736, 'auc_prefix_source': 0.9999999987452943, 'n': 130058}
+07:24:16 detector[context] 15800/20000 {'ce': 3.7515923976898193, 'mean_ce_future_source': 2.0980069637298584, 'mean_ce_prefix_source': 4.30853271484375, 'auc_prefix_source': 0.999972275710324, 'n': 130058}
+07:24:19 detector[context] 16000/20000 {'ce': 3.750868797302246, 'mean_ce_future_source': 2.0870535373687744, 'mean_ce_prefix_source': 4.311254501342773, 'auc_prefix_source': 0.9999925213269847, 'n': 130058}
+07:24:22 detector[context] 16200/20000 {'ce': 3.7495102882385254, 'mean_ce_future_source': 2.1038665771484375, 'mean_ce_prefix_source': 4.303775310516357, 'auc_prefix_source': 0.9999697303830787, 'n': 130058}
+07:24:25 detector[context] 16400/20000 {'ce': 3.7513234615325928, 'mean_ce_future_source': 2.095595598220825, 'mean_ce_prefix_source': 4.308984756469727, 'auc_prefix_source': 0.9999992656835195, 'n': 130058}
+07:24:27 detector[context] 16600/20000 {'ce': 3.7491869926452637, 'mean_ce_future_source': 2.098314046859741, 'mean_ce_prefix_source': 4.30521297454834, 'auc_prefix_source': 0.9999466847339261, 'n': 130058}
+07:24:30 detector[context] 16800/20000 {'ce': 3.751018524169922, 'mean_ce_future_source': 2.0745253562927246, 'mean_ce_prefix_source': 4.315673351287842, 'auc_prefix_source': 0.9999999993726472, 'n': 130058}
+07:24:33 detector[context] 17000/20000 {'ce': 3.7509145736694336, 'mean_ce_future_source': 2.0894775390625, 'mean_ce_prefix_source': 4.31049919128418, 'auc_prefix_source': 0.9999988952316768, 'n': 130058}
+07:24:36 detector[context] 17200/20000 {'ce': 3.751920700073242, 'mean_ce_future_source': 2.095487356185913, 'mean_ce_prefix_source': 4.30981969833374, 'auc_prefix_source': 0.9999744748956486, 'n': 130058}
+07:24:38 detector[context] 17400/20000 {'ce': 3.7486486434936523, 'mean_ce_future_source': 2.1010560989379883, 'mean_ce_prefix_source': 4.303570747375488, 'auc_prefix_source': 0.9999991094726662, 'n': 130058}
+07:24:41 detector[context] 17600/20000 {'ce': 3.749408483505249, 'mean_ce_future_source': 2.093475103378296, 'mean_ce_prefix_source': 4.307138919830322, 'auc_prefix_source': 0.9999999956085303, 'n': 130058}
+07:24:44 detector[context] 17800/20000 {'ce': 3.7510271072387695, 'mean_ce_future_source': 2.0938806533813477, 'mean_ce_prefix_source': 4.309166431427002, 'auc_prefix_source': 0.9999996235883056, 'n': 130058}
+07:24:46 detector[context] 18000/20000 {'ce': 3.7483105659484863, 'mean_ce_future_source': 2.095414161682129, 'mean_ce_prefix_source': 4.305018424987793, 'auc_prefix_source': 0.9999999153073688, 'n': 130058}
+07:24:49 detector[context] 18200/20000 {'ce': 3.7492637634277344, 'mean_ce_future_source': 2.1005587577819824, 'mean_ce_prefix_source': 4.304559707641602, 'auc_prefix_source': 0.9999999761605927, 'n': 130058}
+07:24:52 detector[context] 18400/20000 {'ce': 3.749359607696533, 'mean_ce_future_source': 2.097553253173828, 'mean_ce_prefix_source': 4.305700302124023, 'auc_prefix_source': 0.999999953575891, 'n': 130058}
+07:24:55 detector[context] 18600/20000 {'ce': 3.75069522857666, 'mean_ce_future_source': 2.082307815551758, 'mean_ce_prefix_source': 4.312620639801025, 'auc_prefix_source': 0.9999877866952218, 'n': 130058}
+07:24:57 detector[context] 18800/20000 {'ce': 3.7497308254241943, 'mean_ce_future_source': 2.0885977745056152, 'mean_ce_prefix_source': 4.309213161468506, 'auc_prefix_source': 1.0, 'n': 130058}
+07:25:00 detector[context] 19000/20000 {'ce': 3.7501132488250732, 'mean_ce_future_source': 2.0937561988830566, 'mean_ce_prefix_source': 4.307986259460449, 'auc_prefix_source': 1.0, 'n': 130058}
+07:25:03 detector[context] 19200/20000 {'ce': 3.7500205039978027, 'mean_ce_future_source': 2.083082437515259, 'mean_ce_prefix_source': 4.311456680297852, 'auc_prefix_source': 0.9999999993726472, 'n': 130058}
+07:25:05 detector[context] 19400/20000 {'ce': 3.749112129211426, 'mean_ce_future_source': 2.074409008026123, 'mean_ce_prefix_source': 4.313164710998535, 'auc_prefix_source': 0.9999998510037043, 'n': 130058}
+07:25:08 detector[context] 19600/20000 {'ce': 3.748858690261841, 'mean_ce_future_source': 2.086138963699341, 'mean_ce_prefix_source': 4.30887508392334, 'auc_prefix_source': 0.9999999388330997, 'n': 130058}
+07:25:11 detector[context] 19800/20000 {'ce': 3.74936842918396, 'mean_ce_future_source': 2.079916477203369, 'mean_ce_prefix_source': 4.311651706695557, 'auc_prefix_source': 1.0, 'n': 130058}
+07:25:14 detector[context] 20000/20000 {'ce': 3.7471423149108887, 'mean_ce_future_source': 2.0895299911499023, 'mean_ce_prefix_source': 4.305438995361328, 'auc_prefix_source': 1.0, 'n': 130058}
+07:26:14 long/surprise_ctx_k smt 250/20000 teacher long acc=0.065 rnn long acc=0.018 select=4.1377 0.242s/step
+07:27:14 long/surprise_ctx_k smt 500/20000 teacher long acc=0.129 rnn long acc=0.021 select=3.5333 0.241s/step
+07:28:16 long/surprise_ctx_k smt 750/20000 teacher long acc=0.126 rnn long acc=0.026 select=3.2326 0.243s/step
+07:29:16 long/surprise_ctx_k smt 1000/20000 teacher long acc=0.115 rnn long acc=0.026 select=3.0323 0.242s/step
+07:30:16 long/surprise_ctx_k smt 1250/20000 teacher long acc=0.128 rnn long acc=0.026 select=2.9157 0.242s/step
+07:31:17 long/surprise_ctx_k smt 1500/20000 teacher long acc=0.121 rnn long acc=0.023 select=2.8046 0.242s/step
+07:32:16 long/surprise_ctx_k smt 1750/20000 teacher long acc=0.121 rnn long acc=0.026 select=2.7494 0.242s/step
+07:33:17 long/surprise_ctx_k smt 2000/20000 teacher long acc=0.117 rnn long acc=0.036 select=2.6984 0.242s/step
+07:34:17 long/surprise_ctx_k smt 2250/20000 teacher long acc=0.110 rnn long acc=0.034 select=2.6642 0.241s/step
+07:35:17 long/surprise_ctx_k smt 2500/20000 teacher long acc=0.117 rnn long acc=0.050 select=2.6048 0.241s/step
+07:36:18 long/surprise_ctx_k smt 2750/20000 teacher long acc=0.117 rnn long acc=0.053 select=2.5737 0.241s/step
+07:37:19 long/surprise_ctx_k smt 3000/20000 teacher long acc=0.118 rnn long acc=0.037 select=2.5666 0.242s/step
+07:38:19 long/surprise_ctx_k smt 3250/20000 teacher long acc=0.112 rnn long acc=0.048 select=2.5307 0.242s/step
+07:39:19 long/surprise_ctx_k smt 3500/20000 teacher long acc=0.117 rnn long acc=0.055 select=2.5296 0.242s/step
+07:40:18 long/surprise_ctx_k smt 3750/20000 teacher long acc=0.118 rnn long acc=0.054 select=2.4764 0.241s/step
+07:41:19 long/surprise_ctx_k smt 4000/20000 teacher long acc=0.110 rnn long acc=0.100 select=2.4840 0.241s/step
+07:42:17 long/surprise_ctx_k smt 4250/20000 teacher long acc=0.128 rnn long acc=0.056 select=2.4547 0.241s/step
+07:43:16 long/surprise_ctx_k smt 4500/20000 teacher long acc=0.122 rnn long acc=0.062 select=2.4352 0.241s/step
+07:44:17 long/surprise_ctx_k smt 4750/20000 teacher long acc=0.125 rnn long acc=0.069 select=2.4417 0.241s/step
+07:45:18 long/surprise_ctx_k smt 5000/20000 teacher long acc=0.120 rnn long acc=0.072 select=2.4208 0.241s/step
+07:46:17 long/surprise_ctx_k smt 5250/20000 teacher long acc=0.122 rnn long acc=0.101 select=2.4022 0.241s/step
+07:47:16 long/surprise_ctx_k smt 5500/20000 teacher long acc=0.124 rnn long acc=0.108 select=2.4051 0.240s/step
+07:48:18 long/surprise_ctx_k smt 5750/20000 teacher long acc=0.117 rnn long acc=0.090 select=2.3982 0.241s/step
+07:49:18 long/surprise_ctx_k smt 6000/20000 teacher long acc=0.114 rnn long acc=0.124 select=2.3748 0.241s/step
+07:50:18 long/surprise_ctx_k smt 6250/20000 teacher long acc=0.120 rnn long acc=0.116 select=2.3659 0.241s/step
+07:51:18 long/surprise_ctx_k smt 6500/20000 teacher long acc=0.114 rnn long acc=0.124 select=2.3674 0.241s/step
+07:52:19 long/surprise_ctx_k smt 6750/20000 teacher long acc=0.119 rnn long acc=0.113 select=2.3665 0.241s/step
+07:53:20 long/surprise_ctx_k smt 7000/20000 teacher long acc=0.108 rnn long acc=0.100 select=2.3503 0.241s/step
+07:54:22 long/surprise_ctx_k smt 7250/20000 teacher long acc=0.124 rnn long acc=0.110 select=2.3477 0.241s/step
+07:55:23 long/surprise_ctx_k smt 7500/20000 teacher long acc=0.112 rnn long acc=0.108 select=2.3500 0.241s/step
+07:56:22 long/surprise_ctx_k smt 7750/20000 teacher long acc=0.115 rnn long acc=0.111 select=2.3464 0.241s/step
+07:57:22 long/surprise_ctx_k smt 8000/20000 teacher long acc=0.113 rnn long acc=0.112 select=2.3542 0.241s/step
+07:58:23 long/surprise_ctx_k smt 8250/20000 teacher long acc=0.110 rnn long acc=0.126 select=2.3288 0.241s/step
+07:59:22 long/surprise_ctx_k smt 8500/20000 teacher long acc=0.116 rnn long acc=0.121 select=2.3278 0.241s/step
+08:00:23 long/surprise_ctx_k smt 8750/20000 teacher long acc=0.119 rnn long acc=0.104 select=2.3244 0.241s/step
+08:01:22 long/surprise_ctx_k smt 9000/20000 teacher long acc=0.122 rnn long acc=0.102 select=2.3131 0.241s/step
+08:02:23 long/surprise_ctx_k smt 9250/20000 teacher long acc=0.125 rnn long acc=0.110 select=2.3204 0.241s/step
+08:03:24 long/surprise_ctx_k smt 9500/20000 teacher long acc=0.106 rnn long acc=0.106 select=2.3082 0.241s/step
+08:04:25 long/surprise_ctx_k smt 9750/20000 teacher long acc=0.115 rnn long acc=0.107 select=2.3000 0.241s/step
+08:05:25 long/surprise_ctx_k smt 10000/20000 teacher long acc=0.115 rnn long acc=0.104 select=2.3133 0.241s/step
+08:06:26 long/surprise_ctx_k smt 10250/20000 teacher long acc=0.120 rnn long acc=0.104 select=2.2734 0.241s/step
+08:07:27 long/surprise_ctx_k smt 10500/20000 teacher long acc=0.115 rnn long acc=0.115 select=2.2851 0.241s/step
+08:08:29 long/surprise_ctx_k smt 10750/20000 teacher long acc=0.125 rnn long acc=0.116 select=2.2672 0.241s/step
+08:09:30 long/surprise_ctx_k smt 11000/20000 teacher long acc=0.124 rnn long acc=0.102 select=2.2800 0.242s/step
+08:10:31 long/surprise_ctx_k smt 11250/20000 teacher long acc=0.116 rnn long acc=0.115 select=2.2710 0.242s/step
+08:11:31 long/surprise_ctx_k smt 11500/20000 teacher long acc=0.126 rnn long acc=0.112 select=2.2768 0.242s/step
+08:12:31 long/surprise_ctx_k smt 11750/20000 teacher long acc=0.130 rnn long acc=0.104 select=2.2600 0.241s/step
+08:13:32 long/surprise_ctx_k smt 12000/20000 teacher long acc=0.115 rnn long acc=0.106 select=2.2687 0.242s/step
+08:14:33 long/surprise_ctx_k smt 12250/20000 teacher long acc=0.120 rnn long acc=0.117 select=2.2387 0.242s/step
+08:15:34 long/surprise_ctx_k smt 12500/20000 teacher long acc=0.125 rnn long acc=0.120 select=2.2596 0.242s/step
+08:16:34 long/surprise_ctx_k smt 12750/20000 teacher long acc=0.124 rnn long acc=0.115 select=2.2604 0.242s/step
+08:17:35 long/surprise_ctx_k smt 13000/20000 teacher long acc=0.112 rnn long acc=0.106 select=2.2514 0.242s/step
+08:18:36 long/surprise_ctx_k smt 13250/20000 teacher long acc=0.114 rnn long acc=0.111 select=2.2559 0.242s/step
+08:19:35 long/surprise_ctx_k smt 13500/20000 teacher long acc=0.127 rnn long acc=0.101 select=2.2497 0.242s/step
+08:20:35 long/surprise_ctx_k smt 13750/20000 teacher long acc=0.121 rnn long acc=0.102 select=2.2425 0.242s/step
+08:21:36 long/surprise_ctx_k smt 14000/20000 teacher long acc=0.119 rnn long acc=0.102 select=2.2371 0.242s/step
+08:22:36 long/surprise_ctx_k smt 14250/20000 teacher long acc=0.131 rnn long acc=0.109 select=2.2421 0.242s/step
+08:23:36 long/surprise_ctx_k smt 14500/20000 teacher long acc=0.115 rnn long acc=0.110 select=2.2283 0.242s/step
+08:24:36 long/surprise_ctx_k smt 14750/20000 teacher long acc=0.129 rnn long acc=0.099 select=2.2373 0.242s/step
+08:25:38 long/surprise_ctx_k smt 15000/20000 teacher long acc=0.130 rnn long acc=0.116 select=2.2404 0.242s/step
+08:26:37 long/surprise_ctx_k smt 15250/20000 teacher long acc=0.117 rnn long acc=0.122 select=2.2321 0.242s/step
+08:27:39 long/surprise_ctx_k smt 15500/20000 teacher long acc=0.115 rnn long acc=0.095 select=2.2332 0.242s/step
+08:28:38 long/surprise_ctx_k smt 15750/20000 teacher long acc=0.126 rnn long acc=0.090 select=2.2386 0.242s/step
+08:29:37 long/surprise_ctx_k smt 16000/20000 teacher long acc=0.130 rnn long acc=0.115 select=2.2233 0.241s/step
+08:30:39 long/surprise_ctx_k smt 16250/20000 teacher long acc=0.132 rnn long acc=0.108 select=2.2273 0.242s/step
+08:31:38 long/surprise_ctx_k smt 16500/20000 teacher long acc=0.119 rnn long acc=0.111 select=2.2251 0.241s/step
+08:32:40 long/surprise_ctx_k smt 16750/20000 teacher long acc=0.122 rnn long acc=0.110 select=2.2276 0.242s/step
+08:33:41 long/surprise_ctx_k smt 17000/20000 teacher long acc=0.121 rnn long acc=0.107 select=2.2271 0.242s/step
+08:34:42 long/surprise_ctx_k smt 17250/20000 teacher long acc=0.111 rnn long acc=0.107 select=2.2265 0.242s/step
+08:35:43 long/surprise_ctx_k smt 17500/20000 teacher long acc=0.117 rnn long acc=0.106 select=2.2238 0.242s/step
+08:36:43 long/surprise_ctx_k smt 17750/20000 teacher long acc=0.126 rnn long acc=0.095 select=2.2244 0.242s/step
+08:37:43 long/surprise_ctx_k smt 18000/20000 teacher long acc=0.118 rnn long acc=0.107 select=2.2213 0.242s/step
+08:38:45 long/surprise_ctx_k smt 18250/20000 teacher long acc=0.130 rnn long acc=0.106 select=2.2161 0.242s/step
+08:39:45 long/surprise_ctx_k smt 18500/20000 teacher long acc=0.119 rnn long acc=0.106 select=2.2193 0.242s/step
+08:40:44 long/surprise_ctx_k smt 18750/20000 teacher long acc=0.128 rnn long acc=0.094 select=2.2161 0.242s/step
+08:41:44 long/surprise_ctx_k smt 19000/20000 teacher long acc=0.130 rnn long acc=0.113 select=2.2124 0.242s/step
+08:42:43 long/surprise_ctx_k smt 19250/20000 teacher long acc=0.126 rnn long acc=0.107 select=2.2074 0.242s/step
+08:43:41 long/surprise_ctx_k smt 19500/20000 teacher long acc=0.121 rnn long acc=0.113 select=2.2134 0.241s/step
+08:44:38 long/surprise_ctx_k smt 19750/20000 teacher long acc=0.118 rnn long acc=0.106 select=2.2125 0.241s/step
+08:45:36 long/surprise_ctx_k smt 20000/20000 teacher long acc=0.120 rnn long acc=0.112 select=2.2094 0.241s/step
+08:48:12 long/surprise_ctx_k dmt 250/10000 teacher long acc=0.126 rnn long acc=0.124 select=2.6202 0.622s/step
+08:50:50 long/surprise_ctx_k dmt 500/10000 teacher long acc=0.126 rnn long acc=0.128 select=2.4648 0.628s/step
+08:53:39 long/surprise_ctx_k dmt 750/10000 teacher long acc=0.126 rnn long acc=0.130 select=2.4164 0.644s/step
+08:56:37 long/surprise_ctx_k dmt 1000/10000 teacher long acc=0.126 rnn long acc=0.116 select=2.4206 0.661s/step
+08:59:36 long/surprise_ctx_k dmt 1250/10000 teacher long acc=0.126 rnn long acc=0.111 select=2.3871 0.672s/step
+09:02:33 long/surprise_ctx_k dmt 1500/10000 teacher long acc=0.126 rnn long acc=0.124 select=2.3682 0.678s/step
+09:05:31 long/surprise_ctx_k dmt 1750/10000 teacher long acc=0.126 rnn long acc=0.108 select=2.3689 0.683s/step
+09:08:29 long/surprise_ctx_k dmt 2000/10000 teacher long acc=0.126 rnn long acc=0.131 select=2.3486 0.686s/step
+09:11:27 long/surprise_ctx_k dmt 2250/10000 teacher long acc=0.126 rnn long acc=0.131 select=2.3698 0.689s/step
+09:14:24 long/surprise_ctx_k dmt 2500/10000 teacher long acc=0.126 rnn long acc=0.127 select=2.3264 0.691s/step
+09:17:22 long/surprise_ctx_k dmt 2750/10000 teacher long acc=0.126 rnn long acc=0.133 select=2.3308 0.693s/step
+09:20:20 long/surprise_ctx_k dmt 3000/10000 teacher long acc=0.126 rnn long acc=0.117 select=2.3169 0.695s/step
+09:23:18 long/surprise_ctx_k dmt 3250/10000 teacher long acc=0.126 rnn long acc=0.126 select=2.3374 0.696s/step
+09:26:16 long/surprise_ctx_k dmt 3500/10000 teacher long acc=0.126 rnn long acc=0.122 select=2.2947 0.697s/step
+09:29:07 long/surprise_ctx_k dmt 3750/10000 teacher long acc=0.126 rnn long acc=0.117 select=2.3026 0.696s/step
+09:31:44 long/surprise_ctx_k dmt 4000/10000 teacher long acc=0.126 rnn long acc=0.123 select=2.2889 0.692s/step
+09:34:20 long/surprise_ctx_k dmt 4250/10000 teacher long acc=0.126 rnn long acc=0.135 select=2.2700 0.688s/step
+09:36:57 long/surprise_ctx_k dmt 4500/10000 teacher long acc=0.126 rnn long acc=0.126 select=2.2760 0.684s/step
+09:39:32 long/surprise_ctx_k dmt 4750/10000 teacher long acc=0.126 rnn long acc=0.130 select=2.2723 0.681s/step
+09:42:06 long/surprise_ctx_k dmt 5000/10000 teacher long acc=0.126 rnn long acc=0.120 select=2.2659 0.678s/step
+09:44:41 long/surprise_ctx_k dmt 5250/10000 teacher long acc=0.126 rnn long acc=0.131 select=2.2608 0.675s/step
+09:47:19 long/surprise_ctx_k dmt 5500/10000 teacher long acc=0.126 rnn long acc=0.127 select=2.2675 0.673s/step
+09:50:05 long/surprise_ctx_k dmt 5750/10000 teacher long acc=0.126 rnn long acc=0.131 select=2.2520 0.673s/step
+09:52:55 long/surprise_ctx_k dmt 6000/10000 teacher long acc=0.126 rnn long acc=0.130 select=2.2508 0.673s/step
+09:55:43 long/surprise_ctx_k dmt 6250/10000 teacher long acc=0.126 rnn long acc=0.134 select=2.2466 0.673s/step
+09:58:32 long/surprise_ctx_k dmt 6500/10000 teacher long acc=0.126 rnn long acc=0.135 select=2.2432 0.673s/step
+10:01:21 long/surprise_ctx_k dmt 6750/10000 teacher long acc=0.126 rnn long acc=0.127 select=2.2319 0.673s/step
+10:04:09 long/surprise_ctx_k dmt 7000/10000 teacher long acc=0.126 rnn long acc=0.121 select=2.2426 0.673s/step
+10:06:57 long/surprise_ctx_k dmt 7250/10000 teacher long acc=0.126 rnn long acc=0.131 select=2.2333 0.673s/step
+10:09:47 long/surprise_ctx_k dmt 7500/10000 teacher long acc=0.126 rnn long acc=0.126 select=2.2256 0.673s/step
+10:12:36 long/surprise_ctx_k dmt 7750/10000 teacher long acc=0.126 rnn long acc=0.130 select=2.2282 0.673s/step
+10:15:17 long/surprise_ctx_k dmt 8000/10000 teacher long acc=0.126 rnn long acc=0.127 select=2.2231 0.673s/step
+10:17:57 long/surprise_ctx_k dmt 8250/10000 teacher long acc=0.126 rnn long acc=0.127 select=2.2197 0.672s/step
+10:20:38 long/surprise_ctx_k dmt 8500/10000 teacher long acc=0.126 rnn long acc=0.130 select=2.2206 0.671s/step
+10:23:19 long/surprise_ctx_k dmt 8750/10000 teacher long acc=0.126 rnn long acc=0.132 select=2.2227 0.670s/step
+10:25:59 long/surprise_ctx_k dmt 9000/10000 teacher long acc=0.126 rnn long acc=0.130 select=2.2202 0.669s/step
+10:28:39 long/surprise_ctx_k dmt 9250/10000 teacher long acc=0.126 rnn long acc=0.134 select=2.2163 0.668s/step
+10:31:20 long/surprise_ctx_k dmt 9500/10000 teacher long acc=0.126 rnn long acc=0.126 select=2.2239 0.668s/step
+10:34:00 long/surprise_ctx_k dmt 9750/10000 teacher long acc=0.126 rnn long acc=0.129 select=2.2226 0.667s/step
+10:36:39 long/surprise_ctx_k dmt 10000/10000 teacher long acc=0.126 rnn long acc=0.130 select=2.2197 0.666s/step
+  stage                  split    model  long_answers  full_vocab_acc  cand_acc     ce  pred_in_written
+0   dmt                 tuning      rnn          1601           0.123     0.123  2.233            1.000
+1   dmt                 tuning  teacher          1601           0.122     0.122  2.215            1.000
+2   dmt  tuning_shuffled_order      rnn          1659           0.124     0.124  2.225            1.000
+3   dmt  tuning_shuffled_order  teacher          1659           0.098     0.098  2.254            1.000
+4   smt                 tuning      rnn          1601           0.107     0.126  3.533            0.844
+5   smt                 tuning  teacher          1601           0.122     0.122  2.215            1.000
+6   smt  tuning_shuffled_order      rnn          1659           0.119     0.139  3.456            0.825
+7   smt  tuning_shuffled_order  teacher          1659           0.098     0.098  2.254            1.000
+10:36:50 done surprise_ctx_k
+[W1017 10:36:50.361310752 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

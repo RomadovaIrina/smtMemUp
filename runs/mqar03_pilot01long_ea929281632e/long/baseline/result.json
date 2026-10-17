@@ -1,0 +1,9 @@
+{
+  "variant": "baseline",
+  "alpha": 0.0,
+  "smt_steps": 20000,
+  "dmt_steps": 10000,
+  "smt_best_step": 20000,
+  "dmt_best_step": 10000,
+  "chance_written": 0.125
+}

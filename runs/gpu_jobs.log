@@ -138,3 +138,13 @@
 2026-10-17 06:09:34 all jobs: v4d_bptt_1_lr0.0001_resume=done, v4d_report_rerun=done, v4x_full_window=done, v4x_random_far=done, v4x_surprise_far=done, v4x_uniform_far=done
 2026-10-17 07:20:36 started: mqarL_baseline
 2026-10-17 07:20:38 started: mqarL_surprise_ctx_k
+2026-10-17 08:51:58 started: mqarArch_overfit256
+2026-10-17 08:52:01 started: mqarArch_mem16
+2026-10-17 08:52:04 started: mqarArch_d128
+2026-10-17 08:52:07 started: mqarArch_lr1e-3
+2026-10-17 09:48:18 started: mqarArch_kv2
+2026-10-17 09:48:20 started: mqarArch_kv4
+2026-10-17 09:48:22 started: mqarA_tf_kv2
+2026-10-17 09:48:24 started: mqarA_tf_kv4
+2026-10-17 09:48:26 started: mqarA_rnn_kv2
+2026-10-17 09:48:28 started: mqarA_rnn_kv4

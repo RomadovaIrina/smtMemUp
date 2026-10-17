@@ -1,0 +1,35 @@
+random_far | RNN after DMT: 335s
+random_far | teacher: 408s
+surprise_far | RNN after DMT: 341s
+surprise_far | teacher: 402s
+full_window | RNN after DMT: 337s
+full_window | teacher: 403s
+base_window | RNN after DMT: 337s
+base_window | teacher: 406s
+bptt_1_lr0.0001 | RNN (BPTT): 334s
+bptt_1_lr0.0003 | RNN (BPTT): 324s
+bptt_1_lr0.001 | RNN (BPTT): 337s
+bptt_full_lr0.0001 | RNN (BPTT): 333s
+bptt_full_lr0.0003 | RNN (BPTT): 336s
+bptt_full_lr0.001 | RNN (BPTT): 337s
+ctx_far | RNN after DMT: 345s
+ctx_far | teacher: 408s
+                                 depth   pos1   pos2   pos3   pos4   pos5   pos6   pos7   pos8
+model                                                                                         
+base_window | RNN after DMT      0.862  0.960  0.887  0.821  0.838  0.877  0.907  0.934  0.965
+base_window | teacher            0.947  0.966  0.900  0.826  0.857  0.888  0.923  0.948  0.968
+bptt_1_lr0.0001 | RNN (BPTT)     0.352  0.574  0.481  0.518  0.596  0.683  0.773  0.863  0.956
+bptt_1_lr0.0003 | RNN (BPTT)     0.334  0.633  0.501  0.509  0.587  0.678  0.773  0.867  0.957
+bptt_1_lr0.001 | RNN (BPTT)      0.300  0.706  0.550  0.515  0.583  0.678  0.775  0.873  0.958
+bptt_full_lr0.0001 | RNN (BPTT)  0.614  0.966  0.910  0.837  0.817  0.826  0.854  0.896  0.960
+bptt_full_lr0.0003 | RNN (BPTT)  0.705  0.990  0.978  0.962  0.943  0.928  0.919  0.930  0.973
+bptt_full_lr0.001 | RNN (BPTT)   0.611  0.964  0.931  0.896  0.872  0.855  0.847  0.879  0.957
+ctx_far | RNN after DMT          0.972  0.936  0.861  0.806  0.830  0.868  0.910  0.956  0.992
+ctx_far | teacher                0.989  0.931  0.854  0.789  0.826  0.870  0.915  0.959  0.992
+full_window | RNN after DMT      0.902  0.969  0.902  0.844  0.834  0.858  0.887  0.927  0.970
+full_window | teacher            0.943  0.974  0.919  0.848  0.851  0.867  0.895  0.934  0.972
+majority class                   0.182  0.236  0.275  0.432  0.563  0.678  0.779  0.873  0.958
+random_far | RNN after DMT       0.886  0.974  0.919  0.877  0.861  0.869  0.897  0.939  0.977
+random_far | teacher             0.951  0.979  0.919  0.892  0.871  0.890  0.910  0.951  0.980
+surprise_far | RNN after DMT     0.879  0.962  0.881  0.844  0.842  0.863  0.900  0.939  0.975
+surprise_far | teacher           0.942  0.969  0.883  0.848  0.844  0.873  0.913  0.949  0.975
