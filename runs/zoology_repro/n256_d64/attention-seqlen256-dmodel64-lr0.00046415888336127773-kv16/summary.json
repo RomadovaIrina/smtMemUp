@@ -1,0 +1,13 @@
+{
+  "run_id": "attention-seqlen256-dmodel64-lr0.00046415888336127773-kv16",
+  "lr": 0.00046415888336127773,
+  "epochs_run": 64,
+  "final_valid_accuracy": 0.17989583333333334,
+  "max_valid_accuracy": 0.18041666666666667,
+  "early_stopped": false,
+  "independent_test_accuracy": 0.17939583333333334,
+  "wall_seconds": 918.4684918960011,
+  "peak_allocated_mib": 6751.8388671875,
+  "peak_reserved_mib": 8844.0,
+  "zoology": "1ad20d193b6113cae1e8f3c655c300d7b4b3f4bb"
+}
