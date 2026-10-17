@@ -113,3 +113,5 @@
 2026-10-17 00:54:43 skipped (dependency failed): zooB_main_n256
 2026-10-17 00:55:25 started: zooB_smoke_n64 (rerun after cache_dir fix)
 2026-10-17 00:55:43 done: v4d_ctx_far (exit 0)
+2026-10-17 01:02:51 done: zooB_smoke_n64 (exit 0)
+2026-10-17 01:02:51 started: zooB_main_n256

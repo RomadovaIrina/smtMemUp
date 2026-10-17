@@ -3,3 +3,10 @@
 /workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
   warnings.warn(
 00:54:21 run directory: /workspace/smtMemUp/runs/mqar_baselines_249ffb5a0def
+00:59:04 rnn_lr1e-3 500/20000 val long acc=0.015 cand=0.115 first=0.012
+01:03:50 rnn_lr1e-3 1000/20000 val long acc=0.011 cand=0.113 first=0.014
+01:08:37 rnn_lr1e-3 1500/20000 val long acc=0.013 cand=0.121 first=0.018
+01:13:19 rnn_lr1e-3 2000/20000 val long acc=0.017 cand=0.133 first=0.016
+01:18:00 rnn_lr1e-3 2500/20000 val long acc=0.016 cand=0.123 first=0.020
+01:22:41 rnn_lr1e-3 3000/20000 val long acc=0.017 cand=0.118 first=0.027
+01:27:22 rnn_lr1e-3 3500/20000 val long acc=0.009 cand=0.124 first=0.012

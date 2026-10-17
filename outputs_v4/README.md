@@ -1,6 +1,6 @@
 # Диагностическая очередь 16.10.2026 — графики и таблицы (обновляется автоматически)
 
-**Обновлено 17.10.2026 00:59.** Только validation, промежуточные данные: пока задачи не завершены, это не результаты.
+**Обновлено 17.10.2026 01:29.** Только validation, промежуточные данные: пока задачи не завершены, это не результаты.
 Собирает `python make_v4_outputs.py` из `runs/`. Протокол — `proposals/preregistration_v4.md`, статус — `status.md`.
 Каталог запуска Stack: `runs/stackv4_d459c6921638`.
 
@@ -25,7 +25,7 @@
 | base_window | dmt | 12000 | 12000 | 98.1% | 6500 | 97.9% | +0.0 п.п. | — | 0.65 | 2.18 | 6444 |
 | bptt_1_lr0.0001 | bptt | 10500 | 20000 | 30.7% | 5500 | 29.7% | +0.0 п.п. | — | 0.62 | 1.82 | 666 |
 | bptt_1_lr0.0003 | bptt | 20000 | 20000 | 36.7% | 20000 | 36.7% | +2.4 п.п. | — | 0.62 | 3.44 | 666 |
-| bptt_1_lr0.001 | bptt | 4000 | 20000 | 28.1% | 3500 | 28.0% | +0.4 п.п. | — | 0.62 | 0.69 | 666 |
+| bptt_1_lr0.001 | bptt | 7000 | 20000 | 28.5% | 4500 | 26.8% | +0.0 п.п. | — | 0.62 | 1.20 | 666 |
 | bptt_full_lr0.0001 | bptt | 20000 | 20000 | 93.0% | 19500 | 92.6% | +4.0 п.п. | — | 0.62 | 3.43 | 666 |
 | bptt_full_lr0.0003 | bptt | 20000 | 20000 | 98.6% | 17500 | 98.4% | +1.0 п.п. | — | 0.61 | 3.38 | 666 |
 | bptt_full_lr0.001 | bptt | 20000 | 20000 | 91.9% | 18500 | 91.6% | +1.7 п.п. | — | 0.62 | 3.44 | 666 |
@@ -43,16 +43,22 @@
 
 | job | steps_done | complete | val_long_acc | val_long_cand_acc | val_first_query_acc | train_set_acc |
 |---|---|---|---|---|---|---|
-| rnn_lr1e-4 | 4000 | False | 1.9% | 12.3% | 1.6% | — |
-| rnn_lr3e-4 | 4000 | False | 1.7% | 13.6% | 1.2% | — |
+| rnn_lr1e-3 | 3500 | False | 0.9% | 12.4% | 1.2% | — |
+| rnn_lr1e-4 | 7500 | False | 1.6% | 12.4% | 1.6% | — |
+| rnn_lr3e-4 | 7500 | False | 1.6% | 12.6% | 1.6% | — |
 | rnn_overfit256 | 3000 | True | 1.6% | 12.6% | 2.1% | 99.1% |
 | tf_lr1e-3 | 1000 | True | 99.8% | 99.9% | 100.0% | — |
 | tf_lr3e-4 | 2000 | True | 100.0% | 100.0% | 100.0% | — |
 | tf_overfit256 | 3000 | True | 5.2% | 13.0% | 8.6% | 100.0% |
 
-| cell | run_id | epochs_run | final_valid_accuracy | complete |
-|---|---|---|---|---|
-| n64_d64 | attention-seqlen64-dmodel64-lr0.0001-kv4 | 49 | 25.4% | False |
+| cell | run_id | epochs_run | final_valid_accuracy | independent_test_accuracy | early_stopped | complete |
+|---|---|---|---|---|---|---|
+| n256_d64 | attention-seqlen256-dmodel64-lr0.0001-kv16 | 64 | 5.2% | 5.3% | False | True |
+| n256_d64 | attention-seqlen256-dmodel64-lr0.00046415888336127773-kv16 | 44 | 18.0% | — | — | False |
+| n64_d64 | attention-seqlen64-dmodel64-lr0.0001-kv4 | 64 | 25.5% | 26.5% | False | True |
+| n64_d64 | attention-seqlen64-dmodel64-lr0.00046415888336127773-kv4 | 25 | 99.7% | 99.7% | True | True |
+| n64_d64 | attention-seqlen64-dmodel64-lr0.002154434690031882-kv4 | 11 | 99.0% | 99.0% | True | True |
+| n64_d64 | attention-seqlen64-dmodel64-lr0.01-kv4 | 7 | 99.3% | 99.4% | True | True |
 
 ## Файлы
 * `table_diag_histories.csv` — все точки validation: run, stage, step, метрики, время, память.

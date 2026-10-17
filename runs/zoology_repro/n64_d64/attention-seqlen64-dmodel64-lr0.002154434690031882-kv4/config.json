@@ -1,0 +1,66 @@
+{
+  "data": {
+    "train_configs": [
+      {
+        "vocab_size": 8192,
+        "num_examples": 100000,
+        "input_seq_len": 64
+      }
+    ],
+    "test_configs": [
+      {
+        "vocab_size": 8192,
+        "num_examples": 3000,
+        "input_seq_len": 64
+      }
+    ],
+    "batch_size": 512,
+    "seed": 123,
+    "cache_dir": "runs/zoology_repro/cache",
+    "force_cache": false,
+    "num_passes": 1
+  },
+  "model": {
+    "sequence_mixer": {
+      "name": "zoology.mixers.attention.MHA",
+      "kwargs": {
+        "dropout": 0.1,
+        "num_heads": 1
+      }
+    },
+    "state_mixer": {
+      "name": "torch.nn.Identity",
+      "kwargs": {}
+    },
+    "d_model": 64,
+    "n_layers": 2,
+    "multiplier": 1,
+    "max_position_embeddings": 64,
+    "learnable_word_embeddings": true,
+    "embedding_init_type": "default",
+    "vocab_size": 8192,
+    "resid_dropout": 0.0,
+    "embed_dropout": 0.1,
+    "drop_path": 0.0,
+    "layer_norm_epsilon": 1e-05,
+    "pad_vocab_size_multiple": 1,
+    "block_type": "TransformerBlock",
+    "name": "default"
+  },
+  "logger": {
+    "project_name": null,
+    "entity": null
+  },
+  "max_epochs": 64,
+  "loss_type": "ce",
+  "input_type": "discrete",
+  "early_stopping_metric": "valid/accuracy",
+  "early_stopping_threshold": 0.99,
+  "slice_keys": [],
+  "learning_rate": 0.002154434690031882,
+  "weight_decay": 0.1,
+  "seed": 123,
+  "launch_id": null,
+  "sweep_id": null,
+  "run_id": "attention-seqlen64-dmodel64-lr0.002154434690031882-kv4"
+}
