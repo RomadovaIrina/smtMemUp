@@ -116,3 +116,5 @@
 2026-10-17 01:02:51 done: zooB_smoke_n64 (exit 0)
 2026-10-17 01:02:51 started: zooB_main_n256
 2026-10-17 01:36:50 done: zooB_main_n256 (exit 0)
+2026-10-17 03:24:15 done: mqarA_rnn_lr3e-4 (exit 0)
+2026-10-17 03:27:38 done: mqarA_rnn_lr1e-4 (exit 0)
