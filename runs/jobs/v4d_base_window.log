@@ -58,3 +58,8 @@
 00:15:41 diag/base_window dmt 8500/12000 select=0.0741 val_teacher_long_acc=1.000 val_rnn_long_acc=0.978 0.652s/step(train)
 00:21:09 diag/base_window dmt 9000/12000 select=0.0664 val_teacher_long_acc=1.000 val_rnn_long_acc=0.979 0.652s/step(train)
 00:26:43 diag/base_window dmt 9500/12000 select=0.0627 val_teacher_long_acc=1.000 val_rnn_long_acc=0.979 0.653s/step(train)
+00:32:13 diag/base_window dmt 10000/12000 select=0.0619 val_teacher_long_acc=1.000 val_rnn_long_acc=0.976 0.653s/step(train)
+00:37:46 diag/base_window dmt 10500/12000 select=0.0611 val_teacher_long_acc=1.000 val_rnn_long_acc=0.981 0.653s/step(train)
+00:43:16 diag/base_window dmt 11000/12000 select=0.0712 val_teacher_long_acc=1.000 val_rnn_long_acc=0.977 0.653s/step(train)
+00:48:46 diag/base_window dmt 11500/12000 select=0.0594 val_teacher_long_acc=1.000 val_rnn_long_acc=0.978 0.654s/step(train)
+00:54:15 diag/base_window dmt 12000/12000 select=0.0558 val_teacher_long_acc=1.000 val_rnn_long_acc=0.979 0.654s/step(train)

@@ -5,3 +5,7 @@
 00:15:28 run directory: /workspace/smtMemUp/runs/mqar_baselines_249ffb5a0def
 00:20:07 rnn_overfit256 500/3000 val long acc=0.010 cand=0.120 first=0.031 train_set acc=0.744
 00:24:45 rnn_overfit256 1000/3000 val long acc=0.014 cand=0.117 first=0.018 train_set acc=0.979
+00:29:25 rnn_overfit256 1500/3000 val long acc=0.011 cand=0.117 first=0.023 train_set acc=0.986
+00:34:01 rnn_overfit256 2000/3000 val long acc=0.014 cand=0.128 first=0.020 train_set acc=0.993
+00:38:34 rnn_overfit256 2500/3000 val long acc=0.015 cand=0.129 first=0.027 train_set acc=0.994
+00:43:09 rnn_overfit256 3000/3000 val long acc=0.016 cand=0.126 first=0.021 train_set acc=0.991

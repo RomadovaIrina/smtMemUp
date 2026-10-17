@@ -58,3 +58,8 @@
 00:16:58 diag/ctx_far dmt 8500/12000 select=0.0662 val_teacher_long_acc=0.999 val_rnn_long_acc=0.982 0.655s/step(train)
 00:22:33 diag/ctx_far dmt 9000/12000 select=0.0435 val_teacher_long_acc=0.999 val_rnn_long_acc=0.989 0.656s/step(train)
 00:28:03 diag/ctx_far dmt 9500/12000 select=0.0564 val_teacher_long_acc=0.999 val_rnn_long_acc=0.986 0.656s/step(train)
+00:33:36 diag/ctx_far dmt 10000/12000 select=0.0668 val_teacher_long_acc=0.999 val_rnn_long_acc=0.984 0.656s/step(train)
+00:39:10 diag/ctx_far dmt 10500/12000 select=0.0489 val_teacher_long_acc=0.999 val_rnn_long_acc=0.986 0.656s/step(train)
+00:44:39 diag/ctx_far dmt 11000/12000 select=0.0447 val_teacher_long_acc=0.999 val_rnn_long_acc=0.985 0.656s/step(train)
+00:50:09 diag/ctx_far dmt 11500/12000 select=0.0593 val_teacher_long_acc=0.999 val_rnn_long_acc=0.985 0.656s/step(train)
+00:55:38 diag/ctx_far dmt 12000/12000 select=0.0432 val_teacher_long_acc=0.999 val_rnn_long_acc=0.986 0.656s/step(train)
