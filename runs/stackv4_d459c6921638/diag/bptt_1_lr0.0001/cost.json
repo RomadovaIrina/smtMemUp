@@ -1,0 +1,10 @@
+{
+  "bptt": {
+    "train_seconds": 12395.892055964008,
+    "eval_seconds": 35.23599119798746,
+    "peak_allocated_mib": 665.54931640625,
+    "peak_reserved_mib": 1024.0,
+    "optimizer_steps": 20000,
+    "sequences": 640000
+  }
+}

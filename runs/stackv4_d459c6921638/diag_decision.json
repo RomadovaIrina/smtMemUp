@@ -1,0 +1,20 @@
+{
+  "smt": {
+    "sufficient": true,
+    "budget": 11000
+  },
+  "dmt": {
+    "sufficient": true,
+    "budget": 5000
+  },
+  "bptt_full": {
+    "lr": 0.0003,
+    "sufficient": true,
+    "budget": 17000
+  },
+  "bptt_1": {
+    "lr": 0.0003,
+    "sufficient": false,
+    "budget": 20000
+  }
+}

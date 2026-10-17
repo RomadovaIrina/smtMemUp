@@ -1,0 +1,39 @@
+05:42:04 run directory: /workspace/smtMemUp/runs/stackv4_d459c6921638
+                  run stage                metric  complete  evaluated_steps  best_acc  gain_last_fraction  sufficient  steps_to_plateau  far_memory_acc_best  train_seconds  eval_seconds  peak_allocated_mib  peak_reserved_mib
+0         base_window   smt  val_teacher_long_acc      True            20000  1.000000            0.000000        True              6000             0.482682    6857.190171     98.513999         7732.416016            13660.0
+1         base_window   dmt      val_rnn_long_acc      True            12000  0.981099            0.000000        True              2500                  NaN    7843.666077     37.882138         6443.663086            13944.0
+2     bptt_1_lr0.0001  bptt      val_rnn_long_acc      True            20000  0.318681            0.011429       False             16000                  NaN   12395.892056     35.235991          665.549316             1024.0
+3     bptt_1_lr0.0003  bptt      val_rnn_long_acc      True            20000  0.367033            0.024176       False             20000                  NaN   12398.967042     34.596062          665.549316             1276.0
+4      bptt_1_lr0.001  bptt      val_rnn_long_acc      True            20000  0.284835            0.000000        True              3000                  NaN   12382.549782     32.965343          665.549316             1260.0
+5  bptt_full_lr0.0001  bptt      val_rnn_long_acc      True            20000  0.929670            0.040440       False             18500                  NaN   12362.481498     34.512674          665.549316             1260.0
+6  bptt_full_lr0.0003  bptt      val_rnn_long_acc      True            20000  0.985934            0.009670        True             13000                  NaN   12181.626924     34.246853          665.549316             1260.0
+7   bptt_full_lr0.001  bptt      val_rnn_long_acc      True            20000  0.918681            0.016703       False             17500                  NaN   12370.285469     34.444884          665.549316             1260.0
+8             ctx_far   smt  val_teacher_long_acc      True            20000  0.999560            0.001319        True              8500             0.992056    6887.867621     98.228480         7732.416016            11666.0
+9             ctx_far   dmt      val_rnn_long_acc      True            12000  0.989011            0.000000        True              4000                  NaN    7876.093378     38.031113         6443.663086             8736.0
+     variant      lr  tuning_rnn_long_ce  tuning_rnn_long_acc  best_step  selected
+0  bptt_full  0.0001            0.182651             0.924120      19500     False
+1  bptt_full  0.0003            0.037559             0.986859      17500      True
+2  bptt_full  0.0010            0.207288             0.915218      18500     False
+3     bptt_1  0.0001            1.382599             0.298432      20000     False
+4     bptt_1  0.0003            1.359658             0.316660      17500      True
+5     bptt_1  0.0010            1.416159             0.270454       3000     False
+{
+  "smt": {
+    "sufficient": true,
+    "budget": 11000
+  },
+  "dmt": {
+    "sufficient": true,
+    "budget": 5000
+  },
+  "bptt_full": {
+    "lr": 0.0003,
+    "sufficient": true,
+    "budget": 17000
+  },
+  "bptt_1": {
+    "lr": 0.0003,
+    "sufficient": false,
+    "budget": 20000
+  }
+}

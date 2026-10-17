@@ -127,3 +127,6 @@
 2026-10-17 04:05:07 started: v4x_full_window (pid 59928, free 30798 MiB)
 2026-10-17 04:06:08 started: v4x_random_far (pid 60102, free 22243 MiB)
 2026-10-17 04:07:09 started: v4x_surprise_far (pid 60278, free 13682 MiB)
+2026-10-17 05:41:59 done: v4d_bptt_1_lr0.0001_resume (exit 0)
+2026-10-17 05:41:59 started: v4d_report_rerun (pid 69627, free 9124 MiB)
+2026-10-17 05:42:15 done: v4d_report_rerun (exit 0)
