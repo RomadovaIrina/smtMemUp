@@ -1,0 +1,8 @@
+04:07:14 run directory: /workspace/smtMemUp/runs/stackv4_490492c183d5
+04:10:10 diag/surprise_far smt 500/10000 select=1.4290 val_teacher_long_acc=0.305 val_rnn_long_acc=0.250 val_far_memory_acc=0.306 0.348s/step(train)
+04:13:06 diag/surprise_far smt 1000/10000 select=1.4563 val_teacher_long_acc=0.313 val_rnn_long_acc=0.298 val_far_memory_acc=0.365 0.347s/step(train)
+04:16:01 diag/surprise_far smt 1500/10000 select=1.2873 val_teacher_long_acc=0.387 val_rnn_long_acc=0.313 val_far_memory_acc=0.407 0.346s/step(train)
+04:18:56 diag/surprise_far smt 2000/10000 select=1.2105 val_teacher_long_acc=0.443 val_rnn_long_acc=0.390 val_far_memory_acc=0.507 0.346s/step(train)
+04:21:51 diag/surprise_far smt 2500/10000 select=1.0949 val_teacher_long_acc=0.498 val_rnn_long_acc=0.389 val_far_memory_acc=0.556 0.346s/step(train)
+04:24:45 diag/surprise_far smt 3000/10000 select=0.7689 val_teacher_long_acc=0.667 val_rnn_long_acc=0.376 val_far_memory_acc=0.640 0.345s/step(train)
+04:27:40 diag/surprise_far smt 3500/10000 select=0.5852 val_teacher_long_acc=0.746 val_rnn_long_acc=0.316 val_far_memory_acc=0.720 0.345s/step(train)

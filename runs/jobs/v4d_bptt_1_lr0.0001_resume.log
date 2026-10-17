@@ -1,0 +1,6 @@
+04:04:11 run directory: /workspace/smtMemUp/runs/stackv4_d459c6921638
+04:04:11 resume bptt_1_lr0.0001 bptt at 10500/20000
+04:09:23 diag/bptt_1_lr0.0001 bptt 11000/20000 select=1.4292 val_rnn_long_acc=0.276 0.624s/step(train)
+04:14:33 diag/bptt_1_lr0.0001 bptt 11500/20000 select=1.4001 val_rnn_long_acc=0.291 0.623s/step(train)
+04:19:40 diag/bptt_1_lr0.0001 bptt 12000/20000 select=1.4125 val_rnn_long_acc=0.271 0.623s/step(train)
+04:24:54 diag/bptt_1_lr0.0001 bptt 12500/20000 select=1.3836 val_rnn_long_acc=0.284 0.623s/step(train)

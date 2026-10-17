@@ -1,0 +1,10 @@
+04:05:12 run directory: /workspace/smtMemUp/runs/stackv4_5638fbb66ae7
+04:06:51 diag/full_window smt 500/10000 select=1.4312 val_teacher_long_acc=0.294 val_rnn_long_acc=0.242 val_far_memory_acc=nan 0.195s/step(train)
+04:09:34 diag/full_window smt 1000/10000 select=1.4337 val_teacher_long_acc=0.300 val_rnn_long_acc=0.261 val_far_memory_acc=nan 0.258s/step(train)
+04:12:24 diag/full_window smt 1500/10000 select=1.3793 val_teacher_long_acc=0.316 val_rnn_long_acc=0.291 val_far_memory_acc=nan 0.284s/step(train)
+04:15:17 diag/full_window smt 2000/10000 select=1.2800 val_teacher_long_acc=0.380 val_rnn_long_acc=0.348 val_far_memory_acc=nan 0.298s/step(train)
+04:18:10 diag/full_window smt 2500/10000 select=1.1404 val_teacher_long_acc=0.487 val_rnn_long_acc=0.387 val_far_memory_acc=nan 0.307s/step(train)
+04:21:03 diag/full_window smt 3000/10000 select=0.9149 val_teacher_long_acc=0.584 val_rnn_long_acc=0.469 val_far_memory_acc=nan 0.312s/step(train)
+04:23:56 diag/full_window smt 3500/10000 select=0.6535 val_teacher_long_acc=0.708 val_rnn_long_acc=0.382 val_far_memory_acc=nan 0.316s/step(train)
+04:26:49 diag/full_window smt 4000/10000 select=0.5658 val_teacher_long_acc=0.742 val_rnn_long_acc=0.473 val_far_memory_acc=nan 0.320s/step(train)
+04:29:42 diag/full_window smt 4500/10000 select=0.2838 val_teacher_long_acc=0.881 val_rnn_long_acc=0.516 val_far_memory_acc=nan 0.322s/step(train)

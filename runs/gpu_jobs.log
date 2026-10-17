@@ -119,3 +119,11 @@
 2026-10-17 03:24:15 done: mqarA_rnn_lr3e-4 (exit 0)
 2026-10-17 03:27:38 done: mqarA_rnn_lr1e-4 (exit 0)
 2026-10-17 03:41:24 done: v4d_bptt_1_lr0.001 (exit 0)
+2026-10-17 04:03:07 done: mqarA_rnn_lr1e-3 (exit 0)
+2026-10-17 04:03:12 all jobs: v4d_base_window=done, v4d_ctx_far=done, v4d_bptt_full_lr0.0001=done, v4d_bptt_full_lr0.0003=done, v4d_bptt_full_lr0.001=done, v4d_bptt_1_lr0.0001=failed, v4d_bptt_1_lr0.0003=done, v4d_bptt_1_lr0.001=done, v4d_report=failed, mqarA_tf_overfit256=done, mqarA_rnn_overfit256=done, mqarA_tf_lr3e-4=done, mqarA_tf_lr1e-3=done, mqarA_rnn_lr1e-4=done, mqarA_rnn_lr3e-4=done, mqarA_rnn_lr1e-3=done, zooB_smoke_n64=failed, zooB_main_n256=failed
+2026-10-17 04:04:06 main queue finished; starting extra runs
+2026-10-17 04:04:06 scheduler: 6 jobs, max 4 at once, start at >= 10000 MiB free
+2026-10-17 04:04:06 started: v4d_bptt_1_lr0.0001_resume (pid 59754, free 32110 MiB)
+2026-10-17 04:05:07 started: v4x_full_window (pid 59928, free 30798 MiB)
+2026-10-17 04:06:08 started: v4x_random_far (pid 60102, free 22243 MiB)
+2026-10-17 04:07:09 started: v4x_surprise_far (pid 60278, free 13682 MiB)
