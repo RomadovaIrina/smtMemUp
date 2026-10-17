@@ -29,3 +29,7 @@
 05:45:05 diag/full_window dmt 4000/6000 select=0.2957 val_teacher_long_acc=0.976 val_rnn_long_acc=0.881 0.655s/step(train)
 05:50:36 diag/full_window dmt 4500/6000 select=0.3064 val_teacher_long_acc=0.976 val_rnn_long_acc=0.872 0.655s/step(train)
 05:56:04 diag/full_window dmt 5000/6000 select=0.2806 val_teacher_long_acc=0.976 val_rnn_long_acc=0.890 0.655s/step(train)
+06:01:27 diag/full_window dmt 5500/6000 select=0.2886 val_teacher_long_acc=0.976 val_rnn_long_acc=0.882 0.654s/step(train)
+06:06:52 diag/full_window dmt 6000/6000 select=0.2745 val_teacher_long_acc=0.976 val_rnn_long_acc=0.889 0.653s/step(train)
+06:06:52 done full_window
+[W1017 06:06:53.766896591 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

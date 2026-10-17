@@ -29,3 +29,7 @@
 05:47:44 diag/surprise_far dmt 4000/6000 select=0.3064 val_teacher_long_acc=0.989 val_rnn_long_acc=0.884 0.648s/step(train)
 05:53:10 diag/surprise_far dmt 4500/6000 select=0.2209 val_teacher_long_acc=0.989 val_rnn_long_acc=0.916 0.648s/step(train)
 05:58:32 diag/surprise_far dmt 5000/6000 select=0.2175 val_teacher_long_acc=0.989 val_rnn_long_acc=0.916 0.647s/step(train)
+06:03:57 diag/surprise_far dmt 5500/6000 select=0.1966 val_teacher_long_acc=0.989 val_rnn_long_acc=0.925 0.647s/step(train)
+06:09:23 diag/surprise_far dmt 6000/6000 select=0.2070 val_teacher_long_acc=0.989 val_rnn_long_acc=0.921 0.647s/step(train)
+06:09:23 done surprise_far
+[W1017 06:09:23.176607696 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

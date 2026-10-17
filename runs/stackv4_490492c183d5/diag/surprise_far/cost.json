@@ -1,0 +1,23 @@
+{
+  "smt": {
+    "train_seconds": 3380.070326974994,
+    "eval_seconds": 47.4102727280042,
+    "peak_allocated_mib": 7732.416015625,
+    "peak_reserved_mib": 7916.0,
+    "optimizer_steps": 10000,
+    "sequences": 320000
+  },
+  "dmt": {
+    "train_seconds": 3884.0182375749937,
+    "eval_seconds": 16.735640014005185,
+    "peak_allocated_mib": 6443.6630859375,
+    "peak_reserved_mib": 7018.0,
+    "optimizer_steps": 6000,
+    "sequences": 192000
+  },
+  "detector": {
+    "optimizer_steps": 2000,
+    "sequences": 64000,
+    "shared_across_fits": true
+  }
+}
