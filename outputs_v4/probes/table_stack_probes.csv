@@ -1,0 +1,100 @@
+model,target,accuracy,run,target_name
+majority class,0,0.1824951171875,,depth
+majority class,1,0.235687255859375,,pos 1
+majority class,2,0.27471923828125,,pos 2
+majority class,3,0.431732177734375,,pos 3
+majority class,4,0.563385009765625,,pos 4
+majority class,5,0.677947998046875,,pos 5
+majority class,6,0.778656005859375,,pos 6
+majority class,7,0.87274169921875,,pos 7
+majority class,8,0.9578857421875,,pos 8
+base_window | RNN after DMT,0,0.86175537109375,stackv4_d459c6921638,depth
+base_window | RNN after DMT,1,0.959869384765625,stackv4_d459c6921638,pos 1
+base_window | RNN after DMT,2,0.886810302734375,stackv4_d459c6921638,pos 2
+base_window | RNN after DMT,3,0.821380615234375,stackv4_d459c6921638,pos 3
+base_window | RNN after DMT,4,0.83843994140625,stackv4_d459c6921638,pos 4
+base_window | RNN after DMT,5,0.876739501953125,stackv4_d459c6921638,pos 5
+base_window | RNN after DMT,6,0.9071044921875,stackv4_d459c6921638,pos 6
+base_window | RNN after DMT,7,0.93414306640625,stackv4_d459c6921638,pos 7
+base_window | RNN after DMT,8,0.965423583984375,stackv4_d459c6921638,pos 8
+base_window | teacher,0,0.94659423828125,stackv4_d459c6921638,depth
+base_window | teacher,1,0.965576171875,stackv4_d459c6921638,pos 1
+base_window | teacher,2,0.899688720703125,stackv4_d459c6921638,pos 2
+base_window | teacher,3,0.82562255859375,stackv4_d459c6921638,pos 3
+base_window | teacher,4,0.85687255859375,stackv4_d459c6921638,pos 4
+base_window | teacher,5,0.888153076171875,stackv4_d459c6921638,pos 5
+base_window | teacher,6,0.92327880859375,stackv4_d459c6921638,pos 6
+base_window | teacher,7,0.947509765625,stackv4_d459c6921638,pos 7
+base_window | teacher,8,0.9683837890625,stackv4_d459c6921638,pos 8
+bptt_1_lr0.0001 | RNN (BPTT),0,0.307769775390625,stackv4_d459c6921638,depth
+bptt_1_lr0.0001 | RNN (BPTT),1,0.63568115234375,stackv4_d459c6921638,pos 1
+bptt_1_lr0.0001 | RNN (BPTT),2,0.499725341796875,stackv4_d459c6921638,pos 2
+bptt_1_lr0.0001 | RNN (BPTT),3,0.540313720703125,stackv4_d459c6921638,pos 3
+bptt_1_lr0.0001 | RNN (BPTT),4,0.61431884765625,stackv4_d459c6921638,pos 4
+bptt_1_lr0.0001 | RNN (BPTT),5,0.70025634765625,stackv4_d459c6921638,pos 5
+bptt_1_lr0.0001 | RNN (BPTT),6,0.783294677734375,stackv4_d459c6921638,pos 6
+bptt_1_lr0.0001 | RNN (BPTT),7,0.86895751953125,stackv4_d459c6921638,pos 7
+bptt_1_lr0.0001 | RNN (BPTT),8,0.956512451171875,stackv4_d459c6921638,pos 8
+bptt_1_lr0.0003 | RNN (BPTT),0,0.334381103515625,stackv4_d459c6921638,depth
+bptt_1_lr0.0003 | RNN (BPTT),1,0.63250732421875,stackv4_d459c6921638,pos 1
+bptt_1_lr0.0003 | RNN (BPTT),2,0.50140380859375,stackv4_d459c6921638,pos 2
+bptt_1_lr0.0003 | RNN (BPTT),3,0.50921630859375,stackv4_d459c6921638,pos 3
+bptt_1_lr0.0003 | RNN (BPTT),4,0.58660888671875,stackv4_d459c6921638,pos 4
+bptt_1_lr0.0003 | RNN (BPTT),5,0.677764892578125,stackv4_d459c6921638,pos 5
+bptt_1_lr0.0003 | RNN (BPTT),6,0.77301025390625,stackv4_d459c6921638,pos 6
+bptt_1_lr0.0003 | RNN (BPTT),7,0.86737060546875,stackv4_d459c6921638,pos 7
+bptt_1_lr0.0003 | RNN (BPTT),8,0.957275390625,stackv4_d459c6921638,pos 8
+bptt_1_lr0.001 | RNN (BPTT),0,0.299774169921875,stackv4_d459c6921638,depth
+bptt_1_lr0.001 | RNN (BPTT),1,0.706207275390625,stackv4_d459c6921638,pos 1
+bptt_1_lr0.001 | RNN (BPTT),2,0.550140380859375,stackv4_d459c6921638,pos 2
+bptt_1_lr0.001 | RNN (BPTT),3,0.515380859375,stackv4_d459c6921638,pos 3
+bptt_1_lr0.001 | RNN (BPTT),4,0.583465576171875,stackv4_d459c6921638,pos 4
+bptt_1_lr0.001 | RNN (BPTT),5,0.678466796875,stackv4_d459c6921638,pos 5
+bptt_1_lr0.001 | RNN (BPTT),6,0.774993896484375,stackv4_d459c6921638,pos 6
+bptt_1_lr0.001 | RNN (BPTT),7,0.87261962890625,stackv4_d459c6921638,pos 7
+bptt_1_lr0.001 | RNN (BPTT),8,0.957794189453125,stackv4_d459c6921638,pos 8
+bptt_full_lr0.0001 | RNN (BPTT),0,0.61395263671875,stackv4_d459c6921638,depth
+bptt_full_lr0.0001 | RNN (BPTT),1,0.96588134765625,stackv4_d459c6921638,pos 1
+bptt_full_lr0.0001 | RNN (BPTT),2,0.909637451171875,stackv4_d459c6921638,pos 2
+bptt_full_lr0.0001 | RNN (BPTT),3,0.8372802734375,stackv4_d459c6921638,pos 3
+bptt_full_lr0.0001 | RNN (BPTT),4,0.816558837890625,stackv4_d459c6921638,pos 4
+bptt_full_lr0.0001 | RNN (BPTT),5,0.826324462890625,stackv4_d459c6921638,pos 5
+bptt_full_lr0.0001 | RNN (BPTT),6,0.854339599609375,stackv4_d459c6921638,pos 6
+bptt_full_lr0.0001 | RNN (BPTT),7,0.895751953125,stackv4_d459c6921638,pos 7
+bptt_full_lr0.0001 | RNN (BPTT),8,0.95953369140625,stackv4_d459c6921638,pos 8
+bptt_full_lr0.0003 | RNN (BPTT),0,0.70458984375,stackv4_d459c6921638,depth
+bptt_full_lr0.0003 | RNN (BPTT),1,0.9896240234375,stackv4_d459c6921638,pos 1
+bptt_full_lr0.0003 | RNN (BPTT),2,0.97772216796875,stackv4_d459c6921638,pos 2
+bptt_full_lr0.0003 | RNN (BPTT),3,0.961517333984375,stackv4_d459c6921638,pos 3
+bptt_full_lr0.0003 | RNN (BPTT),4,0.942901611328125,stackv4_d459c6921638,pos 4
+bptt_full_lr0.0003 | RNN (BPTT),5,0.9276123046875,stackv4_d459c6921638,pos 5
+bptt_full_lr0.0003 | RNN (BPTT),6,0.918701171875,stackv4_d459c6921638,pos 6
+bptt_full_lr0.0003 | RNN (BPTT),7,0.930145263671875,stackv4_d459c6921638,pos 7
+bptt_full_lr0.0003 | RNN (BPTT),8,0.97283935546875,stackv4_d459c6921638,pos 8
+bptt_full_lr0.001 | RNN (BPTT),0,0.610809326171875,stackv4_d459c6921638,depth
+bptt_full_lr0.001 | RNN (BPTT),1,0.963836669921875,stackv4_d459c6921638,pos 1
+bptt_full_lr0.001 | RNN (BPTT),2,0.9306640625,stackv4_d459c6921638,pos 2
+bptt_full_lr0.001 | RNN (BPTT),3,0.896453857421875,stackv4_d459c6921638,pos 3
+bptt_full_lr0.001 | RNN (BPTT),4,0.872467041015625,stackv4_d459c6921638,pos 4
+bptt_full_lr0.001 | RNN (BPTT),5,0.854644775390625,stackv4_d459c6921638,pos 5
+bptt_full_lr0.001 | RNN (BPTT),6,0.84661865234375,stackv4_d459c6921638,pos 6
+bptt_full_lr0.001 | RNN (BPTT),7,0.87945556640625,stackv4_d459c6921638,pos 7
+bptt_full_lr0.001 | RNN (BPTT),8,0.956787109375,stackv4_d459c6921638,pos 8
+ctx_far | RNN after DMT,0,0.97247314453125,stackv4_d459c6921638,depth
+ctx_far | RNN after DMT,1,0.935638427734375,stackv4_d459c6921638,pos 1
+ctx_far | RNN after DMT,2,0.861053466796875,stackv4_d459c6921638,pos 2
+ctx_far | RNN after DMT,3,0.805755615234375,stackv4_d459c6921638,pos 3
+ctx_far | RNN after DMT,4,0.829620361328125,stackv4_d459c6921638,pos 4
+ctx_far | RNN after DMT,5,0.86846923828125,stackv4_d459c6921638,pos 5
+ctx_far | RNN after DMT,6,0.909576416015625,stackv4_d459c6921638,pos 6
+ctx_far | RNN after DMT,7,0.9561767578125,stackv4_d459c6921638,pos 7
+ctx_far | RNN after DMT,8,0.992401123046875,stackv4_d459c6921638,pos 8
+ctx_far | teacher,0,0.988616943359375,stackv4_d459c6921638,depth
+ctx_far | teacher,1,0.931304931640625,stackv4_d459c6921638,pos 1
+ctx_far | teacher,2,0.854400634765625,stackv4_d459c6921638,pos 2
+ctx_far | teacher,3,0.788604736328125,stackv4_d459c6921638,pos 3
+ctx_far | teacher,4,0.825927734375,stackv4_d459c6921638,pos 4
+ctx_far | teacher,5,0.86968994140625,stackv4_d459c6921638,pos 5
+ctx_far | teacher,6,0.915435791015625,stackv4_d459c6921638,pos 6
+ctx_far | teacher,7,0.95941162109375,stackv4_d459c6921638,pos 7
+ctx_far | teacher,8,0.992279052734375,stackv4_d459c6921638,pos 8
