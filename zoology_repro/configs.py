@@ -20,7 +20,7 @@ from zoology.data.multiquery_ar import MQARConfig
 
 VOCAB_SIZE = 8_192
 CELL = os.environ.get("ZOO_CELL", "n256_d64")          # n256_d64 (main) | n64_d64 (smoke)
-CACHE = os.environ.get("ZOO_CACHE")                    # None = no data cache
+CACHE = os.environ.get("ZOO_CACHE", "runs/zoology_repro/cache")   # data cache (authors cache too); not used by training
 LRS = [float(x) for x in os.environ["ZOO_LRS"].split(",")] if os.environ.get("ZOO_LRS") else list(np.logspace(-4, -2, 4))
 
 input_seq_len, num_kv_pairs, batch_size, d_model = {"n256_d64": (256, 16, 256, 64), "n64_d64": (64, 4, 512, 64)}[CELL]
