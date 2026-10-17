@@ -20,3 +20,7 @@
 01:27:42 rnn_lr3e-4 7500/20000 val long acc=0.016 cand=0.126 first=0.016
 01:32:22 rnn_lr3e-4 8000/20000 val long acc=0.014 cand=0.127 first=0.008
 01:37:02 rnn_lr3e-4 8500/20000 val long acc=0.017 cand=0.133 first=0.021
+01:41:39 rnn_lr3e-4 9000/20000 val long acc=0.016 cand=0.122 first=0.012
+01:46:20 rnn_lr3e-4 9500/20000 val long acc=0.015 cand=0.139 first=0.008
+01:50:59 rnn_lr3e-4 10000/20000 val long acc=0.015 cand=0.114 first=0.018
+01:55:39 rnn_lr3e-4 10500/20000 val long acc=0.016 cand=0.128 first=0.020
