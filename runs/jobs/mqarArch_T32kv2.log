@@ -1,0 +1,34 @@
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+18:35:55 run directory: /workspace/smtMemUp/runs/mqar03_pilot01arch_T32kv2_67e6d63e41ab
+18:36:25 arch/T32kv2 smt 250/6000 teacher long acc=0.200 rnn long acc=0.007 select=3.7380 0.118s/step
+18:36:54 arch/T32kv2 smt 500/6000 teacher long acc=0.483 rnn long acc=0.078 select=2.1091 0.118s/step
+18:37:24 arch/T32kv2 smt 750/6000 teacher long acc=0.541 rnn long acc=0.302 select=1.4623 0.118s/step
+18:37:54 arch/T32kv2 smt 1000/6000 teacher long acc=0.479 rnn long acc=0.381 select=1.2054 0.119s/step
+18:38:27 arch/T32kv2 smt 1250/6000 teacher long acc=0.521 rnn long acc=0.406 select=1.0053 0.121s/step
+18:39:01 arch/T32kv2 smt 1500/6000 teacher long acc=0.483 rnn long acc=0.466 select=1.0101 0.124s/step
+18:39:35 arch/T32kv2 smt 1750/6000 teacher long acc=0.475 rnn long acc=0.506 select=0.9911 0.125s/step
+18:40:09 arch/T32kv2 smt 2000/6000 teacher long acc=0.486 rnn long acc=0.554 select=0.9289 0.127s/step
+18:40:43 arch/T32kv2 smt 2250/6000 teacher long acc=0.497 rnn long acc=0.525 select=0.8902 0.128s/step
+18:41:16 arch/T32kv2 smt 2500/6000 teacher long acc=0.508 rnn long acc=0.521 select=0.8653 0.128s/step
+18:41:51 arch/T32kv2 smt 2750/6000 teacher long acc=0.501 rnn long acc=0.545 select=0.8305 0.129s/step
+18:42:24 arch/T32kv2 smt 3000/6000 teacher long acc=0.468 rnn long acc=0.528 select=0.8514 0.130s/step
+18:42:58 arch/T32kv2 smt 3250/6000 teacher long acc=0.466 rnn long acc=0.501 select=0.8705 0.130s/step
+18:43:32 arch/T32kv2 smt 3500/6000 teacher long acc=0.483 rnn long acc=0.530 select=0.8266 0.130s/step
+18:44:05 arch/T32kv2 smt 3750/6000 teacher long acc=0.492 rnn long acc=0.541 select=0.8235 0.131s/step
+18:44:38 arch/T32kv2 smt 4000/6000 teacher long acc=0.512 rnn long acc=0.537 select=0.7774 0.131s/step
+18:45:21 arch/T32kv2 smt 4250/6000 teacher long acc=0.483 rnn long acc=0.530 select=0.7860 0.133s/step
+18:46:14 arch/T32kv2 smt 4500/6000 teacher long acc=0.472 rnn long acc=0.517 select=0.7940 0.137s/step
+18:47:07 arch/T32kv2 smt 4750/6000 teacher long acc=0.488 rnn long acc=0.519 select=0.7729 0.141s/step
+18:48:01 arch/T32kv2 smt 5000/6000 teacher long acc=0.537 rnn long acc=0.541 select=0.7575 0.145s/step
+18:49:05 arch/T32kv2 smt 5250/6000 teacher long acc=0.470 rnn long acc=0.530 select=0.7697 0.150s/step
+18:50:10 arch/T32kv2 smt 5500/6000 teacher long acc=0.483 rnn long acc=0.548 select=0.7691 0.155s/step
+18:51:16 arch/T32kv2 smt 5750/6000 teacher long acc=0.532 rnn long acc=0.539 select=0.7610 0.160s/step
+18:52:22 arch/T32kv2 smt 6000/6000 teacher long acc=0.490 rnn long acc=0.537 select=0.7646 0.164s/step
+18:52:44 arch/T32kv2 dmt 50/50 teacher long acc=0.537 rnn long acc=0.557 select=0.8764 0.432s/step
+     name   split  teacher_long_full_vocab  teacher_long_cand  teacher_all_cand  pred_in_written  smt_best_step
+0  T32kv2  tuning                    0.493              0.493             0.509              1.0           5000
+18:52:46 done T32kv2
+[W1019 18:52:47.834797762 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

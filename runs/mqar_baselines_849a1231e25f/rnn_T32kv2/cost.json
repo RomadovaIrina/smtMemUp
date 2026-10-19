@@ -1,0 +1,9 @@
+{
+  "train_seconds": 1722.391410505632,
+  "eval_seconds": 5.157833591336384,
+  "peak_allocated_mib": 343.580078125,
+  "peak_reserved_mib": 502.0,
+  "optimizer_steps": 6000,
+  "sequences": 192000,
+  "distinct_training_sequences": 192000
+}

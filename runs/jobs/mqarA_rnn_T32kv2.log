@@ -1,0 +1,18 @@
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+18:37:57 run directory: /workspace/smtMemUp/runs/mqar_baselines_849a1231e25f
+18:40:17 rnn_T32kv2 500/6000 val long acc=0.024 cand=0.486 first=0.066
+18:42:36 rnn_T32kv2 1000/6000 val long acc=0.160 cand=0.506 first=0.246
+18:44:55 rnn_T32kv2 1500/6000 val long acc=0.275 cand=0.519 first=0.369
+18:47:18 rnn_T32kv2 2000/6000 val long acc=0.306 cand=0.477 first=0.420
+18:49:41 rnn_T32kv2 2500/6000 val long acc=0.412 cand=0.501 first=0.438
+18:52:06 rnn_T32kv2 3000/6000 val long acc=0.410 cand=0.503 first=0.430
+18:54:32 rnn_T32kv2 3500/6000 val long acc=0.432 cand=0.512 first=0.473
+18:57:00 rnn_T32kv2 4000/6000 val long acc=0.432 cand=0.497 first=0.471
+18:59:27 rnn_T32kv2 4500/6000 val long acc=0.448 cand=0.514 first=0.492
+19:01:53 rnn_T32kv2 5000/6000 val long acc=0.472 cand=0.508 first=0.484
+19:04:19 rnn_T32kv2 5500/6000 val long acc=0.439 cand=0.481 first=0.459
+19:06:45 rnn_T32kv2 6000/6000 val long acc=0.466 cand=0.506 first=0.494
+[W1019 19:06:48.024682951 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

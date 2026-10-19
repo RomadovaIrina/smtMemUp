@@ -47,6 +47,7 @@ IGNORE = S.IGNORE
 class BaselineConfig:
     data: str = "pilot01"                # name in smt_memup_mqar.CANDIDATES
     kv_pairs: int = 0                    # > 0: override num_kv_pairs of the data config (pairs-count sweep, 17.10)
+    seq_len: int = 0                     # > 0: override seq_len (length sweep, 19.10); long_delay then = seq_len // 4
     model: str = "transformer"           # transformer | rnn_bptt
     # transformer (ordinary causal LM; learned absolute positions, pre-norm, GELU MLP x4)
     tf_d_model: int = 64
@@ -68,7 +69,12 @@ class BaselineConfig:
 
 
 def data_config(cfg: BaselineConfig) -> M.MQARConfig:
-    return M.candidate(cfg.data, num_kv_pairs=cfg.kv_pairs) if cfg.kv_pairs else M.candidate(cfg.data)
+    over = {}
+    if cfg.kv_pairs:
+        over["num_kv_pairs"] = cfg.kv_pairs
+    if cfg.seq_len:
+        over.update(seq_len=cfg.seq_len, long_delay=cfg.seq_len // 4, local_window=cfg.seq_len // 4)
+    return M.candidate(cfg.data, **over)
 
 
 def code_sha256() -> str:
@@ -321,6 +327,13 @@ JOBS = {
     "tf_kv4": dict(model="transformer", kv_pairs=4, lr=1e-3, steps=3000, stop_accuracy=0.99),
     "rnn_kv2": dict(model="rnn_bptt", kv_pairs=2, lr=1e-3, steps=6000, stop_accuracy=0.99),
     "rnn_kv4": dict(model="rnn_bptt", kv_pairs=4, lr=1e-3, steps=6000, stop_accuracy=0.99),
+    # length sweep (19.10): does SMT / the RNN bind when the whole example is short?
+    "tf_T16kv2": dict(model="transformer", seq_len=16, kv_pairs=2, lr=1e-3, steps=3000, stop_accuracy=0.99),
+    "tf_T32kv2": dict(model="transformer", seq_len=32, kv_pairs=2, lr=1e-3, steps=3000, stop_accuracy=0.99),
+    "tf_T32kv4": dict(model="transformer", seq_len=32, kv_pairs=4, lr=1e-3, steps=3000, stop_accuracy=0.99),
+    "rnn_T16kv2": dict(model="rnn_bptt", seq_len=16, kv_pairs=2, lr=1e-3, steps=6000, stop_accuracy=0.99),
+    "rnn_T32kv2": dict(model="rnn_bptt", seq_len=32, kv_pairs=2, lr=1e-3, steps=6000, stop_accuracy=0.99),
+    "rnn_T32kv4": dict(model="rnn_bptt", seq_len=32, kv_pairs=4, lr=1e-3, steps=6000, stop_accuracy=0.99),
 }
 
 

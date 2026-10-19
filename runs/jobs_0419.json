@@ -1,0 +1,21 @@
+[
+ {"name": "mqarArch_T16kv2", "min_free": 6000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_mqar_probe_arch.py --name T16kv2"},
+ {"name": "mqarArch_T32kv2", "min_free": 6000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_mqar_probe_arch.py --name T32kv2"},
+ {"name": "mqarArch_T32kv4", "min_free": 6000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_mqar_probe_arch.py --name T32kv4"},
+ {"name": "mqarA_tf_T16kv2", "min_free": 3000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python mqar_baselines.py --job tf_T16kv2"},
+ {"name": "mqarA_tf_T32kv2", "min_free": 3000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python mqar_baselines.py --job tf_T32kv2"},
+ {"name": "mqarA_tf_T32kv4", "min_free": 3000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python mqar_baselines.py --job tf_T32kv4"},
+ {"name": "mqarA_rnn_T16kv2", "min_free": 3000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python mqar_baselines.py --job rnn_T16kv2"},
+ {"name": "mqarA_rnn_T32kv2", "min_free": 3000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python mqar_baselines.py --job rnn_T32kv2"},
+ {"name": "mqarA_rnn_T32kv4", "min_free": 3000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python mqar_baselines.py --job rnn_T32kv4"},
+ {"name": "abl_full", "min_free": 10000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name full"},
+ {"name": "abl_no_dyn", "min_free": 10000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name no_dyn"},
+ {"name": "abl_detached", "min_free": 10000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name detached"},
+ {"name": "abl_no_unif", "min_free": 10000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name no_unif"},
+ {"name": "abl_tf1", "min_free": 10000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name tf1"},
+ {"name": "abl_tf16", "min_free": 10000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name tf16"},
+ {"name": "abl_tf64", "min_free": 10000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name tf64"},
+ {"name": "abl_tf4", "min_free": 10000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name tf4"},
+ {"name": "abl_mem4", "min_free": 10000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name mem4"},
+ {"name": "abl_mem16", "min_free": 10000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name mem16"}
+]

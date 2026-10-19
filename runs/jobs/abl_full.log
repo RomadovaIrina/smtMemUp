@@ -1,0 +1,84 @@
+18:44:53 run directory: /workspace/smtMemUp/runs/stackv4_8318239d86e6
+18:46:50 ablation/full smt 500/11000 select=1.4017 val_teacher_long_acc=0.303 val_rnn_long_acc=0.234 val_far_memory_acc=0.308 0.229s/step(train)
+18:48:55 ablation/full smt 1000/11000 select=1.2161 val_teacher_long_acc=0.443 val_rnn_long_acc=0.257 val_far_memory_acc=0.312 0.237s/step(train)
+18:51:10 ablation/full smt 1500/11000 select=0.7672 val_teacher_long_acc=0.658 val_rnn_long_acc=0.349 val_far_memory_acc=0.342 0.247s/step(train)
+18:53:30 ablation/full smt 2000/11000 select=0.4038 val_teacher_long_acc=0.830 val_rnn_long_acc=0.407 val_far_memory_acc=0.366 0.254s/step(train)
+18:57:02 ablation/full smt 2500/11000 select=0.2982 val_teacher_long_acc=0.881 val_rnn_long_acc=0.375 val_far_memory_acc=0.374 0.287s/step(train)
+19:00:22 ablation/full smt 3000/11000 select=0.2217 val_teacher_long_acc=0.903 val_rnn_long_acc=0.539 val_far_memory_acc=0.383 0.305s/step(train)
+19:03:31 ablation/full smt 3500/11000 select=0.0982 val_teacher_long_acc=0.961 val_rnn_long_acc=0.548 val_far_memory_acc=0.410 0.314s/step(train)
+19:06:39 ablation/full smt 4000/11000 select=0.0684 val_teacher_long_acc=0.971 val_rnn_long_acc=0.495 val_far_memory_acc=0.373 0.322s/step(train)
+19:09:26 ablation/full smt 4500/11000 select=0.1311 val_teacher_long_acc=0.952 val_rnn_long_acc=0.564 val_far_memory_acc=0.399 0.322s/step(train)
+19:12:08 ablation/full smt 5000/11000 select=0.0773 val_teacher_long_acc=0.971 val_rnn_long_acc=0.702 val_far_memory_acc=0.412 0.322s/step(train)
+19:14:52 ablation/full smt 5500/11000 select=0.0266 val_teacher_long_acc=0.989 val_rnn_long_acc=0.683 val_far_memory_acc=0.415 0.322s/step(train)
+19:17:38 ablation/full smt 6000/11000 select=0.0183 val_teacher_long_acc=0.995 val_rnn_long_acc=0.702 val_far_memory_acc=0.421 0.323s/step(train)
+19:20:20 ablation/full smt 6500/11000 select=0.0778 val_teacher_long_acc=0.974 val_rnn_long_acc=0.692 val_far_memory_acc=0.417 0.322s/step(train)
+19:23:01 ablation/full smt 7000/11000 select=0.0102 val_teacher_long_acc=0.998 val_rnn_long_acc=0.694 val_far_memory_acc=0.425 0.322s/step(train)
+19:25:44 ablation/full smt 7500/11000 select=0.1453 val_teacher_long_acc=0.953 val_rnn_long_acc=0.764 val_far_memory_acc=0.432 0.322s/step(train)
+19:28:24 ablation/full smt 8000/11000 select=0.0888 val_teacher_long_acc=0.975 val_rnn_long_acc=0.502 val_far_memory_acc=0.421 0.322s/step(train)
+19:31:08 ablation/full smt 8500/11000 select=0.1320 val_teacher_long_acc=0.954 val_rnn_long_acc=0.737 val_far_memory_acc=0.415 0.322s/step(train)
+19:33:50 ablation/full smt 9000/11000 select=0.0054 val_teacher_long_acc=0.999 val_rnn_long_acc=0.759 val_far_memory_acc=0.423 0.322s/step(train)
+19:36:29 ablation/full smt 9500/11000 select=0.0034 val_teacher_long_acc=0.999 val_rnn_long_acc=0.597 val_far_memory_acc=0.439 0.321s/step(train)
+19:39:12 ablation/full smt 10000/11000 select=0.0064 val_teacher_long_acc=0.998 val_rnn_long_acc=0.721 val_far_memory_acc=0.420 0.321s/step(train)
+19:41:54 ablation/full smt 10500/11000 select=0.0505 val_teacher_long_acc=0.985 val_rnn_long_acc=0.815 val_far_memory_acc=0.432 0.321s/step(train)
+19:44:36 ablation/full smt 11000/11000 select=0.1109 val_teacher_long_acc=0.961 val_rnn_long_acc=0.802 val_far_memory_acc=0.426 0.321s/step(train)
+Traceback (most recent call last):
+  File "/workspace/smtMemUp/checks/smt_memup_ablation.py", line 65, in <module>
+    main()
+  File "/workspace/smtMemUp/checks/smt_memup_ablation.py", line 60, in main
+    V.fit_smt(cfg, "base_window", cfg.tuning_seed, ex.dir / "ablation" / a.name, ex.detectors, ex.validation, device, log)
+  File "/workspace/smtMemUp/smt_memup_v4.py", line 272, in fit_smt
+    r = _run_stage(stage, cfg.smt_steps if is_smt else cfg.dmt_steps, cfg.smt_lr if is_smt else cfg.dmt_lr,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/smt_memup_v4.py", line 196, in _run_stage
+    score, extras = monitor_fn()
+                    ^^^^^^^^^^^^
+  File "/workspace/smtMemUp/smt_memup_v4.py", line 265, in monitor_fn
+    ev = S.evaluate(teacher, rnn, validation, cfg, device)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/smt_memup_stack.py", line 570, in evaluate
+    tm = teacher_states(teacher, part, device)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/smt_memup_stack.py", line 385, in teacher_states
+    return encode_chunked(teacher, w["x_ctx"].to(device), chunk).reshape(B, T, -1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/smt_memup_stack.py", line 378, in encode_chunked
+    return torch.cat([teacher.encode(p) for p in x_ctx.split(chunk)])
+                      ^^^^^^^^^^^^^^^^^
+  File "/workspace/smtMemUp/upstream/smt/src/model.py", line 141, in encode
+    z = self.encoder(encoder_input, mask=mask) # (B, Tc+K, D)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/x_transformers/x_transformers.py", line 3231, in forward
+    out, inter = block(x, mask = mask, context_mask = self_attn_kv_mask, attn_mask = attn_mask, rel_pos = self.rel_pos, pos = pos, rotary_pos_emb = rotary_pos_emb, polar_pos_emb = polar_pos_emb, additional_key_values = next(iter_self_attn_kv, None), additional_key_value_mask = additional_kv_mask, prev_attn = prev_attn, cache = next(iter_attn_cache, None), mem = layer_mem, mem_mask = layer_mem_mask, attn_bias = attn_bias, kv_input_residual = next(self_attn_kv_residuals_iter, None), value_residual = maybe_self_attn_value_residual, flash_pack_seq_kwargs = flash_pack_seq_kwargs, return_intermediates = True, causal = causal)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/x_transformers/x_transformers.py", line 2261, in forward
+    out, intermediates = self.attend(
+                         ^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/envs/smt-memup/lib/python3.12/site-packages/x_transformers/attend.py", line 565, in forward
+    sim = sim.masked_fill(~mask, mask_value)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 324.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 137.81 MiB is free. Including non-PyTorch memory, this process has 6.11 GiB memory in use. Process 3914 has 8.35 GiB memory in use. Process 4038 has 8.37 GiB memory in use. Process 7296 has 8.35 GiB memory in use. Of the allocated memory 5.37 GiB is allocated by PyTorch, and 116.43 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[W1019 19:50:31.911093594 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

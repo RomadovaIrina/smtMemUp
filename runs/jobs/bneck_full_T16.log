@@ -1,0 +1,24 @@
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/smtMemUp/checks/mqar_bottleneck_test.py:94: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(time.strftime("%H:%M:%S"), f"{a.mode} T={a.T} N={a.pairs} step {step + 1} train_ce={float(loss):.3f} "
+19:52:56 full T=16 N=2 step 250 train_ce=3.288 readout acc=0.438 among written=0.496 (chance 1/2)
+19:53:20 full T=16 N=2 step 500 train_ce=1.958 readout acc=0.504 among written=0.504 (chance 1/2)
+19:53:46 full T=16 N=2 step 750 train_ce=1.312 readout acc=0.504 among written=0.504 (chance 1/2)
+19:54:11 full T=16 N=2 step 1000 train_ce=0.542 readout acc=0.488 among written=0.496 (chance 1/2)
+19:54:37 full T=16 N=2 step 1250 train_ce=0.190 readout acc=0.691 among written=0.695 (chance 1/2)
+19:55:03 full T=16 N=2 step 1500 train_ce=0.031 readout acc=0.996 among written=0.996 (chance 1/2)
+19:55:27 full T=16 N=2 step 1750 train_ce=0.022 readout acc=0.992 among written=0.992 (chance 1/2)
+19:55:46 full T=16 N=2 step 2000 train_ce=0.006 readout acc=0.996 among written=0.996 (chance 1/2)
+19:56:08 full T=16 N=2 step 2250 train_ce=0.007 readout acc=1.000 among written=1.000 (chance 1/2)
+19:56:30 full T=16 N=2 step 2500 train_ce=0.006 readout acc=1.000 among written=1.000 (chance 1/2)
+19:56:52 full T=16 N=2 step 2750 train_ce=0.000 readout acc=1.000 among written=1.000 (chance 1/2)
+19:57:14 full T=16 N=2 step 3000 train_ce=0.004 readout acc=1.000 among written=1.000 (chance 1/2)
+19:57:35 full T=16 N=2 step 3250 train_ce=0.009 readout acc=1.000 among written=1.000 (chance 1/2)
+19:57:56 full T=16 N=2 step 3500 train_ce=0.007 readout acc=1.000 among written=1.000 (chance 1/2)
+19:58:17 full T=16 N=2 step 3750 train_ce=0.000 readout acc=1.000 among written=1.000 (chance 1/2)
+19:58:37 full T=16 N=2 step 4000 train_ce=0.000 readout acc=1.000 among written=1.000 (chance 1/2)
+[W1019 19:58:38.731942587 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

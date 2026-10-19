@@ -148,3 +148,33 @@
 2026-10-17 09:48:24 started: mqarA_tf_kv4
 2026-10-17 09:48:26 started: mqarA_rnn_kv2
 2026-10-17 09:48:28 started: mqarA_rnn_kv4
+2026-10-19 18:35:31 scheduler: 19 jobs, max 6 at once, start at >= 3000 MiB free
+2026-10-19 18:35:32 started: mqarArch_T16kv2 (pid 1855, free 32096 MiB)
+2026-10-19 18:35:52 started: mqarArch_T32kv2 (pid 1951, free 30874 MiB)
+2026-10-19 18:36:12 started: mqarArch_T32kv4 (pid 2047, free 28933 MiB)
+2026-10-19 18:36:32 started: mqarA_tf_T16kv2 (pid 2143, free 26888 MiB)
+2026-10-19 18:36:47 done: mqarA_tf_T16kv2 (exit 0)
+2026-10-19 18:36:53 started: mqarA_tf_T32kv2 (pid 2239, free 26888 MiB)
+2026-10-19 18:37:08 done: mqarA_tf_T32kv2 (exit 0)
+2026-10-19 18:37:13 started: mqarA_tf_T32kv4 (pid 2335, free 26888 MiB)
+2026-10-19 18:37:28 done: mqarA_tf_T32kv4 (exit 0)
+2026-10-19 18:37:33 started: mqarA_rnn_T16kv2 (pid 2431, free 26888 MiB)
+2026-10-19 18:37:53 started: mqarA_rnn_T32kv2 (pid 2527, free 26050 MiB)
+2026-10-19 18:38:14 started: mqarA_rnn_T32kv4 (pid 2623, free 25073 MiB)
+2026-10-19 18:44:48 done: mqarArch_T16kv2 (exit 0)
+2026-10-19 18:44:49 started: abl_full (pid 3094, free 24897 MiB)
+2026-10-19 18:52:45 done: mqarA_rnn_T16kv2 (exit 0)
+2026-10-19 18:52:45 started: abl_no_dyn (pid 3914, free 14436 MiB)
+2026-10-19 18:52:50 done: mqarArch_T32kv2 (exit 0)
+2026-10-19 18:53:30 started: abl_detached (pid 4038, free 10298 MiB)
+2026-10-19 18:57:03 done: mqarArch_T32kv4 (exit 0)
+2026-10-19 19:06:51 done: mqarA_rnn_T32kv2 (exit 0)
+2026-10-19 19:07:16 done: mqarA_rnn_T32kv4 (exit 0)
+2026-10-19 19:44:38 started: abl_no_unif (pid 7296, free 10680 MiB)
+2026-10-19 19:50:32 failed: abl_full (exit 1)
+2026-10-19 19:50:56 started: bneck_bottleneck_T16
+2026-10-19 19:52:26 started: bneck_full_T16
+2026-10-19 19:55:37 started: abl_tf1 (pid 8144, free 11975 MiB)
+2026-10-19 20:12:45 failed: abl_detached (exit 1)
+2026-10-19 20:12:57 started: bneck_bottleneck_T64
+2026-10-19 20:36:20 started: abl_tf16 (pid 10783, free 11684 MiB)

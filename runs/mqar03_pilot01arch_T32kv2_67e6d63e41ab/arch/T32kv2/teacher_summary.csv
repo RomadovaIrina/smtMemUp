@@ -1,0 +1,2 @@
+name,split,teacher_long_full_vocab,teacher_long_cand,teacher_all_cand,pred_in_written,smt_best_step
+T32kv2,tuning,0.49327354260089684,0.49327354260089684,0.5087890625,1.0,5000

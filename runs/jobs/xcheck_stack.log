@@ -1,0 +1,23 @@
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/smtMemUp/checks/mqar_loss_crosscheck.py:51: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(time.strftime("%H:%M:%S"), f"{a.loss} step {step + 1} train_dec={float(parts['decoder']):.3f} "
+18:48:13 stack step 250 train_dec=3.224 teacher cand_acc=0.498 full_vocab=0.461 (chance 1/2)
+18:48:33 stack step 500 train_dec=2.046 teacher cand_acc=0.516 full_vocab=0.508 (chance 1/2)
+18:48:52 stack step 750 train_dec=1.431 teacher cand_acc=0.502 full_vocab=0.502 (chance 1/2)
+18:49:12 stack step 1000 train_dec=1.108 teacher cand_acc=0.518 full_vocab=0.518 (chance 1/2)
+18:49:31 stack step 1250 train_dec=0.987 teacher cand_acc=0.492 full_vocab=0.492 (chance 1/2)
+18:49:50 stack step 1500 train_dec=0.963 teacher cand_acc=0.502 full_vocab=0.502 (chance 1/2)
+18:50:10 stack step 1750 train_dec=0.890 teacher cand_acc=0.514 full_vocab=0.514 (chance 1/2)
+18:50:29 stack step 2000 train_dec=0.923 teacher cand_acc=0.494 full_vocab=0.494 (chance 1/2)
+18:50:48 stack step 2250 train_dec=0.925 teacher cand_acc=0.510 full_vocab=0.510 (chance 1/2)
+18:51:07 stack step 2500 train_dec=0.863 teacher cand_acc=0.500 full_vocab=0.500 (chance 1/2)
+18:51:26 stack step 2750 train_dec=0.842 teacher cand_acc=0.508 full_vocab=0.508 (chance 1/2)
+18:51:45 stack step 3000 train_dec=0.850 teacher cand_acc=0.504 full_vocab=0.504 (chance 1/2)
+18:52:04 stack step 3250 train_dec=0.863 teacher cand_acc=0.498 full_vocab=0.498 (chance 1/2)
+18:52:24 stack step 3500 train_dec=0.791 teacher cand_acc=0.506 full_vocab=0.506 (chance 1/2)
+18:52:43 stack step 3750 train_dec=0.843 teacher cand_acc=0.500 full_vocab=0.500 (chance 1/2)
+18:53:03 stack step 4000 train_dec=0.731 teacher cand_acc=0.488 full_vocab=0.488 (chance 1/2)

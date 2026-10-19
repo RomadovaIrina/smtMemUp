@@ -26,7 +26,11 @@ import smt_memup_mqar as M  # noqa: E402
 import smt_memup_stack as S  # noqa: E402
 
 RUNS = {"overfit256": {}, "mem16": dict(mem_tokens=16), "d128": dict(d_model=128), "lr1e-3": dict(smt_lr=1e-3),
-        "kv2": dict(num_kv_pairs=2, K=1), "kv4": dict(num_kv_pairs=4, K=1)}     # pairs-count sweep (17.10)
+        "kv2": dict(num_kv_pairs=2, K=1), "kv4": dict(num_kv_pairs=4, K=1),     # pairs-count sweep (17.10)
+        # length sweep (19.10): the whole example is short and fits the encoder-decoder window (Tc = Tf = T)
+        "T16kv2": dict(seq_len=16, num_kv_pairs=2, K=1, long_delay=4, local_window=4),
+        "T32kv2": dict(seq_len=32, num_kv_pairs=2, K=1, long_delay=8, local_window=8),
+        "T32kv4": dict(seq_len=32, num_kv_pairs=4, K=1, long_delay=8, local_window=8)}
 
 
 def main():
