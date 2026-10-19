@@ -28,3 +28,8 @@
 20:23:59 ablation/no_dyn dmt 2500/5000 select=1.1733 val_teacher_long_acc=1.000 val_rnn_long_acc=0.463 0.680s/step(train)
 20:29:37 ablation/no_dyn dmt 3000/5000 select=1.0601 val_teacher_long_acc=1.000 val_rnn_long_acc=0.538 0.679s/step(train)
 20:35:14 ablation/no_dyn dmt 3500/5000 select=0.9897 val_teacher_long_acc=1.000 val_rnn_long_acc=0.572 0.678s/step(train)
+20:40:55 ablation/no_dyn dmt 4000/5000 select=0.9215 val_teacher_long_acc=1.000 val_rnn_long_acc=0.603 0.678s/step(train)
+20:46:37 ablation/no_dyn dmt 4500/5000 select=0.9046 val_teacher_long_acc=1.000 val_rnn_long_acc=0.615 0.678s/step(train)
+20:52:08 ablation/no_dyn dmt 5000/5000 select=0.8036 val_teacher_long_acc=1.000 val_rnn_long_acc=0.660 0.676s/step(train)
+20:52:08 done no_dyn
+[W1019 20:52:08.240151109 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

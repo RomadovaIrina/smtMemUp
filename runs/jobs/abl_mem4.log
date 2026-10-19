@@ -1,0 +1,11 @@
+21:58:16 run directory: /workspace/smtMemUp/runs/stackv4_7ccc3a06ed73
+22:00:31 ablation/mem4 smt 500/11000 select=1.4468 val_teacher_long_acc=0.304 val_rnn_long_acc=0.256 val_far_memory_acc=0.303 0.266s/step(train)
+22:02:46 ablation/mem4 smt 1000/11000 select=1.2818 val_teacher_long_acc=0.369 val_rnn_long_acc=0.302 val_far_memory_acc=0.317 0.266s/step(train)
+22:05:01 ablation/mem4 smt 1500/11000 select=1.1687 val_teacher_long_acc=0.451 val_rnn_long_acc=0.367 val_far_memory_acc=0.309 0.266s/step(train)
+22:07:16 ablation/mem4 smt 2000/11000 select=1.0565 val_teacher_long_acc=0.511 val_rnn_long_acc=0.425 val_far_memory_acc=0.329 0.266s/step(train)
+22:09:30 ablation/mem4 smt 2500/11000 select=0.8830 val_teacher_long_acc=0.603 val_rnn_long_acc=0.498 val_far_memory_acc=0.329 0.266s/step(train)
+22:11:44 ablation/mem4 smt 3000/11000 select=0.7060 val_teacher_long_acc=0.688 val_rnn_long_acc=0.534 val_far_memory_acc=0.358 0.265s/step(train)
+22:13:50 ablation/mem4 smt 3500/11000 select=0.4385 val_teacher_long_acc=0.797 val_rnn_long_acc=0.479 val_far_memory_acc=0.350 0.263s/step(train)
+22:15:52 ablation/mem4 smt 4000/11000 select=0.2609 val_teacher_long_acc=0.890 val_rnn_long_acc=0.661 val_far_memory_acc=0.362 0.260s/step(train)
+22:17:53 ablation/mem4 smt 4500/11000 select=0.1915 val_teacher_long_acc=0.919 val_rnn_long_acc=0.702 val_far_memory_acc=0.345 0.258s/step(train)
+22:19:55 ablation/mem4 smt 5000/11000 select=0.1428 val_teacher_long_acc=0.944 val_rnn_long_acc=0.722 val_far_memory_acc=0.387 0.256s/step(train)
