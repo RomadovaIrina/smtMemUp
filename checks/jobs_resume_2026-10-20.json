@@ -1,0 +1,10 @@
+[
+ {"name": "abl_tf64", "min_free": 9000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name tf64"},
+ {"name": "abl_detached", "min_free": 9000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name detached"},
+ {"name": "abl_full", "min_free": 9000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name full"},
+ {"name": "abl_tf4", "min_free": 10000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name tf4"},
+ {"name": "abl_mem4", "min_free": 10000, "after": [], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name mem4"},
+ {"name": "abl_mem16", "min_free": 16000, "after": ["abl_tf4", "abl_mem4"], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/smt_memup_ablation.py --name mem16"},
+ {"name": "bneck_bottleneck_T64", "min_free": 8000, "after": ["abl_mem16"], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/mqar_bottleneck_test.py --mode bottleneck --T 64 --pairs 8 --steps 4000"},
+ {"name": "bneck_full_T64", "min_free": 10000, "after": ["abl_mem16"], "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python checks/mqar_bottleneck_test.py --mode full --T 64 --pairs 8 --steps 4000"}
+]

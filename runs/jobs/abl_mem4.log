@@ -9,3 +9,4 @@
 22:15:52 ablation/mem4 smt 4000/11000 select=0.2609 val_teacher_long_acc=0.890 val_rnn_long_acc=0.661 val_far_memory_acc=0.362 0.260s/step(train)
 22:17:53 ablation/mem4 smt 4500/11000 select=0.1915 val_teacher_long_acc=0.919 val_rnn_long_acc=0.702 val_far_memory_acc=0.345 0.258s/step(train)
 22:19:55 ablation/mem4 smt 5000/11000 select=0.1428 val_teacher_long_acc=0.944 val_rnn_long_acc=0.722 val_far_memory_acc=0.387 0.256s/step(train)
+22:21:57 ablation/mem4 smt 5500/11000 select=0.0884 val_teacher_long_acc=0.963 val_rnn_long_acc=0.736 val_far_memory_acc=0.406 0.254s/step(train)

@@ -24,3 +24,4 @@
 22:03:45 ablation/tf64 dmt 500/5000 select=0.4055 val_teacher_long_acc=0.976 val_rnn_long_acc=0.836 0.671s/step(train)
 22:09:24 ablation/tf64 dmt 1000/5000 select=0.4421 val_teacher_long_acc=0.976 val_rnn_long_acc=0.830 0.673s/step(train)
 22:15:03 ablation/tf64 dmt 1500/5000 select=0.3682 val_teacher_long_acc=0.976 val_rnn_long_acc=0.838 0.673s/step(train)
+22:20:41 ablation/tf64 dmt 2000/5000 select=0.3260 val_teacher_long_acc=0.976 val_rnn_long_acc=0.869 0.673s/step(train)
