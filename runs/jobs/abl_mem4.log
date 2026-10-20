@@ -32,3 +32,6 @@
 10:28:16 ablation/mem4 dmt 3500/5000 select=0.1276 val_teacher_long_acc=0.999 val_rnn_long_acc=0.954 0.398s/step(train)
 10:31:38 ablation/mem4 dmt 4000/5000 select=0.1421 val_teacher_long_acc=0.999 val_rnn_long_acc=0.951 0.399s/step(train)
 10:35:00 ablation/mem4 dmt 4500/5000 select=0.1253 val_teacher_long_acc=0.999 val_rnn_long_acc=0.953 0.399s/step(train)
+10:38:22 ablation/mem4 dmt 5000/5000 select=0.1260 val_teacher_long_acc=0.999 val_rnn_long_acc=0.953 0.399s/step(train)
+10:38:22 done mem4
+[W1020 10:38:23.819102652 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

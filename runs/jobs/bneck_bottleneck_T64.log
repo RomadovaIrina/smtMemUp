@@ -40,3 +40,27 @@ Traceback (most recent call last):
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 144.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 129.75 MiB is free. Process 3914 has 7.48 GiB memory in use. Process 7296 has 8.35 GiB memory in use. Process 8144 has 8.35 GiB memory in use. Including non-PyTorch memory, this process has 7.01 GiB memory in use. Of the allocated memory 6.22 GiB is allocated by PyTorch, and 193.27 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
 [W1019 20:13:02.349891669 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/workspace/smtMemUp/checks/mqar_bottleneck_test.py:94: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(time.strftime("%H:%M:%S"), f"{a.mode} T={a.T} N={a.pairs} step {step + 1} train_ce={float(loss):.3f} "
+11:47:42 bottleneck T=64 N=8 step 250 train_ce=4.007 readout acc=0.097 among written=0.134 (chance 1/8)
+11:48:16 bottleneck T=64 N=8 step 500 train_ce=3.508 readout acc=0.124 among written=0.129 (chance 1/8)
+11:48:49 bottleneck T=64 N=8 step 750 train_ce=3.254 readout acc=0.121 among written=0.124 (chance 1/8)
+11:49:36 bottleneck T=64 N=8 step 1000 train_ce=3.120 readout acc=0.118 among written=0.118 (chance 1/8)
+11:50:48 bottleneck T=64 N=8 step 1250 train_ce=2.998 readout acc=0.125 among written=0.125 (chance 1/8)
+11:51:59 bottleneck T=64 N=8 step 1500 train_ce=2.821 readout acc=0.125 among written=0.125 (chance 1/8)
+11:53:10 bottleneck T=64 N=8 step 1750 train_ce=2.751 readout acc=0.124 among written=0.124 (chance 1/8)
+11:54:22 bottleneck T=64 N=8 step 2000 train_ce=2.663 readout acc=0.131 among written=0.131 (chance 1/8)
+11:55:33 bottleneck T=64 N=8 step 2250 train_ce=2.609 readout acc=0.123 among written=0.123 (chance 1/8)
+11:56:45 bottleneck T=64 N=8 step 2500 train_ce=2.436 readout acc=0.120 among written=0.120 (chance 1/8)
+11:57:56 bottleneck T=64 N=8 step 2750 train_ce=2.165 readout acc=0.121 among written=0.121 (chance 1/8)
+11:59:07 bottleneck T=64 N=8 step 3000 train_ce=2.086 readout acc=0.127 among written=0.127 (chance 1/8)
+12:00:19 bottleneck T=64 N=8 step 3250 train_ce=1.949 readout acc=0.131 among written=0.131 (chance 1/8)
+12:01:31 bottleneck T=64 N=8 step 3500 train_ce=1.775 readout acc=0.123 among written=0.123 (chance 1/8)
+12:02:42 bottleneck T=64 N=8 step 3750 train_ce=1.729 readout acc=0.116 among written=0.116 (chance 1/8)
+12:03:54 bottleneck T=64 N=8 step 4000 train_ce=1.675 readout acc=0.128 among written=0.128 (chance 1/8)
+[W1020 12:03:54.765306288 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

@@ -201,3 +201,11 @@
 2026-10-20 09:46:02 done: abl_full (exit 0)
 2026-10-20 09:46:03 started: abl_mem4 (pid 5422, free 16602 MiB)
 2026-10-20 10:13:18 done: abl_tf4 (exit 0)
+2026-10-20 10:38:28 done: abl_mem4 (exit 0)
+2026-10-20 10:38:28 started: abl_mem16 (pid 8201, free 24090 MiB)
+2026-10-20 11:47:03 done: abl_mem16 (exit 0)
+2026-10-20 11:47:03 started: bneck_bottleneck_T64 (pid 12456, free 24090 MiB)
+2026-10-20 11:49:07 started: bneck_full_T64 (pid 12659, free 15604 MiB)
+2026-10-20 12:03:59 done: bneck_bottleneck_T64 (exit 0)
+2026-10-20 12:11:22 done: bneck_full_T64 (exit 0)
+2026-10-20 12:11:27 all jobs: wait_tf64=done, abl_detached=done, abl_full=done, abl_tf4=done, abl_mem4=done, abl_mem16=done, bneck_bottleneck_T64=done, bneck_full_T64=done
