@@ -1,0 +1,18 @@
+{
+  "smt": {
+    "train_seconds": 2509.204022983089,
+    "eval_seconds": 39.85182296205312,
+    "peak_allocated_mib": 7226.08935546875,
+    "peak_reserved_mib": 7374.0,
+    "optimizer_steps": 11000,
+    "sequences": 352000
+  },
+  "dmt": {
+    "train_seconds": 1996.2286683847196,
+    "eval_seconds": 10.606809995137155,
+    "peak_allocated_mib": 5920.59619140625,
+    "peak_reserved_mib": 6346.0,
+    "optimizer_steps": 5000,
+    "sequences": 160000
+  }
+}
