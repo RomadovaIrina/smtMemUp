@@ -18,3 +18,20 @@
 22:17:11 ablation/tf4 smt 8500/11000 select=0.0309 val_teacher_long_acc=0.987 val_rnn_long_acc=0.567 val_far_memory_acc=0.392 0.256s/step(train)
 22:19:12 ablation/tf4 smt 9000/11000 select=0.3317 val_teacher_long_acc=0.928 val_rnn_long_acc=0.584 val_far_memory_acc=0.387 0.255s/step(train)
 22:21:15 ablation/tf4 smt 9500/11000 select=0.0841 val_teacher_long_acc=0.970 val_rnn_long_acc=0.448 val_far_memory_acc=0.384 0.254s/step(train)
+09:33:30 run directory: /workspace/smtMemUp/runs/stackv4_03af753e0b10
+09:33:30 resume tf4 smt at 9500/11000
+09:35:21 ablation/tf4 smt 10000/11000 select=0.0011 val_teacher_long_acc=1.000 val_rnn_long_acc=0.592 val_far_memory_acc=0.394 0.252s/step(train)
+09:37:11 ablation/tf4 smt 10500/11000 select=0.0136 val_teacher_long_acc=0.994 val_rnn_long_acc=0.533 val_far_memory_acc=0.406 0.251s/step(train)
+09:39:01 ablation/tf4 smt 11000/11000 select=0.0020 val_teacher_long_acc=1.000 val_rnn_long_acc=0.607 val_far_memory_acc=0.375 0.249s/step(train)
+09:42:25 ablation/tf4 dmt 500/5000 select=0.7554 val_teacher_long_acc=1.000 val_rnn_long_acc=0.648 0.404s/step(train)
+09:45:43 ablation/tf4 dmt 1000/5000 select=0.7852 val_teacher_long_acc=1.000 val_rnn_long_acc=0.633 0.399s/step(train)
+09:49:18 ablation/tf4 dmt 1500/5000 select=0.7370 val_teacher_long_acc=1.000 val_rnn_long_acc=0.651 0.408s/step(train)
+09:52:43 ablation/tf4 dmt 2000/5000 select=0.7507 val_teacher_long_acc=1.000 val_rnn_long_acc=0.648 0.408s/step(train)
+09:56:09 ablation/tf4 dmt 2500/5000 select=0.7057 val_teacher_long_acc=1.000 val_rnn_long_acc=0.665 0.408s/step(train)
+09:59:37 ablation/tf4 dmt 3000/5000 select=0.6869 val_teacher_long_acc=1.000 val_rnn_long_acc=0.678 0.409s/step(train)
+10:03:10 ablation/tf4 dmt 3500/5000 select=0.6742 val_teacher_long_acc=1.000 val_rnn_long_acc=0.674 0.411s/step(train)
+10:06:33 ablation/tf4 dmt 4000/5000 select=0.6940 val_teacher_long_acc=1.000 val_rnn_long_acc=0.671 0.410s/step(train)
+10:09:54 ablation/tf4 dmt 4500/5000 select=0.6733 val_teacher_long_acc=1.000 val_rnn_long_acc=0.674 0.409s/step(train)
+10:13:13 ablation/tf4 dmt 5000/5000 select=0.6723 val_teacher_long_acc=1.000 val_rnn_long_acc=0.681 0.407s/step(train)
+10:13:13 done tf4
+[W1020 10:13:14.277585688 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

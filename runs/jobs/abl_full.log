@@ -142,3 +142,17 @@ Traceback (most recent call last):
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 162.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 28.50 MiB is free. Process 10783 has 7.48 GiB memory in use. Process 14304 has 4.31 GiB memory in use. Process 16252 has 8.35 GiB memory in use. Process 17676 has 7.82 GiB memory in use. Including non-PyTorch memory, this process has 3.32 GiB memory in use. Of the allocated memory 2.69 GiB is allocated by PyTorch, and 21.70 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
 [W1019 22:02:01.297288872 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())
+09:11:35 run directory: /workspace/smtMemUp/runs/stackv4_8318239d86e6
+09:11:35 resume full smt at 11000/11000
+09:15:08 ablation/full dmt 500/5000 select=0.3101 val_teacher_long_acc=0.999 val_rnn_long_acc=0.896 0.421s/step(train)
+09:18:38 ablation/full dmt 1000/5000 select=0.2620 val_teacher_long_acc=0.999 val_rnn_long_acc=0.919 0.420s/step(train)
+09:22:04 ablation/full dmt 1500/5000 select=0.2513 val_teacher_long_acc=0.999 val_rnn_long_acc=0.914 0.417s/step(train)
+09:25:32 ablation/full dmt 2000/5000 select=0.2229 val_teacher_long_acc=0.999 val_rnn_long_acc=0.919 0.415s/step(train)
+09:28:59 ablation/full dmt 2500/5000 select=0.2243 val_teacher_long_acc=0.999 val_rnn_long_acc=0.923 0.415s/step(train)
+09:32:25 ablation/full dmt 3000/5000 select=0.2119 val_teacher_long_acc=0.999 val_rnn_long_acc=0.930 0.414s/step(train)
+09:35:57 ablation/full dmt 3500/5000 select=0.1970 val_teacher_long_acc=0.999 val_rnn_long_acc=0.928 0.415s/step(train)
+09:39:27 ablation/full dmt 4000/5000 select=0.1951 val_teacher_long_acc=0.999 val_rnn_long_acc=0.930 0.415s/step(train)
+09:42:43 ablation/full dmt 4500/5000 select=0.1755 val_teacher_long_acc=0.999 val_rnn_long_acc=0.940 0.412s/step(train)
+09:46:00 ablation/full dmt 5000/5000 select=0.1499 val_teacher_long_acc=0.999 val_rnn_long_acc=0.945 0.410s/step(train)
+09:46:00 done full
+[W1020 09:46:00.438517874 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

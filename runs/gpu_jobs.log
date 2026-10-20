@@ -189,3 +189,15 @@
 2026-10-19 22:12:33 done: abl_tf16 (exit 0)
 2026-10-19 22:15:51 started: abl_mem16 (pid 18993, free 14412 MiB)
 2026-10-19 22:16:01 failed: abl_mem16 (exit 1)
+2026-10-20 08:51:41 scheduler: 8 jobs, max 2 at once, start at >= 9000 MiB free
+2026-10-20 08:51:42 started: abl_tf64 (pid 2350, free 24090 MiB)
+2026-10-20 09:03:30 scheduler: 8 jobs, max 2 at once, start at >= 9000 MiB free
+2026-10-20 09:03:30 started: wait_tf64 (pid 3105, free 16742 MiB)
+2026-10-20 09:05:33 started: abl_detached (pid 3273, free 16742 MiB)
+2026-10-20 09:11:31 done: wait_tf64 (exit 0)
+2026-10-20 09:11:31 started: abl_full (pid 3660, free 16742 MiB)
+2026-10-20 09:33:26 done: abl_detached (exit 0)
+2026-10-20 09:33:26 started: abl_tf4 (pid 4762, free 16744 MiB)
+2026-10-20 09:46:02 done: abl_full (exit 0)
+2026-10-20 09:46:03 started: abl_mem4 (pid 5422, free 16602 MiB)
+2026-10-20 10:13:18 done: abl_tf4 (exit 0)

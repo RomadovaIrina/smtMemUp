@@ -87,3 +87,16 @@ Traceback (most recent call last):
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 288.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 303.81 MiB is free. Process 3914 has 7.48 GiB memory in use. Including non-PyTorch memory, this process has 6.84 GiB memory in use. Process 7296 has 8.35 GiB memory in use. Process 8144 has 8.35 GiB memory in use. Of the allocated memory 6.01 GiB is allocated by PyTorch, and 214.34 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
 [W1019 20:12:41.546026057 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())
+09:05:37 run directory: /workspace/smtMemUp/runs/stackv4_8318239d86e6
+09:05:37 resume detached smt at 11000/11000
+09:05:37 resume detached dmt at 1000/5000
+09:09:01 ablation/detached dmt 1500/5000 select=0.3099 val_teacher_long_acc=0.997 val_rnn_long_acc=0.893 0.589s/step(train)
+09:12:27 ablation/detached dmt 2000/5000 select=0.2833 val_teacher_long_acc=0.997 val_rnn_long_acc=0.902 0.544s/step(train)
+09:15:57 ablation/detached dmt 2500/5000 select=0.2751 val_teacher_long_acc=0.997 val_rnn_long_acc=0.911 0.518s/step(train)
+09:19:21 ablation/detached dmt 3000/5000 select=0.2394 val_teacher_long_acc=0.997 val_rnn_long_acc=0.917 0.499s/step(train)
+09:22:52 ablation/detached dmt 3500/5000 select=0.2648 val_teacher_long_acc=0.997 val_rnn_long_acc=0.914 0.488s/step(train)
+09:26:24 ablation/detached dmt 4000/5000 select=0.2489 val_teacher_long_acc=0.997 val_rnn_long_acc=0.912 0.480s/step(train)
+09:29:49 ablation/detached dmt 4500/5000 select=0.2681 val_teacher_long_acc=0.997 val_rnn_long_acc=0.908 0.472s/step(train)
+09:33:22 ablation/detached dmt 5000/5000 select=0.2430 val_teacher_long_acc=0.997 val_rnn_long_acc=0.910 0.467s/step(train)
+09:33:22 done detached
+[W1020 09:33:22.759523358 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())
