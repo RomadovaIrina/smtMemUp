@@ -19,7 +19,7 @@ import make_v4_outputs as V  # noqa: E402  (shared styling)
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "outputs_ablation"
-NAMES = {"full": "SMT, Tf = 8 (все компоненты)", "no_dyn": "без L_dyn", "detached": "L_dyn не идёт в энкодер (detached)",
+NAMES = {"full": "SMT, Tf = 8 (все компоненты)", "no_dyn": "без L_dyn", "detached": "цель L_dyn отцеплена (detached; градиент в энкодер через m_{t-1} остаётся)",
          "no_unif": "без L_unif", "tf1": "окно Tf = 1", "tf4": "окно Tf = 4", "tf16": "окно Tf = 16",
          "tf64": "окно Tf = T = 64", "mem4": "память 4 токена", "mem16": "память 16 токенов"}
 ORDER = list(NAMES)
@@ -72,7 +72,7 @@ def length_sweep() -> pd.DataFrame:
     for tag, T, N in (("T16kv2", 16, 2), ("T32kv2", 32, 2), ("T32kv4", 32, 4)):
         for f in glob.glob(str(ROOT / "runs" / f"mqar03_pilot01arch_{tag}_*" / "arch" / tag / "teacher_summary.csv")):
             s = pd.read_csv(f); r = s[s.split == "tuning"].iloc[0]
-            rows.append(dict(T=T, pairs=N, model="SMT teacher", long_acc=r.teacher_long_full_vocab, long_cand_acc=r.teacher_long_cand,
+            rows.append(dict(T=T, pairs=N, model="SMT teacher (j = 0 на позиции запроса)", long_acc=r.teacher_long_full_vocab, long_cand_acc=r.teacher_long_cand,
                              all_cand_acc=r.teacher_all_cand, steps=6000))
         for prefix, model in (("tf", "Transformer (causal)"), ("rnn", "RNN, full BPTT")):
             for f in glob.glob(str(ROOT / "runs" / "mqar_baselines_*" / f"{prefix}_{tag}" / "summary.csv")):
@@ -106,7 +106,9 @@ def main():
     pc = ["teacher", "rnn_before_dmt", "far_probe", "rnn_after_dmt"]
     (OUT / "README.md").write_text(
         "# 19.10.2026: абляции SMT на Stack и свип длины MQAR (validation / tuning, seed 107)\n\n"
-        "Собирает `python make_ablation_outputs.py`. Полные кривые — `tensorboard --logdir tensorboard`.\n\n"
+        "Собирает `python make_ablation_outputs.py`. Полные кривые — `runs/stackv4_*/ablation/*/{smt,dmt}_history.csv`. "
+        "Один сид (107), validation; конвенции столбцов и оговорки — `AUDIT_RU.md`, раздел 2. Абляция `detached` "
+        "НЕ отключает градиент L_dyn в энкодер (`AUDIT_RU.md`, раздел 3). far_probe — максимум по кривой SMT.\n\n"
         "## Stack: абляции (бюджет SMT 11k / DMT 5k)\n![](figB1_ablation_curves.png)\n\n"
         + md(t.drop(columns=["name"]) if len(t) else t, pc)
         + "\n## MQAR: длина примера (вся последовательность в окне энкодера-декодера, Tc = Tf = T)\n"

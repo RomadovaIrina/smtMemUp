@@ -1,0 +1,290 @@
+[
+ {
+  "name": "mqar_T16N2_smt_s201",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 0"
+ },
+ {
+  "name": "mqar_T16N2_smt_s202",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 1"
+ },
+ {
+  "name": "mqar_T16N2_smt_s203",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 2"
+ },
+ {
+  "name": "mqar_T16N2_teacher_bottleneck_s201",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 3"
+ },
+ {
+  "name": "mqar_T16N2_teacher_bottleneck_s202",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 4"
+ },
+ {
+  "name": "mqar_T16N2_teacher_bottleneck_s203",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 5"
+ },
+ {
+  "name": "mqar_T16N2_teacher_full_s201",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 6"
+ },
+ {
+  "name": "mqar_T16N2_teacher_full_s202",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 7"
+ },
+ {
+  "name": "mqar_T16N2_teacher_full_s203",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 8"
+ },
+ {
+  "name": "mqar_T16N2_transformer_s201",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 9"
+ },
+ {
+  "name": "mqar_T16N2_transformer_s202",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 10"
+ },
+ {
+  "name": "mqar_T16N2_transformer_s203",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 11"
+ },
+ {
+  "name": "mqar_T16N2_rnn_bptt_full_s201",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 12"
+ },
+ {
+  "name": "mqar_T16N2_rnn_bptt_full_s202",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 13"
+ },
+ {
+  "name": "mqar_T16N2_rnn_bptt_full_s203",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 14"
+ },
+ {
+  "name": "mqar_T32N4_smt_s201",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 15"
+ },
+ {
+  "name": "mqar_T32N4_smt_s202",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 16"
+ },
+ {
+  "name": "mqar_T32N4_smt_s203",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 17"
+ },
+ {
+  "name": "mqar_T32N4_teacher_bottleneck_s201",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 18"
+ },
+ {
+  "name": "mqar_T32N4_teacher_bottleneck_s202",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 19"
+ },
+ {
+  "name": "mqar_T32N4_teacher_bottleneck_s203",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 20"
+ },
+ {
+  "name": "mqar_T32N4_teacher_full_s201",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 21"
+ },
+ {
+  "name": "mqar_T32N4_teacher_full_s202",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 22"
+ },
+ {
+  "name": "mqar_T32N4_teacher_full_s203",
+  "min_free": 3000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 23"
+ },
+ {
+  "name": "mqar_T32N4_transformer_s201",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 24"
+ },
+ {
+  "name": "mqar_T32N4_transformer_s202",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 25"
+ },
+ {
+  "name": "mqar_T32N4_transformer_s203",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 26"
+ },
+ {
+  "name": "mqar_T32N4_rnn_bptt_full_s201",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 27"
+ },
+ {
+  "name": "mqar_T32N4_rnn_bptt_full_s202",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 28"
+ },
+ {
+  "name": "mqar_T32N4_rnn_bptt_full_s203",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 29"
+ },
+ {
+  "name": "stack_smt_tf8_s201",
+  "min_free": 9000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 30"
+ },
+ {
+  "name": "stack_smt_tf8_s202",
+  "min_free": 9000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 31"
+ },
+ {
+  "name": "stack_smt_tf8_s203",
+  "min_free": 9000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 32"
+ },
+ {
+  "name": "stack_smt_tf8_ctx_far_s201",
+  "min_free": 9000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 33"
+ },
+ {
+  "name": "stack_smt_tf8_ctx_far_s202",
+  "min_free": 9000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 34"
+ },
+ {
+  "name": "stack_smt_tf8_ctx_far_s203",
+  "min_free": 9000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 35"
+ },
+ {
+  "name": "stack_rnn_bptt_full_s201",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 36"
+ },
+ {
+  "name": "stack_rnn_bptt_full_s202",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 37"
+ },
+ {
+  "name": "stack_rnn_bptt_full_s203",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 38"
+ },
+ {
+  "name": "stack_rnn_bptt_1_s201",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 39"
+ },
+ {
+  "name": "stack_rnn_bptt_1_s202",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 40"
+ },
+ {
+  "name": "stack_rnn_bptt_1_s203",
+  "min_free": 1000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 41"
+ },
+ {
+  "name": "stack_smt_tf8_no_dyn_s201",
+  "min_free": 9000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 42"
+ },
+ {
+  "name": "stack_smt_tf8_no_dyn_s202",
+  "min_free": 9000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 43"
+ },
+ {
+  "name": "stack_smt_tf8_no_dyn_s203",
+  "min_free": 9000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 44"
+ },
+ {
+  "name": "stack_smt_tf8_dyn_detach_both_s201",
+  "min_free": 9000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 45"
+ },
+ {
+  "name": "stack_smt_tf8_dyn_detach_both_s202",
+  "min_free": 9000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 46"
+ },
+ {
+  "name": "stack_smt_tf8_dyn_detach_both_s203",
+  "min_free": 9000,
+  "after": [],
+  "cmd": "env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /workspace/envs/smt-memup/bin/python smt_minimal.py train --spec reruns/plan.json --index 47"
+ }
+]

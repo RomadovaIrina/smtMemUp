@@ -6,8 +6,12 @@ _stack.py are imported, not modified.
 
   --name full       reference: author loss L_dec^{Tf} + 0.1 L_dyn + 0.001 L_unif, joint training, DMT
   --name no_dyn     coef_dyn = 0: the updater is not trained during SMT and the encoder is not pushed to be Markovian
-  --name detached   L_dyn trains the updater but its gradient does NOT reach the encoder (memory target detached) -
-                    the "detached SMT" ablation of the SMT paper (sec. 3.6)
+  --name detached   the MSE TARGET m_t of L_dyn is detached (calc_mse_loss(pred, target.detach())). CORRECTED 21.10.2026:
+                    this does NOT stop the L_dyn gradient into the encoder - the updater input m_{t-1} is an encoder
+                    output too and is not detached (smt_memup_window.py:131-133), so L_dyn still trains the encoder
+                    through it (checks/check_detached_gradients.py). It is therefore NOT the "detached SMT" of the SMT
+                    paper (sec. 3.6; upstream forward_smt detach_rnn=True detaches input AND target). Name kept as run.
+                    The patch is not part of the run identity: `full` and `detached` share runs/stackv4_8318239d86e6.
   --name no_unif    coef_unif = 0 (no uniformity term)
   --name tf1/tf4/tf16/tf64   predictive window Tf (tf64 = Tf = T, the paper's synthetic setting)
   --name mem4/mem16 memory tokens 4 / 16 (state 4x64 / 16x64)

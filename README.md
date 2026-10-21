@@ -1,3 +1,8 @@
+> **С чего начать (21.10.2026): [`START_HERE_RU.md`](START_HERE_RU.md)** — порядок чтения, чистая точка входа
+> `smt_minimal.py`, проверки эквивалентности со старым кодом. Аудит результатов и честные ограничения —
+> [`AUDIT_RU.md`](AUDIT_RU.md); карта «утверждение → данные» — [`EXPERIMENT_MAP_RU.md`](EXPERIMENT_MAP_RU.md).
+> Важно: Stack версии 1 — **полное окно Tf = T = 64**; целевая постановка (v2, v4, абляции) — **короткое окно Tf = 8**.
+
 # SMT × MemUP: Stack Operations и MQAR без шума
 
 Тема — обучение рекуррентных моделей длинным зависимостям:
@@ -23,9 +28,9 @@ SMT с коротким будущим окном Tf = 8 плюс MemUP-подо
 | C1/C2 | проверка сходимости (полное окно) | `smt_memup_stack.py --override` | выполнена: `outputs_convergence/` |
 | 2 | Stack, Tf = 8 + дальние цели | `smt_memup_window.py` | 18/18 обучений, только validation: `outputs_v2_window/`; test не запускался |
 | 3 | версия 1 в сходящемся режиме (полное окно) | `smt_memup_v3.py` | подготовлена, **не запускается**: не целевая постановка |
-| **4** | **целевая: Tf = 8 + дальние цели + BPTT-ориентиры** | `smt_memup_v4.py` | код и CPU-проверки готовы; диагностика ждёт GPU |
+| **4** | **целевая: Tf = 8 + дальние цели + BPTT-ориентиры** | `smt_memup_v4.py` | диагностика D завершена (один сид 107, validation): `outputs_v4/`; абляции — `outputs_ablation/`; финал F (3 сида, test) не запускался |
 | MQAR pilot01 | SMT на MQAR | `smt_memup_mqar.py` | gate не пройден: `outputs_mqar/protocol_mqar_v1.md` |
-| MQAR A / Б | обычные бейзлайны: pilot01 и воспроизведение Zoology | `mqar_baselines.py`, `zoology_repro/` | готово к запуску: `outputs_mqar/zoology_reproduction.md` |
+| MQAR A / Б | обычные бейзлайны: pilot01 и воспроизведение Zoology | `mqar_baselines.py`, `zoology_repro/` | завершены (17 + 8 обучений): `outputs_mqar/table_mqarA_*.csv`, `table_zooB.csv` |
 
 **Код, определяющий identity существующих запусков, не меняется:**
 * `smt_memup_stack.py`, `smt_memup_window.py`, `smt_memup_v3.py`, `smt_memup_mqar.py`;
@@ -58,7 +63,7 @@ SMT с коротким будущим окном Tf = 8 плюс MemUP-подо
   * `check_resume_identity.py` — соответствие окружения запуску v1;
   * `gpu_jobs.py` + `make_jobs_v4.py` + `run_v4_diag.sh` — очередь GPU;
   * `fit_one.py`, `run_v3.sh` и др. — запускатели прежних версий.
-* `runs/` — состояние запусков. В git только истории, identity, таблицы и детекторы; checkpoints — нет (см. `status.md`).
+* `runs/` — состояние запусков. В git истории, identity, таблицы, детекторы и 17 checkpoints версии 1 (seed 7); остальных checkpoints нет.
 
 ## Окружение (точные версии: от них зависит identity запусков)
 ```bash

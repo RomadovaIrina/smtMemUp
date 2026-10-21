@@ -5,3 +5,4 @@ __pycache__/
 checks/tmp*/
 *.pt
 *.pt.bak
+reruns/demo/
