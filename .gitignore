@@ -6,3 +6,6 @@ checks/tmp*/
 *.pt
 *.pt.bak
 reruns/demo/
+results/smoke/
+results/notebook_runs/
+archive/upstream

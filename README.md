@@ -1,106 +1,23 @@
-> **С чего начать (21.10.2026): [`START_HERE_RU.md`](START_HERE_RU.md)** — порядок чтения, чистая точка входа
-> `smt_minimal.py`, проверки эквивалентности со старым кодом. Аудит результатов и честные ограничения —
-> [`AUDIT_RU.md`](AUDIT_RU.md); карта «утверждение → данные» — [`EXPERIMENT_MAP_RU.md`](EXPERIMENT_MAP_RU.md).
-> Важно: Stack версии 1 — **полное окно Tf = T = 64**; целевая постановка (v2, v4, абляции) — **короткое окно Tf = 8**.
+# SMT × MemUP: Stack и MQAR
 
-# SMT × MemUP: Stack Operations и MQAR без шума
+**Вход в проект — [`SMT_MemUP_FROM_ZERO.ipynb`](SMT_MemUP_FROM_ZERO.ipynb).** В одном ноутбуке весь код:
+* данные — копии генераторов авторов;
+* модели — копии классов `Teacher` / `RNN` авторов SMT;
+* окна, лоссы, SMT / DMT / BPTT, бейзлайны, оценка, проверки, сверка со старым кодом, графики архивных результатов.
 
-Тема — обучение рекуррентных моделей длинным зависимостям:
-* SMT (Supervised Memory Training) с MemUP-подобным отбором будущих целей;
-* задачи Stack Operations и MQAR (Zoology), без шума.
+Разбор по ячейкам и навигация «вопрос → ячейка» — [`NOTEBOOK_WALKTHROUGH_RU.md`](NOTEBOOK_WALKTHROUGH_RU.md).
 
-**Текущий статус — в [`status.md`](status.md)**: что выполнено, где подтверждения, что только подготовлено, что
-заблокировано, какой следующий запуск. История до 16.10.2026 — [`history/README_2026-10-14.md`](history/README_2026-10-14.md)
-(прежний README без изменений).
-
-## Целевая постановка (одобрена научником)
-SMT с коротким будущим окном Tf = 8 плюс MemUP-подобное предсказание дальних целей вне окна по памяти m_t и
-промежуточным входам декодера. Сравнение:
-* SMT-варианты: base_window, uniform_far, random_far, surprise_far (окно r = 8), ctx_far; oracle_far — диагностика;
-* ориентиры — та же RNN с нуля: full BPTT и BPTT-1.
-
-Протокол — [`proposals/preregistration_v4.md`](proposals/preregistration_v4.md), код — `smt_memup_v4.py`.
-
-## Версии экспериментов
-| версия | постановка | код | состояние |
-|---|---|---|---|
-| 1 | Stack, полное окно Tf = T, перевзвешивание целей | `smt_memup_stack.py` | 18/18 обучений, test выполнен: `outputs_test/` |
-| C1/C2 | проверка сходимости (полное окно) | `smt_memup_stack.py --override` | выполнена: `outputs_convergence/` |
-| 2 | Stack, Tf = 8 + дальние цели | `smt_memup_window.py` | 18/18 обучений, только validation: `outputs_v2_window/`; test не запускался |
-| 3 | версия 1 в сходящемся режиме (полное окно) | `smt_memup_v3.py` | подготовлена, **не запускается**: не целевая постановка |
-| **4** | **целевая: Tf = 8 + дальние цели + BPTT-ориентиры** | `smt_memup_v4.py` | диагностика D завершена (один сид 107, validation): `outputs_v4/`; абляции — `outputs_ablation/`; финал F (3 сида, test) не запускался |
-| MQAR pilot01 | SMT на MQAR | `smt_memup_mqar.py` | gate не пройден: `outputs_mqar/protocol_mqar_v1.md` |
-| MQAR A / Б | обычные бейзлайны: pilot01 и воспроизведение Zoology | `mqar_baselines.py`, `zoology_repro/` | завершены (17 + 8 обучений): `outputs_mqar/table_mqarA_*.csv`, `table_zooB.csv` |
-
-**Код, определяющий identity существующих запусков, не меняется:**
-* `smt_memup_stack.py`, `smt_memup_window.py`, `smt_memup_v3.py`, `smt_memup_mqar.py`;
-* хэш файла входит в имя каталога запуска.
-
-Новые эксперименты — в новых файлах и каталогах `runs/stackv4_*`, `runs/mqar_baselines_*`, `runs/zoology_repro/`.
-
-## Файлы
-* Ноутбуки:
-  * `02_smt_memup_stack.ipynb` — Stack, версия 1;
-  * `03_smt_memup_mqar.ipynb` — MQAR, pilot01;
-  * `04_smt_memup_v3.ipynb` — версия 3;
-  * `01_…_archive.ipynb` — архив.
-* Код экспериментов:
-  * `smt_memup_stack.py` (v1), `smt_memup_window.py` (v2), `smt_memup_v3.py` (v3), `smt_memup_v4.py` (v4);
-  * `smt_memup_mqar.py` (MQAR pilot01), `mqar_baselines.py` (MQAR A), `zoology_repro/` (MQAR Б);
-  * `h2_retention.py` — анализ H2.
-* Отчёты и протоколы:
-  * `outputs_test/` — v1, test;
-  * `outputs_convergence/` — C1/C2;
-  * `outputs_v2_window/` — v2, validation;
-  * `outputs/`, `outputs_v2/` — подбор α версии 1;
-  * `outputs_mqar/` — MQAR;
-  * `proposals/` — протоколы и предрегистрации;
-  * `interim_results_2026-10-14/` — промежуточные таблицы.
-* Проверки и запуск (`checks/`):
-  * `test_*.py` — CPU-проверки;
-  * `benchmark_train_step.py` — замер полного train step;
-  * `check_v2_test_ready.py` — готовность test v2;
-  * `check_resume_identity.py` — соответствие окружения запуску v1;
-  * `gpu_jobs.py` + `make_jobs_v4.py` + `run_v4_diag.sh` — очередь GPU;
-  * `fit_one.py`, `run_v3.sh` и др. — запускатели прежних версий.
-* `runs/` — состояние запусков. В git истории, identity, таблицы, детекторы и 17 checkpoints версии 1 (seed 7); остальных checkpoints нет.
-
-## Окружение (точные версии: от них зависит identity запусков)
 ```bash
-uv venv --python 3.12.3 envs/smt-memup
-uv pip install --python envs/smt-memup/bin/python torch==2.9.1 torchvision==0.24.1 --index-url https://download.pytorch.org/whl/cu128
-uv pip install --python envs/smt-memup/bin/python numpy==2.1.0 pandas==2.3.3 matplotlib==3.10.8 einops==0.8.1 x-transformers==2.18.5 tqdm==4.67.1 pydantic==2.14.1 ipykernel jupyter nbformat nbclient nbconvert
-uv pip install --python envs/smt-memup/bin/python wandb==0.22.2 pyyaml   # Zoology импортирует wandb
-```
-На арендованном сервере окружение лежит в `/workspace/envs/smt-memup`, репозиторий — в `/workspace/smtMemUp`.
-Образ сервера (`/venv/main`) не трогаем.
-
-## Авторские исходники (не входят в репозиторий)
-```bash
-git clone https://github.com/akarshkumar0101/smt.git upstream/smt && git -C upstream/smt checkout cf0d0f04be606ab9d97b1a449a6846450d656ad0
-git clone https://github.com/griver/memup.git upstream/memup && git -C upstream/memup checkout d27657137f6e427e30fcd4ae885b20b071b2917d
-git clone https://github.com/HazyResearch/zoology.git upstream/zoology && git -C upstream/zoology checkout 1ad20d193b6113cae1e8f3c655c300d7b4b3f4bb
+python build_notebook.py --execute      # пересобрать ноутбук и прогнать сверху вниз (SMOKE, CPU, ~1,5 мин)
 ```
 
-## Команды
-```bash
-# CPU-проверки (без GPU)
-CUDA_VISIBLE_DEVICES="" envs/smt-memup/bin/python checks/test_smt_memup_v4.py
-CUDA_VISIBLE_DEVICES="" envs/smt-memup/bin/python checks/test_mqar_baselines.py
-CUDA_VISIBLE_DEVICES="" envs/smt-memup/bin/python checks/test_smt_memup_window.py
-# замер train step (GPU, ~минуты)
-envs/smt-memup/bin/python checks/benchmark_train_step.py
-# диагностическая очередь (GPU; только по согласованию): Stack v4 часть D, MQAR A, Zoology Б
-checks/run_v4_diag.sh
-# итоги диагностики Stack (CPU-безопасно после обучений)
-envs/smt-memup/bin/python smt_memup_v4.py --phase diag_report
-# готовность test версии 2 (CPU)
-envs/smt-memup/bin/python checks/check_v2_test_ready.py --sha
-```
-
-## Правила работы
-* Test каждой версии создаётся один раз и только с разрешения пользователя. По test ничего не выбирается.
-* GPU-запуски, аренда и платные действия — только по согласованию.
-* Push — только по просьбе пользователя. Перед коммитом проверять, что в него не попадают checkpoints
-  (`*.pt` в `.gitignore`).
-* Чужие процессы, файлы и окружения не трогаем.
+* **Режимы.** `MODE = "SMOKE"` — только проверки. `MODE = "FULL"` вместе с `FULL_EXPERIMENT` обучает один выбранный
+  эксперимент в новый каталог `results/notebook_runs/`.
+* **Окружение.** Python 3.12, torch 2.9–2.10, x-transformers 2.18.5, einops, numpy, pandas, matplotlib, nbformat,
+  nbclient.
+* **Авторский код** нужен только для сверки (§12 ноутбука). Команды клонирования — в ячейке `s0-start`.
+* **`archive/`** — весь прежний код, запуски (`archive/runs`), логи, отчёты и черновики. Ничего не удалено, только
+  перенесено. Хэши кода, входящие в identity старых запусков, не менялись.
+* **Важно про окно:**
+  * Stack версии 1 — полное окно Tf = T = 64;
+  * целевая постановка (v2, v4, абляции) — короткое окно Tf = 8.
