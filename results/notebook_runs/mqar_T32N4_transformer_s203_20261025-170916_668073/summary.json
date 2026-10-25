@@ -1,0 +1,15 @@
+{
+  "name": "mqar_T32N4_transformer",
+  "family": "transformer",
+  "seed": 203,
+  "lm_best_step": 500,
+  "lm_last_step": 500,
+  "eval_best_lm_long_acc": 0.9933082392304475,
+  "eval_best_lm_long_ce": 0.038344353437423706,
+  "eval_best_lm_all_acc": 0.9931640625,
+  "eval_best_lm_long_cand_acc": 0.9937264742785445,
+  "eval_last_lm_long_acc": 0.9933082392304475,
+  "eval_last_lm_long_ce": 0.038344353437423706,
+  "eval_last_lm_all_acc": 0.9931640625,
+  "eval_last_lm_long_cand_acc": 0.9937264742785445
+}

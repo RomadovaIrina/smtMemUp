@@ -1,0 +1,15 @@
+{
+  "name": "mqar_T16N2_teacher_full",
+  "family": "teacher_full",
+  "seed": 203,
+  "smt_best_step": 5000,
+  "smt_last_step": 6000,
+  "eval_best_teacher_full_smt_long_acc": 1.0,
+  "eval_best_teacher_full_smt_long_ce": 7.40796240279451e-05,
+  "eval_best_teacher_full_smt_all_acc": 1.0,
+  "eval_best_teacher_full_smt_long_cand_acc": 1.0,
+  "eval_last_teacher_full_smt_long_acc": 1.0,
+  "eval_last_teacher_full_smt_long_ce": 0.00013116731133777648,
+  "eval_last_teacher_full_smt_all_acc": 1.0,
+  "eval_last_teacher_full_smt_long_cand_acc": 1.0
+}

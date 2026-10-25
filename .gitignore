@@ -7,6 +7,5 @@ checks/tmp*/
 *.pt.bak
 reruns/demo/
 results/smoke/
-results/notebook_runs/
 archive/upstream
 results/gpu_smoke/

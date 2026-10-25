@@ -1,0 +1,15 @@
+{
+  "name": "mqar_T16N2_transformer",
+  "family": "transformer",
+  "seed": 201,
+  "lm_best_step": 500,
+  "lm_last_step": 500,
+  "eval_best_lm_long_acc": 0.9881170018281535,
+  "eval_best_lm_long_ce": 0.04568573459982872,
+  "eval_best_lm_all_acc": 0.98583984375,
+  "eval_best_lm_long_cand_acc": 0.9890310786106032,
+  "eval_last_lm_long_acc": 0.9881170018281535,
+  "eval_last_lm_long_ce": 0.04568573459982872,
+  "eval_last_lm_all_acc": 0.98583984375,
+  "eval_last_lm_long_cand_acc": 0.9890310786106032
+}

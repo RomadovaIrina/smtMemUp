@@ -1,0 +1,15 @@
+{
+  "name": "mqar_T16N2_rnn_bptt_full",
+  "family": "bptt_full",
+  "seed": 201,
+  "bptt_best_step": 6000,
+  "bptt_last_step": 6000,
+  "eval_best_rnn_bptt_long_acc": 0.39853747714808047,
+  "eval_best_rnn_bptt_long_ce": 2.461784601211548,
+  "eval_best_rnn_bptt_all_acc": 0.38623046875,
+  "eval_best_rnn_bptt_long_cand_acc": 0.5164533820840951,
+  "eval_last_rnn_bptt_long_acc": 0.39853747714808047,
+  "eval_last_rnn_bptt_long_ce": 2.461784601211548,
+  "eval_last_rnn_bptt_all_acc": 0.38623046875,
+  "eval_last_rnn_bptt_long_cand_acc": 0.5164533820840951
+}

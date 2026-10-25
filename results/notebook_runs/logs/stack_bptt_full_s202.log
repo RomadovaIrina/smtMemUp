@@ -1,0 +1,177 @@
+[NbConvertApp] Converting notebook /home/irina/smt_memup_project/results/notebook_runs/executed/_stack_bptt_full_s202.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/irina/miniconda3/envs/smt-memup/bin/jupyter-nbconvert", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/jupyter_core/application.py", line 284, in launch_instance
+    super().launch_instance(argv=argv, **kwargs)
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/traitlets/config/application.py", line 1080, in launch_instance
+    app.start()
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/nbconvert/nbconvertapp.py", line 420, in start
+    self.convert_notebooks()
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/nbconvert/nbconvertapp.py", line 597, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/nbconvert/nbconvertapp.py", line 563, in convert_single_notebook
+    output, resources = self.export_single_notebook(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/nbconvert/nbconvertapp.py", line 487, in export_single_notebook
+    output, resources = self.exporter.from_filename(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/nbconvert/exporters/exporter.py", line 201, in from_filename
+    return self.from_file(f, resources=resources, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/nbconvert/exporters/exporter.py", line 220, in from_file
+    return self.from_notebook_node(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/nbconvert/exporters/notebook.py", line 36, in from_notebook_node
+    nb_copy, resources = super().from_notebook_node(nb, resources, **kw)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/nbconvert/exporters/exporter.py", line 154, in from_notebook_node
+    nb_copy, resources = self._preprocess(nb_copy, resources)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/nbconvert/exporters/exporter.py", line 353, in _preprocess
+    nbc, resc = preprocessor(nbc, resc)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/nbconvert/preprocessors/base.py", line 48, in __call__
+    return self.preprocess(nb, resources)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/nbconvert/preprocessors/execute.py", line 103, in preprocess
+    self.preprocess_cell(cell, resources, index)
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/nbconvert/preprocessors/execute.py", line 124, in preprocess_cell
+    cell = self.execute_cell(cell, index, store_history=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+EXPERIMENTS = {   # seeds 201/202/203 (new); configs fixed before running
+    "stack_smt_tf8": dict(family="smt", config=STACK),
+    "stack_smt_tf8_ctx_far": dict(family="smt", config=replace(STACK, far="ctx_far")),
+    "stack_bptt_full": dict(family="bptt_full", config=STACK),
+    "stack_bptt_1": dict(family="bptt_1", config=STACK),
+    "stack_smt_tf8_no_dyn": dict(family="smt", config=replace(STACK, coef_dyn=0.0)),
+    "stack_smt_tf8_target_detached": dict(family="smt", config=replace(STACK, dyn_detach="target")),   # = OLD 'detached'
+    "stack_smt_tf8_fully_detached": dict(family="smt", config=replace(STACK, dyn_detach="both")),      # [новое]
+    "mqar_T16N2_smt": dict(family="smt", config=replace(MQAR_T16, smt_steps=6000, dmt_steps=2000, eval_every=250)),
+    "mqar_T16N2_teacher_bottleneck": dict(family="smt", config=replace(MQAR_T16, smt_steps=6000, dmt_steps=0, coef_dyn=0.0, coef_unif=0.0, eval_every=250)),
+    "mqar_T16N2_teacher_full": dict(family="teacher_full", config=replace(MQAR_T16, smt_steps=6000, eval_every=250)),
+    "mqar_T16N2_transformer": dict(family="transformer", config=replace(MQAR_T16, eval_every=250, stop_accuracy=0.99)),
+    "mqar_T16N2_rnn_bptt_full": dict(family="bptt_full", config=replace(MQAR_T16, bptt_steps=6000, bptt_lr=1e-3, eval_every=250, stop_accuracy=0.99)),
+    "mqar_T32N4_smt": dict(family="smt", config=replace(MQAR_T32, smt_steps=6000, dmt_steps=2000, eval_every=250)),
+    "mqar_T32N4_transformer": dict(family="transformer", config=replace(MQAR_T32, eval_every=250, stop_accuracy=0.99)),
+}
+if MODE == "FULL" and FULL_EXPERIMENT:
+    DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")   # read by every function at call time
+    e = EXPERIMENTS[FULL_EXPERIMENT]
+    out_dir, summary = fit(dict(name=FULL_EXPERIMENT, seed=FULL_SEED, **e))
+    print(out_dir); print(json.dumps(summary, indent=2))
+else:
+    print("FULL not requested: nothing trained. Experiments available:", ", ".join(EXPERIMENTS))
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mOutOfMemoryError[39m                          Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[30][39m[32m, line 20[39m
+[32m     16[39m }
+[32m     17[39m [38;5;28;01mif[39;00m MODE == [33m"FULL"[39m [38;5;28;01mand[39;00m FULL_EXPERIMENT:
+[32m     18[39m     DEVICE = torch.device([33m"cuda"[39m [38;5;28;01mif[39;00m torch.cuda.is_available() [38;5;28;01melse[39;00m [33m"cpu"[39m)   [38;5;66;03m# read by every function at call time[39;00m
+[32m     19[39m     e = EXPERIMENTS[FULL_EXPERIMENT]
+[32m---> [39m[32m20[39m     out_dir, summary = fit(dict(name=FULL_EXPERIMENT, seed=FULL_SEED, **e))
+[32m     21[39m     print(out_dir); print(json.dumps(summary, indent=[32m2[39m))
+[32m     22[39m [38;5;28;01melse[39;00m:
+[32m     23[39m     print([33m"FULL not requested: nothing trained. Experiments available:"[39m, [33m", "[39m.join(EXPERIMENTS))
+
+[36mCell[39m[36m [39m[32mIn[25][39m[32m, line 55[39m, in [36mfit[39m[34m(spec, out_root, log)[39m
+[32m     51[39m     [38;5;28;01melif[39;00m family [38;5;28;01min[39;00m ([33m"bptt_full"[39m, [33m"bptt_1"[39m):
+[32m     52[39m         [38;5;28;01mdef[39;00m step_fn(s):
+[32m     53[39m             rnn.train(); batch = sample(cfg, cfg.batch_size, derive_seed([32m301[39m, seed, s))
+[32m     54[39m             [38;5;28;01mwith[39;00m seeded(derive_seed([32m306[39m, seed, s)): [38;5;28;01mreturn[39;00m bptt_loss(rnn, batch, cfg, family == [33m"bptt_1"[39m)
+[32m---> [39m[32m55[39m         r = run_stage([33m"bptt"[39m, cfg.bptt_steps, cfg.bptt_lr, list(rnn.parameters()), step_fn, rnn_val, dict(rnn=rnn), out, cfg, log, [33m"val_rnn_long_acc"[39m)
+[32m     56[39m         both([33m"bptt"[39m, r, dict(rnn=rnn), [38;5;28;01mlambda[39;00m tag: long_metrics(answer_logits([33m"rnn"[39m, rnn, ev_set, cfg), cfg, f"eval_{tag}_rnn_bptt"))
+[32m     57[39m     [38;5;28;01melif[39;00m family == [33m"transformer"[39m:
+[32m     58[39m         model = make_lm(cfg, seed)
+
+[36mCell[39m[36m [39m[32mIn[23][39m[32m, line 16[39m, in [36mrun_stage[39m[34m(name, steps, lr, params, step_fn, monitor_fn, models, out, cfg, log, stop_key)[39m
+[32m     12[39m     opt, sched = make_optimizer(params, lr, cfg, steps)
+[32m     13[39m     best, best_step, history, tic = float([33m"inf"[39m), [38;5;28;01mNone[39;00m, [], time.perf_counter()
+[32m     14[39m     [38;5;28;01mfor[39;00m step [38;5;28;01min[39;00m range([32m1[39m, steps + [32m1[39m):
+[32m     15[39m         opt.zero_grad(set_to_none=[38;5;28;01mTrue[39;00m)
+[32m---> [39m[32m16[39m         loss, parts = step_fn(step - [32m1[39m)
+[32m     17[39m         [38;5;28;01massert[39;00m torch.isfinite(loss), (name, step, parts)
+[32m     18[39m         loss.backward()
+[32m     19[39m         norm = torch.nn.utils.clip_grad_norm_(params, cfg.clip_grad)
+
+[36mCell[39m[36m [39m[32mIn[25][39m[32m, line 54[39m, in [36mfit.<locals>.step_fn[39m[34m(s)[39m
+[32m     52[39m         [38;5;28;01mdef[39;00m step_fn(s):
+[32m     53[39m             rnn.train(); batch = sample(cfg, cfg.batch_size, derive_seed([32m301[39m, seed, s))
+[32m---> [39m[32m54[39m             [38;5;28;01mwith[39;00m seeded(derive_seed([32m306[39m, seed, s)): [38;5;28;01mreturn[39;00m bptt_loss(rnn, batch, cfg, family == [33m"bptt_1"[39m)
+
+[36mCell[39m[36m [39m[32mIn[14][39m[32m, line 80[39m, in [36mbptt_loss[39m[34m(rnn, batch, cfg, truncate)[39m
+[32m     76[39m     """truncate=False: full BPTT (= authors' forward_bptt). truncate=True: BPTT-1 - same forward values, state NOT
+[32m     77[39m     reset, incoming state of every update detached."""
+[32m     78[39m     x = batch[[33m"x"[39m].to(DEVICE)
+[32m     79[39m     states = rnn_rollout(rnn, x, detach=truncate)                   [38;5;66;03m# [B,T,Z][39;00m
+[32m---> [39m[32m80[39m     logits = rnn.rnn_readout(states.flatten([32m0[39m, [32m1[39m)).reshape(*x.shape, -[32m1[39m)   [38;5;66;03m# [B,T,V][39;00m
+[32m     81[39m     ce = calc_cross_entropy_loss(logits, batch[[33m"y"[39m].to(DEVICE).clamp(min=[32m0[39m))
+[32m     82[39m     mask = batch[[33m"target_mask"[39m].to(DEVICE)
+[32m     83[39m     loss = (ce * mask).sum() / mask.sum().clamp(min=[32m1[39m)
+
+[36mCell[39m[36m [39m[32mIn[10][39m[32m, line 98[39m, in [36mRNN.rnn_readout[39m[34m(self, z)[39m
+[32m     96[39m     [38;5;28;01mdef[39;00m rnn_readout(self, z):                                      [38;5;66;03m# z [N,Z] -> [N,V][39;00m
+[32m     97[39m         z = rearrange(z, [33m"B (K d) -> B K d"[39m, K=self.cfg.mem_tokens)
+[32m---> [39m[32m98[39m         [38;5;28;01mreturn[39;00m self.to_logits(self.decoder(z)[:, -[32m1[39m, :])
+
+[36mFile [39m[32m~/miniconda3/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py:1775[39m, in [36mModule._wrapped_call_impl[39m[34m(self, *args, **kwargs)[39m
+[32m   1773[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m._compiled_call_impl(*args, **kwargs)  [38;5;66;03m# type: ignore[misc][39;00m
+[32m   1774[39m [38;5;28;01melse[39;00m:
+[32m-> [39m[32m1775[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43m_call_impl[39;49m[30;43m([39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/miniconda3/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py:1786[39m, in [36mModule._call_impl[39m[34m(self, *args, **kwargs)[39m
+[32m   1781[39m [38;5;66;03m# If we don't have any hooks, we want to skip the rest of the logic in[39;00m
+[32m   1782[39m [38;5;66;03m# this function, and just call forward.[39;00m
+[32m   1783[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m ([38;5;28mself[39m._backward_hooks [38;5;129;01mor[39;00m [38;5;28mself[39m._backward_pre_hooks [38;5;129;01mor[39;00m [38;5;28mself[39m._forward_hooks [38;5;129;01mor[39;00m [38;5;28mself[39m._forward_pre_hooks
+[32m   1784[39m         [38;5;129;01mor[39;00m _global_backward_pre_hooks [38;5;129;01mor[39;00m _global_backward_hooks
+[32m   1785[39m         [38;5;129;01mor[39;00m _global_forward_hooks [38;5;129;01mor[39;00m _global_forward_pre_hooks):
+[32m-> [39m[32m1786[39m     [38;5;28;01mreturn[39;00m [30;43mforward_call[39;49m[30;43m([39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m   1788[39m result = [38;5;28;01mNone[39;00m
+[32m   1789[39m called_always_called_hooks = [38;5;28mset[39m()
+
+[36mFile [39m[32m~/miniconda3/envs/smt-memup/lib/python3.12/site-packages/x_transformers/x_transformers.py:3209[39m, in [36mAttentionLayers.forward[39m[34m(self, x, context, mask, context_mask, attn_mask, self_attn_kv_mask, mems, mem_masks, seq_start_pos, seq_pos_offset, cache, input_not_include_cache, cache_age, return_hiddens, return_gumbel_log_probs, rotary_pos_emb, polar_pos_emb, pos, context_pos, attn_bias, deep_embeds_and_ids, self_attn_additional_kv, additional_kv_mask, detach_additional_kv, route_additional_kv_to_top, condition, in_attn_cond, layers_execute_order, repeat_blocks, self_attn_kv_residuals, cross_attn_kv_residuals, flash_pack_seq_kwargs, flash_pack_seq_context_kwargs, causal)[39m
+[32m   3206[39m     x = x + inp_inject
+[32m   3208[39m [38;5;28;01mif[39;00m exists(pre_norm):
+[32m-> [39m[32m3209[39m     x = [30;43mpre_norm[39;49m[30;43m([39;49m[30;43mx[39;49m[30;43m)[39;49m
+[32m   3211[39m     [38;5;28;01mif[39;00m layer_type == [33m'[39m[33ma[39m[33m'[39m [38;5;129;01mand[39;00m exists(layer_mem):
+[32m   3212[39m         layer_mem = pre_norm(layer_mem)
+
+[36mFile [39m[32m~/miniconda3/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py:1775[39m, in [36mModule._wrapped_call_impl[39m[34m(self, *args, **kwargs)[39m
+[32m   1773[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m._compiled_call_impl(*args, **kwargs)  [38;5;66;03m# type: ignore[misc][39;00m
+[32m   1774[39m [38;5;28;01melse[39;00m:
+[32m-> [39m[32m1775[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43m_call_impl[39;49m[30;43m([39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/miniconda3/envs/smt-memup/lib/python3.12/site-packages/torch/nn/modules/module.py:1786[39m, in [36mModule._call_impl[39m[34m(self, *args, **kwargs)[39m
+[32m   1781[39m [38;5;66;03m# If we don't have any hooks, we want to skip the rest of the logic in[39;00m
+[32m   1782[39m [38;5;66;03m# this function, and just call forward.[39;00m
+[32m   1783[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m ([38;5;28mself[39m._backward_hooks [38;5;129;01mor[39;00m [38;5;28mself[39m._backward_pre_hooks [38;5;129;01mor[39;00m [38;5;28mself[39m._forward_hooks [38;5;129;01mor[39;00m [38;5;28mself[39m._forward_pre_hooks
+[32m   1784[39m         [38;5;129;01mor[39;00m _global_backward_pre_hooks [38;5;129;01mor[39;00m _global_backward_hooks
+[32m   1785[39m         [38;5;129;01mor[39;00m _global_forward_hooks [38;5;129;01mor[39;00m _global_forward_pre_hooks):
+[32m-> [39m[32m1786[39m     [38;5;28;01mreturn[39;00m [30;43mforward_call[39;49m[30;43m([39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m   1788[39m result = [38;5;28;01mNone[39;00m
+[32m   1789[39m called_always_called_hooks = [38;5;28mset[39m()
+
+[36mFile [39m[32m~/miniconda3/envs/smt-memup/lib/python3.12/site-packages/x_transformers/x_transformers.py:955[39m, in [36mRMSNorm.forward[39m[34m(self, x)[39m
+[32m    953[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mforward[39m([38;5;28mself[39m, x):
+[32m    954[39m     gamma = [38;5;28mself[39m.g + [38;5;28mfloat[39m([38;5;28mself[39m.unit_offset)
+[32m--> [39m[32m955[39m     [38;5;28;01mreturn[39;00m [30;43mF[39;49m[30;43m.[39;49m[30;43mnormalize[39;49m[30;43m([39;49m[30;43mx[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mdim[39;49m[30;43m [39;49m[30;43m=[39;49m[30;43m [39;49m[30;43m-[39;49m[30;43m1[39;49m[30;43m)[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mscale[39;49m * gamma
+
+[31mOutOfMemoryError[39m: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 23.56 GiB of which 71.06 MiB is free. Process 7775 has 338.00 MiB memory in use. Process 20362 has 60.94 MiB memory in use. Process 643651 has 9.75 GiB memory in use. Process 643657 has 8.45 GiB memory in use. Process 666825 has 2.42 GiB memory in use. Process 668254 has 1000.00 MiB memory in use. Including non-PyTorch memory, this process has 634.00 MiB memory in use. Of the allocated memory 311.15 MiB is allocated by PyTorch, and 14.85 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+

@@ -1,0 +1,29 @@
+2026-10-25 16:02:19 mqar_T16N2_smt 202 exit 0 after 29.6 min
+2026-10-25 16:02:22 mqar_T16N2_smt 203 exit 0 after 29.6 min
+2026-10-25 16:02:23 mqar_T16N2_smt 201 exit 0 after 29.6 min
+2026-10-25 16:23:14 mqar_T16N2_teacher_bottleneck 201 exit 0 after 20.9 min
+2026-10-25 16:23:18 mqar_T16N2_teacher_bottleneck 202 exit 0 after 20.9 min
+2026-10-25 16:23:19 mqar_T16N2_teacher_bottleneck 203 exit 0 after 20.9 min
+2026-10-25 16:44:07 mqar_T16N2_teacher_full 201 exit 0 after 20.9 min
+2026-10-25 16:44:07 mqar_T16N2_transformer 201 skipped (done)
+2026-10-25 16:44:15 mqar_T16N2_teacher_full 202 exit 0 after 20.9 min
+2026-10-25 16:44:16 mqar_T16N2_teacher_full 203 exit 0 after 20.9 min
+2026-10-25 16:45:29 mqar_T16N2_transformer 202 exit 0 after 1.4 min
+2026-10-25 16:45:51 mqar_T16N2_transformer 203 exit 0 after 1.6 min
+2026-10-25 17:04:58 mqar_T16N2_rnn_bptt_full 201 exit 0 after 20.7 min
+2026-10-25 17:06:09 mqar_T16N2_rnn_bptt_full 202 exit 0 after 20.7 min
+2026-10-25 17:06:35 mqar_T16N2_rnn_bptt_full 203 exit 0 after 20.7 min
+2026-10-25 17:07:04 mqar_T32N4_smt 202 exit 1 after 0.9 min
+2026-10-25 17:07:36 mqar_T32N4_smt 203 exit 1 after 1.0 min
+2026-10-25 17:08:24 mqar_T32N4_transformer 201 exit 0 after 1.3 min
+2026-10-25 17:08:54 mqar_T32N4_transformer 202 exit 0 after 1.3 min
+2026-10-25 17:09:39 mqar_T32N4_transformer 203 exit 0 after 1.2 min
+2026-10-25 17:10:34 stack_bptt_full 202 exit 1 after 0.9 min
+2026-10-25 17:11:28 stack_bptt_full 203 exit 1 after 0.9 min
+2026-10-25 17:12:23 stack_bptt_1 201 exit 1 after 0.9 min
+2026-10-25 17:13:17 stack_bptt_1 202 exit 1 after 0.9 min
+2026-10-25 17:14:13 stack_bptt_1 203 exit 1 after 0.9 min
+2026-10-25 17:48:34 mqar_T32N4_smt 201 exit 0 after 43.6 min
+2026-10-25 18:56:31 stack_smt_tf8 202 exit 0 after 203.8 min
+2026-10-25 18:56:37 stack_smt_tf8 201 exit 0 after 203.9 min
+2026-10-25 20:01:01 new queue: ablations on seed 201 only; ctx_far 3 seeds; retry of OOM-failed jobs; memory-gated starts
