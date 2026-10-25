@@ -56,7 +56,9 @@ def job(name: str, seed: int):
     tmp = OUT / "executed" / f"_{name}_s{seed}.ipynb"
     nbformat.write(nb, tmp)
     log = OUT / "logs" / f"{name}_s{seed}.log"
-    with START_LOCK:                                      # one start at a time, only with enough free GPU memory
+    with START_LOCK, open("/tmp/smt_gpu_start.lock", "w") as lock:   # one start at a time across ALL queues
+        import fcntl
+        fcntl.flock(lock, fcntl.LOCK_EX)                  # shared with zoology_cell/run_cell.py
         while free_mib() < NEED_MIB(name):
             time.sleep(30)
         proc = subprocess.Popen([sys.executable, "-m", "jupyter", "nbconvert", "--to", "notebook", "--execute",

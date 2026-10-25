@@ -285,18 +285,25 @@ NEED_MIB = {"zoology": 4000, "ours_rnn": 10000, "ours_smt": 9000}     # start a 
 
 
 def queue(max_par=2):
+    """Starts are serialised across ALL queues on this GPU by /tmp/smt_gpu_start.lock (also used by run_experiments.py):
+    under the lock, wait until the job's memory need is free, start it, wait 120 s for its allocation, release."""
+    import fcntl
     procs, todo = [], jobs()
     (OUT / "logs").mkdir(parents=True, exist_ok=True)
+    free_mib = lambda: int(subprocess.run(["nvidia-smi", "--query-gpu=memory.free", "--format=csv,noheader,nounits"],
+                                          capture_output=True, text=True).stdout.split()[0])
     while todo or procs:
         procs = [p for p in procs if p.poll() is None]
-        free = int(subprocess.run(["nvidia-smi", "--query-gpu=memory.free", "--format=csv,noheader,nounits"],
-                                  capture_output=True, text=True).stdout.split()[0])
-        if todo and len(procs) < max_par and free >= NEED_MIB[todo[0][1]]:
-            a = todo.pop(0); name = "_".join(x.lstrip("-") for x in a[1:])
-            procs.append(subprocess.Popen([sys.executable, __file__, *a], cwd=ROOT, stdout=open(OUT / "logs" / f"{name}.log", "a"),
-                                          stderr=subprocess.STDOUT))
-            print(time.strftime("%F %T"), "started", name, f"free {free} MiB", flush=True)
-            time.sleep(120)
+        if todo and len(procs) < max_par:
+            with open("/tmp/smt_gpu_start.lock", "w") as lock:
+                fcntl.flock(lock, fcntl.LOCK_EX)
+                while free_mib() < NEED_MIB[todo[0][1]]:
+                    time.sleep(30)
+                a = todo.pop(0); name = "_".join(x.lstrip("-") for x in a[1:])
+                procs.append(subprocess.Popen([sys.executable, __file__, *a], cwd=ROOT, stdout=open(OUT / "logs" / f"{name}.log", "a"),
+                                              stderr=subprocess.STDOUT))
+                print(time.strftime("%F %T"), "started", name, f"free {free_mib()} MiB", flush=True)
+                time.sleep(120)
         time.sleep(15)
     print(time.strftime("%F %T"), "queue finished", flush=True)
 
