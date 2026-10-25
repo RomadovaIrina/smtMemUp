@@ -281,14 +281,17 @@ def jobs():
     return j
 
 
-def queue(max_par=2, need_mib=6000):
+NEED_MIB = {"zoology": 4000, "ours_rnn": 10000, "ours_smt": 9000}     # start a job only with this much free GPU memory
+
+
+def queue(max_par=2):
     procs, todo = [], jobs()
     (OUT / "logs").mkdir(parents=True, exist_ok=True)
     while todo or procs:
         procs = [p for p in procs if p.poll() is None]
         free = int(subprocess.run(["nvidia-smi", "--query-gpu=memory.free", "--format=csv,noheader,nounits"],
                                   capture_output=True, text=True).stdout.split()[0])
-        if todo and len(procs) < max_par and free >= need_mib:
+        if todo and len(procs) < max_par and free >= NEED_MIB[todo[0][1]]:
             a = todo.pop(0); name = "_".join(x.lstrip("-") for x in a[1:])
             procs.append(subprocess.Popen([sys.executable, __file__, *a], cwd=ROOT, stdout=open(OUT / "logs" / f"{name}.log", "a"),
                                           stderr=subprocess.STDOUT))
