@@ -380,7 +380,7 @@ def windows(batch):
              y_fut=unfold(y, 0, T - 1),                                   # [B,T,T]: y[b, t..t+T-1]
              source=unfold(batch["source_pos"], 0, T - 1))
     w["valid"] = w["y_fut"].ne(IGNORE)                                    # [B,T,T] bool
-    w["prefix"] = w["valid"] & (w["source"] <= torch.arange(T).view(1, T, 1))   # answer written at or before t
+    w["prefix"] = w["valid"] & (w["source"] <= torch.arange(T, device=x.device).view(1, T, 1))   # answer written at or before t
     out = {k: v.reshape(B * T, T) for k, v in w.items()}                  # [B,T,T] -> [R,T], row r = b*T + t
     assert out["x_ctx"].shape == (B * T, T)
     return out
