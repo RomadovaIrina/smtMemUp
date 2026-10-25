@@ -1420,6 +1420,9 @@ EXPERIMENTS = {   # seeds 201/202/203 (new); configs fixed before running
     "mqar_T16N2_teacher_full": dict(family="teacher_full", config=replace(MQAR_T16, smt_steps=6000, eval_every=250)),
     "mqar_T16N2_transformer": dict(family="transformer", config=replace(MQAR_T16, eval_every=250, stop_accuracy=0.99)),
     "mqar_T16N2_rnn_bptt_full": dict(family="bptt_full", config=replace(MQAR_T16, bptt_steps=6000, bptt_lr=1e-3, eval_every=250, stop_accuracy=0.99)),
+    # 6000 steps left full BPTT unconverged (plateau ~50% at s202/s203, still rising at s201): long budget, early stop at 99%
+    "mqar_T16N2_rnn_bptt_full_long": dict(family="bptt_full", config=replace(MQAR_T16, bptt_steps=60000, bptt_lr=1e-3, eval_every=500, stop_accuracy=0.99)),
+    "mqar_T32N4_rnn_bptt_full_long": dict(family="bptt_full", config=replace(MQAR_T32, bptt_steps=60000, bptt_lr=1e-3, eval_every=500, stop_accuracy=0.99)),
     "mqar_T32N4_smt": dict(family="smt", config=replace(MQAR_T32, smt_steps=6000, dmt_steps=2000, eval_every=250)),
     "mqar_T32N4_transformer": dict(family="transformer", config=replace(MQAR_T32, eval_every=250, stop_accuracy=0.99)),
 }
