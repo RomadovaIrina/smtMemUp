@@ -1,20 +1,24 @@
 #!/usr/bin/env python3
 """Runs the FULL experiments of SMT_MemUP_FROM_ZERO.ipynb (§13) as a GPU queue.
 
-Every run = the notebook executed top to bottom with MODE="FULL", FULL_EXPERIMENT=<name>, FULL_SEED=<seed>:
-the CPU checks (§2-§12, incl. the equivalence with the old code) run first in every job, then §13 trains on the GPU
-into results/notebook_runs/<name>_<time>/ (config.json, *_history.csv, *_best.pt, summary.json). The executed notebook
-of each job is kept in results/notebook_runs/executed/<name>_s<seed>.ipynb, its log in results/notebook_runs/logs/.
-Jobs whose executed notebook already exists are skipped. Order = priority (MQAR first, then Stack).
+Every job = the notebook executed top to bottom with MODE="FULL", FULL_EXPERIMENT=<name>, FULL_SEED=<seed>:
+the CPU checks (§2-§12, incl. the equivalence with the old code) run first, then §13 trains on the GPU into
+results/notebook_runs/<name>_s<seed>_<time>_<pid>/ (config.json, *_history.csv, *_best.pt, summary.json). The executed
+notebook of each job is kept in results/notebook_runs/executed/<name>_s<seed>.ipynb, its log in results/notebook_runs/logs/.
+Jobs whose executed notebook already exists are skipped (finished). A job starts only when the GPU has at least its
+memory need free (heavy SMT on Stack: 10 GB, others: 3 GB); starts are serialised and 120 s apart so that the previous
+job has allocated its memory before the next check.
 
-    MAX_PAR=3 python run_experiments.py                     # all experiments x seeds 201 202 203
-    python run_experiments.py --only mqar_T16N2_smt --seeds 201
+    MAX_PAR=3 MAX_HEAVY=2 python run_experiments.py                       # all experiments x seeds 201 202 203
+    python run_experiments.py --jobs stack_bptt_1:201 stack_bptt_1:202     # explicit jobs
+    python run_experiments.py --skip-running stack_smt_tf8:203             # jobs already running elsewhere
 """
 import argparse
 import json
 import os
 import subprocess
 import sys
+import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -29,7 +33,15 @@ ORDER = ["mqar_T16N2_smt", "mqar_T16N2_teacher_bottleneck", "mqar_T16N2_teacher_
          "stack_smt_tf8", "stack_bptt_full", "stack_bptt_1", "stack_smt_tf8_ctx_far", "stack_smt_tf8_no_dyn",
          "stack_smt_tf8_target_detached", "stack_smt_tf8_fully_detached"]
 HEAVY = {"stack_smt_tf8", "stack_smt_tf8_ctx_far", "stack_smt_tf8_no_dyn", "stack_smt_tf8_target_detached",
-         "stack_smt_tf8_fully_detached"}                  # ~8 GB each in the SMT stage
+         "stack_smt_tf8_fully_detached"}                  # ~8-10 GB each in the SMT stage
+NEED_MIB = lambda name: 10000 if name in HEAVY else 3000
+START_LOCK = threading.Lock()
+
+
+def free_mib() -> int:
+    out = subprocess.run(["nvidia-smi", "--query-gpu=memory.free", "--format=csv,noheader,nounits"],
+                         capture_output=True, text=True).stdout
+    return int(out.split()[0]) if out.strip() else 0
 
 
 def job(name: str, seed: int):
@@ -44,11 +56,16 @@ def job(name: str, seed: int):
     tmp = OUT / "executed" / f"_{name}_s{seed}.ipynb"
     nbformat.write(nb, tmp)
     log = OUT / "logs" / f"{name}_s{seed}.log"
-    tic = time.time()
-    with open(log, "w") as f:
-        rc = subprocess.run([sys.executable, "-m", "jupyter", "nbconvert", "--to", "notebook", "--execute",
-                             "--ExecutePreprocessor.timeout=-1", "--ExecutePreprocessor.kernel_name=" + os.environ.get("NB_KERNEL", "smt-memup"), "--output", done.name, str(tmp)],
-                            cwd=ROOT, stdout=f, stderr=subprocess.STDOUT).returncode
+    with START_LOCK:                                      # one start at a time, only with enough free GPU memory
+        while free_mib() < NEED_MIB(name):
+            time.sleep(30)
+        proc = subprocess.Popen([sys.executable, "-m", "jupyter", "nbconvert", "--to", "notebook", "--execute",
+                                 "--ExecutePreprocessor.timeout=-1",
+                                 "--ExecutePreprocessor.kernel_name=" + os.environ.get("NB_KERNEL", "smt-memup"),
+                                 "--output", done.name, str(tmp)], cwd=ROOT, stdout=open(log, "w"), stderr=subprocess.STDOUT)
+        tic = time.time()
+        time.sleep(120)                                   # CPU checks (~1.5 min) then the GPU allocation
+    rc = proc.wait()
     tmp.unlink(missing_ok=True)
     return name, seed, f"exit {rc} after {(time.time() - tic) / 60:.1f} min"
 
@@ -57,10 +74,17 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", nargs="*", default=ORDER)
     ap.add_argument("--seeds", nargs="*", type=int, default=[201, 202, 203])
+    ap.add_argument("--jobs", nargs="*", help="explicit name:seed list (overrides --only/--seeds)")
+    ap.add_argument("--skip-running", nargs="*", default=[], help="name:seed of jobs running in another queue")
     a = ap.parse_args()
     for d in ("executed", "logs"):
         (OUT / d).mkdir(parents=True, exist_ok=True)
-    jobs = [(n, s) for n in ORDER if n in a.only for s in a.seeds]
+    if a.jobs:
+        jobs = [(j.split(":")[0], int(j.split(":")[1])) for j in a.jobs]
+    else:
+        jobs = [(n, s) for n in ORDER if n in a.only for s in a.seeds]
+    skip = {(j.split(":")[0], int(j.split(":")[1])) for j in a.skip_running}
+    jobs = [j for j in jobs if j not in skip]
     heavy = [j for j in jobs if j[0] in HEAVY]
     light = [j for j in jobs if j[0] not in HEAVY]
     status = OUT / "queue_status.jsonl"
@@ -71,10 +95,8 @@ if __name__ == "__main__":
             f.write(json.dumps(dict(time=time.strftime("%F %T"), name=r[0], seed=r[1], result=r[2])) + "\n")
         print(time.strftime("%F %T"), *r, flush=True)
 
-    # light jobs (MQAR, BPTT: < 2 GB) and heavy SMT jobs (~8 GB) in two pools so that at most MAX_HEAVY SMT stages share
-    # the 24 GB card
     with ThreadPoolExecutor(int(os.environ.get("MAX_PAR", 3))) as light_pool, \
             ThreadPoolExecutor(int(os.environ.get("MAX_HEAVY", 2))) as heavy_pool:
-        futures = [light_pool.submit(run, j) for j in light] + [heavy_pool.submit(run, j) for j in heavy]
+        futures = [heavy_pool.submit(run, j) for j in heavy] + [light_pool.submit(run, j) for j in light]
         for f in futures:
             f.result()
