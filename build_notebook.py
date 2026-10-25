@@ -56,6 +56,7 @@ md("s0-setup", r"""
 code("s0-setup", r'''
 MODE = "SMOKE"            # "SMOKE": CPU checks only.  "FULL": also trains FULL_EXPERIMENT (§13)
 FULL_EXPERIMENT = None    # e.g. "stack_smt_tf8"; FULL does nothing while this is None
+FULL_SEED = 201           # seed of the FULL run (fixed in advance: 201, 202, 203)
 SEED = 0                  # seed of the demonstration cells (the experiments use their own fixed seeds, §13)
 
 import copy, hashlib, json, math, os, platform, random, subprocess, sys, time
@@ -79,7 +80,7 @@ UPSTREAM = ROOT / "upstream"                  # author repositories (only for th
 PINNED = {"smt": "cf0d0f04be606ab9d97b1a449a6846450d656ad0", "zoology": "1ad20d193b6113cae1e8f3c655c300d7b4b3f4bb",
           "memup": "d27657137f6e427e30fcd4ae885b20b071b2917d"}
 IGNORE = -1                                   # "no answer here" in labels, "no token" in padded windows
-DEVICE = torch.device("cuda" if (MODE == "FULL" and torch.cuda.is_available()) else "cpu")
+DEVICE = torch.device("cpu")                  # all checks (§2-§12) run on CPU; §13 switches FULL training to the GPU
 torch.set_num_threads(4)
 pd.set_option("display.width", 200); pd.set_option("display.max_columns", 30); pd.set_option("display.max_rows", 200)
 print("python", platform.python_version(), "| torch", torch.__version__, "| x-transformers", _md.version("x-transformers"),
@@ -565,10 +566,11 @@ class RNN(nn.Module):
         return self.to_logits(self.decoder(z)[:, -1, :])
 ''')
 code("s4-make", r'''
-def make_models(cfg, seed, device=DEVICE):
+def make_models(cfg, seed, device=None):
     """Same seed -> same initial weights (teacher created first, then the RNN) as every archived run."""
     common = dict(vocab_size=cfg.V, mem_size=cfg.Z, mem_tokens=cfg.mem_tokens, d_model=cfg.d_model,
                   decoder_depth=cfg.decoder_depth, n_heads=cfg.n_heads)
+    device = device or DEVICE
     with seeded(seed):
         teacher = Teacher(TeacherConfig(**common, encoder_depth=cfg.encoder_depth)).to(device)
         rnn = RNN(RNNConfig(**common, rnn_depth=cfg.rnn_depth)).to(device)
@@ -618,11 +620,12 @@ class WindowDetector(nn.Module):
     def forward(self, x_windows):                                  # [M,r] -> [M,V]
         _, h = self.gru(self.embed(x_windows + 1)); return self.head(h[-1])
     def scores(self, batch):                                       # surprise = CE of the TRUE label y_k: [B,T]
-        x, y = batch["x"], batch["y"]
+        dev = self.head.weight.device
+        x, y = batch["x"].to(dev), batch["y"].to(dev)
         win = F.pad(x, (self.r - 1, 0), value=IGNORE).unfold(1, self.r, 1)          # [B,T,r]
         logits = self(win.reshape(-1, self.r)).reshape(*x.shape, -1)                 # [B,T,V]
         ce = F.cross_entropy(logits.flatten(0, 1), y.clamp(min=0).flatten(), reduction="none")
-        return (ce.reshape(x.shape) * batch["target_mask"]).detach()
+        return (ce.reshape(x.shape) * batch["target_mask"].to(dev)).detach()
 
 class ContextDetector(nn.Module):
     """ctx_far [история]: q(y_{t+j} | x_{t+1..t+j}) WITHOUT memory (what the decoder can infer from its own inputs)."""
@@ -651,8 +654,8 @@ class CausalTransformer(nn.Module):
                                       attn_layers=Decoder(dim=d_model, depth=depth, heads=heads))   # learned abs. pos.
     def forward(self, x): return self.net(x)                       # [B,T] -> [B,T,V]; logits[:,t] -> y_t
 
-def make_lm(cfg, seed, device=DEVICE):
-    with seeded(seed): return CausalTransformer(cfg).to(device)
+def make_lm(cfg, seed, device=None):
+    with seeded(seed): return CausalTransformer(cfg).to(device or DEVICE)
 ''')
 md("s4-params", r"""
 ### §4.1 Параметры каждой части, посчитанные кодом, и кто что обучает
@@ -1106,7 +1109,7 @@ def fit(spec, out_root=ROOT / "results" / "notebook_runs", log=print):
     Writes config.json, <stage>_history.csv, <stage>_best.pt and summary.json (validation-selected AND last weights,
     evaluated on the independent stream 901) into a NEW folder <name>_<timestamp>."""
     cfg, seed, family = spec["config"], int(spec["seed"]), spec["family"]
-    out = out_root / f"{spec['name']}_{time.strftime('%Y%m%d-%H%M%S')}"; out.mkdir(parents=True)
+    out = out_root / f"{spec['name']}_s{seed}_{time.strftime('%Y%m%d-%H%M%S')}_{os.getpid()}"; out.mkdir(parents=True)
     (out / "config.json").write_text(json.dumps(dict(family=family, seed=seed, config=asdict(cfg), torch=torch.__version__,
                                                     device=str(DEVICE), notebook="SMT_MemUP_FROM_ZERO.ipynb"), indent=2))
     val, ev_set = validation_set(cfg), evaluation_set(cfg)
@@ -1420,8 +1423,8 @@ EXPERIMENTS = {   # seeds 201/202/203 (new); configs fixed before running
     "mqar_T32N4_smt": dict(family="smt", config=replace(MQAR_T32, smt_steps=6000, dmt_steps=2000, eval_every=250)),
     "mqar_T32N4_transformer": dict(family="transformer", config=replace(MQAR_T32, eval_every=250, stop_accuracy=0.99)),
 }
-FULL_SEED = 201
 if MODE == "FULL" and FULL_EXPERIMENT:
+    DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")   # read by every function at call time
     e = EXPERIMENTS[FULL_EXPERIMENT]
     out_dir, summary = fit(dict(name=FULL_EXPERIMENT, seed=FULL_SEED, **e))
     print(out_dir); print(json.dumps(summary, indent=2))
