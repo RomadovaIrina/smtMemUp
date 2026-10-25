@@ -74,7 +74,7 @@ import importlib.metadata as _md
 from x_transformers import Decoder, Encoder, TransformerWrapper
 import matplotlib.pyplot as plt
 
-ROOT = Path.cwd() if (Path.cwd() / "archive").exists() else Path.cwd().parent
+ROOT = next(p for p in (Path.cwd(), *Path.cwd().parents) if (p / "archive").is_dir() and (p / "build_notebook.py").exists())
 ARCHIVE = ROOT / "archive"                    # old code, runs, logs - read only
 UPSTREAM = ROOT / "upstream"                  # author repositories (only for the comparison in §12)
 PINNED = {"smt": "cf0d0f04be606ab9d97b1a449a6846450d656ad0", "zoology": "1ad20d193b6113cae1e8f3c655c300d7b4b3f4bb",

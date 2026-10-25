@@ -47,7 +47,7 @@ def job(name: str, seed: int):
     tic = time.time()
     with open(log, "w") as f:
         rc = subprocess.run([sys.executable, "-m", "jupyter", "nbconvert", "--to", "notebook", "--execute",
-                             "--ExecutePreprocessor.timeout=-1", "--output", done.name, str(tmp)],
+                             "--ExecutePreprocessor.timeout=-1", "--ExecutePreprocessor.kernel_name=" + os.environ.get("NB_KERNEL", "smt-memup"), "--output", done.name, str(tmp)],
                             cwd=ROOT, stdout=f, stderr=subprocess.STDOUT).returncode
     tmp.unlink(missing_ok=True)
     return name, seed, f"exit {rc} after {(time.time() - tic) / 60:.1f} min"
