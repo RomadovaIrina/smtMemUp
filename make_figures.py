@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """All figures and summary tables for the presentation, in one style, from saved data only.
 
-    python make_figures.py            # -> figures/*.png (+ .pdf), results/summary_new_runs*.csv
+    python make_figures.py            # -> figures/*.png (+ .pdf), results_3090/summary_new_runs*.csv
 
 Sources:
-  * NEW runs (seeds 201-203): results/notebook_runs/<name>_s<seed>_*/ (synced from the 3090 by sync_results.sh).
+  * NEW runs (seeds 201-203): results_3090/notebook_runs/<name>_s<seed>_*/ (synced from the 3090 by sync_results.sh).
     For each (experiment, seed) the folder with summary.json is used; if none finished yet, the newest folder with a
     history (marked "running" in the legend). Folders of crashed attempts (OOM) are kept but not plotted.
   * ARCHIVED runs (old code, seed 107): archive/runs/*.
@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 import pandas as pd  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent
-RUNS = ROOT / "results" / "notebook_runs"
+RUNS = ROOT / "results_3090" / "notebook_runs"
 ARCH = ROOT / "archive" / "runs"
 OUT = ROOT / "figures"
 OUT.mkdir(exist_ok=True)
@@ -119,13 +119,13 @@ for (name, seed), r in sorted(R.items()):
     rows.append(dict(experiment=name, seed=seed, finished=r["done"], folder=r["dir"].name,
                      **{k: v for k, v in s.items() if k.startswith(("eval_", "smt_", "dmt_", "bptt_", "lm_"))}))
 summary = pd.DataFrame(rows)
-(ROOT / "results").mkdir(exist_ok=True)
-summary.to_csv(ROOT / "results" / "summary_new_runs.csv", index=False)
+(ROOT / "results_3090").mkdir(exist_ok=True)
+summary.to_csv(ROOT / "results_3090" / "summary_new_runs.csv", index=False)
 num = summary[summary.finished].drop(columns=["folder", "finished"])
 if len(num):
     agg = num.groupby("experiment").agg(["mean", "min", "max", "count"])
     agg.columns = [f"{a}__{b}" for a, b in agg.columns]
-    agg.drop(columns=[c for c in agg.columns if c.startswith("seed__")]).to_csv(ROOT / "results" / "summary_new_runs_agg.csv")
+    agg.drop(columns=[c for c in agg.columns if c.startswith("seed__")]).to_csv(ROOT / "results_3090" / "summary_new_runs_agg.csv")
 
 
 def bars(ax, items, title, ylabel, chance=None, chance_label=None):
@@ -267,4 +267,4 @@ ax.set_xticks(range(len(groups))); ax.set_xticklabels([f"T={T}, N={N}" for T, N 
 ax.set_title("MQAR length sweep (archived): accuracy among written values"); ax.set_ylabel("tuning accuracy, long answers")
 ax.legend(frameon=False, loc="upper right")
 save(fig, "A3_mqar_length_sweep_archived", "ARCHIVED (old code), seed 107, tuning split; teacher = j=0 at the query; SMT 6000 steps with cosine LR decay; dotted = chance 1/N")
-print(f"summary: {int(summary.finished.sum())} finished / {len(summary)} (experiment, seed) pairs -> results/summary_new_runs*.csv")
+print(f"summary: {int(summary.finished.sum())} finished / {len(summary)} (experiment, seed) pairs -> results_3090/summary_new_runs*.csv")
