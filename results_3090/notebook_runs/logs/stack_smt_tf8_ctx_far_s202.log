@@ -1,0 +1,2 @@
+[NbConvertApp] Converting notebook /home/irina/smt_memup_project/results/notebook_runs/executed/_stack_smt_tf8_ctx_far_s202.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.

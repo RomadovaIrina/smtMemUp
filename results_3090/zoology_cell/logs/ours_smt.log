@@ -1,0 +1,33 @@
+/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'repr' attribute with value False was provided to the `Field()` function, which has no effect in the context it was used. 'repr' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+/home/irina/miniconda3/envs/smt-memup/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2346: UnsupportedFieldAttributeWarning: The 'frozen' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'frozen' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
+  warnings.warn(
+python 3.12.15 | torch 2.9.1+cu128 | x-transformers 2.18.5 | device cpu | MODE SMOKE
+5 512 128
+hand example: push1 push2 pop(->2) push3 pop(->3) pop(->1)
+anchor t=2: x_ctx = [-1, -1, -1, 1, 2, 0]
+   j     decoder_inputs    target  valid  in_L_dec  written_at_or_before_t
+0  0                 []   y_2 = 2   True      True                    True
+1  1                [3]  y_3 = -1  False     False                   False
+2  2             [3, 0]   y_4 = 3   True     False                   False
+3  3          [3, 0, 0]   y_5 = 1   True     False                    True
+4  4      [3, 0, 0, -1]  y_6 = -1  False     False                   False
+5  5  [3, 0, 0, -1, -1]  y_7 = -1  False     False                   False
+anchor t=5: x_ctx = [1, 2, 0, 3, 0, 0]
+   j decoder_inputs    target  valid in_L_dec  written_at_or_before_t
+0  0             []   y_5 = 1   True     None                    True
+1  1           [-1]  y_6 = -1  False     None                   False
+2  2       [-1, -1]  y_7 = -1  False     None                   False
+teacher query {'untrained_long_acc': 0.008880994671403197, 'untrained_long_ce': 5.066956996917725, 'untrained_all_acc': 0.0078125, 'untrained_long_cand_acc': 0.5204262877442274}
+teacher_pre after_pairs {'untrained_long_acc': 0.008880994671403197, 'untrained_long_ce': 4.985824108123779, 'untrained_all_acc': 0.0078125, 'untrained_long_cand_acc': 0.5008880994671403}
+teacher_pre before_query {'untrained_long_acc': 0.008880994671403197, 'untrained_long_ce': 4.984619617462158, 'untrained_all_acc': 0.0078125, 'untrained_long_cand_acc': 0.5204262877442274}
+teacher_full query {'untrained_long_acc': 0.008880994671403197, 'untrained_long_ce': 5.063150405883789, 'untrained_all_acc': 0.0078125, 'untrained_long_cand_acc': 0.5062166962699822}
+rnn query {'untrained_long_acc': 0.003552397868561279, 'untrained_long_ce': 4.979125499725342, 'untrained_all_acc': 0.0029296875, 'untrained_long_cand_acc': 0.5310834813499112}
+Loading data from on-disk cache at /home/irina/smt_memup_project/results/zoology_cell/cache/data_7dd0741b20a787941319ccc688ba18c0.pt...
+Loading data from on-disk cache at /home/irina/smt_memup_project/results/zoology_cell/cache/data_145956c6ba3850a719abb368393126df.pt...
+ours_smt_d64 smt 1000 {'valid/teacher_acc': 0.0, 'valid/teacher_pre_acc': 0.0, 'valid/rnn_acc': 0.0}
+ours_smt_d64 smt 2000 {'valid/teacher_acc': 0.0011666666666666668, 'valid/teacher_pre_acc': 0.00016666666666666666, 'valid/rnn_acc': 0.0004166666666666667}
+ours_smt_d64 smt 3000 {'valid/teacher_acc': 0.005166666666666667, 'valid/teacher_pre_acc': 0.004166666666666667, 'valid/rnn_acc': 0.00025}
+ours_smt_d64 smt 4000 {'valid/teacher_acc': 0.01925, 'valid/teacher_pre_acc': 0.014916666666666667, 'valid/rnn_acc': 0.00025}
+ours_smt_d64 smt 5000 {'valid/teacher_acc': 0.03275, 'valid/teacher_pre_acc': 0.03225, 'valid/rnn_acc': 0.00025}
+ours_smt_d64 smt 6000 {'valid/teacher_acc': 0.058083333333333334, 'valid/teacher_pre_acc': 0.05508333333333333, 'valid/rnn_acc': 0.00016666666666666666}

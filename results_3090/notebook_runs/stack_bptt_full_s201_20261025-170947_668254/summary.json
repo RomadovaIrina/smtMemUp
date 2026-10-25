@@ -1,0 +1,13 @@
+{
+  "name": "stack_bptt_full",
+  "family": "bptt_full",
+  "seed": 201,
+  "bptt_best_step": 19000,
+  "bptt_last_step": 20000,
+  "eval_best_rnn_bptt_long_acc": 0.9933533447684391,
+  "eval_best_rnn_bptt_long_ce": 0.021137051284313202,
+  "eval_best_rnn_bptt_all_acc": 0.9989928525016244,
+  "eval_last_rnn_bptt_long_acc": 0.9886363636363636,
+  "eval_last_rnn_bptt_long_ce": 0.03353055566549301,
+  "eval_last_rnn_bptt_all_acc": 0.9982781026640676
+}

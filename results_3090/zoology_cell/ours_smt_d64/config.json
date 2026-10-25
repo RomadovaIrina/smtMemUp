@@ -1,0 +1,9 @@
+{
+  "family": "ours_smt",
+  "seed": 201,
+  "smt_steps": 20000,
+  "dmt_steps": 10000,
+  "batch": 32,
+  "micro_batch": 8,
+  "protocol": "ours (warm-up 200 + constant, clip 1.0)"
+}

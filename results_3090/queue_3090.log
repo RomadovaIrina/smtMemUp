@@ -27,3 +27,6 @@
 2026-10-25 18:56:31 stack_smt_tf8 202 exit 0 after 203.8 min
 2026-10-25 18:56:37 stack_smt_tf8 201 exit 0 after 203.9 min
 2026-10-25 20:01:01 new queue: ablations on seed 201 only; ctx_far 3 seeds; retry of OOM-failed jobs; memory-gated starts
+2026-10-25 21:22:46 Zoology-cell MQAR queue started (zoology mixers, ours_rnn, ours_smt)
+2026-10-25 21:23:06 Stack queue restarted with the shared start lock
+2026-10-25 23:02:37 queues restarted: lock held only to check memory and start

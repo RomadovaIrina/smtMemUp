@@ -1,0 +1,6 @@
+{"stage": "smt", "step": 1000, "train_loss": 8.459933757781982, "valid/teacher_acc": 0.0, "valid/teacher_pre_acc": 0.0, "valid/rnn_acc": 0.0, "seconds": 838.675403864996}
+{"stage": "smt", "step": 2000, "train_loss": 8.361922264099121, "valid/teacher_acc": 0.0011666666666666668, "valid/teacher_pre_acc": 0.00016666666666666666, "valid/rnn_acc": 0.0004166666666666667, "seconds": 1709.14218655898}
+{"stage": "smt", "step": 3000, "train_loss": 8.232706785202026, "valid/teacher_acc": 0.005166666666666667, "valid/teacher_pre_acc": 0.004166666666666667, "valid/rnn_acc": 0.00025, "seconds": 2473.7461541959783}
+{"stage": "smt", "step": 4000, "train_loss": 8.14268684387207, "valid/teacher_acc": 0.01925, "valid/teacher_pre_acc": 0.014916666666666667, "valid/rnn_acc": 0.00025, "seconds": 3235.184240945964}
+{"stage": "smt", "step": 5000, "train_loss": 7.935208559036255, "valid/teacher_acc": 0.03275, "valid/teacher_pre_acc": 0.03225, "valid/rnn_acc": 0.00025, "seconds": 3998.7583109720144}
+{"stage": "smt", "step": 6000, "train_loss": 7.914255142211914, "valid/teacher_acc": 0.058083333333333334, "valid/teacher_pre_acc": 0.05508333333333333, "valid/rnn_acc": 0.00016666666666666666, "seconds": 4762.216098072997}
