@@ -32,7 +32,7 @@ ORDER = ["mqar_T16N2_smt", "mqar_T16N2_teacher_bottleneck", "mqar_T16N2_teacher_
          "mqar_T16N2_rnn_bptt_full", "mqar_T16N2_rnn_bptt_full_long", "mqar_T32N4_rnn_bptt_full_long", "mqar_T32N4_smt", "mqar_T32N4_transformer",
          "stack_smt_tf8", "stack_bptt_full", "stack_bptt_1", "stack_smt_tf8_ctx_far", "stack_smt_tf8_surprise_far", "stack_smt_tf8_random_far", "stack_smt_tf8_no_dyn",
          "stack_smt_tf8_target_detached", "stack_smt_tf8_fully_detached"]
-HEAVY = {"stack_smt_tf8", "stack_smt_tf8_ctx_far", "stack_smt_tf8_surprise_far", "stack_smt_tf8_random_far", "stack_smt_tf8_surprise_far", "stack_smt_tf8_random_far", "stack_smt_tf8_no_dyn", "stack_smt_tf8_target_detached",
+HEAVY = {"stack_smt_tf8", "stack_smt_tf8_ctx_far", "stack_smt_tf8_surprise_far", "stack_smt_tf8_random_far", "stack_smt_tf8_no_dyn", "stack_smt_tf8_target_detached",
          "stack_smt_tf8_fully_detached"}                  # ~8-10 GB each in the SMT stage
 NEED_MIB = lambda name: 10000 if name in HEAVY else 3000
 START_LOCK = threading.Lock()
