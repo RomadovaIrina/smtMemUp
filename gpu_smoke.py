@@ -10,14 +10,14 @@ from pathlib import Path
 import nbformat
 
 ROOT = Path(__file__).resolve().parent
-SKIP = {"s5-trace", "s6-smoke", "s9-eval", "s10-fit", "s11-trace-examples", "s12-equivalence", "s12-fit-equivalence",
-        "s12-interventions", "s14-archive-results", "s16-summary"}           # checks run in the SMOKE notebook itself
+DEFS = {"s0-setup", "s0-seeds", "s1-config", "s2-stack", "s2-mqar", "s3-windows", "s4-model", "s4-make", "s6-losses",
+        "s8-train", "s9-eval", "s10-fit", "s13-full"}     # definition cells (the checks run in the SMOKE notebook)
 
 if __name__ == "__main__":
     nb = nbformat.read(ROOT / "SMT_MemUP_FROM_ZERO.ipynb", as_version=4)
     g = {"display": print, "__name__": "__notebook__"}
     for c in nb.cells:
-        if c.cell_type == "code" and not (set(c.metadata.get("tags", [])) & SKIP):
+        if c.cell_type == "code" and set(c.metadata.get("tags", [])) & DEFS:
             exec(compile(c.source, c.metadata.get("tags", ["?"])[0], "exec"), g)
     import torch
     assert torch.cuda.is_available()
