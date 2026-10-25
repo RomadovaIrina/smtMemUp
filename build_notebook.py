@@ -1410,6 +1410,8 @@ code("s13-full", r'''
 EXPERIMENTS = {   # seeds 201/202/203 (new); configs fixed before running
     "stack_smt_tf8": dict(family="smt", config=STACK),
     "stack_smt_tf8_ctx_far": dict(family="smt", config=replace(STACK, far="ctx_far")),
+    "stack_smt_tf8_surprise_far": dict(family="smt", config=replace(STACK, far="surprise_far")),   # preregistered: surprise vs random
+    "stack_smt_tf8_random_far": dict(family="smt", config=replace(STACK, far="random_far")),
     "stack_bptt_full": dict(family="bptt_full", config=STACK),
     "stack_bptt_1": dict(family="bptt_1", config=STACK),
     "stack_smt_tf8_no_dyn": dict(family="smt", config=replace(STACK, coef_dyn=0.0)),
