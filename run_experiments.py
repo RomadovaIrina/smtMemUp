@@ -56,11 +56,15 @@ def job(name: str, seed: int):
     tmp = OUT / "executed" / f"_{name}_s{seed}.ipynb"
     nbformat.write(nb, tmp)
     log = OUT / "logs" / f"{name}_s{seed}.log"
-    with START_LOCK, open("/tmp/smt_gpu_start.lock", "w") as lock:   # one start at a time across ALL queues
-        import fcntl
-        fcntl.flock(lock, fcntl.LOCK_EX)                  # shared with zoology_cell/run_cell.py
-        while free_mib() < NEED_MIB(name):
-            time.sleep(30)
+    import fcntl
+    while True:                                           # the lock is held only to check memory and start, never while waiting
+        with START_LOCK, open("/tmp/smt_gpu_start.lock", "w") as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)              # shared with zoology_cell/run_cell.py
+            if free_mib() >= NEED_MIB(name):
+                break
+        time.sleep(30)
+    with START_LOCK, open("/tmp/smt_gpu_start.lock", "w") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
         proc = subprocess.Popen([sys.executable, "-m", "jupyter", "nbconvert", "--to", "notebook", "--execute",
                                  "--ExecutePreprocessor.timeout=-1",
                                  "--ExecutePreprocessor.kernel_name=" + os.environ.get("NB_KERNEL", "smt-memup"),

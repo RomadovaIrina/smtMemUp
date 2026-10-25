@@ -284,21 +284,21 @@ def jobs():
 NEED_MIB = {"zoology": 4000, "ours_rnn": 10000, "ours_smt": 9000}     # start a job only with this much free GPU memory
 
 
-def queue(max_par=2):
+def queue(max_par=2, skip=()):
     """Starts are serialised across ALL queues on this GPU by /tmp/smt_gpu_start.lock (also used by run_experiments.py):
     under the lock, wait until the job's memory need is free, start it, wait 120 s for its allocation, release."""
     import fcntl
-    procs, todo = [], jobs()
+    procs, todo = [], [j for j in jobs() if "_".join(x.lstrip("-") for x in j[1:]) not in skip]
     (OUT / "logs").mkdir(parents=True, exist_ok=True)
     free_mib = lambda: int(subprocess.run(["nvidia-smi", "--query-gpu=memory.free", "--format=csv,noheader,nounits"],
                                           capture_output=True, text=True).stdout.split()[0])
     while todo or procs:
         procs = [p for p in procs if p.poll() is None]
         if todo and len(procs) < max_par:
-            with open("/tmp/smt_gpu_start.lock", "w") as lock:
+            with open("/tmp/smt_gpu_start.lock", "w") as lock:      # held only to check memory and start
                 fcntl.flock(lock, fcntl.LOCK_EX)
-                while free_mib() < NEED_MIB[todo[0][1]]:
-                    time.sleep(30)
+                if free_mib() < NEED_MIB[todo[0][1]]:
+                    lock.close(); time.sleep(30); continue
                 a = todo.pop(0); name = "_".join(x.lstrip("-") for x in a[1:])
                 procs.append(subprocess.Popen([sys.executable, __file__, *a], cwd=ROOT, stdout=open(OUT / "logs" / f"{name}.log", "a"),
                                               stderr=subprocess.STDOUT))
@@ -313,11 +313,12 @@ if __name__ == "__main__":
     ap.add_argument("--family", choices=["zoology", "ours_rnn", "ours_smt"])
     ap.add_argument("--mixer"); ap.add_argument("--d", type=int); ap.add_argument("--lr", type=float)
     ap.add_argument("--queue", action="store_true")
+    ap.add_argument("--skip", nargs="*", default=[], help="job names already running elsewhere (as in logs/)")
     a = ap.parse_args()
     assert subprocess.run(["git", "-C", str(ZOO), "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip() == PINNED
     OUT.mkdir(parents=True, exist_ok=True)
     if a.queue:
-        queue(int(os.environ.get("MAX_PAR", 2)))
+        queue(int(os.environ.get("MAX_PAR", 2)), set(a.skip))
     elif a.family == "zoology":
         run_zoology(a.mixer, a.d, a.lr)
     elif a.family == "ours_rnn":
