@@ -412,6 +412,8 @@ print("registers [8,64] are parameters (identical for every input); memory m_t [
 ''')
 code("s5-trace", r'''
 # one Stack batch in the main configuration, forward pass of SMT with the shape after every step
+bs = sample_stack(STACK, STACK.B, derive_seed(301, 201, 0)); ws = windows(bs)       # the batch of §3; redefined so the cell runs on its own
+teacher, rnn = make_models(STACK, 201)
 with torch.no_grad():
     rows = []; add = lambda name, z, axes: rows.append((name, tuple(z.shape), axes))
     add("x", bs["x"], "[B=32, T=64] IDs"); add("x_ctx / x_fut / y_fut", ws["x_ctx"], "[R=B·T=2048, T=64]")
@@ -487,6 +489,7 @@ def topk_mask(scores, pool, K, generator):           # K highest scores in the p
     return torch.zeros_like(pool).scatter(1, perm.gather(1, order)[:, :K], True) & pool
 
 dets = load_detectors()
+bs = sample_stack(STACK, STACK.B, derive_seed(301, 201, 0)); ws = windows(bs)       # the batch of §3
 far_pool = ws["valid"] & (torch.arange(64) >= STACK.T_f)                               # [R, T]
 with torch.no_grad(): sc = far_scores(replace(STACK, far="ctx_far"), ws, bs, dets)
 chosen = topk_mask(sc, far_pool, STACK.K_far, torch.Generator().manual_seed(3))
