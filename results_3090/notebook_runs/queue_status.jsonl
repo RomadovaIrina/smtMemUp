@@ -33,3 +33,7 @@
 {"time": "2026-10-26 06:11:38", "name": "mqar_T16N2_rnn_bptt_full_long", "seed": 202, "result": "exit 0 after 142.0 min"}
 {"time": "2026-10-26 06:57:36", "name": "stack_smt_tf8_no_dyn", "seed": 201, "result": "exit 0 after 123.2 min"}
 {"time": "2026-10-26 07:03:36", "name": "stack_smt_tf8_surprise_far", "seed": 201, "result": "exit 1 after 2.0 min"}
+{"time": "2026-10-26 08:35:49", "name": "stack_bptt_1", "seed": 202, "result": "exit 0 after 219.5 min"}
+{"time": "2026-10-26 09:02:02", "name": "stack_smt_tf8_fully_detached", "seed": 201, "result": "exit 0 after 124.4 min"}
+{"time": "2026-10-26 09:08:03", "name": "stack_smt_tf8_ctx_far", "seed": 203, "result": "exit 1 after 2.0 min"}
+{"time": "2026-10-26 09:50:38", "name": "mqar_T16N2_rnn_bptt_full_long", "seed": 203, "result": "exit 0 after 171.0 min"}

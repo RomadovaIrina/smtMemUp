@@ -405,6 +405,27 @@ save(fig, "M3_mqar_T32_curves",
      "НОВЫЕ запуски RTX 3090, seeds 201–203, validation (поток 511) каждые 250 шагов, без сглаживания; SMT 6 000 / DMT 2 000, LR константа; Transformer остановлен при 99%. Длинные ответы: delay ≥ 8.",
      bottom=0.27, right=0.7)
 
+
+# T32N4 curves, large standalone version for a slide (three small panels instead of one crowded plot)
+with plt.rc_context({"font.size": 15, "axes.titlesize": 16, "axes.labelsize": 15, "xtick.labelsize": 14, "ytick.labelsize": 14, "legend.fontsize": 14}):
+    fig, axes = plt.subplots(1, 3, figsize=(16, 5.6), sharey=True)
+    for ax, (name, stage, colname, col, title) in zip(axes, (("mqar_T32N4_smt", "smt", "val_teacher_long_acc", COL["teacher"], "(а) SMT teacher, j = 0"),
+                                                             ("mqar_T32N4_smt", "dmt", "val_rnn_long_acc", COL["rnn_dmt"], "(б) итоговая RNN в DMT"),
+                                                             ("mqar_T32N4_transformer", "lm", "val_lm_long_acc", COL["lm"], "(в) causal Transformer"))):
+        for s_, ls in SEED_LS.items():
+            h = hist(name, s_, stage)
+            if h is not None and R[(name, s_)]["done"]:
+                curve(ax, h, colname, col, f"seed {s_}", ls)
+        ax.axhline(0.25, color="#888888", ls=":", lw=1.4)
+        ax.set_ylim(0, 1.03); ax.set_xlabel(f"шаг {stage.upper()}"); ax.set_title(title, loc="left")
+        ax.legend(loc="upper left", frameon=False)
+    axes[0].set_ylabel("validation accuracy, весь словарь")
+    axes[0].text(150, 0.28, "угадывание 1/N = 25%", fontsize=13, color="#555555")
+    fig.text(0.005, 0.01, "MQAR T = 32, N = 4. Новые запуски RTX 3090, validation (поток 511) каждые 250 шагов, без сглаживания, x = последняя точка. "
+                          "\nSMT 6 000 / DMT 2 000, LR константа; Transformer остановлен при 99%. Длинные ответы: delay ≥ 8.", fontsize=12, color="#333333")
+    fig.subplots_adjust(bottom=0.24, wspace=0.08, left=0.06, right=0.99)
+    fig.savefig(FIG / "M3_mqar_T32_curves_big.png"); plt.close(fig); print("figure M3_mqar_T32_curves_big")
+
 # =====================================================================================================================
 # Schemes: SMT training / DMT / inference (exact data flow of the code)
 # =====================================================================================================================

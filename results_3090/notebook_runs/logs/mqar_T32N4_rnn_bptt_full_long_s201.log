@@ -1,0 +1,2 @@
+[NbConvertApp] Converting notebook /home/irina/smt_memup_project/results/notebook_runs/executed/_mqar_T32N4_rnn_bptt_full_long_s201.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
