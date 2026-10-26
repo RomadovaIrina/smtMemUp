@@ -158,7 +158,7 @@ MAP = [["слайд", "данные", "ноутбук SMT_MemUP_EXPLAINABLE"],
        ["7, B", "results_3090/notebook_runs/stack_*/{smt,dmt,bptt}_history.csv, summary.json", "§10"],
        ["8", "archive/outputs_v2_window/table_validation_by_seed.csv, archive/outputs_ablation/table_ablation.csv", "§10 (таблица абляций)"],
        ["9, C", "archive/outputs_v2_window/…; archive/runs/stackv4_d459c6921638/diag/*", "§6 (выбор дальних целей)"],
-       ["10", "генератор Zoology, поток 901", "§2.2"],
+       ["10", "генератор Zoology, seed derive_seed(901, 0) = 4155743513, батч из 1 последовательности", "§2.2, §2.3, §8.1"],
        ["13, 14", "results_3090/notebook_runs/mqar_T16N2_*", "§9 (метрики), §10"],
        ["15, D", "results_3090/notebook_runs/mqar_T32N4_*; archive/runs/jobs/bneck_*_T64.log; archive/outputs_mqar/table_mqarA_summary.csv", "§10"]]
 

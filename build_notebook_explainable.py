@@ -226,6 +226,30 @@ for t in mq["target_mask"][0].nonzero().flatten().tolist():     # at a query: x_
     i = (k == xm[t]).nonzero().item(); assert ym[t] == int(v[i]) and int(mq["source_pos"][0, t]) == 2 * i + 1
 ''')
 
+md("s2-mqar-example", r"""
+### §2.3 Пример MQAR, разобранный по позициям
+
+Пример из презентации: генератор Zoology, seed `derive_seed(901, 0)`, батч из одной последовательности.
+* Это **не** последовательность 0 независимого набора: тот сэмплируется батчем из 1024 и даёт другие пары.
+* Одна пара — **два** ID (ключ, значение). Запрос — **один** ID (сам ключ). `x = 0` — настоящий входной ID заполнителя.
+* Zoology помечает «ответа нет» как `y = −100`, наша обёртка переводит это в `−1`. Ни −100, ни −1 не являются
+  выходным классом: такие позиции просто не входят в loss.
+""")
+code("s2-mqar-example", r'''
+seed_ex = derive_seed(901, 0)
+mx = sample_mqar(MQAR_T16, 1, seed_ex)                        # the example of the deck: x, y, source_pos, delay  [1, 16]
+x_raw, y_raw = zoology_multiquery_ar(MQAR_T16.vocab, 1, MQAR_T16.T, seed_ex, MQAR_T16.power_a, MQAR_T16.N)   # Zoology output
+assert mx["x"][0].tolist() == [54, 76, 8, 96, 8, 0, 0, 0, 54, 0, 0, 0, 0, 0, 0, 0], "the deck example must be the generator output"
+assert set(y_raw[0].tolist()) == {-100, 76, 96} and (mx["y"][0] == IGNORE).sum() == (y_raw[0] == -100).sum()   # -100 -> -1
+def mqar_role(t, xv, yv, N=MQAR_T16.N):
+    if t < 2 * N: return f"ключ пары {t // 2}" if t % 2 == 0 else f"значение пары {t // 2}"
+    return f"запрос (ключ {xv})" if yv != IGNORE else "заполнитель (ID 0)"
+display(pd.DataFrame([dict(t=t, x_t=int(mx["x"][0, t]), role=mqar_role(t, int(mx["x"][0, t]), int(mx["y"][0, t])),
+                           y_zoology=int(y_raw[0, t]), y_t=int(mx["y"][0, t]), source_value_pos=int(mx["source_pos"][0, t]),
+                           delay=int(mx["delay"][0, t]), in_loss=bool(mx["target_mask"][0, t])) for t in range(MQAR_T16.T)]))
+print(f"seed = derive_seed(901, 0) = {seed_ex}; pairs 54->76 (t=0,1) and 8->96 (t=2,3); queries t=4 (key 8 -> 96), t=8 (key 54 -> 76)")
+''')
+
 md("s3", r"""
 ## §3. Окна SMT: что видит энкодер, что видит декодер, что предсказывается
 
@@ -596,6 +620,89 @@ with torch.no_grad():
 print("inference: answers at pops", pops.tolist(), "->", pred.tolist(), "(untrained weights; uses only x, f and the RNN readout)")
 del t_
 ''')
+
+md("s8-mqar", r"""
+## §8.1 Пример MQAR: один ответ `y_8 = 76` через два якоря
+
+* **Якорь `t = 3`:** память `m_3` построена после обеих пар и до запросов. Выход `G_5` (`j = 8 − 3`) предсказывает `y_8`;
+  ключ запроса 54 декодер получает как вход `x_8`.
+* **Якорь `t = 8`:** память `m_8` уже прочитала запрос 54. Выход `G_0` предсказывает тот же `y_8`. Это не утечка: в `x_8`
+  стоит ключ 54, а ответ 76 есть только в `y_8`.
+
+Ячейки со случайными весами — **проверка кода** (формы, выравнивание, причинность), а не измерение качества.
+""")
+code("s8-mqar-windows", r'''
+wm = windows(mx)                                                  # all anchors of the example: each [16, 16]
+for a in (3, 8):
+    print(f"anchor t={a}: x_ctx={wm['x_ctx'][a].tolist()}\n            x_fut={wm['x_fut'][a].tolist()}\n"
+          f"            y_fut={wm['y_fut'][a].tolist()}\n            valid={wm['valid'][a].int().tolist()}")
+j = 8 - 3
+print(f"anchor 3, output G_{j}: decoder reads m_3 and x_4..x_8 = {wm['x_fut'][3, :j].tolist()} -> predicts y_8 = {int(wm['y_fut'][3, j])}")
+assert wm["x_fut"][3, :j].tolist() == [8, 0, 0, 0, 54]           # first query x_4 = 8 and the asked key x_8 = 54 are inputs
+assert 76 in wm["x_ctx"][3].tolist() and 76 not in wm["x_fut"][3].tolist(), "value 76 is in the prefix (t=1), never after the anchor"
+assert 96 not in wm["x_fut"][3, :j].tolist(), "the answer y_4 = 96 is a label, not a decoder input"
+print("value 76 is in x_ctx of anchor 3 (position 1) and nowhere among the decoder inputs; y_4 = 96 is not an input either")
+''')
+code("s8-mqar-shapes", r'''
+# CODE CHECK with random weights (not a trained model): shapes of the existing Teacher on the example, B = 1
+tq, rq = make_models(MQAR_T16, 0)
+with torch.no_grad():
+    xc, xf = wm["x_ctx"], wm["x_fut"]                                                     # [16, 16] each: 16 anchors of 1 sequence
+    emb = tq.embed(xc.clamp(min=0))                                                       # [16, 16, 64]
+    regs = tq.encoder_mem_register.weight                                                 # [8, 64]
+    enc_in = torch.cat([emb, repeat(regs, "K D -> N K D", N=16)], 1)                      # [16, 24, 64]
+    mem = tq.encode(xc)                                                                   # [16, 512]
+    dec_in = torch.cat([rearrange(mem, "N (K d) -> N K d", K=8), tq.embed(xf.clamp(min=0))], 1)   # [16, 24, 64]
+    logits = tq.decode(mem, xf)                                                           # [16, 16, 128]
+shapes = [("x", mx["x"], (1, 16)), ("x_ctx", xc, (16, 16)), ("embed(x_ctx)", emb, (16, 16, 64)), ("initial registers", regs, (8, 64)),
+          ("encoder input", enc_in, (16, 24, 64)), ("memory m_t", mem.reshape(16, 8, 64), (16, 8, 64)), ("memory flat", mem, (16, 512)),
+          ("decoder input", dec_in, (16, 24, 64)), ("logits", logits, (16, 16, 128)), ("logits[t=3, j=5]", logits[3, 5], (128,))]
+for name, z, shape in shapes:
+    assert tuple(z.shape) == shape, (name, tuple(z.shape))
+display(pd.DataFrame([(n, tuple(z.shape)) for n, z, _ in shapes], columns=["tensor", "shape"]))
+print("logits[t=3, j=5] has 128 entries = scores of the 128 classes (IDs), not 128 future steps")
+''')
+code("s8-mqar-align", r'''
+y = mx["y"][0]
+assert int(wm["y_fut"][3, 5]) == int(y[8]) == 76 and int(wm["y_fut"][8, 0]) == int(y[8]) == 76
+assert int(mx["source_pos"][0, 8]) == 1 and int(mx["delay"][0, 8]) == 7
+assert int(mx["delay"][0, 4]) == 1 and MQAR_T16.long_delay == 4
+print(f"long answers (delay >= {MQAR_T16.long_delay}): t=8 is long (delay 7), t=4 is not (delay 1)")
+assert MQAR_T16.T_f == MQAR_T16.T == 16 and MQAR_T16.far == "none"
+print("T_f = T = 16: the pair (t=3, j=5) is inside L_near; L_far is off (far = none)")
+# CODE CHECK (random weights): G_5 of anchor 3 must not depend on inputs after position 8
+x2 = mx["x"].clone(); x2[0, 9:] = torch.randint(1, 64, (7,))
+with torch.no_grad():
+    g1 = tq.decode(tq.encode(wm["x_ctx"][3:4]), wm["x_fut"][3:4])[0, 5]
+    w2 = windows(dict(mx, x=x2)); g2 = tq.decode(tq.encode(w2["x_ctx"][3:4]), w2["x_fut"][3:4])[0, 5]
+assert torch.allclose(g1, g2, atol=1e-6)
+print("causality: G_5 of anchor 3 is unchanged when x_9..x_15 are replaced (code check, random weights)")
+''')
+code("s8-mqar-trained", r'''
+# The three evaluation modes on this example with the TRAINED weights of mqar_T16N2_smt seed 201 (if the checkpoint was copied
+# from the GPU server into results_3090/checkpoints/; *.pt are not in git). No retraining here.
+ck = ROOT / "results_3090/checkpoints/mqar_T16N2_smt_s201"
+if (ck / "smt_best.pt").exists() and (ck / "dmt_best.pt").exists():
+    tt, rr = make_models(MQAR_T16, 201)
+    tt.load_state_dict(torch.load(ck / "smt_best.pt", map_location="cpu", weights_only=True)["models"]["teacher"])
+    rr.load_state_dict(torch.load(ck / "dmt_best.pt", map_location="cpu", weights_only=True)["models"]["rnn"])
+    with torch.no_grad():
+        modes = {"teacher on the query: m_8, j=0": tt.decode(tt.encode(wm["x_ctx"][8:9]), wm["x_fut"][8:9])[0, 0],
+                 "teacher before the queries: m_3, j=5": tt.decode(tt.encode(wm["x_ctx"][3:4]), wm["x_fut"][3:4])[0, 5],
+                 "final RNN: m^_8 = f(...f(0, x_0)..., x_8), readout": rr.rnn_readout(rnn_rollout(rr, mx["x"][:, :9])[:, 8])[0]}
+    display(pd.DataFrame([dict(mode=k, predicted_class=int(v.argmax()), p_76=float(v.softmax(-1)[76]),
+                               CE=float(F.cross_entropy(v[None], torch.tensor([76])))) for k, v in modes.items()]))
+    print("ONE example, seed 201 checkpoints (SMT step 6000, DMT step 2000); accuracy on the independent set is in §10")
+else:
+    print("checkpoint not found locally: only the trace above is shown (no accuracy of a random model)")
+''')
+md("s8-mqar-meaning", r"""
+| режим | что проверяет |
+|---|---|
+| teacher, `j = 0` на запросе | можно ли прочитать значение, когда энкодер уже видел и пары, и ключ запроса |
+| teacher с памятью до запросов (`m_3`, `j = 5`) | можно ли восстановить значение из памяти, построенной только по парам, и ключа, пришедшего во вход декодера. Это не доказывает, что в `m_3` лежит буквальная таблица ключ–значение: показано лишь, что правильное значение восстанавливается на новых примерах |
+| итоговая RNN | то же, но без энкодера и декодера teacher: только своё состояние `m̂_8`, накопленное по `x_0..x_8`, и readout |
+""")
 
 md("s9", "## §9. Метрики и мини-обучение (SMOKE, CPU)")
 code("s9-metrics", r'''
