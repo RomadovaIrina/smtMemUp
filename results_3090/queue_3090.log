@@ -30,3 +30,15 @@
 2026-10-25 21:22:46 Zoology-cell MQAR queue started (zoology mixers, ours_rnn, ours_smt)
 2026-10-25 21:23:06 Stack queue restarted with the shared start lock
 2026-10-25 23:02:37 queues restarted: lock held only to check memory and start
+2026-10-25 23:47:10 mqar_T32N4_smt 202 exit 0 after 42.6 min
+2026-10-25 23:50:08 Zoology-cell queue and ours_smt stopped by decision 25.10 (only Stack and MQAR T16/T32 kept)
+2026-10-25 23:50:20 Stack queue restarted: ablations (no_dyn, target_detached, fully_detached s201) first, then ctx_far s203, then BPTT retries; light pool 1
+2026-10-25 23:52:39 MQAR full-BPTT long-budget queue (T16N2, T32N4 x 3 seeds, 60k steps, stop at 99%), one job at a time
+2026-10-26 00:02:35 Stack queue restarted: surprise_far + random_far s201 first (priority), then no_dyn, fully_detached, ctx_far s203, surprise/random s202-203, BPTT retries
+2026-10-26 03:06:37 mqar_T16N2_rnn_bptt_full_long 201 exit 0 after 189.7 min
+2026-10-26 04:23:03 stack_bptt_full 203 exit 0 after 236.9 min
+2026-10-26 04:54:21 stack_smt_tf8_random_far 201 exit 0 after 141.6 min
+2026-10-26 06:11:38 mqar_T16N2_rnn_bptt_full_long 202 exit 0 after 142.0 min
+2026-10-26 06:57:36 stack_smt_tf8_no_dyn 201 exit 0 after 123.2 min
+2026-10-26 07:03:36 stack_smt_tf8_surprise_far 201 exit 1 after 2.0 min
+2026-10-26 07:24:27 surprise_far s201 re-queued after OOM at 07:03 (fully_detached peaked at 16 GB)

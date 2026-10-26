@@ -1,0 +1,15 @@
+{
+  "run_id": "zoology_attention_d64_lr4.64e-04",
+  "family": "zoology",
+  "mixer": "attention",
+  "d_model": 64,
+  "lr": 0.00046415888336127773,
+  "epochs_run": 35,
+  "final_valid_accuracy": 0.995,
+  "max_valid_accuracy": 0.995,
+  "early_stopped": true,
+  "independent_accuracy": 0.99425,
+  "num_parameters": 562304,
+  "wall_seconds": 583.2420434500091,
+  "zoology": "1ad20d193b6113cae1e8f3c655c300d7b4b3f4bb"
+}

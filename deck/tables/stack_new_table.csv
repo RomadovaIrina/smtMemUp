@@ -1,0 +1,10 @@
+model,experiment,s201,s202,s203
+"SMT → DMT, короткое окно",stack_smt_tf8,95.0,94.8,96.8
++ дальние цели по ошибке без памяти,stack_smt_tf8_ctx_far,92.4,95.1,—
++ дальние цели по локальной неожиданности,stack_smt_tf8_surprise_far,не завершён,—,—
++ случайные дальние цели,stack_smt_tf8_random_far,92.3,—,—
+без L_dyn,stack_smt_tf8_no_dyn,65.5,—,—
+цель L_dyn отцеплена,stack_smt_tf8_target_detached,98.5,—,—
+L_dyn полностью отцеплен,stack_smt_tf8_fully_detached,не завершён,—,—
+"RNN, полный BPTT",stack_bptt_full,99.3,99.9,99.5
+"RNN, BPTT-1",stack_bptt_1,31.2,не завершён,не завершён

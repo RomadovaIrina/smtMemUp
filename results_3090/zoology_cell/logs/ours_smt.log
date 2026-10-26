@@ -31,3 +31,6 @@ ours_smt_d64 smt 3000 {'valid/teacher_acc': 0.005166666666666667, 'valid/teacher
 ours_smt_d64 smt 4000 {'valid/teacher_acc': 0.01925, 'valid/teacher_pre_acc': 0.014916666666666667, 'valid/rnn_acc': 0.00025}
 ours_smt_d64 smt 5000 {'valid/teacher_acc': 0.03275, 'valid/teacher_pre_acc': 0.03225, 'valid/rnn_acc': 0.00025}
 ours_smt_d64 smt 6000 {'valid/teacher_acc': 0.058083333333333334, 'valid/teacher_pre_acc': 0.05508333333333333, 'valid/rnn_acc': 0.00016666666666666666}
+ours_smt_d64 smt 7000 {'valid/teacher_acc': 0.08091666666666666, 'valid/teacher_pre_acc': 0.08091666666666666, 'valid/rnn_acc': 0.00016666666666666666}
+ours_smt_d64 smt 8000 {'valid/teacher_acc': 0.10641666666666667, 'valid/teacher_pre_acc': 0.10508333333333333, 'valid/rnn_acc': 0.00025}
+ours_smt_d64 smt 9000 {'valid/teacher_acc': 0.12991666666666668, 'valid/teacher_pre_acc': 0.12583333333333332, 'valid/rnn_acc': 0.00025}
