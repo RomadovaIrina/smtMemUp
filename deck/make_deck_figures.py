@@ -160,7 +160,7 @@ def bar_panel(ax, items, title, ylabel="точность", chance=None, chance_l
     ax.set_xticks(range(len(items))); ax.set_xticklabels([it[0] for it in items], fontsize=11.5)
     if chance is not None:
         ax.axhline(chance, color="#888888", ls=":", lw=1.2)
-        ax.text(1.0, 1.01, f"пунктир: {chance_label}", transform=ax.transAxes, fontsize=10.5, color="#555555", ha="right", va="bottom")
+        ax.text(0.0 if not title else 1.0, 1.02, f"пунктир: {chance_label}", transform=ax.transAxes, fontsize=10.5, color="#555555", ha="left" if not title else "right", va="bottom")
     ax.set_ylim(0, ylim + 0.12); ax.set_title(title, loc="left"); ax.set_ylabel(ylabel)
     ax.grid(axis="x", visible=False)
 
@@ -370,12 +370,12 @@ def mq_items(prefix, has_full=True):
     it += [("RNN до DMT", COL["rnn_smt"], f"mqar_{T}_smt", "eval_best_rnn_smt_long"),
            ("RNN после\nDMT", COL["rnn_dmt"], f"mqar_{T}_smt", "eval_best_rnn_dmt_long")]
     if has_full:
-        it += [("RNN, полный\nBPTT 6000 ш.", COL["bptt_full"], f"mqar_{T}_rnn_bptt_full", "eval_best_rnn_bptt_long"),
-               ("RNN, полный\nBPTT ≤ 60000 ш.", COL["bptt_full"], f"mqar_{T}_rnn_bptt_full_long", "eval_best_rnn_bptt_long")]
+        it += [("полный BPTT,\n6k шагов", COL["bptt_full"], f"mqar_{T}_rnn_bptt_full", "eval_best_rnn_bptt_long"),
+               ("полный BPTT,\n≤ 60k шагов", COL["bptt_full"], f"mqar_{T}_rnn_bptt_full_long", "eval_best_rnn_bptt_long")]
     return it
 
 for T, N, has_full in (("T16N2", 2, True), ("T32N4", 4, False)):
-    fig, axes = plt.subplots(2, 1, figsize=(14, 7.4), sharex=True)
+    fig, axes = plt.subplots(2, 1, figsize=(14, 8.6), sharex=True)
     its = mq_items(T, has_full)
     for ax, suffix, ylab, chance, cl in ((axes[0], "_acc", "accuracy по всему словарю", None, None),
                                          (axes[1], "_cand_acc", "accuracy среди N записанных\nзначений (диагностика)", 1 / N, f"угадывание 1/N = {100 / N:.0f}%")):
@@ -387,7 +387,7 @@ for T, N, has_full in (("T16N2", 2, True), ("T32N4", 4, False)):
             f"Длинные ответы: delay ≥ {4 if N == 2 else 8}.\n" +
             ("Бюджеты: teacher/SMT 6 000 + DMT 2 000; teacher-диагностики 6 000; Transformer ≤ 3 000. Полный BPTT: 6 000 шагов не хватило; длинный бюджет — до 60 000 шагов с остановкой при 99%." if N == 2 else
              "Бюджеты: SMT 6 000 + DMT 2 000, Transformer ≤ 3 000. Полный BPTT на T = 32 ещё не запускался (в очереди, 60 000 шагов)."))
-    save(fig, f"M2_mqar_{T}_bars", note, bottom=0.14)
+    save(fig, f"M2_mqar_{T}_bars", note, bottom=0.2)
 
 # T32N4 curves
 fig, ax = plt.subplots(figsize=(9.5, 4.8))
