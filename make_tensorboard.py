@@ -205,6 +205,28 @@ def make_figures(R):
     for a in axes: a.set_yscale("log")
     fig.text(0.005, 0.005, note.replace("200 шагов", "50 шагов (BPTT: 500)"), fontsize=10, color="#333333"); fig.subplots_adjust(bottom=0.2, wspace=0.25)
     fig.savefig(FIG / "L2_mqar_T16_losses.png"); figs.append(("L2_mqar_T16_losses", fig))
+    # diagnostics: gradient norm before clipping (clip = 1) and L_dyn around the MQAR teacher jump
+    fig, axes = plt.subplots(1, 2, figsize=(16, 5.2))
+    for name, s, lab, c in (("stack_smt_tf8", 201, "без дальних целей", COL[0]), ("stack_smt_tf8_random_far", 201, "+ случайные", COL[2]),
+                            ("stack_smt_tf8_surprise_far", 202, "+ локальная неожиданность (s202)", COL[3]),
+                            ("stack_smt_tf8_ctx_far", 202, "+ ошибка без памяти (s202)", COL[1])):
+        h = hist(R, name, s, "smt")
+        if h is not None:
+            axes[0].plot(h.step, h.grad_norm.rolling(200, min_periods=1).median(), color=c, label=lab, lw=2)
+    axes[0].axhline(1.0, color="black", ls="--", lw=1.2); axes[0].text(200, 1.15, "порог обрезки clip = 1", fontsize=12)
+    axes[0].set_yscale("log"); axes[0].set_xlabel("шаг SMT"); axes[0].set_ylabel("норма градиента до обрезки")
+    axes[0].set_title("(а) Stack, SMT: норма градиента (медиана 200 шагов)", loc="left", fontsize=12); axes[0].legend(frameon=False, fontsize=11)
+    for s, ls in ((201, "-"), (202, "--"), (203, ":")):
+        h = hist(R, "mqar_T16N2_smt", s, "smt")
+        if h is None: continue
+        axes[1].plot(h.step, h.train_dynamics.rolling(50, min_periods=1).median(), color=COL[1], ls=ls, lw=2, label=f"L_dyn, s{s}")
+        axes[1].plot(h.step, h.train_decoder.rolling(50, min_periods=1).median(), color=COL[0], ls=ls, lw=1.5, label=f"L_near, s{s}")
+    axes[1].set_yscale("log"); axes[1].set_xlabel("шаг SMT"); axes[1].legend(frameon=False, fontsize=10, ncol=2)
+    axes[1].set_title("(б) MQAR T=16, SMT: L_dyn растёт после скачка teacher", loc="left", fontsize=12)
+    fig.text(0.005, 0.01, "НОВЫЕ запуски RTX 3090, обучающие батчи, скользящая медиана. grad_norm записан ДО обрезки "
+                          "(clip_grad_norm_ возвращает исходную норму).", fontsize=10, color="#333333")
+    fig.subplots_adjust(bottom=0.17, wspace=0.22)
+    fig.savefig(FIG / "G1_grad_norm_and_ldyn.png"); figs.append(("G1_grad_norm_and_ldyn", fig))
     # bars + box plots over seeds
     SHORT = {"stack_smt_tf8": "SMT, короткое окно", "stack_smt_tf8_ctx_far": "+ ошибка без памяти", "stack_smt_tf8_random_far": "+ случайные",
              "stack_smt_tf8_surprise_far": "+ локальн. неожид.", "stack_smt_tf8_no_dyn": "без L_dyn", "stack_smt_tf8_target_detached": "цель L_dyn отцеплена",
