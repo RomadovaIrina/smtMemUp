@@ -47,3 +47,5 @@
 2026-10-26 09:08:03 stack_smt_tf8_ctx_far 203 exit 1 after 2.0 min
 2026-10-26 09:36:37 ctx_far s203 re-queued after OOM at 09:08
 2026-10-26 09:50:38 mqar_T16N2_rnn_bptt_full_long 203 exit 0 after 171.0 min
+2026-10-26 11:55:32 stack_smt_tf8_surprise_far 202 exit 0 after 173.5 min
+2026-10-26 11:56:13 ALL queues and jobs stopped by user request
